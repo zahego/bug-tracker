@@ -3,22 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package task_hold;
+package holder.task_hold;
+import java.util.ArrayList;
 import task.Task;
 /**
  *
  * @author tug70
  */
 public class Taskhold {
-    private Task[] tasks;
+    private ArrayList<Task> tasks;
+    public Taskhold(){
+    }
     //constructor 
-    public Taskhold(Task[] tasks){
+    public Taskhold(ArrayList<Task> tasks){
         this.tasks=tasks;
     }
     //TODO insert
-    
+    public void insert(Task new_task){
+        this.tasks.add(new_task);
+    }
     //TODO update
-    
+    public void update(Task new_task){
+        
+    }
     //TODO sort
     
     //TODO delete
@@ -28,14 +35,14 @@ public class Taskhold {
     /**
      * @return the tasks
      */
-    public Task[] getTasks() {
+    public ArrayList<Task> getTasks() {
         return tasks;
     }
 
     /**
      * @param tasks the tasks to set
      */
-    public void setTasks(Task[] tasks) {
+    public void setTasks(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
     

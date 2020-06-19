@@ -5,7 +5,8 @@
  */
 package user;
 import project.Project;
-import task_hold.Taskhold;
+import holder.task_hold.Taskhold;
+import holder.project_hold.Projecthold;
 import task.Task;
 import java.util.ArrayList; 
 
@@ -13,24 +14,25 @@ import java.util.ArrayList;
  *
  * @author tug70
  */
-public class User extends Taskhold{
+public class User{
     private int ID;
     private Role role;
     private String profilePic;
     private String email;
     private String password;
     private int accessRange;
-    private ArrayList<Project> projects;
+    private Taskhold taskhold;
+    private Projecthold projecthold;
     
-    public User(int ID, Role role, String profilePic, String email, String password, int accessRange, ArrayList<Project> projects, Task[] tasks){
-     super(tasks);
+    public User(int ID, Role role, String profilePic, String email, String password, int accessRange, Projecthold projecthold, Taskhold taskhold){
      this.ID=ID;
      this.role=role;
      this.profilePic=profilePic;
      this.email=email;
      this.password=password;
      this.accessRange=accessRange;
-     this.projects=projects;
+     this.projecthold=projecthold;
+     this.taskhold=taskhold;
     }
 
     /**
@@ -118,22 +120,36 @@ public class User extends Taskhold{
     }
 
     /**
-     * @return the projects
+     * @return the taskhold
      */
-    public ArrayList<Project> getProjects() {
-        return projects;
+    public Taskhold getTaskhold() {
+        return taskhold;
     }
 
     /**
-     * @param projects the projects to set
+     * @param taskhold the taskhold to set
      */
-    public void setProjects(ArrayList<Project> projects) {
-        this.projects = projects;
+    public void setTaskhold(Taskhold taskhold) {
+        this.taskhold = taskhold;
+    }
+
+    /**
+     * @return the projecthold
+     */
+    public Projecthold getProjecthold() {
+        return projecthold;
+    }
+
+    /**
+     * @param projecthold the projecthold to set
+     */
+    public void setProjecthold(Projecthold projecthold) {
+        this.projecthold = projecthold;
     }
     
-    //add individual project for projects[]
-    public void addProject(Project project){
-        this.projects.add(project);
+    public void insertProjectHold(Project project){
+        this.projecthold.insert(project);
     }
+    
     
 }
