@@ -18,12 +18,12 @@ public class Taskhold {
     public Taskhold(ArrayList<Task> tasks){
         this.tasks=tasks;
     }
-    //TODO insert
+    //insert
     public void insert(Task new_task){
         this.tasks.add(new_task);
     }
     //TODO update
-    public void update(Task new_task){
+    public void update(int index, Task new_task){
         
     }
     //TODO sort

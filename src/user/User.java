@@ -4,17 +4,25 @@
  * and open the template in the editor.
  */
 package user;
+
+import com.google.gson.Gson;
 import project.Project;
 import holder.task_hold.Taskhold;
 import holder.project_hold.Projecthold;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import task.Task;
-import java.util.ArrayList; 
+import java.util.ArrayList;
+import org.json.simple.*;
+import org.json.simple.parser.JSONParser;
 
 /**
  *
  * @author tug70
  */
-public class User{
+public class User {
+
     private int ID;
     private Role role;
     private String profilePic;
@@ -23,16 +31,16 @@ public class User{
     private int accessRange;
     private Taskhold taskhold;
     private Projecthold projecthold;
-    
-    public User(int ID, Role role, String profilePic, String email, String password, int accessRange, Projecthold projecthold, Taskhold taskhold){
-     this.ID=ID;
-     this.role=role;
-     this.profilePic=profilePic;
-     this.email=email;
-     this.password=password;
-     this.accessRange=accessRange;
-     this.projecthold=projecthold;
-     this.taskhold=taskhold;
+
+    public User(int ID, Role role, String profilePic, String email, String password, int accessRange, Projecthold projecthold, Taskhold taskhold) {
+        this.ID = ID;
+        this.role = role;
+        this.profilePic = profilePic;
+        this.email = email;
+        this.password = password;
+        this.accessRange = accessRange;
+        this.projecthold = projecthold;
+        this.taskhold = taskhold;
     }
 
     /**
@@ -146,10 +154,33 @@ public class User{
     public void setProjecthold(Projecthold projecthold) {
         this.projecthold = projecthold;
     }
-    
-    public void insertProjectHold(Project project){
+
+    public void insertProjectHold(Project project) {
         this.projecthold.insert(project);
     }
-    
-    
+
+    public void setUserFromDatabase(int num) {
+        //User user=new User(int ID, Role role, String profilePic, String email, String password, int accessRange, Projecthold projecthold, Taskhold taskhold);
+        JSONParser jsonParser = new JSONParser();
+        try {
+            FileReader reader = new FileReader("src/database/database.json");
+
+            //Read JSON file
+            JSONObject obj = (JSONObject) jsonParser.parse(reader);
+            JSONArray userObject = (JSONArray) obj.get("user");
+            JSONObject user = (JSONObject) userObject.get(num);
+            int ID =  ((Long) user.get("id")).intValue();
+            String role = (String) user.get("role");
+            String profilePic = (String) user.get("profilePic");
+            String email = (String) user.get("email");
+            String password = (String) user.get("password");
+            int accessRange = ((Long) user.get("accessRange")).intValue();
+            JSONArray projecthold = (JSONArray) user.get("projects");
+            JSONArray taskhold = (JSONArray) user.get("tasks");
+            System.out.println(ID+" "+ role+" "+projecthold);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
 }
