@@ -10,16 +10,16 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import common.Board.Board;
+import common.Enum.BoardType;
 import common.Task.Task;
+import common.TaskHold.TaskHold;
 
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.BoxLayout;
-import javax.swing.JLayeredPane;
 
 public class MainUI extends JFrame {
 
@@ -50,7 +50,8 @@ public class MainUI extends JFrame {
 	 * Create the frame.
 	 */
 	public MainUI() {
-		board = Board.generateTestBoard();
+		TaskHold.loadTask();
+		board = new Board(BoardType.BACKLOG);
 		List<Task> tasks = board.read();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 567, 515);
@@ -92,7 +93,8 @@ public class MainUI extends JFrame {
 		          public void mousePressed(MouseEvent me) { 
 		        	  if (me.getClickCount() == 2) {
 		        		    TaskDetailsUI details = new TaskDetailsUI(task);
-		        		    getContentPane().add(details);
+		        		    details.setVisible(true);
+		        		    details.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		        	  }
 		          } 
 		    });

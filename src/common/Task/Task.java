@@ -12,8 +12,8 @@ import common.Enum.TaskType;
 public class Task {
 	int ID;
 	TaskType type;
-	int projectID;
-	int sprintID;
+	String projectID;
+	String sprintID;
 	String quickSummary;
 	List<String> comments; 
 	int severity;
@@ -22,16 +22,14 @@ public class Task {
 	Date dueDate;
 	String fullDescription;
 	File attachedFile;
-	//User mainAssigner;
-	//User mainAssignee;
-	//User[] assigners;
-	//User[] assignees;
+	int assignerID;
+	List<Integer> assignees;
 	
-	public Task (int ID, String quickSummary, int severity, TaskStatus status, Date reportedDate) {
+	public Task (int ID, String quickSummary, String projectID, String sprintID, int severity, TaskStatus status, Date reportedDate) {
 		this.ID = ID;
 		this.type = TaskType.TASK;
-		this.projectID = -1;
-		this.sprintID = -1;
+		this.projectID = projectID;
+		this.sprintID = sprintID;
 		this.quickSummary = quickSummary;
 		this.comments = new ArrayList<>();
 		this.severity = severity;
@@ -40,8 +38,26 @@ public class Task {
 		this.dueDate = null;
 		this.fullDescription = quickSummary;
 		this.attachedFile = null;
+		this.assignerID = -1;
+		this.assignees = new ArrayList<>();
 	}
 	
+	public int getAssignerID() {
+		return assignerID;
+	}
+
+	public void setAssignerID(int assignerID) {
+		this.assignerID = assignerID;
+	}
+
+	public List<Integer> getAssignees() {
+		return assignees;
+	}
+
+	public void setAssignees(List<Integer> assignees) {
+		this.assignees = assignees;
+	}
+
 	public int getID() {
 		return ID;
 	}
@@ -58,19 +74,19 @@ public class Task {
 		this.type = type;
 	}
 
-	public int getProjectID() {
+	public String getProjectID() {
 		return projectID;
 	}
 
-	public void setProjectID(int projectID) {
+	public void setProjectID(String projectID) {
 		this.projectID = projectID;
 	}
 
-	public int getSprintID() {
+	public String getSprintID() {
 		return sprintID;
 	}
 
-	public void setSprintID(int sprintID) {
+	public void setSprintID(String sprintID) {
 		this.sprintID = sprintID;
 	}
 

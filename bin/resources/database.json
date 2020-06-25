@@ -1,0 +1,109 @@
+{
+    "task": [{
+            "id": 1,
+            "taskType": "TASK",
+            "projectID": "pro1",
+            "sprintID": "spr1",
+            "quickSummary": "fake task #1",
+            "comment": "",
+            "severity": 4,
+            "taskStatus": "ONNEW",
+            "date": "12-12-2020",
+            "fullDescription": "this is just a fake task in project 1, no need to worry",
+            "file": ""
+        }, {
+            "id": 2,
+            "taskType": "BUG REPORT",
+            "projectID": "pro2",
+            "sprintID": "spr1",
+            "quickSummary": "bogus bug report #1",
+            "comment": "",
+            "severity": 2,
+            "taskStatus": "ONNEW",
+            "date": "11-11-2020",
+            "fullDescription": "this is just a fake bug report in project 2, no need to worry",
+            "file": ""
+        },
+        {
+            "id": 3,
+            "taskType": "BUG REPORT",
+            "projectID": "pro1",
+            "sprintID": "spr2",
+            "quickSummary": "fake bug report #2",
+            "comment": "",
+            "severity": 5,
+            "taskStatus": "ONGOING",
+            "date": "10-10-1998",
+            "fullDescription": "this is just a fake bug report in project 1, no need to worry",
+            "file": ""
+        }, {
+            "id": 4,
+            "taskType": "TEST REQUEST",
+            "projectID": "pro1",
+            "sprintID": "spr2",
+            "quickSummary": "fake test request #1",
+            "comment": "",
+            "severity": 6,
+            "taskStatus": "ONTAKEN",
+            "date": "10-10-1996",
+            "fullDescription": "this is just a fake test request in project 1, no need to worry",
+            "file": ""
+        }, {
+            "id": 5,
+            "taskType": "BUG REPORT",
+            "projectID": "pro1",
+            "sprintID": "spr3",
+            "quickSummary": "fake bug report #3",
+            "comment": "",
+            "severity": 9,
+            "taskStatus": "ONREVIEW",
+            "date": "10-10-2020",
+            "fullDescription": "this is just a fake bug report in project 1, no need to worry",
+            "file": ""
+        }, {
+            "id": 6,
+            "taskType": "BUG REPORT",
+            "projectID": "pro2",
+            "sprintID": "spr2",
+            "quickSummary": "fake bug report #4",
+            "comment": "",
+            "severity": 9,
+            "taskStatus": "ONNEW",
+            "date": "10-10-2020",
+            "fullDescription": "this is just a fake bug report in project 2, no need to worry",
+            "file": ""
+        }, {
+            "id": 7,
+            "taskType": "NEW FEATURE",
+            "projectID": "pro2",
+            "sprintID": "spr1",
+            "quickSummary": "fake new feature #1",
+            "comment": "",
+            "severity": 2,
+            "taskStatus": "ONFINISH",
+            "date": "12-10-2020",
+            "fullDescription": "this is just a fake new feature in project 2, no need to worry",
+            "file": ""
+        }],
+    "project": [1, 2, 3],
+    "board": [{
+            "boardType": "BACKLOG",
+            "project": [],
+            "counter": 3
+        }],
+    "user": [{
+            "id": 1,
+            "role": "developer",
+            "image": "tempIcon.png",
+            "name": "john Doe",
+            "email": "hunterman@gmail.com",
+            "password": "encrypted",
+            "accessRange": 3,
+            "projects": [1, 2],
+            "tasks": []
+        }],
+
+    "sprint": "suff",
+
+    "layout": []
+}

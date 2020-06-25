@@ -1,5 +1,15 @@
 package common.Enum;
 
 public enum TaskStatus {
-	ONBACKLOG, ONTAKEN, ONGOING, ONREVIEW, FINISH
+	ONNEW("ONNEW"), ONTAKEN("ONTAKEN"), ONGOING("ONGOING"), ONREVIEW("ONREVIEW"), ONFINISH("ONFINISH");
+
+	private String status;
+	
+	TaskStatus(String status) {
+		this.status = status;
+	}
+	
+	public String getStatus() {
+		return this.status;
+	}
 }

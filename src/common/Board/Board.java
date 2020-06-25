@@ -4,24 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import common.Enum.BoardType;
-import common.Enum.TaskStatus;
 import common.Task.Task;
-import common.Ultilities.Utilities;
+import common.TaskHold.TaskHold;
 
 public class Board {
 	BoardType type;
 	List<Task> tasks;
-	int counter;
 	
 	public Board(BoardType type) {
 		this.type = type;
-		tasks = new ArrayList<>();
-		counter = 0;
+		tasks = new ArrayList<>(TaskHold.filter(type));
 	}
 	
-	public void addTask(Task task) {
-		tasks.add(task);
-		counter++;
+	public List<Task> filter(String projectID, String sprintID, int userID){
+		List<Task> ret = new ArrayList<>();
+		for(int i = 0; i < this.tasks.size(); i++) {
+			if((projectID==null||tasks.get(i).getProjectID().equals(projectID))&&(sprintID==null||tasks.get(i).getSprintID().equals(sprintID))&&(userID==-1||tasks.get(i).getAssignees().contains(userID))) {
+				ret.add(tasks.get(i));
+			}
+		}
+		return ret;
 	}
 	
 	public List<Task> search(String searchInput) {
@@ -30,28 +32,5 @@ public class Board {
 	
 	public List<Task> read() {
 		return tasks;
-	}
-	
-	public void update() {
-		
-	}
-	
-	public void delete() {
-		
-	}
-	
-	public static Board generateTestBoard() {
-		Board test = new Board(BoardType.LEFTMAINBACKLOG);
-		test.addTask(new Task(1, "aaaaa", 1, TaskStatus.ONBACKLOG, Utilities.getDate(2020, 6, 18)));
-		test.addTask(new Task(2, "bbbbb", 1, TaskStatus.ONBACKLOG, Utilities.getDate(2020, 6, 18)));
-		test.addTask(new Task(3, "ccccc", 1, TaskStatus.ONBACKLOG, Utilities.getDate(2020, 6, 18)));
-		test.addTask(new Task(4, "ddddd", 1, TaskStatus.ONBACKLOG, Utilities.getDate(2020, 6, 18)));
-		test.addTask(new Task(5, "eeeee", 1, TaskStatus.ONBACKLOG, Utilities.getDate(2020, 6, 18)));
-		test.addTask(new Task(6, "fffff", 1, TaskStatus.ONBACKLOG, Utilities.getDate(2020, 6, 18)));
-		test.addTask(new Task(7, "ggggg", 1, TaskStatus.ONBACKLOG, Utilities.getDate(2020, 6, 18)));
-		test.addTask(new Task(8, "hhhhh", 1, TaskStatus.ONBACKLOG, Utilities.getDate(2020, 6, 18)));
-		test.addTask(new Task(9, "iiiii", 1, TaskStatus.ONBACKLOG, Utilities.getDate(2020, 6, 18)));
-		test.addTask(new Task(10, "jjjjj", 1, TaskStatus.ONBACKLOG, Utilities.getDate(2020, 6, 18)));
-		return test;
 	}
 }
