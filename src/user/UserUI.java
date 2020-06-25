@@ -32,7 +32,6 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        logOutButton = new javax.swing.JButton();
         UserName = new javax.swing.JLabel();
         UserID = new javax.swing.JLabel();
         UserEmail = new javax.swing.JLabel();
@@ -41,8 +40,6 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
 
         setBackground(new java.awt.Color(153, 204, 255));
         setMaximumSize(new java.awt.Dimension(478, 342));
-
-        logOutButton.setText("log out");
 
         UserName.setBackground(new java.awt.Color(153, 255, 255));
         UserName.setForeground(new java.awt.Color(0, 0, 102));
@@ -108,33 +105,31 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Portrait, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UserRole, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UserID, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(Portrait, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UserEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(UserID, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UserEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UserRole, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Portrait, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(UserName)
-                .addGap(27, 27, 27)
-                .addComponent(UserID)
-                .addGap(27, 27, 27)
-                .addComponent(UserEmail)
-                .addGap(30, 30, 30)
-                .addComponent(UserRole)
-                .addGap(18, 18, 18)
-                .addComponent(logOutButton))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(UserName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(UserID)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(UserEmail)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(UserRole))
+                    .addComponent(Portrait, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         Portrait.getAccessibleContext().setAccessibleName("PORTRAIT");
@@ -149,7 +144,6 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
     private javax.swing.JLabel UserID;
     private javax.swing.JLabel UserName;
     private javax.swing.JLabel UserRole;
-    private javax.swing.JButton logOutButton;
     // End of variables declaration//GEN-END:variables
 
     
@@ -213,20 +207,6 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
      */
     public void setUserRole(String UserRole) {
         this.UserRole.setText(UserRole);
-    }
-
-    /**
-     * @return the logOutButton
-     */
-    public javax.swing.JButton getLogOutButton() {
-        return logOutButton;
-    }
-
-    /**
-     * @param logOutButton the logOutButton to set
-     */
-    public void setLogOutButton(javax.swing.JButton logOutButton) {
-        this.logOutButton = logOutButton;
     }
 
     /**

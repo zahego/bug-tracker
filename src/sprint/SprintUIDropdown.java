@@ -31,7 +31,7 @@ public class SprintUIDropdown extends javax.swing.JPanel {
 
         jComboBox1 = new javax.swing.JComboBox<>();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "sprint", "#1", "#2", "#3", "#4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "all sprint", "#1", "#2", "#3", "#4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

@@ -5,6 +5,7 @@
  */
 package user;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 
 /**
@@ -18,10 +19,7 @@ public class UserUIDropdown extends javax.swing.JPanel {
      */
     public UserUIDropdown() {
         initComponents();
-        addString();
         addUI();
-        String j=UserUIDropdown.getSelectedItem().toString();
-        System.out.println(j);
         
     }
 
@@ -34,43 +32,43 @@ public class UserUIDropdown extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        UserUIDropdown = new javax.swing.JComboBox();
+        authentication = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(UserUIDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(156, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(UserUIDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(186, Short.MAX_VALUE))
-        );
+        setBackground(new java.awt.Color(102, 102, 255));
+        setLayout(new java.awt.BorderLayout());
+
+        authentication.setText("log out");
+        authentication.setMaximumSize(new java.awt.Dimension(300, 25));
+        authentication.setPreferredSize(new java.awt.Dimension(300, 25));
+        authentication.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                authenticationActionPerformed(evt);
+            }
+        });
+        add(authentication, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void authenticationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authenticationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_authenticationActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox UserUIDropdown;
+    private javax.swing.JButton authentication;
     // End of variables declaration//GEN-END:variables
     
-    //TODO figure out how to render more than 1 type of jpanel
-    public void addString(){
-        UserUIDropdown.addItem("John Doe the developer");
-    }
+
 
     public void addUI(){
         UserUI userUI=new UserUI();
-        ImageIcon icon = new ImageIcon("database/tempIcon.png");
-        System.out.println();
+        ImageIcon icon = new ImageIcon("src/database/tempIcon.png");
+        icon = new ImageIcon(icon.getImage().getScaledInstance(110, 110,  java.awt.Image.SCALE_SMOOTH));  // transform it back
+     
         userUI.setPortrait(icon);
         userUI.setUserEmail("hoho@gmail.com");
-        UserUIDropdown.setRenderer(userUI);
+        //this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        this.add(userUI);
     }
+    
 }
 

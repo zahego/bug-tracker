@@ -15,6 +15,7 @@ public class Project {
     private int projectID;
     private String projectName;
     private Date createDate;
+    private Date startDate;
     private Date dueDate;
     private String summary;
     

@@ -38,7 +38,7 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="5">
-            <StringItem index="0" value="sprint"/>
+            <StringItem index="0" value="all sprint"/>
             <StringItem index="1" value="#1"/>
             <StringItem index="2" value="#2"/>
             <StringItem index="3" value="#3"/>

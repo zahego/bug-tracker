@@ -30,7 +30,9 @@ public class ProjectUIDropdown extends javax.swing.JPanel {
 
         projectDropDown = new javax.swing.JComboBox<>();
 
-        projectDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Project", "Bug tracker", "Streaming service", "Flash card", "+ Add project" }));
+        setBackground(new java.awt.Color(255, 51, 255));
+
+        projectDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "all project", "Bug tracker", "Streaming service", "Flash card", "+ Add project" }));
         projectDropDown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 projectDropDownActionPerformed(evt);
