@@ -19,7 +19,7 @@ public class TaskHold {
 	public static void loadTask() {
 		JSONParser jsonParser = new JSONParser();
         try {
-            FileReader reader = new FileReader("src/resources/database.json");
+            FileReader reader = new FileReader("resources/database.json");
             JSONObject obj = (JSONObject) jsonParser.parse(reader);
             JSONArray tasks = (JSONArray) obj.get("task");
             for(Object taskObj: tasks) {
