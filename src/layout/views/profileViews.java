@@ -39,8 +39,7 @@ public class profileViews extends JFrame {
 	 * Create the frame.
 	 */
 	public profileViews() {
-		setTitle("Bug Tracker 3000 - My Profile");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(profileViews.class.getResource("/layout/resource/BugTracker.png")));
+		
 		initComponents();
 		createEvents();
 		
@@ -49,6 +48,8 @@ public class profileViews extends JFrame {
 	
 
 	private void initComponents() {
+		
+		
 		
 		setTitle("Bug Tracker 3000 - My Profile");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(profileViews.class.getResource("/layout/resource/BugTracker.png")));
