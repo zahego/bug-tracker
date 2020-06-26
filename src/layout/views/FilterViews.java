@@ -2,7 +2,6 @@ package layout.views;
 
 
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -14,14 +13,15 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JRadioButton;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class FilterViews extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public JPanel FilterViews;
 	public JLabel lblNewLabel;
 	public JRadioButton FilterOption1;
@@ -73,19 +73,9 @@ public class FilterViews extends JFrame {
 	}
 
 	private void createEvents() {
-		// TODO Auto-generated method stub
-		
 
-		
-		
-		
-		
 	}
 
-	/*private void FilterOption() {
-		// TODO Auto-generated method stub
-		
-		}*/
 	
 
 	private void initComponents() {
@@ -96,7 +86,6 @@ public class FilterViews extends JFrame {
 		setTitle("Bug Tracker 3000 - Filter Options\r\n");
 		setResizable(false);
 		
-		// TODO Auto-generated method stub
 		setBounds(100, 100, 398, 348);
 		FilterViews = new JPanel();
 		FilterViews.setBorder(new EmptyBorder(5, 5, 5, 5));

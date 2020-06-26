@@ -1,6 +1,5 @@
 package layout.views;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,14 +8,15 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JTable;
 import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Color;
-import javax.swing.SwingConstants;
 
 public class profileViews extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public JPanel ProfileViews;
 
 	/**
@@ -54,7 +54,6 @@ public class profileViews extends JFrame {
 		setTitle("Bug Tracker 3000 - My Profile");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(profileViews.class.getResource("/layout/resource/BugTracker.png")));
 		
-		// TODO Auto-generated method stub
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 663, 525);
 		ProfileViews = new JPanel();
@@ -83,7 +82,6 @@ public class profileViews extends JFrame {
 	}
 	
 	private void createEvents() {
-		// TODO Auto-generated method stub
 		
 	}
 }
