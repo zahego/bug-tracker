@@ -12,8 +12,8 @@ import common.Enum.TaskType;
 public class Task {
 	int ID;
 	TaskType type;
-	String projectID;
-	String sprintID;
+	int projectID;
+	int sprintID;
 	String quickSummary;
 	List<String> comments; 
 	int severity;
@@ -25,7 +25,7 @@ public class Task {
 	int assignerID;
 	List<Integer> assignees;
 	
-	public Task (int ID, String quickSummary, String projectID, String sprintID, int severity, TaskStatus status, Date reportedDate) {
+	public Task (int ID, String quickSummary, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate) {
 		this.ID = ID;
 		this.type = TaskType.TASK;
 		this.projectID = projectID;
@@ -74,19 +74,19 @@ public class Task {
 		this.type = type;
 	}
 
-	public String getProjectID() {
+	public int getProjectID() {
 		return projectID;
 	}
 
-	public void setProjectID(String projectID) {
+	public void setProjectID(int projectID) {
 		this.projectID = projectID;
 	}
 
-	public String getSprintID() {
+	public int getSprintID() {
 		return sprintID;
 	}
 
-	public void setSprintID(String sprintID) {
+	public void setSprintID(int sprintID) {
 		this.sprintID = sprintID;
 	}
 
@@ -158,3 +158,4 @@ public class Task {
 		this.attachedFile = attachedFile;
 	}
 }
+

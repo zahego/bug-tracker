@@ -1,4 +1,4 @@
-package views;
+package layout.views.TaskUI;
 
 import java.awt.BorderLayout;
 
@@ -13,7 +13,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class TaskDetailsUI extends JFrame {
 
@@ -41,9 +40,9 @@ public class TaskDetailsUI extends JFrame {
 		
 		JLabel taskID = new JLabel(String.valueOf(task.getID()));
 		
-		JLabel projectID = new JLabel(task.getProjectID());
+		JLabel projectID = new JLabel(String.valueOf(task.getProjectID()));
 		
-		JLabel sprintID = new JLabel(task.getSprintID());
+		JLabel sprintID = new JLabel(String.valueOf(task.getSprintID()));
 		
 		JLabel quickSummary = new JLabel(task.getQuickSummary());
 		

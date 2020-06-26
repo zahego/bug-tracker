@@ -24,7 +24,7 @@ public class TaskHold {
             JSONArray tasks = (JSONArray) obj.get("task");
             for(Object taskObj: tasks) {
             	JSONObject task = (JSONObject) taskObj;
-            	taskList.add(new Task(Long.valueOf((long) task.get("id")).intValue(), (String) task.get("quickSummary"), (String) task.get("projectID"), (String) task.get("sprintID"), Long.valueOf((long) task.get("severity")).intValue(), TaskStatus.valueOf((String) task.get("taskStatus")), Utilities.stringToDate((String) task.get("date"))));
+            	taskList.add(new Task(Long.valueOf((long) task.get("id")).intValue(), (String) task.get("quickSummary"), Long.valueOf((long) task.get("projectID")).intValue(), Long.valueOf((long) task.get("sprintID")).intValue(), Long.valueOf((long) task.get("severity")).intValue(), TaskStatus.valueOf((String) task.get("taskStatus")), Utilities.stringToDate((String) task.get("date"))));
             }
         } catch (Exception e) {
         	e.printStackTrace();

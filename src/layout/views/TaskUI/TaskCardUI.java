@@ -1,4 +1,4 @@
-package views;
+package layout.views.TaskUI;
 
 import javax.swing.JPanel;
 
@@ -12,6 +12,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+import java.awt.Dimension;
 
 public class TaskCardUI extends JPanel {
 
@@ -24,6 +25,7 @@ public class TaskCardUI extends JPanel {
 	 * Create the panel.
 	 */
 	public TaskCardUI(Task task) {
+		setMaximumSize(new Dimension(1000, 150));
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setBackground(Color.WHITE);
 		JLabel quickSummary = new JLabel(task.getQuickSummary());
