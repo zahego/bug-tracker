@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
@@ -57,11 +58,15 @@ public class layoutViews extends JFrame {
 	private JLabel SearchIconL;
 	private JTextField SearchBarR;
 	private JLabel SearchIconR;
-	private JComboBox<String> FilterL;
 	private JComboBox<String> SortL;
-	private JComboBox<String> FilterR;
 	private JComboBox<String> SortR;
-	private JLabel test;
+	private JLabel testSort;
+	private JButton FilterL;
+	private JButton FilterR;
+	private JLabel testFilter;
+	private JTextField testFilterText;
+	private Double total = 100.0;
+	
 	//private String[] projectlist = {"Lion Project", "Cat Project", "Dog Project"};
 	//private String[] sprintlist = {"sprint 1", "sprint 2", "sprint 3"};
 	//private String[] sortlist = {"A-Z", "Z-A", "Soonest"};
@@ -100,6 +105,7 @@ public class layoutViews extends JFrame {
 
 	
 	private void initComponents() {
+		
 		
 		//Title Setting
 		setBackground(Color.LIGHT_GRAY);
@@ -300,9 +306,10 @@ public class layoutViews extends JFrame {
 		FakeBoard fakeboard = new FakeBoard();
 		fakeboard.setVisible(true);
 		
-		FilterL = new JComboBox<String>(/*filterlist*/);
+		FilterL = new JButton("Filter");
 		
 		SortL = new JComboBox<String>(/*sortlist*/);
+		
 		
 		
 		GroupLayout gl_LeftProjectPanel = new GroupLayout(LeftProjectPanel);
@@ -310,12 +317,12 @@ public class layoutViews extends JFrame {
 			gl_LeftProjectPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_LeftProjectPanel.createSequentialGroup()
 					.addComponent(AddTaskButton, GroupLayout.PREFERRED_SIZE, 40, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(FilterL, GroupLayout.PREFERRED_SIZE, 42, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(SortL, 0, 35, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(FilterL, 0, 31, Short.MAX_VALUE)
-					.addGap(11)
-					.addComponent(MinimizeButtonL, GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(MinimizeButtonL, GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
 				.addGroup(gl_LeftProjectPanel.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(SearchBarL, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
@@ -334,7 +341,7 @@ public class layoutViews extends JFrame {
 						.addComponent(MinimizeButtonL, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_LeftProjectPanel.createParallelGroup(Alignment.BASELINE)
 							.addComponent(AddTaskButton)
-							.addComponent(FilterL, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(FilterL)
 							.addComponent(SortL, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_LeftProjectPanel.createParallelGroup(Alignment.TRAILING)
@@ -354,9 +361,11 @@ public class layoutViews extends JFrame {
 		
 		FakeBoard fakeboard2 = new FakeBoard();
 		
-		FilterR = new JComboBox<String>(/*filterlist*/);
-		
 		SortR = new JComboBox<String>(/*sortlist*/);
+		
+		FilterR = new JButton("Filter");
+		
+		
 		GroupLayout gl_RightProjectPanel = new GroupLayout(RightProjectPanel);
 		gl_RightProjectPanel.setHorizontalGroup(
 			gl_RightProjectPanel.createParallelGroup(Alignment.LEADING)
@@ -364,12 +373,12 @@ public class layoutViews extends JFrame {
 					.addContainerGap()
 					.addGroup(gl_RightProjectPanel.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_RightProjectPanel.createSequentialGroup()
-							.addGap(33)
-							.addComponent(SortR, 0, 35, Short.MAX_VALUE)
+							.addGap(31)
+							.addComponent(FilterR, GroupLayout.PREFERRED_SIZE, 42, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(SortR, 0, 37, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(FilterR, 0, 31, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(MinimizeButtonR, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addComponent(MinimizeButtonR, GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
 						.addGroup(gl_RightProjectPanel.createSequentialGroup()
 							.addComponent(SearchBarR, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
 							.addGap(4)
@@ -385,8 +394,8 @@ public class layoutViews extends JFrame {
 					.addGroup(gl_RightProjectPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(MinimizeButtonR, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_RightProjectPanel.createParallelGroup(Alignment.BASELINE)
-							.addComponent(FilterR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(SortR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(SortR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(FilterR)))
 					.addGap(7)
 					.addGroup(gl_RightProjectPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(SearchBarR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -394,7 +403,7 @@ public class layoutViews extends JFrame {
 							.addGap(5)
 							.addComponent(SearchIconR, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(fakeboard2, GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+					.addComponent(fakeboard2, GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		RightProjectPanel.setLayout(gl_RightProjectPanel);
@@ -411,7 +420,18 @@ public class layoutViews extends JFrame {
 		
 		TeamDropdown = new JComboBox<String>();
 		
-		test = new JLabel("New label");
+		testSort = new JLabel("No Name");
+		
+		testFilter = new JLabel("Total\r\n");
+		
+		/*testFilterText = new JTextField();
+		testFilterText.setEditable(false);
+		testFilterText.setColumns(10);*/
+		
+		testFilterText = new JTextField();
+		testFilterText.setText("100");
+		testFilterText.setEditable(false);
+		testFilterText.setColumns(10);
 		
 		
 		
@@ -448,14 +468,18 @@ public class layoutViews extends JFrame {
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(21)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(test)
+								.addComponent(testSort)
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(LeftProjectPanel, GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+									.addComponent(LeftProjectPanel, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(MidProjectPanel, GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(RightProjectPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.RELATED)))))
+									.addComponent(RightProjectPanel, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.RELATED))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(testFilter)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(testFilterText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
 					.addGap(12))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(295)
@@ -468,7 +492,12 @@ public class layoutViews extends JFrame {
 					.addGap(13)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(AppName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(test))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(testSort)
+							.addGap(3)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(testFilter)
+								.addComponent(testFilterText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
@@ -498,6 +527,8 @@ public class layoutViews extends JFrame {
 
 	private void createEvents() {
 		// TODO Auto-generated method stub
+		
+		
 		
 		MinimizeButtonL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -613,11 +644,11 @@ public class layoutViews extends JFrame {
 					String sorttype = (String)cb.getSelectedItem();
 					switch(sorttype) {
 					
-					case "A-Z": test.setText("A-Z");
+					case "A-Z": testSort.setText("A-Z");
 						break;
-					case "Z-A": test.setText("Z-A");
+					case "Z-A": testSort.setText("Z-A");
 						break;
-					default: test.setText("Try Again");
+					default: testSort.setText("Try Again");
 					
 					}
 				}
@@ -627,12 +658,42 @@ public class layoutViews extends JFrame {
 		SortR.setEditable(true);
 		SortR.setSelectedItem("Sort Here");
 		
-		FilterL.setEditable(true);
-		FilterL.setSelectedItem("Filter Here");
+		FilterL.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				FilterViews filterL = new FilterViews();
+				filterL.setVisible(true);
+				filterL.FilterButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (filterL.FilterOption1.isSelected()) {
+							total = total - 5;
+						} 
+						
+						if (filterL.FilterOption2.isSelected()) {
+							total = total - 10;
+						} 
+						
+						if (filterL.FilterOption3.isSelected()) {
+							total = total - 15;
+						} 
+						
+						if (filterL.FilterOption4.isSelected()) {
+							total = total - 20;
+						} 	
+						
+						testFilterText.setText(Double.toString(total));
+						filterL.dispose();
+					}
+				});
+			}
+		});
 		
-		FilterR.setEditable(true);
-		
-		FilterR.setSelectedItem("Filter Here");
+		FilterR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FilterViews filterR = new FilterViews();
+				filterR.setVisible(true);
+			}
+		});
 		
 		////////////////////////////////////////////////////////
 		
