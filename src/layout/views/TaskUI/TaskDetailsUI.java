@@ -40,9 +40,9 @@ public class TaskDetailsUI extends JFrame {
 		
 		JLabel taskID = new JLabel(String.valueOf(task.getID()));
 		
-		JLabel projectID = new JLabel(task.getProjectID());
+		JLabel projectID = new JLabel(String.valueOf(task.getProjectID()));
 		
-		JLabel sprintID = new JLabel(task.getSprintID());
+		JLabel sprintID = new JLabel(String.valueOf(task.getSprintID()));
 		
 		JLabel quickSummary = new JLabel(task.getQuickSummary());
 		

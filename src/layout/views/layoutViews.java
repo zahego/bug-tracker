@@ -62,8 +62,14 @@ public class layoutViews extends JFrame {
 	private JButton FilterL;
 	private JButton FilterR;
 	private Double total = 100.0;
+	private JScrollPane scrollBacklog;
+	private JScrollPane scrollTaken;
 	private JScrollPane scrollOngoing;
 	private JScrollPane scrollFinish;
+	private BoardUI backlog;
+	private BoardUI taken;
+	private BoardUI ongoing;
+	private BoardUI finish;
 	private JTextField testFilterText;
 	
 	//private String[] projectlist = {"Lion Project", "Cat Project", "Dog Project"};
@@ -237,7 +243,7 @@ public class layoutViews extends JFrame {
 		
 		JLabel OnTakenLabel = new JLabel("OnTaken");
 		
-		JScrollPane scrollTaken = new JScrollPane();
+		scrollTaken = new JScrollPane();
 		GroupLayout gl_OnTakenPanel = new GroupLayout(OnTakenPanel);
 		gl_OnTakenPanel.setHorizontalGroup(
 			gl_OnTakenPanel.createParallelGroup(Alignment.LEADING)
@@ -303,7 +309,7 @@ public class layoutViews extends JFrame {
 		FilterL = new JButton(/*filterlist*/);
 		FilterL.setText("Filter\r\n");
 		
-		JScrollPane scrollBacklog = new JScrollPane();
+		scrollBacklog = new JScrollPane();
 		
 		SortL = new JComboBox<String>(/*sortlist*/);
 		
@@ -520,10 +526,10 @@ public class layoutViews extends JFrame {
 		
 		//////////////////////////////////////////////////Merge (Trung)///////////////////////////////////////////////////////
 		TaskHold.loadTask();
-		BoardUI backlog = new BoardUI(BoardType.BACKLOG);
-		BoardUI taken = new BoardUI(BoardType.TAKEN);
-		BoardUI ongoing = new BoardUI(BoardType.ONGOING);
-		BoardUI finish = new BoardUI(BoardType.FINISH);
+		backlog = new BoardUI(BoardType.BACKLOG);
+		taken = new BoardUI(BoardType.TAKEN);
+		ongoing = new BoardUI(BoardType.ONGOING);
+		finish = new BoardUI(BoardType.FINISH);
 		
 		scrollBacklog.setViewportView(backlog);
 		scrollTaken.setViewportView(taken);
@@ -639,7 +645,6 @@ public class layoutViews extends JFrame {
 		SprintBox.setEditable(true);
 		SprintBox.setSelectedItem("Select A Sprint");
 		
-		SortL.setEditable(true);
 		SortL.addItem("A-Z");
 		SortL.addItem("Z-A");
 		
@@ -652,8 +657,10 @@ public class layoutViews extends JFrame {
 					switch(sorttype) {
 					
 					case "A-Z": testSort.setText("A-Z");
+						backlog.sortAsc();
 						break;
 					case "Z-A": testSort.setText("Z-A");
+						backlog.sortDesc();
 						break;
 					default: testSort.setText("Try Again");
 					
@@ -662,8 +669,29 @@ public class layoutViews extends JFrame {
 			}
 		});
 		
-		SortR.setEditable(true);
+		SortR.addItem("A-Z");
+		SortR.addItem("Z-A");
+		
 		SortR.setSelectedItem("Sort Here");
+		SortR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource()== SortR) {
+					JComboBox<?> cb = (JComboBox<?>)e.getSource();
+					String sorttype = (String)cb.getSelectedItem();
+					switch(sorttype) {
+					
+					case "A-Z": testSort.setText("A-Z");
+						finish.sortAsc();
+						break;
+					case "Z-A": testSort.setText("Z-A");
+						finish.sortDesc();
+						break;
+					default: testSort.setText("Try Again");
+					
+					}
+				}
+			}
+		});
 		
 		FilterL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -16,6 +16,11 @@ import javax.swing.JFrame;
 
 public class BoardUI extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7331854978956106556L;
+	
 	Board board;
 	/**
 	 * Create the panel.
@@ -23,6 +28,10 @@ public class BoardUI extends JPanel {
 	public BoardUI(BoardType type) {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		board = new Board(type);
+		renderBoard();
+	}
+	
+	public void renderBoard() {
 		List<Task> tasks = board.read();
 		for (int i = 0; i < tasks.size(); i++) {
 			Task task = tasks.get(i);
@@ -39,7 +48,20 @@ public class BoardUI extends JPanel {
 			this.add(card);
 		}
 	}
+	
 	public void filter() {
 		
+	}
+	
+	public void sortAsc() {
+		this.removeAll();
+		this.board.sortAsc();
+		renderBoard();
+	}
+	
+	public void sortDesc() {
+		this.removeAll();
+		this.board.sortDesc();
+		renderBoard();
 	}
 }
