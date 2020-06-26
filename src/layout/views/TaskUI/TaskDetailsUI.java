@@ -1,4 +1,4 @@
-package views;
+package layout.views.TaskUI;
 
 import java.awt.BorderLayout;
 
@@ -13,7 +13,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class TaskDetailsUI extends JFrame {
 
