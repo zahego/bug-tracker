@@ -5,6 +5,10 @@
  */
 package sprint;
 
+import project.ProjectUIDropdown;
+import project.Projecthold;
+import screen.ScreenUI;
+import setting.SettingUI;
 import user.*;
 
 /**
@@ -18,6 +22,8 @@ public class SprintUIDropdown extends javax.swing.JPanel {
      */
     public SprintUIDropdown() {
         initComponents();
+        Sprinthold.populateSprinthold();
+        this.renderUI();
     }
 
     /**
@@ -29,9 +35,14 @@ public class SprintUIDropdown extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
+        sprintDropdown = new javax.swing.JComboBox<>();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "all sprint", "#1", "#2", "#3", "#4" }));
+        sprintDropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "all sprint", "#1", "#2", "#3", "#4" }));
+        sprintDropdown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sprintDropdownActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -39,20 +50,84 @@ public class SprintUIDropdown extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sprintDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(75, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sprintDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(146, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void sprintDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sprintDropdownActionPerformed
+        Object selected = this.sprintDropdown.getSelectedItem();
+        if (selected == "--all sprint--") {
+            //ProjectUIDropdown.setProjectAccessID(-1);
+
+        } else if (selected == "+ Add sprint") {
+            //adding new project
+            SprintUICreateUpdate create = new SprintUICreateUpdate();
+            //create new int ID that is the next highest number according to the last item in project size()
+            int ID = Sprinthold.getSprints().get(Sprinthold.getSprints().size() - 1).getID() + 1;
+            create.setIDint(ID);
+            create.getDeleteButton().setVisible(false);
+            
+            create.setCreateUpdateLabel("Create Sprint");
+            create.setSubmitButton("Create");
+            create.setVisible(true);
+        } else {
+            //updating existed project
+            for (int i = 0; i < Sprinthold.getSprints().size(); i++) {
+                if (String.valueOf(Sprinthold.getSprints().get(i).getName()).equals(selected)) {
+                    //check access range to see if user are allow to edit project--only PM and higher should do this
+                    if(CurrentUserhold.getUser().getAccessRange()>2){
+                        //check if in setting this is changed to true to prevent annoyance
+                    if(SettingUI.isSprintEditToggle()==true){
+                    SprintUICreateUpdate update = new SprintUICreateUpdate();
+                    update.setUpdateInformation(Sprinthold.getSprints().get(i));
+                    update.setCreateUpdateLabel("Update Sprint");
+                    update.setSubmitButton("Update");
+                    update.setVisible(true);
+                    
+                    }
+                    }
+                    break;
+                }
+            }
+
+        }
+
+    }//GEN-LAST:event_sprintDropdownActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> sprintDropdown;
     // End of variables declaration//GEN-END:variables
+    public void renderUI() {
+        sprintDropdown.removeAllItems();
+        this.sprintDropdown.addItem("--all sprint--");
+        int projectID = ProjectUIDropdown.getProjectAccessID();
+        System.out.println("proj ID " + projectID);
+
+        for (int i = 0; i < Sprinthold.getSprints().size(); i++) {
+
+            //all projecti chosen. No sprint will be render
+            if (projectID == -1) {
+                break;
+            } //display sprint based on project
+            else {
+                //condition to render only sprint with its projectID align with the project ID
+                if (Projecthold.getProjects().get(projectID - 1).getID() == Sprinthold.getSprints().get(i).getProjectID()) {
+                    this.sprintDropdown.addItem(String.valueOf(Sprinthold.getSprints().get(i).getName()));
+                }
+            }
+        }
+        //only allow user with access range higher than 2 to create new project (PM and ADMIN)
+        if(CurrentUserhold.getUser().getAccessRange()>2 && ProjectUIDropdown.getProjectAccessID()!=-1){
+        this.sprintDropdown.addItem("+ Add sprint");
+        }
+    }
 }

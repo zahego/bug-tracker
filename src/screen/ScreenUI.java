@@ -8,16 +8,26 @@ import java.awt.*;
 import javax.swing.*;
 import user.UserUI;
 import java.util.Arrays;
+import java.util.Date;
+import project.Project;
 import project.ProjectUIDropdown;
+import project.Projecthold;
 import sprint.SprintUIDropdown;
-import user.TeamUIDropdown;
+import team.TeamUIDropdown;
 import user.UserUIDropdown;
+import setting.SettingUI;
 /**
  *
  * @author tug70
  */
 public class ScreenUI extends javax.swing.JFrame{
-
+    
+    //drop down section
+    private static UserUIDropdown userUI = new UserUIDropdown();
+    private static ProjectUIDropdown projectUI= new ProjectUIDropdown();
+    private static TeamUIDropdown teamUI =new TeamUIDropdown();
+    private static SprintUIDropdown sprintUI = new SprintUIDropdown();
+    private static SettingUI settingUI= new SettingUI();
     /**
      * Creates new form ScreenUI
      */
@@ -60,7 +70,7 @@ public class ScreenUI extends javax.swing.JFrame{
         dropDownsHolder.setLayout(dropDownsHolderLayout);
         dropDownsHolderLayout.setHorizontalGroup(
             dropDownsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1625, Short.MAX_VALUE)
+            .addGap(0, 953, Short.MAX_VALUE)
         );
         dropDownsHolderLayout.setVerticalGroup(
             dropDownsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,7 +89,7 @@ public class ScreenUI extends javax.swing.JFrame{
         );
         boardsHolderLayout.setVerticalGroup(
             boardsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1218, Short.MAX_VALUE)
+            .addGap(0, 208, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -88,10 +98,10 @@ public class ScreenUI extends javax.swing.JFrame{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(dropDownsHolder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(boardsHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(298, 298, 298)
                 .addComponent(productName)
-                .addGap(666, 666, 666))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,30 +117,35 @@ public class ScreenUI extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
      public void displayJFrame(){
-        UserUIDropdown userUI = new UserUIDropdown();
-        ProjectUIDropdown projectUI= new ProjectUIDropdown();
-        TeamUIDropdown teamUI =new TeamUIDropdown();
-        SprintUIDropdown sprintUI = new SprintUIDropdown();
+        
         JPanel j=new JPanel();
+        JPanel j2=new JPanel();
         //JPanel j1=new JPanel();
-        j.add(userUI);
+        j.add(getUserUI());
+        j.add(settingUI);
+        GridLayout layout2=new GridLayout(1, 2);
+        j.setLayout(layout2);
+        j2.add(j);
         //row 1
-        dropDownsHolder.add(projectUI);
+        dropDownsHolder.add(getProjectUI());
         //dropDownsHolder.add(j);
-        dropDownsHolder.add(sprintUI);
+        dropDownsHolder.add(getSprintUI());
         //row 2
-        dropDownsHolder.add(teamUI);
+        dropDownsHolder.add(getTeamUI());
         //dropDownsHolder.add(j1);
         dropDownsHolder.add(j);
         
+        getProjectUI().renderUI();
         
         this.pack();
         GridLayout layout=new GridLayout(2, 2);
-        projectUI.setLayout(new FlowLayout(FlowLayout.LEFT));
-        j.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        sprintUI.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        teamUI.setLayout(new FlowLayout(FlowLayout.LEFT));
+        
+        getProjectUI().setLayout(new FlowLayout(FlowLayout.LEFT));
+        j2.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        getSprintUI().setLayout(new FlowLayout(FlowLayout.RIGHT));
+        getTeamUI().setLayout(new FlowLayout(FlowLayout.LEFT));
         dropDownsHolder.setLayout(layout);
+        dropDownsHolder.setSize(100, 100);
         dropDownsHolder.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 100));
         this.setVisible(true);
         
@@ -147,4 +162,60 @@ public class ScreenUI extends javax.swing.JFrame{
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel productName;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the userUI
+     */
+    public static UserUIDropdown getUserUI() {
+        return userUI;
+    }
+
+    /**
+     * @param aUserUI the userUI to set
+     */
+    public static void setUserUI(UserUIDropdown aUserUI) {
+        userUI = aUserUI;
+    }
+
+    /**
+     * @return the projectUI
+     */
+    public static ProjectUIDropdown getProjectUI() {
+        return projectUI;
+    }
+
+    /**
+     * @param aProjectUI the projectUI to set
+     */
+    public static void setProjectUI(ProjectUIDropdown aProjectUI) {
+        projectUI = aProjectUI;
+    }
+
+    /**
+     * @return the teamUI
+     */
+    public static TeamUIDropdown getTeamUI() {
+        return teamUI;
+    }
+
+    /**
+     * @param aTeamUI the teamUI to set
+     */
+    public static void setTeamUI(TeamUIDropdown aTeamUI) {
+        teamUI = aTeamUI;
+    }
+
+    /**
+     * @return the sprintUI
+     */
+    public static SprintUIDropdown getSprintUI() {
+        return sprintUI;
+    }
+
+    /**
+     * @param aSprintUI the sprintUI to set
+     */
+    public static void setSprintUI(SprintUIDropdown aSprintUI) {
+        sprintUI = aSprintUI;
+    }
 }

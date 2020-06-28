@@ -39,7 +39,7 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
         Portrait = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(153, 204, 255));
-        setMaximumSize(new java.awt.Dimension(478, 342));
+        setMaximumSize(new java.awt.Dimension(244, 123));
 
         UserName.setBackground(new java.awt.Color(153, 255, 255));
         UserName.setForeground(new java.awt.Color(0, 0, 102));
@@ -221,6 +221,24 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
      */
     public void setPortrait(ImageIcon Portrait) {
         this.Portrait.setIcon(Portrait);
+    }
+    
+    
+    public void setUserFromDatabase(int num){
+        //put this into current user hold
+        CurrentUserhold.setUser(User.getUserFromDatabase(num));
+        this.setUserName(CurrentUserhold.getUser().getName());
+        this.setUserEmail(CurrentUserhold.getUser().getEmail());
+        this.setUserID(String.valueOf(CurrentUserhold.getUser().getID()));
+        this.setUserRole(CurrentUserhold.getUser().getRole().name());
+        
+        //set icon
+        ImageIcon icon = new ImageIcon(CurrentUserhold.getUser().getProfilePic());
+        icon = new ImageIcon(icon.getImage().getScaledInstance(110, 110,  java.awt.Image.SCALE_SMOOTH)); 
+        
+        
+        this.setPortrait(icon);
+        
     }
     
     

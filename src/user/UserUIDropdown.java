@@ -13,13 +13,13 @@ import javax.swing.ImageIcon;
  * @author tug70
  */
 public class UserUIDropdown extends javax.swing.JPanel {
-
+    private static UserUI userUI=new UserUI();
     /**
      * Creates new form UserUIDropdown
      */
     public UserUIDropdown() {
         initComponents();
-        addUI();
+        renderUI();
         
     }
 
@@ -59,16 +59,26 @@ public class UserUIDropdown extends javax.swing.JPanel {
     
 
 
-    public void addUI(){
-        UserUI userUI=new UserUI();
-        ImageIcon icon = new ImageIcon("src/database/tempIcon.png");
-        icon = new ImageIcon(icon.getImage().getScaledInstance(110, 110,  java.awt.Image.SCALE_SMOOTH));  // transform it back
-     
-        userUI.setPortrait(icon);
-        userUI.setUserEmail("hoho@gmail.com");
-        //this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        this.add(userUI);
+    public void renderUI(){
+        setUserUI(new UserUI());
+        getUserUI().setUserFromDatabase(7);
+        this.add(getUserUI());
     }
+
+    /**
+     * @return the userUI
+     */
+    public static UserUI getUserUI() {
+        return userUI;
+    }
+
+    /**
+     * @param aUserUI the userUI to set
+     */
+    public static void setUserUI(UserUI aUserUI) {
+        userUI = aUserUI;
+    }
+    
     
 }
 

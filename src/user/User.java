@@ -5,15 +5,10 @@
  */
 package user;
 
-import com.google.gson.Gson;
 import project.Project;
 import holder.task_hold.Taskhold;
-import holder.project_hold.Projecthold;
-import java.io.FileNotFoundException;
+import project.Projecthold;
 import java.io.FileReader;
-import java.io.IOException;
-import task.Task;
-import java.util.ArrayList;
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 
@@ -26,16 +21,31 @@ public class User {
     private int ID;
     private Role role;
     private String profilePic;
+    private String name;
     private String email;
     private String password;
     private int accessRange;
     private Taskhold taskhold;
     private Projecthold projecthold;
+    
+    public User(int ID) {
+        this.ID = ID;
+    }
+    public User(int ID, Role role, String name, String profilePic, String email, String password, int accessRange) {
+        this.ID = ID;
+        this.role = role;
+        this.name = name;
+        this.profilePic = profilePic;
+        this.email = email;
+        this.password = password;
+        this.accessRange = accessRange;
+    }
 
-    public User(int ID, Role role, String profilePic, String email, String password, int accessRange, Projecthold projecthold, Taskhold taskhold) {
+    public User(int ID, Role role, String name, String profilePic, String email, String password, int accessRange, Projecthold projecthold, Taskhold taskhold) {
         this.ID = ID;
         this.role = role;
         this.profilePic = profilePic;
+        this.name = name;
         this.email = email;
         this.password = password;
         this.accessRange = accessRange;
@@ -159,28 +169,69 @@ public class User {
         this.projecthold.insert(project);
     }
 
-    public void setUserFromDatabase(int num) {
-        //User user=new User(int ID, Role role, String profilePic, String email, String password, int accessRange, Projecthold projecthold, Taskhold taskhold);
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public static User getUserFromDatabase(int num) {
+        User userGet = new User(-1, Role.DEVELOPER, "", "", "", "", -1);
         JSONParser jsonParser = new JSONParser();
         try {
             FileReader reader = new FileReader("src/database/database.json");
 
             //Read JSON file
             JSONObject obj = (JSONObject) jsonParser.parse(reader);
+            //get the user aray
             JSONArray userObject = (JSONArray) obj.get("user");
+            //get the user at user array of "num" position
             JSONObject user = (JSONObject) userObject.get(num);
-            int ID =  ((Long) user.get("id")).intValue();
-            String role = (String) user.get("role");
-            String profilePic = (String) user.get("profilePic");
+
+            //get all fields
+            int ID = ((Long) user.get("id")).intValue();
+            Role role = Role.valueOf((String) user.get("role"));
+            String profilePic = (String) user.get("image");
+            String name = (String) user.get("name");
             String email = (String) user.get("email");
             String password = (String) user.get("password");
             int accessRange = ((Long) user.get("accessRange")).intValue();
-            JSONArray projecthold = (JSONArray) user.get("projects");
-            JSONArray taskhold = (JSONArray) user.get("tasks");
-            System.out.println(ID+" "+ role+" "+projecthold);
+            JSONArray projecthold = (JSONArray) user.get("_projects");
+            JSONArray taskhold = (JSONArray) user.get("_tasks");
+
+            //TODO rethink about having projecthold and taskhold
+            userGet = new User(ID, role, name, profilePic, email, password, accessRange);
+
         } catch (Exception e) {
             System.out.println(e);
         }
+        return userGet;
+    }
+
+    public static int getSizeFromDatabase() {
+        int userNumber = 0;
+        JSONParser jsonParser = new JSONParser();
+        try {
+            FileReader reader = new FileReader("src/database/database.json");
+
+            //Read JSON file
+            JSONObject obj = (JSONObject) jsonParser.parse(reader);
+            //get the project aray
+            JSONArray userObject = (JSONArray) obj.get("user");
+            userNumber = userObject.size();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return userNumber;
     }
 
 }

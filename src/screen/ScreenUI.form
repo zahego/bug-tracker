@@ -52,10 +52,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="dropDownsHolder" alignment="1" max="32767" attributes="0"/>
           <Component id="boardsHolder" alignment="0" max="32767" attributes="0"/>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="298" max="-2" attributes="0"/>
               <Component id="productName" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="666" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -78,7 +78,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="1625" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="953" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -109,7 +109,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="1218" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="208" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
