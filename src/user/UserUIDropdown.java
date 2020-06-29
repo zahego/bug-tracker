@@ -5,6 +5,7 @@
  */
 package user;
 
+import java.awt.Component;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 
@@ -61,7 +62,8 @@ public class UserUIDropdown extends javax.swing.JPanel {
 
     public void renderUI(){
         setUserUI(new UserUI());
-        getUserUI().setUserFromDatabase(7);
+        //cuurent user already get set as this method is called but not before
+        getUserUI().setUserFromDatabase(2);
         this.add(getUserUI());
     }
 

@@ -9,6 +9,7 @@ import javax.swing.*;
 import user.UserUI;
 import java.util.Arrays;
 import java.util.Date;
+import layout.LayoutUI;
 import project.Project;
 import project.ProjectUIDropdown;
 import project.Projecthold;
@@ -28,6 +29,8 @@ public class ScreenUI extends javax.swing.JFrame{
     private static TeamUIDropdown teamUI =new TeamUIDropdown();
     private static SprintUIDropdown sprintUI = new SprintUIDropdown();
     private static SettingUI settingUI= new SettingUI();
+    
+    private static LayoutUI layoutUI=new LayoutUI();
     /**
      * Creates new form ScreenUI
      */
@@ -62,19 +65,19 @@ public class ScreenUI extends javax.swing.JFrame{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dev Screen");
-        setBounds(new java.awt.Rectangle(50, 10, 100, 100));
-        setMaximumSize(new java.awt.Dimension(1400, 1400));
-        setPreferredSize(new java.awt.Dimension(1800, 1000));
+        setBounds(new java.awt.Rectangle(0, 0, 100, 100));
+        setMaximumSize(new java.awt.Dimension(1900, 1000));
+        setPreferredSize(new java.awt.Dimension(1900, 1104));
 
         javax.swing.GroupLayout dropDownsHolderLayout = new javax.swing.GroupLayout(dropDownsHolder);
         dropDownsHolder.setLayout(dropDownsHolderLayout);
         dropDownsHolderLayout.setHorizontalGroup(
             dropDownsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 953, Short.MAX_VALUE)
+            .addGap(0, 1800, Short.MAX_VALUE)
         );
         dropDownsHolderLayout.setVerticalGroup(
             dropDownsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 178, Short.MAX_VALUE)
+            .addGap(0, 53, Short.MAX_VALUE)
         );
 
         productName.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 24)); // NOI18N
@@ -89,7 +92,7 @@ public class ScreenUI extends javax.swing.JFrame{
         );
         boardsHolderLayout.setVerticalGroup(
             boardsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 208, Short.MAX_VALUE)
+            .addGap(0, 898, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -99,18 +102,18 @@ public class ScreenUI extends javax.swing.JFrame{
             .addComponent(dropDownsHolder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(boardsHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(298, 298, 298)
+                .addGap(800, 800, 800)
                 .addComponent(productName)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(8, 8, 8)
                 .addComponent(productName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(dropDownsHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dropDownsHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(boardsHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -122,7 +125,7 @@ public class ScreenUI extends javax.swing.JFrame{
         JPanel j2=new JPanel();
         //JPanel j1=new JPanel();
         j.add(getUserUI());
-        j.add(settingUI);
+        j.add(getSettingUI());
         GridLayout layout2=new GridLayout(1, 2);
         j.setLayout(layout2);
         j2.add(j);
@@ -134,19 +137,32 @@ public class ScreenUI extends javax.swing.JFrame{
         dropDownsHolder.add(getTeamUI());
         //dropDownsHolder.add(j1);
         dropDownsHolder.add(j);
+        //dropDownsHolder.add(getUserUI());
+        //dropDownsHolder.add(getSettingUI());
+        
+        
         
         getProjectUI().renderUI();
         
         this.pack();
+        //FlowLayout layout=new FlowLayout();
         GridLayout layout=new GridLayout(2, 2);
         
         getProjectUI().setLayout(new FlowLayout(FlowLayout.LEFT));
         j2.setLayout(new FlowLayout(FlowLayout.RIGHT));
         getSprintUI().setLayout(new FlowLayout(FlowLayout.RIGHT));
         getTeamUI().setLayout(new FlowLayout(FlowLayout.LEFT));
+        getSettingUI().setLayout(new FlowLayout(FlowLayout.RIGHT));
         dropDownsHolder.setLayout(layout);
-        dropDownsHolder.setSize(100, 100);
         dropDownsHolder.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 100));
+        
+        
+        BorderLayout layout3=new BorderLayout();
+        boardsHolder.setLayout(layout3);
+        boardsHolder.add(layoutUI, BorderLayout.CENTER);
+        
+        
+        
         this.setVisible(true);
         
         
@@ -217,5 +233,19 @@ public class ScreenUI extends javax.swing.JFrame{
      */
     public static void setSprintUI(SprintUIDropdown aSprintUI) {
         sprintUI = aSprintUI;
+    }
+
+    /**
+     * @return the settingUI
+     */
+    public static SettingUI getSettingUI() {
+        return settingUI;
+    }
+
+    /**
+     * @param aSettingUI the settingUI to set
+     */
+    public static void setSettingUI(SettingUI aSettingUI) {
+        settingUI = aSettingUI;
     }
 }

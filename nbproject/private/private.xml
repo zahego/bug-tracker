@@ -5,12 +5,15 @@
         <group>
             <file>file:/M:/netbean/project/bug%20tracker/src/team/TeamUIDropdown.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/project/Projecthold.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layoutAndTask/layout/views/FilterViews.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/user/Role.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/database/database.json</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layoutAndTask/views/MainUI.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/user/UserUIDropdown.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/setting/SettingUI.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/user/UserUICreateUpdate.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/user/User.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layoutAndTask/layout/views/Layout.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/database/tempIcon.png</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/user/UserUI.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/holder/task_hold/Taskhold.java</file>
@@ -19,15 +22,20 @@
             <file>file:/M:/netbean/project/bug%20tracker/src/task/TaskType.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/task/TaskStatus.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/sprint/Sprinthold.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layoutAndTask/views/TaskCardUI.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/screen/ScreenUI.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layoutAndTask/layout/views/profileViews.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/project/ProjectUIDropdown.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/main/MainTest.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/task/Task.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layoutAndTask/layout/views/TaskCreate.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/sprint/Sprint.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/project/Project.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/project/ProjectUICreateUpdate.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/team/Userhold.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/sprint/SprintUICreateUpdate.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layoutAndTask/layout/views/FakeBoard.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layoutAndTask/layout/views/layoutViews.java</file>
         </group>
     </open-files>
 </project-private>
