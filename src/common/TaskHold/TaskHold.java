@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import common.Enum.BoardType;
 import common.Enum.TaskStatus;
+import common.Enum.TaskType;
 import common.Task.*;
 import common.Ultilities.Utilities;
 
@@ -17,14 +18,11 @@ public class TaskHold {
 	static List<Task> taskList = new ArrayList<>();
 	
 	public static void loadTask() {
-		JSONParser jsonParser = new JSONParser();
         try {
-            FileReader reader = new FileReader("src/resources/database.json");
-            JSONObject obj = (JSONObject) jsonParser.parse(reader);
-            JSONArray tasks = (JSONArray) obj.get("task");
+            JSONArray tasks = Utilities.readFile("task");
             for(Object taskObj: tasks) {
             	JSONObject task = (JSONObject) taskObj;
-            	taskList.add(new Task(Long.valueOf((long) task.get("id")).intValue(), (String) task.get("quickSummary"), Long.valueOf((long) task.get("projectID")).intValue(), Long.valueOf((long) task.get("sprintID")).intValue(), Long.valueOf((long) task.get("severity")).intValue(), TaskStatus.valueOf((String) task.get("taskStatus")), Utilities.stringToDate((String) task.get("date"))));
+            	taskList.add(new Task(Long.valueOf((long) task.get("id")).intValue(), TaskType.valueOf((String) task.get("taskType")), (String) task.get("quickSummary"), Long.valueOf((long) task.get("projectID")).intValue(), Long.valueOf((long) task.get("sprintID")).intValue(), Long.valueOf((long) task.get("severity")).intValue(), TaskStatus.valueOf((String) task.get("taskStatus")), Utilities.stringToDate((String) task.get("date"))));
             }
         } catch (Exception e) {
         	e.printStackTrace();

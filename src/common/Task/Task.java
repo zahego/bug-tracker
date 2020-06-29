@@ -21,13 +21,16 @@ public class Task {
 	Date reportedDate;
 	Date dueDate;
 	String fullDescription;
+	String toReplicate;
+	String suggestion;
 	File attachedFile;
 	int assignerID;
 	List<Integer> assignees;
 	
-	public Task (int ID, String quickSummary, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate) {
+	/////////////////////////Constructor in development/////////////////////////////
+	public Task (int ID, TaskType type, String quickSummary, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate) {
 		this.ID = ID;
-		this.type = TaskType.TASK;
+		this.type = type;
 		this.projectID = projectID;
 		this.sprintID = sprintID;
 		this.quickSummary = quickSummary;
@@ -37,11 +40,49 @@ public class Task {
 		this.reportedDate = reportedDate;
 		this.dueDate = null;
 		this.fullDescription = quickSummary;
+		this.toReplicate = null;
+		this.suggestion = null;
 		this.attachedFile = null;
 		this.assignerID = -1;
 		this.assignees = new ArrayList<>();
 	}
 	
+	/////////////////////////Full fledged constructor//////////////////////////////////
+	public Task (int ID, String quickSummary, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate, String toReplicate, String fullDescription, String suggestion, Date dueDate, File file) {
+		this.ID = ID;
+		this.type = TaskType.TASK;
+		this.projectID = projectID;
+		this.sprintID = sprintID;
+		this.quickSummary = quickSummary;
+		this.comments = new ArrayList<>();
+		this.severity = severity;
+		this.status = status;
+		this.reportedDate = reportedDate;
+		this.dueDate = dueDate;
+		this.fullDescription = fullDescription;
+		this.toReplicate = toReplicate;
+		this.suggestion = suggestion;
+		this.attachedFile = file;
+		this.assignerID = -1;
+		this.assignees = new ArrayList<>();
+	}
+	
+	public String getToReplicate() {
+		return toReplicate;
+	}
+
+	public void setToReplicate(String toReplicate) {
+		this.toReplicate = toReplicate;
+	}
+
+	public String getSuggestion() {
+		return suggestion;
+	}
+
+	public void setSuggestion(String suggestion) {
+		this.suggestion = suggestion;
+	}
+
 	public int getAssignerID() {
 		return assignerID;
 	}

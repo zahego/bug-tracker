@@ -18,6 +18,10 @@ public class Board {
 		tasks = new ArrayList<>(TaskHold.filter(type));
 	}
 	
+	public void refresh() {
+		tasks = new ArrayList<>(TaskHold.filter(type));
+	}
+	
 	public List<Task> filter(int projectID, int sprintID, int userID){
 		List<Task> ret = new ArrayList<>();
 		for(int i = 0; i < this.tasks.size(); i++) {
