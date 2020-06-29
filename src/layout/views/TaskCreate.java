@@ -1,9 +1,14 @@
 package layout.views;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import common.Enum.TaskType;
+import common.Ultilities.Utilities;
+
 import java.io.File;
 import java.awt.Image;
 import javax.swing.JPanel;
@@ -29,7 +34,9 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 public class TaskCreate extends JFrame implements PropertyChangeListener  {
 
@@ -41,8 +48,8 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 	private JTextField SummaryBox;
 	private JComboBox<String> ProjectAssignBar;
 	private JComboBox<String> SprintAssignBar ;
-	private JComboBox<String> TaskAssignBar;
-	private JComboBox<String> PriorityAssignBar;
+	private JComboBox<String> TaskTypeAssignBar;
+	private JComboBox<Integer> SeverityAssignBar;
 	private JComboBox<String> AssignedBar;
 	private JButton AddFileButton;
 	private JTextPane DescriptionBox;
@@ -55,7 +62,7 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 	private JLabel ProjectAssignLabel;
 	private JLabel SprintAssignLabel;
 	private JLabel TaskTypeAssignLabel;
-	private JLabel PriorityAssignLabel;
+	private JLabel SeverityAssignLabel;
 	private JLabel DescriptionLabel;
 	private JLabel ReplicateLabel;
 	private JLabel SuggestionLabel;
@@ -63,6 +70,9 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 	private JLabel MemberAssignLabel;
 	private JLabel UploadAssignLabel;
 	private JLabel PictureUploadTest;
+	private File selectedFile;
+	private Date selDate = null;
+	private JLabel error;
 	
 	public ImageIcon ResizeImage(String ImagePath)
     {
@@ -73,23 +83,6 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
         return image;
     }
 	
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TaskCreate frame = new TaskCreate();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -113,15 +106,13 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 		          FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg","gif","png");
 		          file.addChoosableFileFilter(filter);
 		          int result = file.showSaveDialog(null);
-		           //if the user click on save in Jfilechooser
+		           //if the user clicks on save in Jfilechooser
 		          if(result == JFileChooser.APPROVE_OPTION){
-		              File selectedFile = file.getSelectedFile();
+		              selectedFile = file.getSelectedFile();
 		              String path = selectedFile.getAbsolutePath();
 		              PictureUploadTest.setIcon(ResizeImage(path));
 		          }
-		           //if the user click on save in Jfilechooser
-
-
+		           //if the user cancels
 		          else if(result == JFileChooser.CANCEL_OPTION){
 		              System.out.println("No File Select");
 		          }
@@ -132,6 +123,7 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 		CreateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Add() function
+				addTask();
 			}
 		});
 		
@@ -187,9 +179,9 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 		
 		SprintAssignBar = new JComboBox<String>();
 		
-		TaskAssignBar = new JComboBox<String>();
+		TaskTypeAssignBar = new JComboBox<String>();
 		
-		PriorityAssignBar = new JComboBox<String>();
+		SeverityAssignBar = new JComboBox<Integer>();
 		
 		ProjectAssignLabel = new JLabel("Project\r\n");
 		
@@ -197,7 +189,8 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 		
 		TaskTypeAssignLabel = new JLabel("Task Type");
 		
-		PriorityAssignLabel = new JLabel("Priority\r\n");
+		SeverityAssignLabel = new JLabel("Severity");
+		
 		
 		DescriptionLabel = new JLabel("Description");
 		DescriptionLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -234,6 +227,19 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 		
 		PictureUploadTest = new JLabel("");
 		
+		error = new JLabel("Task create error will be shown here");
+		error.setForeground(Color.RED);
+		
+		/////////////////////////////////////////Populate Severity and Task Type/////////////////////////////////
+		int[] severities = Utilities.makeSequence(1, 10);
+		for(int i = 0; i < severities.length; i++) {
+			SeverityAssignBar.addItem(severities[i]);
+		}
+		
+		TaskType[] types = TaskType.getAllTaskTypes();
+    	for(int i = 0; i < types.length; i++) {
+    		TaskTypeAssignBar.addItem(types[i].getType());
+    	}
 		
 		// Group Layout
 		GroupLayout gl_TaskCreate = new GroupLayout(TaskCreate);
@@ -243,14 +249,14 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 					.addGroup(gl_TaskCreate.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_TaskCreate.createSequentialGroup()
 							.addGap(65)
-							.addComponent(TaskCreateUpdateTitle, GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+							.addComponent(TaskCreateUpdateTitle, GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
 							.addGap(47))
 						.addGroup(gl_TaskCreate.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(SummaryLabel))
 						.addGroup(gl_TaskCreate.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(SummaryBox, GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)))
+							.addComponent(SummaryBox, GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)))
 					.addContainerGap())
 				.addGroup(gl_TaskCreate.createSequentialGroup()
 					.addContainerGap()
@@ -260,11 +266,8 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 							.addGap(112))
 						.addGroup(gl_TaskCreate.createSequentialGroup()
 							.addGroup(gl_TaskCreate.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_TaskCreate.createSequentialGroup()
-									.addGroup(gl_TaskCreate.createParallelGroup(Alignment.LEADING)
-										.addComponent(ProjectAssignBar, 0, 147, Short.MAX_VALUE)
-										.addComponent(SprintAssignBar, 0, 147, Short.MAX_VALUE))
-									.addPreferredGap(ComponentPlacement.RELATED))
+								.addComponent(ProjectAssignBar, 0, 152, Short.MAX_VALUE)
+								.addComponent(SprintAssignBar, 0, 152, Short.MAX_VALUE)
 								.addGroup(gl_TaskCreate.createSequentialGroup()
 									.addComponent(ProjectAssignLabel)
 									.addGap(112)))
@@ -273,38 +276,38 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 					.addComponent(PictureUploadTest, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addGroup(gl_TaskCreate.createParallelGroup(Alignment.LEADING)
-						.addComponent(TaskAssignBar, 0, 148, Short.MAX_VALUE)
-						.addComponent(PriorityAssignBar, 0, 148, Short.MAX_VALUE)
+						.addComponent(TaskTypeAssignBar, 0, 147, Short.MAX_VALUE)
+						.addComponent(SeverityAssignBar, 0, 147, Short.MAX_VALUE)
 						.addGroup(gl_TaskCreate.createSequentialGroup()
-							.addComponent(PriorityAssignLabel, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+							.addComponent(SeverityAssignLabel, GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
 							.addGap(103))
 						.addGroup(gl_TaskCreate.createSequentialGroup()
-							.addComponent(TaskTypeAssignLabel, GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+							.addComponent(TaskTypeAssignLabel, GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
 							.addGap(73)))
 					.addGap(64))
 				.addGroup(gl_TaskCreate.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_TaskCreate.createParallelGroup(Alignment.LEADING)
-						.addComponent(DescriptionBox, GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+						.addComponent(DescriptionBox, GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
 						.addComponent(ReplicateLabel, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
 						.addComponent(SuggestionLabel, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
 						.addComponent(DescriptionLabel, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-						.addComponent(ReplicateBox, GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
-						.addComponent(SuggestionBox, GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+						.addComponent(ReplicateBox, GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+						.addComponent(SuggestionBox, GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
 						.addGroup(gl_TaskCreate.createSequentialGroup()
 							.addGroup(gl_TaskCreate.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_TaskCreate.createSequentialGroup()
-									.addComponent(DueDateAssignLabel, GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+									.addComponent(DueDateAssignLabel, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
 									.addGap(118))
 								.addGroup(gl_TaskCreate.createSequentialGroup()
 									.addComponent(DueDateBar, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)))
 							.addGroup(gl_TaskCreate.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_TaskCreate.createSequentialGroup()
-									.addComponent(MemberAssignLabel, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+									.addComponent(MemberAssignLabel, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
 									.addGap(72))
 								.addGroup(gl_TaskCreate.createSequentialGroup()
-									.addComponent(AssignedBar, 0, 123, Short.MAX_VALUE)
+									.addComponent(AssignedBar, 0, 125, Short.MAX_VALUE)
 									.addGap(46)))
 							.addGap(4)
 							.addGroup(gl_TaskCreate.createParallelGroup(Alignment.LEADING)
@@ -313,7 +316,9 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 							.addGap(51)))
 					.addGap(0))
 				.addGroup(gl_TaskCreate.createSequentialGroup()
-					.addContainerGap(360, Short.MAX_VALUE)
+					.addContainerGap()
+					.addComponent(error)
+					.addPreferredGap(ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
 					.addComponent(CreateButton, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
@@ -325,7 +330,7 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(SummaryLabel)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(SummaryBox, GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+					.addComponent(SummaryBox, GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
 					.addGroup(gl_TaskCreate.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_TaskCreate.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED)
@@ -335,18 +340,18 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_TaskCreate.createParallelGroup(Alignment.BASELINE)
 								.addComponent(ProjectAssignBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(TaskAssignBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(TaskTypeAssignBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(19)
 							.addGroup(gl_TaskCreate.createParallelGroup(Alignment.BASELINE)
 								.addComponent(SprintAssignLabel)
-								.addComponent(PriorityAssignLabel))
+								.addComponent(SeverityAssignLabel))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_TaskCreate.createParallelGroup(Alignment.BASELINE)
 								.addComponent(SprintAssignBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(PriorityAssignBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(SeverityAssignBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(gl_TaskCreate.createSequentialGroup()
 							.addGap(21)
-							.addComponent(PictureUploadTest, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+							.addComponent(PictureUploadTest, GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(DescriptionLabel, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
@@ -370,7 +375,9 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 						.addComponent(AssignedBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(DueDateBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(25)
-					.addComponent(CreateButton))
+					.addGroup(gl_TaskCreate.createParallelGroup(Alignment.BASELINE)
+						.addComponent(CreateButton)
+						.addComponent(error)))
 		);
 		TaskCreate.setLayout(gl_TaskCreate);
 	}
@@ -379,16 +386,46 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 	@Override
 	public void propertyChange(PropertyChangeEvent event) {
 		//get the selected date from the calendar control and set it to the text field
-				if (event.getPropertyName().equals("selectedDate")) {
-		            
-					java.util.Calendar cal = (java.util.Calendar)event.getNewValue();
-					Date selDate =  cal.getTime();
-					DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyy");  
-	                String strDate = dateFormat.format(selDate);  
-					DueDateBar.setText(strDate);
-		        }
-		
+		if (event.getPropertyName().equals("selectedDate")) {
+            
+			java.util.Calendar cal = (java.util.Calendar)event.getNewValue();
+			selDate =  cal.getTime();
+			DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyy");  
+            String strDate = dateFormat.format(selDate);  
+			DueDateBar.setText(strDate);
+        }
 	}
 	
-	
+	public void addTask() {
+		//add task and notify main UI
+	}
+}
+
+///////////////////////////To be revised/////////////////////////
+class ComboItem
+{
+    private String key;
+    private String value;
+
+    public ComboItem(String key, String value)
+    {
+        this.key = key;
+        this.value = value;
+    }
+
+    @Override
+    public String toString()
+    {
+        return key;
+    }
+
+    public String getKey()
+    {
+        return key;
+    }
+
+    public String getValue()
+    {
+        return value;
+    }
 }

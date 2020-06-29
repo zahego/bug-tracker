@@ -15,7 +15,7 @@
             "file": ""
         }, {
             "id": 2,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 2,
             "sprintID": 5,
             "quickSummary": "bogus bug report #1",
@@ -29,7 +29,7 @@
             "file": ""
         }, {
             "id": 3,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 3,
             "sprintID": 8,
             "quickSummary": "bogus bug report #2",
@@ -43,7 +43,7 @@
             "file": ""
         }, {
             "id": 4,
-            "taskType": "TEST REQUEST",
+            "taskType": "TESTREQUEST",
             "projectID": 4,
             "sprintID": 11,
             "quickSummary": "false test request #1",
@@ -57,7 +57,7 @@
             "file": ""
         }, {
             "id": 5,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 1,
             "sprintID": 1,
             "quickSummary": "bogus bug report #3",
@@ -71,7 +71,7 @@
             "file": ""
         }, {
             "id": 6,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 2,
             "sprintID": 5,
             "quickSummary": "bogus bug report #4",
@@ -85,7 +85,7 @@
             "file": ""
         }, {
             "id": 7,
-            "taskType": "TEST REQUEST",
+            "taskType": "TESTREQUEST",
             "projectID": 3,
             "sprintID": 8,
             "quickSummary": "false test request #2",
@@ -94,8 +94,8 @@
             "taskStatus": "ONFINISH",
             "date": "12-10-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 8,
+            "assigneeIDs": [5],
             "file": ""
         }, {
             "id": 8,
@@ -113,7 +113,7 @@
             "file": ""
         }, {
             "id": 9,
-            "taskType": "TEST REQUEST",
+            "taskType": "TESTREQUEST",
             "projectID": 1,
             "sprintID": 2,
             "quickSummary": "false test request #3",
@@ -122,12 +122,12 @@
             "taskStatus": "ONTAKEN",
             "date": "12-10-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 7,
+            "assigneeIDs": [5],
             "file": ""
         }, {
             "id": 10,
-            "taskType": "TEST REQUEST",
+            "taskType": "TESTREQUEST",
             "projectID": 2,
             "sprintID": 6,
             "quickSummary": "false test request #4",
@@ -136,8 +136,8 @@
             "taskStatus": "ONNEW",
             "date": "12-10-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 7,
+            "assigneeIDs": [5],
             "file": ""
         }, {
             "id": 11,
@@ -150,12 +150,12 @@
             "taskStatus": "ONTAKEN",
             "date": "12-10-2020",
             "fullDescription": "this is just a fake task in project 3 sprint 2, no need to worry",
-            "assignerID": 5,
+            "assignerID": 7,
             "assigneeIDs": [1, 2],
             "file": ""
         }, {
             "id": 12,
-            "taskType": "NEW FEATURE",
+            "taskType": "NEWFEATURE",
             "projectID": 4,
             "sprintID": 12,
             "quickSummary": "charlatan new feature #1",
@@ -164,12 +164,12 @@
             "taskStatus": "ONTAKEN",
             "date": "12-10-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
+            "assignerID": 7,
             "assigneeIDs": [1, 2],
             "file": ""
         }, {
             "id": 13,
-            "taskType": "TEST REQUEST",
+            "taskType": "TESTREQUEST",
             "projectID": 1,
             "sprintID": 2,
             "quickSummary": "false test request #5",
@@ -179,11 +179,11 @@
             "date": "12-10-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [5, 6],
             "file": ""
         }, {
             "id": 14,
-            "taskType": "TEST REQUEST",
+            "taskType": "TESTREQUEST",
             "projectID": 2,
             "sprintID": 6,
             "quickSummary": "false test request #6",
@@ -192,12 +192,12 @@
             "taskStatus": "ONGOING",
             "date": "12-10-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 7,
+            "assigneeIDs": [6],
             "file": ""
         }, {
             "id": 15,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 3,
             "sprintID": 10,
             "quickSummary": "bogus bug report #29",
@@ -211,7 +211,7 @@
             "file": ""
         }, {
             "id": 16,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 4,
             "sprintID": 12,
             "quickSummary": "bogus bug report #5",
@@ -248,8 +248,8 @@
             "taskStatus": "ONTAKEN",
             "date": "12-10-2020",
             "fullDescription": "this is just a fake task in project 2 sprint 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 7,
+            "assigneeIDs": [2, 3],
             "file": ""
         }, {
             "id": 19,
@@ -262,8 +262,8 @@
             "taskStatus": "ONNEW",
             "date": "12-10-2020",
             "fullDescription": "this is just a fake task in project 1 sprint 1, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 7,
+            "assigneeIDs": [3, 4],
             "file": ""
         }, {
             "id": 20,
@@ -276,12 +276,12 @@
             "taskStatus": "ONGOING",
             "date": "12-10-2020",
             "fullDescription": "this is just a fake task in project 1 sprint 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 7,
+            "assigneeIDs": [1, 4],
             "file": ""
         }, {
             "id": 21,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 1,
             "sprintID": 3,
             "quickSummary": "bogus bug report #6",
@@ -295,7 +295,7 @@
             "file": ""
         }, {
             "id": 22,
-            "taskType": "TEST REQUEST",
+            "taskType": "TESTREQUEST",
             "projectID": 2,
             "sprintID": 7,
             "quickSummary": "false test request #7",
@@ -304,12 +304,12 @@
             "taskStatus": "ONREVIEW",
             "date": "12-10-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 7,
+            "assigneeIDs": [5, 6],
             "file": ""
         }, {
             "id": 23,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 1,
             "sprintID": 3,
             "quickSummary": "bogus bug report #7",
@@ -337,7 +337,7 @@
             "file": ""
         }, {
             "id": 25,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 1,
             "sprintID": 3,
             "quickSummary": "bogus bug report #8",
@@ -351,7 +351,7 @@
             "file": ""
         }, {
             "id": 26,
-            "taskType": "TEST REQUEST",
+            "taskType": "TESTREQUEST",
             "projectID": 2,
             "sprintID": 7,
             "quickSummary": "false test request #8",
@@ -360,8 +360,8 @@
             "taskStatus": "ONTAKEN",
             "date": "12-10-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 7,
+            "assigneeIDs": [6],
             "file": ""
         }, {
             "id": 27,
@@ -375,11 +375,11 @@
             "date": "12-10-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [3, 4],
             "file": ""
         }, {
             "id": 28,
-            "taskType": "TEST REQUEST",
+            "taskType": "TESTREQUEST",
             "projectID": 1,
             "sprintID": 4,
             "quickSummary": "false test request #9",
@@ -388,12 +388,12 @@
             "taskStatus": "ONREVIEW",
             "date": "12-10-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 7,
+            "assigneeIDs": [6],
             "file": ""
         }, {
             "id": 29,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 1,
             "sprintID": 1,
             "quickSummary": "bogus bug report #9",
@@ -407,7 +407,7 @@
             "file": ""
         }, {
             "id": 30,
-            "taskType": "NEW FEATURE",
+            "taskType": "NEWFEATURE",
             "projectID": 1,
             "sprintID": 1,
             "quickSummary": "charlatan new feature #2",
@@ -416,12 +416,12 @@
             "taskStatus": "ONNEW",
             "date": "12-10-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 7,
+            "assigneeIDs": [1, 2, 3, 4],
             "file": ""
         }, {
             "id": 31,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 1,
             "sprintID": 1,
             "quickSummary": "bogus bug report #10",
@@ -435,7 +435,7 @@
             "file": ""
         }, {
             "id": 32,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 1,
             "sprintID": 1,
             "quickSummary": "bogus bug report #11",
@@ -463,7 +463,7 @@
             "file": ""
         }, {
             "id": 34,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 1,
             "sprintID": 2,
             "quickSummary": "bogus bug report #12",
@@ -477,7 +477,7 @@
             "file": ""
         }, {
             "id": 35,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 1,
             "sprintID": 2,
             "quickSummary": "bogus bug report #13",
@@ -491,7 +491,7 @@
             "file": ""
         }, {
             "id": 36,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 1,
             "sprintID": 2,
             "quickSummary": "bogus bug report #14",
@@ -519,7 +519,7 @@
             "file": ""
         }, {
             "id": 38,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 1,
             "sprintID": 3,
             "quickSummary": "bogus bug report #15",
@@ -533,7 +533,7 @@
             "file": ""
         }, {
             "id": 39,
-            "taskType": "TEST REQUEST",
+            "taskType": "TESTREQUEST",
             "projectID": 1,
             "sprintID": 3,
             "quickSummary": "false test request #10",
@@ -547,7 +547,7 @@
             "file": ""
         }, {
             "id": 40,
-            "taskType": "NEW FEATURE",
+            "taskType": "NEWFEATURE",
             "projectID": 1,
             "sprintID": 3,
             "quickSummary": "charlatan new feature #3",
@@ -561,7 +561,7 @@
             "file": ""
         }, {
             "id": 41,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 2,
             "sprintID": 5,
             "quickSummary": "bogus bug report #16",
@@ -575,7 +575,7 @@
             "file": ""
         }, {
             "id": 42,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 2,
             "sprintID": 5,
             "quickSummary": "bogus bug report #17",
@@ -603,7 +603,7 @@
             "file": ""
         }, {
             "id": 44,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 2,
             "sprintID": 6,
             "quickSummary": "bogus bug report #18",
@@ -617,7 +617,7 @@
             "file": ""
         }, {
             "id": 45,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 2,
             "sprintID": 7,
             "quickSummary": "bogus bug report #19",
@@ -631,7 +631,7 @@
             "file": ""
         }, {
             "id": 46,
-            "taskType": "TEST REQUEST",
+            "taskType": "TESTREQUEST",
             "projectID": 2,
             "sprintID": 7,
             "quickSummary": "false test request #11",
@@ -645,7 +645,7 @@
             "file": ""
         }, {
             "id": 47,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 1,
             "sprintID": 1,
             "quickSummary": "bogus bug report #20",
@@ -673,7 +673,7 @@
             "file": ""
         }, {
             "id": 49,
-            "taskType": "TEST REQUEST",
+            "taskType": "TESTREQUEST",
             "projectID": 1,
             "sprintID": 1,
             "quickSummary": "false test request #12",
@@ -687,7 +687,7 @@
             "file": ""
         }, {
             "id": 50,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 1,
             "sprintID": 2,
             "quickSummary": "bogus bug report #21",
@@ -701,7 +701,7 @@
             "file": ""
         }, {
             "id": 51,
-            "taskType": "NEW FEATURE",
+            "taskType": "NEWFEATURE",
             "projectID": 1,
             "sprintID": 2,
             "quickSummary": "charlatan new feature #4",
@@ -715,7 +715,7 @@
             "file": ""
         }, {
             "id": 52,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 1,
             "sprintID": 2,
             "quickSummary": "bogus bug report #22",
@@ -729,7 +729,7 @@
             "file": ""
         }, {
             "id": 53,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 1,
             "sprintID": 3,
             "quickSummary": "bogus bug report #23",
@@ -743,7 +743,7 @@
             "file": ""
         }, {
             "id": 54,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 1,
             "sprintID": 3,
             "quickSummary": "bogus bug report #24",
@@ -757,7 +757,7 @@
             "file": ""
         }, {
             "id": 55,
-            "taskType": "NEW FEATURE",
+            "taskType": "NEWFEATURE",
             "projectID": 1,
             "sprintID": 3,
             "quickSummary": "charlatan new feature #5",
@@ -771,7 +771,7 @@
             "file": ""
         }, {
             "id": 56,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 2,
             "sprintID": 5,
             "quickSummary": "bogus bug report #25",
@@ -785,7 +785,7 @@
             "file": ""
         }, {
             "id": 57,
-            "taskType": "NEW FEATURE",
+            "taskType": "NEWFEATURE",
             "projectID": 2,
             "sprintID": 5,
             "quickSummary": "charlatan new feature #6",
@@ -799,7 +799,7 @@
             "file": ""
         }, {
             "id": 58,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 2,
             "sprintID": 6,
             "quickSummary": "bogus bug report #26",
@@ -813,7 +813,7 @@
             "file": ""
         }, {
             "id": 59,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 3,
             "sprintID": 9,
             "quickSummary": "bogus bug report #27",
@@ -827,7 +827,7 @@
             "file": ""
         }, {
             "id": 60,
-            "taskType": "BUG REPORT",
+            "taskType": "BUGREPORT",
             "projectID": 4,
             "sprintID": 11,
             "quickSummary": "bogus bug report #28",

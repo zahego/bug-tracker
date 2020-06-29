@@ -53,15 +53,21 @@ public class BoardUI extends JPanel {
 		
 	}
 	
-	public void sortAsc() {
+	public void refresh() {
+		this.board.refresh();
 		this.removeAll();
+		renderBoard();
+	}
+	
+	public void sortAsc() {
 		this.board.sortAsc();
+		this.removeAll();
 		renderBoard();
 	}
 	
 	public void sortDesc() {
-		this.removeAll();
 		this.board.sortDesc();
+		this.removeAll();
 		renderBoard();
 	}
 }
