@@ -4,33 +4,53 @@
  * and open the template in the editor.
  */
 package user;
+
 import project.Project;
-import task_hold.Taskhold;
-import task.Task;
-import java.util.ArrayList; 
+import holder.task_hold.Taskhold;
+import project.Projecthold;
+import java.io.FileReader;
+import org.json.simple.*;
+import org.json.simple.parser.JSONParser;
 
 /**
  *
  * @author tug70
  */
-public class User extends Taskhold{
+public class User {
+
     private int ID;
     private Role role;
     private String profilePic;
+    private String name;
     private String email;
     private String password;
     private int accessRange;
-    private ArrayList<Project> projects;
+    private Taskhold taskhold;
+    private Projecthold projecthold;
     
-    public User(int ID, Role role, String profilePic, String email, String password, int accessRange, ArrayList<Project> projects, Task[] tasks){
-     super(tasks);
-     this.ID=ID;
-     this.role=role;
-     this.profilePic=profilePic;
-     this.email=email;
-     this.password=password;
-     this.accessRange=accessRange;
-     this.projects=projects;
+    public User(int ID) {
+        this.ID = ID;
+    }
+    public User(int ID, Role role, String name, String profilePic, String email, String password, int accessRange) {
+        this.ID = ID;
+        this.role = role;
+        this.name = name;
+        this.profilePic = profilePic;
+        this.email = email;
+        this.password = password;
+        this.accessRange = accessRange;
+    }
+
+    public User(int ID, Role role, String name, String profilePic, String email, String password, int accessRange, Projecthold projecthold, Taskhold taskhold) {
+        this.ID = ID;
+        this.role = role;
+        this.profilePic = profilePic;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.accessRange = accessRange;
+        this.projecthold = projecthold;
+        this.taskhold = taskhold;
     }
 
     /**
@@ -118,22 +138,100 @@ public class User extends Taskhold{
     }
 
     /**
-     * @return the projects
+     * @return the taskhold
      */
-    public ArrayList<Project> getProjects() {
-        return projects;
+    public Taskhold getTaskhold() {
+        return taskhold;
     }
 
     /**
-     * @param projects the projects to set
+     * @param taskhold the taskhold to set
      */
-    public void setProjects(ArrayList<Project> projects) {
-        this.projects = projects;
+    public void setTaskhold(Taskhold taskhold) {
+        this.taskhold = taskhold;
     }
-    
-    //add individual project for projects[]
-    public void addProject(Project project){
-        this.projects.add(project);
+
+    /**
+     * @return the projecthold
+     */
+    public Projecthold getProjecthold() {
+        return projecthold;
     }
-    
+
+    /**
+     * @param projecthold the projecthold to set
+     */
+    public void setProjecthold(Projecthold projecthold) {
+        this.projecthold = projecthold;
+    }
+
+    public void insertProjectHold(Project project) {
+        this.projecthold.insert(project);
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public static User getUserFromDatabase(int num) {
+        User userGet = new User(-1, Role.DEVELOPER, "", "", "", "", -1);
+        JSONParser jsonParser = new JSONParser();
+        try {
+            FileReader reader = new FileReader("src/database/database.json");
+
+            //Read JSON file
+            JSONObject obj = (JSONObject) jsonParser.parse(reader);
+            //get the user aray
+            JSONArray userObject = (JSONArray) obj.get("user");
+            //get the user at user array of "num" position
+            JSONObject user = (JSONObject) userObject.get(num);
+
+            //get all fields
+            int ID = ((Long) user.get("id")).intValue();
+            Role role = Role.valueOf((String) user.get("role"));
+            String profilePic = (String) user.get("image");
+            String name = (String) user.get("name");
+            String email = (String) user.get("email");
+            String password = (String) user.get("password");
+            int accessRange = ((Long) user.get("accessRange")).intValue();
+            JSONArray projecthold = (JSONArray) user.get("_projects");
+            JSONArray taskhold = (JSONArray) user.get("_tasks");
+
+            //TODO rethink about having projecthold and taskhold
+            userGet = new User(ID, role, name, profilePic, email, password, accessRange);
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return userGet;
+    }
+
+    public static int getSizeFromDatabase() {
+        int userNumber = 0;
+        JSONParser jsonParser = new JSONParser();
+        try {
+            FileReader reader = new FileReader("src/database/database.json");
+
+            //Read JSON file
+            JSONObject obj = (JSONObject) jsonParser.parse(reader);
+            //get the project aray
+            JSONArray userObject = (JSONArray) obj.get("user");
+            userNumber = userObject.size();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return userNumber;
+    }
+
 }

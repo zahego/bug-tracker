@@ -5,14 +5,19 @@
  */
 package user;
 
+import com.sun.xml.internal.ws.api.Component;
+import javax.swing.ImageIcon;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
+
 /**
  *
  * @author tug70
  */
-public class UserUI extends javax.swing.JFrame {
+public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
 
     /**
-     * Creates new form UserUI
+     * Creates new form UserUI2
      */
     public UserUI() {
         initComponents();
@@ -27,68 +32,215 @@ public class UserUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        UserName = new javax.swing.JLabel();
+        UserID = new javax.swing.JLabel();
+        UserEmail = new javax.swing.JLabel();
+        UserRole = new javax.swing.JLabel();
+        Portrait = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(153, 204, 255));
+        setMaximumSize(new java.awt.Dimension(244, 123));
 
-        jLabel1.setText("Bug Tracker 3000");
+        UserName.setBackground(new java.awt.Color(153, 255, 255));
+        UserName.setForeground(new java.awt.Color(0, 0, 102));
+        UserName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        UserName.setText("NAME");
+        UserName.setToolTipText("");
+        UserName.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        UserName.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        UserName.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        UserName.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        UserName.setName(""); // NOI18N
+        UserName.setOpaque(true);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        UserID.setBackground(new java.awt.Color(255, 255, 153));
+        UserID.setForeground(new java.awt.Color(0, 0, 102));
+        UserID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        UserID.setText("ID");
+        UserID.setToolTipText("");
+        UserID.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        UserID.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        UserID.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        UserID.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        UserID.setName(""); // NOI18N
+        UserID.setOpaque(true);
+
+        UserEmail.setBackground(new java.awt.Color(153, 255, 102));
+        UserEmail.setForeground(new java.awt.Color(0, 0, 102));
+        UserEmail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        UserEmail.setText("EMAIL");
+        UserEmail.setToolTipText("");
+        UserEmail.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        UserEmail.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        UserEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        UserEmail.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        UserEmail.setName(""); // NOI18N
+        UserEmail.setOpaque(true);
+
+        UserRole.setBackground(new java.awt.Color(255, 153, 0));
+        UserRole.setForeground(new java.awt.Color(0, 0, 102));
+        UserRole.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        UserRole.setText("ROLE");
+        UserRole.setToolTipText("");
+        UserRole.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        UserRole.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        UserRole.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        UserRole.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        UserRole.setName(""); // NOI18N
+        UserRole.setOpaque(true);
+
+        Portrait.setBackground(new java.awt.Color(255, 255, 255));
+        Portrait.setForeground(new java.awt.Color(0, 0, 102));
+        Portrait.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Portrait.setToolTipText("");
+        Portrait.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        Portrait.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        Portrait.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Portrait.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Portrait.setName(""); // NOI18N
+        Portrait.setOpaque(true);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(533, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(523, 523, 523))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Portrait, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UserRole, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UserEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UserID, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(581, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Portrait, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(UserName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(UserID)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(UserEmail)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(UserRole)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
-        pack();
+        Portrait.getAccessibleContext().setAccessibleName("PORTRAIT");
+
+        getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UserUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UserUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UserUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UserUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UserUI().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel Portrait;
+    private javax.swing.JLabel UserEmail;
+    private javax.swing.JLabel UserID;
+    private javax.swing.JLabel UserName;
+    private javax.swing.JLabel UserRole;
     // End of variables declaration//GEN-END:variables
+
+    
+    @Override
+    public UserUI getListCellRendererComponent(JList list, Object value,
+            int index, boolean isSelected, boolean cellHasFocus) {
+        return this;
+    }
+    /**
+     * @return the UserEmail
+     */
+    public javax.swing.JLabel getUserEmail() {
+        return UserEmail;
+    }
+
+    /**
+     * @param UserEmail the UserEmail to set
+     */
+    //TODO have set icon
+    public void setUserEmail(String UserEmail) {
+        this.UserEmail.setText(UserEmail);
+    }
+
+    /**
+     * @return the UserID
+     */
+    public javax.swing.JLabel getUserID() {
+        return UserID;
+    }
+
+    /**
+     * @param UserID the UserID to set
+     */
+    public void setUserID(String UserID) {
+        this.UserID.setText(UserID);
+    }
+
+    /**
+     * @return the UserName
+     */
+    public javax.swing.JLabel getUserName() {
+        return UserName;
+    }
+
+    /**
+     * @param UserName the UserName to set
+     */
+    public void setUserName(String UserName) {
+        this.UserName.setText(UserName);
+    }
+
+    /**
+     * @return the UserRole
+     */
+    public javax.swing.JLabel getUserRole() {
+        return UserRole;
+    }
+
+    /**
+     * @param UserRole the UserRole to set
+     */
+    public void setUserRole(String UserRole) {
+        this.UserRole.setText(UserRole);
+    }
+
+    /**
+     * @return the Portrait
+     */
+    public javax.swing.JLabel getPortrait() {
+        return Portrait;
+    }
+
+    /**
+     * @param Portrait the Portrait to set
+     */
+    public void setPortrait(ImageIcon Portrait) {
+        this.Portrait.setIcon(Portrait);
+    }
+    
+    
+    public void setUserFromDatabase(int num){
+        //put this into current user hold
+        CurrentUserhold.setUser(User.getUserFromDatabase(num));
+        this.setUserName(CurrentUserhold.getUser().getName());
+        this.setUserEmail(CurrentUserhold.getUser().getEmail());
+        this.setUserID(String.valueOf(CurrentUserhold.getUser().getID()));
+        this.setUserRole(CurrentUserhold.getUser().getRole().name());
+        
+        //set icon
+        ImageIcon icon = new ImageIcon(CurrentUserhold.getUser().getProfilePic());
+        icon = new ImageIcon(icon.getImage().getScaledInstance(110, 110,  java.awt.Image.SCALE_SMOOTH)); 
+        
+        
+        this.setPortrait(icon);
+        
+    }
+    
+    
 }
