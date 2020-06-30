@@ -68,7 +68,7 @@ public class SprintUIDropdown extends javax.swing.JPanel {
             int ID = Sprinthold.getSprints().get(Sprinthold.getSprints().size() - 1).getID() + 1;
             create.setIDint(ID);
             create.getDeleteButton().setVisible(false);
-            
+
             create.setCreateUpdateLabel("Create Sprint");
             create.setSubmitButton("Create");
             create.setVisible(true);
@@ -77,16 +77,16 @@ public class SprintUIDropdown extends javax.swing.JPanel {
             for (int i = 0; i < Sprinthold.getSprints().size(); i++) {
                 if (String.valueOf(Sprinthold.getSprints().get(i).getName()).equals(selected)) {
                     //check access range to see if user are allow to edit project--only PM and higher should do this
-                    if(CurrentUserhold.getUser().getAccessRange()>2){
+                    if (CurrentUserhold.getUser().getAccessRange() > 2) {
                         //check if in setting this is changed to true to prevent annoyance
-                    if(SettingUI.isSprintEditToggle()==true){
-                    SprintUICreateUpdate update = new SprintUICreateUpdate();
-                    update.setUpdateInformation(Sprinthold.getSprints().get(i));
-                    update.setCreateUpdateLabel("Update Sprint");
-                    update.setSubmitButton("Update");
-                    update.setVisible(true);
-                    
-                    }
+                        if (SettingUI.isSprintEditToggle() == true) {
+                            SprintUICreateUpdate update = new SprintUICreateUpdate();
+                            update.setUpdateInformation(Sprinthold.getSprints().get(i));
+                            update.setCreateUpdateLabel("Update Sprint");
+                            update.setSubmitButton("Update");
+                            update.setVisible(true);
+
+                        }
                     }
                     break;
                 }
@@ -104,7 +104,6 @@ public class SprintUIDropdown extends javax.swing.JPanel {
         sprintDropdown.removeAllItems();
         this.sprintDropdown.addItem("--all sprint--");
         int projectID = ProjectUIDropdown.getProjectAccessID();
-        System.out.println("proj ID " + projectID);
 
         for (int i = 0; i < Sprinthold.getSprints().size(); i++) {
 
@@ -120,8 +119,10 @@ public class SprintUIDropdown extends javax.swing.JPanel {
             }
         }
         //only allow user with access range higher than 2 to create new project (PM and ADMIN)
-        if(CurrentUserhold.getUser().getAccessRange()>2 && ProjectUIDropdown.getProjectAccessID()!=-1){
-        this.sprintDropdown.addItem("+ Add sprint");
+        if (CurrentUserhold.getUser() != null) {
+            if (CurrentUserhold.getUser().getAccessRange() > 2 && ProjectUIDropdown.getProjectAccessID() != -1) {
+                this.sprintDropdown.addItem("+ Add sprint");
+            }
         }
     }
 }

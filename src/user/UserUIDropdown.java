@@ -8,6 +8,8 @@ package user;
 import java.awt.Component;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import log_in.LogInUI;
+import screen.ScreenUI;
 
 /**
  *
@@ -15,6 +17,7 @@ import javax.swing.ImageIcon;
  */
 public class UserUIDropdown extends javax.swing.JPanel {
     private static UserUI userUI=new UserUI();
+    private static boolean isLogIn;
     /**
      * Creates new form UserUIDropdown
      */
@@ -35,10 +38,9 @@ public class UserUIDropdown extends javax.swing.JPanel {
 
         authentication = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(102, 102, 255));
         setLayout(new java.awt.BorderLayout());
 
-        authentication.setText("log out");
+        authentication.setText("Log in");
         authentication.setMaximumSize(new java.awt.Dimension(300, 25));
         authentication.setPreferredSize(new java.awt.Dimension(300, 25));
         authentication.addActionListener(new java.awt.event.ActionListener() {
@@ -50,7 +52,17 @@ public class UserUIDropdown extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void authenticationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authenticationActionPerformed
-        // TODO add your handling code here:
+        if(getAuthentication().getText().equals("Log out")){
+            getAuthentication().setText("Log in");
+            getUserUI().setVisible(false);
+            CurrentUserhold.setUser(null);
+            ScreenUI.renderUI();
+        }
+        else if(getAuthentication().getText().equals("Log in")){
+            LogInUI loginform= new LogInUI();
+            loginform.setVisible(true);
+            
+        }
     }//GEN-LAST:event_authenticationActionPerformed
 
 
@@ -63,11 +75,16 @@ public class UserUIDropdown extends javax.swing.JPanel {
     public void renderUI(){
         setUserUI(new UserUI());
         //cuurent user already get set as this method is called but not before
-        getUserUI().setUserFromDatabase(2);
+        if(CurrentUserhold.getUser()!=null){
+        
+        getUserUI().setUserFromDatabase(CurrentUserhold.getUser().getID()-1);
+        
+        }
         this.add(getUserUI());
+        
     }
 
-    /**
+    /**E
      * @return the userUI
      */
     public static UserUI getUserUI() {
@@ -81,6 +98,34 @@ public class UserUIDropdown extends javax.swing.JPanel {
         userUI = aUserUI;
     }
     
+    
+    /**
+     * @return the isLogIn
+     */
+    public static boolean isIsLogIn() {
+        return isLogIn;
+    }
+
+    /**
+     * @param aIsLogIn the isLogIn to set
+     */
+    public static void setIsLogIn(boolean aIsLogIn) {
+        isLogIn = aIsLogIn;
+    }
+
+    /**
+     * @return the authentication
+     */
+    public javax.swing.JButton getAuthentication() {
+        return authentication;
+    }
+
+    /**
+     * @param authentication the authentication to set
+     */
+    public void setAuthentication(javax.swing.JButton authentication) {
+        this.authentication = authentication;
+    }
     
 }
 

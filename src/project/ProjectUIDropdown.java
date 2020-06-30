@@ -22,6 +22,7 @@ import user.CurrentUserhold;
  * @author tug70
  */
 public class ProjectUIDropdown extends javax.swing.JPanel {
+
     //return the project ID when clicked or -1 if all project or add project was clicked
     private static int projectAccessID = -1;
     private boolean editable = false;
@@ -97,16 +98,16 @@ public class ProjectUIDropdown extends javax.swing.JPanel {
             for (int i = 0; i < Projecthold.getProjects().size(); i++) {
                 if (Projecthold.getProjects().get(i).getName().equals(selected)) {
                     //check access range to see if user are allow to edit project--only PM and higher should do this
-                    if(CurrentUserhold.getUser().getAccessRange()>2){
+                    if (CurrentUserhold.getUser().getAccessRange() > 2) {
                         //check if in setting this is changed to true to prevent annoyance
-                    if(SettingUI.isProjectEditToggle()==true){
-                    ProjectUICreateUpdate update = new ProjectUICreateUpdate();
-                    update.setUpdateInformation(Projecthold.getProjects().get(i));
-                    update.setCreateUpdateLabel("Update Project");
-                    update.setSubmitButton("Update");
-                    update.setVisible(true);
-                    
-                    }
+                        if (SettingUI.isProjectEditToggle() == true) {
+                            ProjectUICreateUpdate update = new ProjectUICreateUpdate();
+                            update.setUpdateInformation(Projecthold.getProjects().get(i));
+                            update.setCreateUpdateLabel("Update Project");
+                            update.setSubmitButton("Update");
+                            update.setVisible(true);
+
+                        }
                     }
                     //reredner team and sprint
                     ProjectUIDropdown.setProjectAccessID(Projecthold.getProjects().get(i).getID());
@@ -132,15 +133,20 @@ public class ProjectUIDropdown extends javax.swing.JPanel {
         //first loop to loop through all project
         for (int i = 0; i < Projecthold.getProjects().size(); i++) {
             //another loop to check the that project at [i]'s team array contain the current user ID
-            for (int j = 0; j < Projecthold.getProjects().get(i).getTeam().length; j++)
-            if(Projecthold.getProjects().get(i).getTeam()[j]==CurrentUserhold.getUser().getID()){
-                //if team array contain the the user, add the project to project dropdown
-            this.projectDropDown.addItem(Projecthold.getProjects().get(i).getName());
-        }
+            for (int j = 0; j < Projecthold.getProjects().get(i).getTeam().length; j++) {
+                if (CurrentUserhold.getUser() != null) {
+                    if (Projecthold.getProjects().get(i).getTeam()[j] == CurrentUserhold.getUser().getID()) {
+                        //if team array contain the the user, add the project to project dropdown
+                        this.projectDropDown.addItem(Projecthold.getProjects().get(i).getName());
+                    }
+                } 
+            }
         }
         //only allow user with access range higher than 2 to create new project (PM and ADMIN)
-        if(CurrentUserhold.getUser().getAccessRange()>2){
-        this.projectDropDown.addItem("+ Add project");
+        if (CurrentUserhold.getUser() != null) {
+            if (CurrentUserhold.getUser().getAccessRange() > 2) {
+                this.projectDropDown.addItem("+ Add project");
+            }
         }
     }
 

@@ -6,6 +6,7 @@
 package team;
 import java.util.ArrayList;
 import java.util.Arrays;
+import user.CurrentUserhold;
 import user.User;
 import user.User;
 /**
@@ -77,5 +78,15 @@ public class Userhold {
     // deleteAll
     public static void deleteAll(){
         Userhold.users.clear();
+    }
+    public static User search(String email, String password){
+        User user=new User(-1);
+        for(int i=0; i<Userhold.getUsers().size();i++){
+            if(email.equals(Userhold.getUsers().get(i).getEmail())&&password.equals(Userhold.getUsers().get(i).getPassword())){
+                user=Userhold.getUsers().get(i);
+                break;
+            }
+        }
+        return user;
     }
 }

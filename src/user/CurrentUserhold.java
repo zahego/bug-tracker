@@ -5,6 +5,8 @@
  */
 package user;
 
+import team.Userhold;
+
 /**
  *
  * @author tug70
@@ -24,5 +26,15 @@ public class CurrentUserhold {
      */
     public static void setUser(User aUser) {
         user = aUser;
+    }
+    public static boolean logInhUser(String email, String password){
+        boolean credential=false;
+        for(int i=0; i<Userhold.getUsers().size();i++){
+            if(email.equals(Userhold.getUsers().get(i).getEmail())&&password.equals(Userhold.getUsers().get(i).getPassword())){
+                credential=true;
+                break;
+            }
+        }
+        return credential;
     }
 }

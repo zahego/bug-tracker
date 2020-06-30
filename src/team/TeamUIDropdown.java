@@ -134,8 +134,10 @@ public class TeamUIDropdown extends javax.swing.JPanel {
             }
         }
         //only allow user with access range higher than 2 to create new project (PM and ADMIN)
-        if (CurrentUserhold.getUser().getAccessRange() > 2) {
-            this.teamDropdown.addItem("+ Add teammate");
+        if (CurrentUserhold.getUser() != null) {
+            if (CurrentUserhold.getUser().getAccessRange() > 2) {
+                this.teamDropdown.addItem("+ Add teammate");
+            }
         }
     }
 }

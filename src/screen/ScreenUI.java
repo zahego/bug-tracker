@@ -6,13 +6,8 @@
 package screen;
 import java.awt.*;
 import javax.swing.*;
-import user.UserUI;
-import java.util.Arrays;
-import java.util.Date;
 import layout.LayoutUI;
-import project.Project;
 import project.ProjectUIDropdown;
-import project.Projecthold;
 import sprint.SprintUIDropdown;
 import team.TeamUIDropdown;
 import user.UserUIDropdown;
@@ -152,7 +147,7 @@ public class ScreenUI extends javax.swing.JFrame{
         j2.setLayout(new FlowLayout(FlowLayout.RIGHT));
         getSprintUI().setLayout(new FlowLayout(FlowLayout.RIGHT));
         getTeamUI().setLayout(new FlowLayout(FlowLayout.LEFT));
-        getSettingUI().setLayout(new FlowLayout(FlowLayout.RIGHT));
+        //getSettingUI().setLayout(new FlowLayout(FlowLayout.RIGHT));
         dropDownsHolder.setLayout(layout);
         dropDownsHolder.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 100));
         
@@ -164,9 +159,14 @@ public class ScreenUI extends javax.swing.JFrame{
         
         
         this.setVisible(true);
-        
-        
     }
+     
+     public static void renderUI(){
+         getProjectUI().renderUI();
+         getTeamUI().renderUI();
+         getUserUI().renderUI();
+         getSprintUI().renderUI();
+     }
      
     public static void displayProjectCreate(boolean display){
         
