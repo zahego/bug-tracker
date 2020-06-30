@@ -233,6 +233,7 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
         this.setUserID(String.valueOf(CurrentUserhold.getUser().getID()));
         this.setUserRole(CurrentUserhold.getUser().getRole().name());
         
+        
         //set icon
         ImageIcon icon = new ImageIcon(CurrentUserhold.getUser().getProfilePic());
         icon = new ImageIcon(icon.getImage().getScaledInstance(110, 110,  java.awt.Image.SCALE_SMOOTH)); 

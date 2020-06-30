@@ -65,7 +65,18 @@ public class ScreenUI extends javax.swing.JFrame{
         setTitle("Dev Screen");
         setBounds(new java.awt.Rectangle(0, 0, 100, 100));
         setMaximumSize(new java.awt.Dimension(1900, 1000));
-        setPreferredSize(new java.awt.Dimension(1900, 1104));
+        setPreferredSize(new java.awt.Dimension(1900, 1004));
+
+        javax.swing.GroupLayout dropDownsHolderLayout = new javax.swing.GroupLayout(dropDownsHolder);
+        dropDownsHolder.setLayout(dropDownsHolderLayout);
+        dropDownsHolderLayout.setHorizontalGroup(
+            dropDownsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1800, Short.MAX_VALUE)
+        );
+        dropDownsHolderLayout.setVerticalGroup(
+            dropDownsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 127, Short.MAX_VALUE)
+        );
 
         productName.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 24)); // NOI18N
         productName.setForeground(new java.awt.Color(255, 102, 102));
@@ -79,7 +90,7 @@ public class ScreenUI extends javax.swing.JFrame{
         );
         boardsHolderLayout.setVerticalGroup(
             boardsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 898, Short.MAX_VALUE)
+            .addGap(0, 819, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -99,56 +110,72 @@ public class ScreenUI extends javax.swing.JFrame{
                 .addGap(8, 8, 8)
                 .addComponent(productName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dropDownsHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(boardsHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(dropDownsHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(boardsHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        GroupLayout gl_dropDownsHolder = new GroupLayout(dropDownsHolder);
-        gl_dropDownsHolder.setHorizontalGroup(
-        	gl_dropDownsHolder.createParallelGroup(Alignment.LEADING)
-        		.addGap(0, 1882, Short.MAX_VALUE)
-        );
-        gl_dropDownsHolder.setVerticalGroup(
-        	gl_dropDownsHolder.createParallelGroup(Alignment.LEADING)
-        		.addGap(0, 53, Short.MAX_VALUE)
-        );
-        dropDownsHolder.setLayout(gl_dropDownsHolder);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
      public void displayJFrame(){
         
         JPanel j=new JPanel();
+        j.setSize(100, 100);
         JPanel j2=new JPanel();
         //JPanel j1=new JPanel();
-        j.add(getUserUI());
-        j.add(getSettingUI());
-        GridLayout layout2=new GridLayout(1, 2);
-        j.setLayout(layout2);
-        j2.add(j);
+        //j.add(getUserUI());
+        //j.add(getSettingUI());
+        //GridLayout layout2=new GridLayout(1, 2);
+        //j.setLayout(layout2);
+        //j2.add(j);
+        
+        GridBagConstraints gbc=new GridBagConstraints();
+        GridBagLayout layout=new GridBagLayout();
+        
+        
+        gbc.insets=new Insets(15,15,15,15);
         //row 1
-        dropDownsHolder.add(getProjectUI());
+        gbc.gridx=0;
+        gbc.gridy=0;
+        //gbc.gridheight=2;
+        dropDownsHolder.add(getProjectUI(), gbc);
+        gbc.insets=new Insets(15,800,15,-105);
         //dropDownsHolder.add(j);
-        dropDownsHolder.add(getSprintUI());
+        gbc.gridx=3;
+        gbc.gridy=0;
+        dropDownsHolder.add(getSprintUI(), gbc);
+        
         //row 2
-        dropDownsHolder.add(getTeamUI());
+        gbc.insets=new Insets(15,15,15,15);
+        gbc.gridx=0;
+        gbc.gridy=2;
+        //gbc.gridheight=2;
+        dropDownsHolder.add(getTeamUI(), gbc);
+        gbc.insets=new Insets(15,600,15,-615);
         //dropDownsHolder.add(j1);
-        dropDownsHolder.add(j);
+        gbc.gridx=2;
+        gbc.gridy=2;
+        dropDownsHolder.add(getUserUI(), gbc);
+        gbc.insets=new Insets(15,-415,15,-1215);
+        gbc.gridx=3;
+        gbc.gridy=2;
+        dropDownsHolder.add(getSettingUI(), gbc);
         //dropDownsHolder.add(getUserUI());
         //dropDownsHolder.add(getSettingUI());
         
-        
+        gbc.insets=new Insets(0,0,0,0);
         
         getProjectUI().renderUI();
         
         this.pack();
-        //FlowLayout layout=new FlowLayout();
-        GridLayout layout=new GridLayout(2, 2);
         
-        getProjectUI().setLayout(new FlowLayout(FlowLayout.LEFT));
+        //FlowLayout layout=new FlowLayout();
+        //GridLayout layout=new GridLayout(2, 2);
+        
+        /*getProjectUI().setLayout(new FlowLayout(FlowLayout.LEFT));
         j2.setLayout(new FlowLayout(FlowLayout.RIGHT));
         getSprintUI().setLayout(new FlowLayout(FlowLayout.RIGHT));
-        getTeamUI().setLayout(new FlowLayout(FlowLayout.LEFT));
+        getTeamUI().setLayout(new FlowLayout(FlowLayout.LEFT));*/
         //getSettingUI().setLayout(new FlowLayout(FlowLayout.RIGHT));
         dropDownsHolder.setLayout(layout);
         dropDownsHolder.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 100));

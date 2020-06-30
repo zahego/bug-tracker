@@ -76,7 +76,7 @@ public class UserUIDropdown extends javax.swing.JPanel {
         setUserUI(new UserUI());
         //cuurent user already get set as this method is called but not before
         if(CurrentUserhold.getUser()!=null){
-        
+            System.out.println(CurrentUserhold.getUser().getID());
         getUserUI().setUserFromDatabase(CurrentUserhold.getUser().getID()-1);
         
         }
