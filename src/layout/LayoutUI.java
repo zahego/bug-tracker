@@ -5,6 +5,10 @@
  */
 package layout;
 
+import TrungAndAnhIntegration.common.Enum.BoardType;
+import TrungAndAnhIntegration.common.TaskHold.TaskHold;
+import TrungAndAnhIntegration.layout.views.BoardUI.BoardUI;
+import TrungAndAnhIntegration.layout.views.TaskCreate;
 import task.TaskCreateUpdateUI;
 
 /**
@@ -17,8 +21,10 @@ public class LayoutUI extends javax.swing.JPanel {
      * Creates new form Layout
      */
     public LayoutUI() {
+
         initComponents();
         setPMinimizeHidden();
+        addTask();
     }
 
     /**
@@ -211,9 +217,9 @@ public class LayoutUI extends javax.swing.JPanel {
                     .addComponent(MaximizeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DeMaximizeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
-                .addGroup(MidProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                .addGroup(MidProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(MidProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,9 +295,9 @@ public class LayoutUI extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(RightProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(filterR, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                    .addComponent(sortR, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                .addGroup(RightProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(filterR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sortR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
 
@@ -324,7 +330,7 @@ public class LayoutUI extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addComponent(LeftProjectPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(MidProjectPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -390,7 +396,7 @@ public class LayoutUI extends javax.swing.JPanel {
     }//GEN-LAST:event_MinimizeButtonLActionPerformed
 
     private void sortRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortRActionPerformed
-       SortUI sortR = new SortUI();
+        SortUI sortR = new SortUI();
         sortR.setVisible(true);
     }//GEN-LAST:event_sortRActionPerformed
 
@@ -434,18 +440,62 @@ public class LayoutUI extends javax.swing.JPanel {
     }//GEN-LAST:event_MinimizeButtonRActionPerformed
 
     private void AddTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddTaskButtonActionPerformed
-        TaskCreateUpdateUI taskcreate = new TaskCreateUpdateUI();
+        TaskCreate taskcreate = new TaskCreate();
         taskcreate.setVisible(true);
     }//GEN-LAST:event_AddTaskButtonActionPerformed
 
     private void FilterLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilterLActionPerformed
         FilterUI filterL = new FilterUI();
         filterL.setVisible(true);
+        /*filterL.FilterButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (filterL.FilterOption1.isSelected()) {
+							total = total - 5;
+						} 
+						
+						if (filterL.FilterOption2.isSelected()) {
+							total = total - 10;
+						} 
+						
+						if (filterL.FilterOption3.isSelected()) {
+							total = total - 15;
+						} 
+						
+						if (filterL.FilterOption4.isSelected()) {
+							total = total - 20;
+						} 	
+						
+						testFilterText.setText(Double.toString(total));
+						filterL.dispose();
+					}
+				});*/
     }//GEN-LAST:event_FilterLActionPerformed
 
     private void filterRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterRActionPerformed
         FilterUI filterR = new FilterUI();
         filterR.setVisible(true);
+        /*filterL.FilterButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (filterL.FilterOption1.isSelected()) {
+							total = total - 5;
+						} 
+						
+						if (filterL.FilterOption2.isSelected()) {
+							total = total - 10;
+						} 
+						
+						if (filterL.FilterOption3.isSelected()) {
+							total = total - 15;
+						} 
+						
+						if (filterL.FilterOption4.isSelected()) {
+							total = total - 20;
+						} 	
+						
+						testFilterText.setText(Double.toString(total));
+						filterL.dispose();
+					}
+				});*/
     }//GEN-LAST:event_filterRActionPerformed
 
 
@@ -482,10 +532,28 @@ public class LayoutUI extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JButton sortR;
     // End of variables declaration//GEN-END:variables
+    private BoardUI backlog;
+    private BoardUI taken;
+    private BoardUI ongoing;
+    private BoardUI finish;
+
     public void setPMinimizeHidden() {
         DeMinimizeButtonL.setVisible(false);
         DeMinimizeButtonR.setVisible(false);
         DeMinimizeButtonM.setVisible(false);
         DeMaximizeButton.setVisible(false);
+    }
+
+    public void addTask() {
+        TaskHold.loadTask();
+        backlog = new BoardUI(BoardType.BACKLOG);
+        taken = new BoardUI(BoardType.TAKEN);
+        ongoing = new BoardUI(BoardType.ONGOING);
+        finish = new BoardUI(BoardType.FINISH);
+
+        OnBacklogPanel.setViewportView(backlog);
+        OnTakenPanel.setViewportView(taken);
+        OnGoingPanel.setViewportView(ongoing);
+        OnFinishPanel.setViewportView(finish);
     }
 }

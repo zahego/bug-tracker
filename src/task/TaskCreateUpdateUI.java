@@ -1,5 +1,6 @@
 package task;
 
+import TrungAndAnhIntegration.layout.views.CalendarWindowViews;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -21,6 +22,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeListener;
 
 public class TaskCreateUpdateUI extends JFrame {
 
@@ -49,6 +53,8 @@ public class TaskCreateUpdateUI extends JFrame {
 	private JLabel DueDateAssignLabel;
 	private JLabel MemberAssignLabel;
 	private JLabel UploadAssignLabel;
+        
+        private boolean checkCalendarVisisble=false;
 	
 	/**
 	 * Launch the application.
@@ -95,6 +101,32 @@ public class TaskCreateUpdateUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//OpenCalender()
 			}
+		});
+                CalendarWindowViews calendar = new CalendarWindowViews();
+		calendar.setUndecorated(true);
+		//calendar.addPropertyChangeListener( this);
+		
+		
+		DueDateBar.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				if(checkCalendarVisisble==false){
+				calendar.setLocation(DueDateBar.getLocationOnScreen().x,(DueDateBar.getLocationOnScreen().y + DueDateBar.getHeight()));
+				calendar.setVisible(true);
+                                checkCalendarVisisble=true;
+                                }
+                                else{
+                                    calendar.dispose();
+                                    checkCalendarVisisble=false;
+                                }
+				
+			}
+			/*
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				calendar.dispose();
+			}*/
 		});
 		
 	}

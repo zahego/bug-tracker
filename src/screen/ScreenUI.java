@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package screen;
+import TrungAndAnhIntegration.layout.views.FilterViews;
 import java.awt.*;
 import javax.swing.*;
 import layout.LayoutUI;
@@ -30,6 +31,7 @@ public class ScreenUI extends javax.swing.JFrame{
      * Creates new form ScreenUI
      */
     public ScreenUI() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(FilterViews.class.getResource("/TrungAndAnhIntegration/layout/resource/BugTracker.png")));
         initComponents();
     }
 

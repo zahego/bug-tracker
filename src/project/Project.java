@@ -126,9 +126,9 @@ public class Project {
             //get all fields
             int projectID = ((Long) project.get("id")).intValue();
             String projectName = (String) project.get("name");
-            Date createDate = new SimpleDateFormat("dd/MM/yyyy").parse((String) project.get("createDate"));
-            Date startDate = new SimpleDateFormat("dd/MM/yyyy").parse((String) project.get("startDate"));
-            Date dueDate = new SimpleDateFormat("dd/MM/yyyy").parse((String) project.get("dueDate"));
+            Date createDate = new SimpleDateFormat("MM-dd-yyyy").parse((String) project.get("createDate"));
+            Date startDate = new SimpleDateFormat("MM-dd-yyyy").parse((String) project.get("startDate"));
+            Date dueDate = new SimpleDateFormat("MM-dd-yyyy").parse((String) project.get("dueDate"));
             String summary = (String) project.get("summary");
             //populate array of user ID for the project
             JSONArray dbTeam=(JSONArray) project.get("_team");
