@@ -27,7 +27,7 @@ public class LayoutUI extends javax.swing.JPanel {
 
         initComponents();
         setPMinimizeHidden();
-        addTask();
+        renderBoard();
     }
 
     /**
@@ -113,48 +113,48 @@ public class LayoutUI extends javax.swing.JPanel {
         });
 
         javax.swing.GroupLayout LeftProjectPanelLayout = new javax.swing.GroupLayout(LeftProjectPanel);
+        LeftProjectPanel.setLayout(LeftProjectPanelLayout);
         LeftProjectPanelLayout.setHorizontalGroup(
-        	LeftProjectPanelLayout.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(LeftProjectPanelLayout.createSequentialGroup()
-        			.addGap(0, 292, Short.MAX_VALUE)
-        			.addComponent(MinimizeButtonL))
-        		.addGroup(LeftProjectPanelLayout.createSequentialGroup()
-        			.addGap(20)
-        			.addGroup(LeftProjectPanelLayout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(LeftProjectPanelLayout.createSequentialGroup()
-        					.addComponent(SearchBarL, GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(SearchIconL, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        				.addGroup(LeftProjectPanelLayout.createSequentialGroup()
-        					.addComponent(AddTaskButton, GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
-        					.addGap(50)
-        					.addComponent(SortL, GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
-        					.addGap(49)
-        					.addComponent(FilterL, GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
-        				.addGroup(LeftProjectPanelLayout.createSequentialGroup()
-        					.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-        					.addGap(0)))
-        			.addGap(20))
+            LeftProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LeftProjectPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(MinimizeButtonL))
+            .addGroup(LeftProjectPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(LeftProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(LeftProjectPanelLayout.createSequentialGroup()
+                        .addComponent(SearchBarL)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SearchIconL, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(LeftProjectPanelLayout.createSequentialGroup()
+                        .addComponent(AddTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(92, 92, 92)
+                        .addComponent(SortL, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(FilterL, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(LeftProjectPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(20, 20, 20))
         );
         LeftProjectPanelLayout.setVerticalGroup(
-        	LeftProjectPanelLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(LeftProjectPanelLayout.createSequentialGroup()
-        			.addComponent(MinimizeButtonL, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addGroup(LeftProjectPanelLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(SearchBarL, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(SearchIconL))
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
-        			.addGap(18)
-        			.addGroup(LeftProjectPanelLayout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(FilterL, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-        				.addGroup(LeftProjectPanelLayout.createParallelGroup(Alignment.BASELINE)
-        					.addComponent(AddTaskButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-        					.addComponent(SortL, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)))
-        			.addGap(23))
+            LeftProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LeftProjectPanelLayout.createSequentialGroup()
+                .addComponent(MinimizeButtonL, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(LeftProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SearchBarL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchIconL))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(LeftProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(FilterL, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(LeftProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(AddTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SortL, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 23, Short.MAX_VALUE))
         );
-        LeftProjectPanel.setLayout(LeftProjectPanelLayout);
 
         MidProjectPanel.setBackground(new java.awt.Color(255, 204, 51));
 
@@ -188,51 +188,47 @@ public class LayoutUI extends javax.swing.JPanel {
         });
 
         javax.swing.GroupLayout MidProjectPanelLayout = new javax.swing.GroupLayout(MidProjectPanel);
+        MidProjectPanel.setLayout(MidProjectPanelLayout);
         MidProjectPanelLayout.setHorizontalGroup(
-        	MidProjectPanelLayout.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(MidProjectPanelLayout.createSequentialGroup()
-        			.addGroup(MidProjectPanelLayout.createParallelGroup(Alignment.TRAILING)
-        				.addGroup(MidProjectPanelLayout.createSequentialGroup()
-        					.addGap(33)
-        					.addGroup(MidProjectPanelLayout.createParallelGroup(Alignment.TRAILING)
-        						.addGroup(MidProjectPanelLayout.createSequentialGroup()
-        							.addGap(353)
-        							.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        						.addComponent(jScrollPane3, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
-        					.addGap(12)
-        					.addGroup(MidProjectPanelLayout.createParallelGroup(Alignment.LEADING)
-        						.addComponent(jScrollPane5, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-        						.addGroup(MidProjectPanelLayout.createSequentialGroup()
-        							.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        							.addGap(353))))
-        				.addGroup(MidProjectPanelLayout.createSequentialGroup()
-        					.addContainerGap(660, Short.MAX_VALUE)
-        					.addComponent(MaximizeButton)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(DeMaximizeButton)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(MinimizeButtonM)
-        					.addGap(1)))
-        			.addGap(28))
+            MidProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MidProjectPanelLayout.createSequentialGroup()
+                .addGroup(MidProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(MidProjectPanelLayout.createSequentialGroup()
+                        .addContainerGap(40, Short.MAX_VALUE)
+                        .addGroup(MidProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addGroup(MidProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)))
+                    .addGroup(MidProjectPanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(MaximizeButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DeMaximizeButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(MinimizeButtonM)
+                        .addGap(1, 1, 1)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         MidProjectPanelLayout.setVerticalGroup(
-        	MidProjectPanelLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(MidProjectPanelLayout.createSequentialGroup()
-        			.addGroup(MidProjectPanelLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(MinimizeButtonM, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(MaximizeButton, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(DeMaximizeButton, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-        			.addGap(8)
-        			.addGroup(MidProjectPanelLayout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(jLabel2, Alignment.TRAILING)
-        				.addComponent(jLabel1))
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
-        			.addGroup(MidProjectPanelLayout.createParallelGroup(Alignment.TRAILING)
-        				.addComponent(jScrollPane5, GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
-        				.addComponent(jScrollPane3, GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE))
-        			.addGap(79))
+            MidProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MidProjectPanelLayout.createSequentialGroup()
+                .addGroup(MidProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MinimizeButtonM, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MaximizeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DeMaximizeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addGroup(MidProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(MidProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
-        MidProjectPanel.setLayout(MidProjectPanelLayout);
 
         RightProjectPanel.setBackground(new java.awt.Color(102, 204, 0));
 
@@ -267,46 +263,46 @@ public class LayoutUI extends javax.swing.JPanel {
         });
 
         javax.swing.GroupLayout RightProjectPanelLayout = new javax.swing.GroupLayout(RightProjectPanel);
+        RightProjectPanel.setLayout(RightProjectPanelLayout);
         RightProjectPanelLayout.setHorizontalGroup(
-        	RightProjectPanelLayout.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(RightProjectPanelLayout.createSequentialGroup()
-        			.addComponent(MinimizeButtonR)
-        			.addContainerGap(405, Short.MAX_VALUE))
-        		.addGroup(RightProjectPanelLayout.createSequentialGroup()
-        			.addGap(30)
-        			.addGroup(RightProjectPanelLayout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(RightProjectPanelLayout.createSequentialGroup()
-        					.addGroup(RightProjectPanelLayout.createParallelGroup(Alignment.TRAILING)
-        						.addGroup(RightProjectPanelLayout.createSequentialGroup()
-        							.addComponent(SearchBarR)
-        							.addPreferredGap(ComponentPlacement.UNRELATED)
-        							.addComponent(SearchIconR, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-        						.addComponent(jScrollPane7, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
-        					.addGap(30))
-        				.addGroup(RightProjectPanelLayout.createSequentialGroup()
-        					.addGap(47)
-        					.addComponent(sortR, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        					.addComponent(filterR, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
-        					.addGap(86))))
+            RightProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RightProjectPanelLayout.createSequentialGroup()
+                .addComponent(MinimizeButtonR)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightProjectPanelLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(RightProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(RightProjectPanelLayout.createSequentialGroup()
+                        .addGroup(RightProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(RightProjectPanelLayout.createSequentialGroup()
+                                .addComponent(SearchBarR)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(SearchIconR, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30))
+                    .addGroup(RightProjectPanelLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(sortR, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(filterR, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(86, 86, 86))))
         );
         RightProjectPanelLayout.setVerticalGroup(
-        	RightProjectPanelLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(RightProjectPanelLayout.createSequentialGroup()
-        			.addComponent(MinimizeButtonR, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-        			.addGap(11)
-        			.addGroup(RightProjectPanelLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(SearchBarR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(SearchIconR))
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(jScrollPane7, GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
-        			.addGap(18)
-        			.addGroup(RightProjectPanelLayout.createParallelGroup(Alignment.LEADING, false)
-        				.addComponent(filterR, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(sortR, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-        			.addGap(15))
+            RightProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RightProjectPanelLayout.createSequentialGroup()
+                .addComponent(MinimizeButtonR, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addGroup(RightProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SearchBarR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchIconR))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(RightProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(filterR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sortR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
         );
-        RightProjectPanel.setLayout(RightProjectPanelLayout);
 
         DeMinimizeButtonR.setBackground(new java.awt.Color(153, 255, 51));
         DeMinimizeButtonR.setText("< >");
@@ -331,46 +327,44 @@ public class LayoutUI extends javax.swing.JPanel {
                 DeMinimizeButtonMActionPerformed(evt);
             }
         });
-        GroupLayout groupLayout = new GroupLayout(this);
-        groupLayout.setHorizontalGroup(
-        	groupLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(groupLayout.createSequentialGroup()
-        			.addGap(107)
-        			.addComponent(DeMinimizeButtonL, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-        			.addGap(561)
-        			.addComponent(DeMinimizeButtonM, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-        			.addGap(676)
-        			.addComponent(DeMinimizeButtonR, GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-        			.addGap(12))
-        		.addGroup(groupLayout.createSequentialGroup()
-        			.addGap(12)
-        			.addComponent(LeftProjectPanel, GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
-        			.addGap(7)
-        			.addComponent(MidProjectPanel, GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
-        			.addGap(7)
-        			.addComponent(RightProjectPanel, GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE))
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(LeftProjectPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(MidProjectPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(RightProjectPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(179, 179, 179)
+                .addComponent(DeMinimizeButtonL, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(595, 595, 595)
+                .addComponent(DeMinimizeButtonM, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(DeMinimizeButtonR, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(179, 179, 179))
         );
-        groupLayout.setVerticalGroup(
-        	groupLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(groupLayout.createSequentialGroup()
-        			.addContainerGap()
-        			.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-        				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-        					.addComponent(DeMinimizeButtonL, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-        					.addComponent(DeMinimizeButtonM, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-        				.addComponent(DeMinimizeButtonR, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(LeftProjectPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        				.addGroup(groupLayout.createSequentialGroup()
-        					.addGap(2)
-        					.addComponent(MidProjectPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        				.addGroup(groupLayout.createSequentialGroup()
-        					.addGap(2)
-        					.addComponent(RightProjectPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        			.addGap(0))
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DeMinimizeButtonL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(DeMinimizeButtonM, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DeMinimizeButtonR, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(LeftProjectPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MidProjectPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RightProjectPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        setLayout(groupLayout);
     }// </editor-fold>//GEN-END:initComponents
 
     private void SearchIconLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchIconLActionPerformed
@@ -521,10 +515,10 @@ public class LayoutUI extends javax.swing.JPanel {
     private javax.swing.JButton MinimizeButtonL;
     private javax.swing.JButton MinimizeButtonM;
     private javax.swing.JButton MinimizeButtonR;
-    private javax.swing.JScrollPane OnBacklogPanel;
-    private javax.swing.JScrollPane OnFinishPanel;
-    private javax.swing.JScrollPane OnGoingPanel;
-    private javax.swing.JScrollPane OnTakenPanel;
+    private static javax.swing.JScrollPane OnBacklogPanel;
+    private static javax.swing.JScrollPane OnFinishPanel;
+    private static javax.swing.JScrollPane OnGoingPanel;
+    private static javax.swing.JScrollPane OnTakenPanel;
     private javax.swing.JPanel RightProjectPanel;
     private javax.swing.JTextField SearchBarL;
     private javax.swing.JTextField SearchBarR;
@@ -541,10 +535,10 @@ public class LayoutUI extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JButton sortR;
     // End of variables declaration//GEN-END:variables
-    private BoardUI backlog;
-    private BoardUI taken;
-    private BoardUI ongoing;
-    private BoardUI finish;
+    private static BoardUI backlog;
+    private static BoardUI taken;
+    private static BoardUI ongoing;
+    private static BoardUI finish;
 
     public void setPMinimizeHidden() {
         DeMinimizeButtonL.setVisible(false);
@@ -553,13 +547,17 @@ public class LayoutUI extends javax.swing.JPanel {
         DeMaximizeButton.setVisible(false);
     }
 
-    public void addTask() {
+    public static void addTaskToBoards() {
         TaskHold.loadTask();
         backlog = new BoardUI(BoardType.BACKLOG);
         taken = new BoardUI(BoardType.TAKEN);
         ongoing = new BoardUI(BoardType.ONGOING);
         finish = new BoardUI(BoardType.FINISH);
 
+        
+    }
+    public static void renderBoard(){
+        addTaskToBoards();
         OnBacklogPanel.setViewportView(backlog);
         OnTakenPanel.setViewportView(taken);
         OnGoingPanel.setViewportView(ongoing);

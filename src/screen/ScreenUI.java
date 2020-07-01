@@ -67,6 +67,17 @@ public class ScreenUI extends javax.swing.JFrame{
         setMaximumSize(new java.awt.Dimension(1900, 1000));
         setPreferredSize(new java.awt.Dimension(1900, 1104));
 
+        javax.swing.GroupLayout dropDownsHolderLayout = new javax.swing.GroupLayout(dropDownsHolder);
+        dropDownsHolder.setLayout(dropDownsHolderLayout);
+        dropDownsHolderLayout.setHorizontalGroup(
+            dropDownsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1800, Short.MAX_VALUE)
+        );
+        dropDownsHolderLayout.setVerticalGroup(
+            dropDownsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 53, Short.MAX_VALUE)
+        );
+
         productName.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 24)); // NOI18N
         productName.setForeground(new java.awt.Color(255, 102, 102));
         productName.setText("BUG TRACKER 3000");
@@ -103,16 +114,6 @@ public class ScreenUI extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(boardsHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        GroupLayout gl_dropDownsHolder = new GroupLayout(dropDownsHolder);
-        gl_dropDownsHolder.setHorizontalGroup(
-        	gl_dropDownsHolder.createParallelGroup(Alignment.LEADING)
-        		.addGap(0, 1882, Short.MAX_VALUE)
-        );
-        gl_dropDownsHolder.setVerticalGroup(
-        	gl_dropDownsHolder.createParallelGroup(Alignment.LEADING)
-        		.addGap(0, 53, Short.MAX_VALUE)
-        );
-        dropDownsHolder.setLayout(gl_dropDownsHolder);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
