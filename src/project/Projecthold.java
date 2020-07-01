@@ -12,9 +12,6 @@ import project.Project;
  */
 public class Projecthold {
     private static ArrayList<Project> projects;
-    public Projecthold(){
-        
-    }
     //insert
     //TODO sort as insert
      public static void insert(Project new_project){

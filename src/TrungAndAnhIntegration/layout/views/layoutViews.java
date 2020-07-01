@@ -1,14 +1,10 @@
 package TrungAndAnhIntegration.layout.views;
 
-import java.awt.EventQueue;
-
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import TrungAndAnhIntegration.common.Enum.BoardType;
-import TrungAndAnhIntegration.common.TaskHold.TaskHold;
 import TrungAndAnhIntegration.layout.views.BoardUI.BoardUI;
 
 import javax.swing.GroupLayout;
@@ -77,26 +73,7 @@ public class layoutViews extends JFrame {
 	//private String[] sortlist = {"A-Z", "Z-A", "Soonest"};
 	//private String[] filterlist = {"High Priority", "Medium Priority", "Low Priority"};
 	
-	
-	
-	
-	
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					layoutViews frame = new layoutViews();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -525,7 +502,6 @@ public class layoutViews extends JFrame {
 		);
 		
 		//////////////////////////////////////////////////Merge (Trung)///////////////////////////////////////////////////////
-		TaskHold.loadTask();
 		backlog = new BoardUI(BoardType.BACKLOG);
 		taken = new BoardUI(BoardType.TAKEN);
 		ongoing = new BoardUI(BoardType.ONGOING);
@@ -626,7 +602,7 @@ public class layoutViews extends JFrame {
 		
 		AddTaskButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TaskCreate taskcreate = new TaskCreate();
+				TaskCreate taskcreate = new TaskCreate(backlog);
 				taskcreate.setVisible(true);
 			}
 		});

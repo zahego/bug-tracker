@@ -16,7 +16,7 @@ import user.*;
  * @author tug70
  */
 public class SprintUIDropdown extends javax.swing.JPanel {
-private static int sprintAccessID = -1;
+
     /**
      * Creates new form UserUIDropdown
      */

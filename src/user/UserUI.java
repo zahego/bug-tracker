@@ -5,7 +5,6 @@
  */
 package user;
 
-import com.sun.xml.internal.ws.api.Component;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;

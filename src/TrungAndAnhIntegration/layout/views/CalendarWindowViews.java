@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import com.mindfusion.scheduling.Calendar;
 import com.mindfusion.scheduling.ThemeType;
 import com.mindfusion.common.*;
-import java.awt.Toolkit;
 
 
 public class CalendarWindowViews extends JFrame {	

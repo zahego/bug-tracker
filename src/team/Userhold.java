@@ -79,10 +79,10 @@ public class Userhold {
     public static void deleteAll(){
         Userhold.users.clear();
     }
-    public static User search(String email){
+    public static User search(String email, String password){
         User user=new User(-1);
         for(int i=0; i<Userhold.getUsers().size();i++){
-            if(email.equals(Userhold.getUsers().get(i).getEmail())){
+            if(email.equals(Userhold.getUsers().get(i).getEmail())&&password.equals(Userhold.getUsers().get(i).getPassword())){
                 user=Userhold.getUsers().get(i);
                 break;
             }

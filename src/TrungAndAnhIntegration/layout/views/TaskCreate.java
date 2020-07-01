@@ -1,13 +1,24 @@
 package TrungAndAnhIntegration.layout.views;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import TrungAndAnhIntegration.common.Enum.BoardType;
+import TrungAndAnhIntegration.common.Enum.TaskStatus;
 import TrungAndAnhIntegration.common.Enum.TaskType;
+import TrungAndAnhIntegration.common.Task.Task;
+import TrungAndAnhIntegration.common.TaskHold.TaskHold;
 import TrungAndAnhIntegration.common.Ultilities.Utilities;
+import TrungAndAnhIntegration.layout.views.BoardUI.BoardUI;
+import project.Project;
+import project.Projecthold;
+import sprint.Sprint;
+import sprint.Sprinthold;
+import team.Userhold;
+import user.CurrentUserhold;
+import user.User;
 
 import java.io.File;
 import java.awt.Image;
@@ -35,6 +46,7 @@ import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -45,12 +57,13 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 	 */
 	private static final long serialVersionUID = 1L;
 	public JPanel TaskCreate;
+	private BoardUI backlog;
 	private JTextField SummaryBox;
-	private JComboBox<String> ProjectAssignBar;
-	private JComboBox<String> SprintAssignBar ;
-	private JComboBox<String> TaskTypeAssignBar;
+	private JComboBox<ComboItem> ProjectAssignBar;
+	private JComboBox<Integer> SprintAssignBar ;
+	private JComboBox<ComboItem> TaskTypeAssignBar;
 	private JComboBox<Integer> SeverityAssignBar;
-	private JComboBox<String> AssignedBar;
+	private JComboBox<ComboItem> AssignedBar;
 	private JButton AddFileButton;
 	private JTextPane DescriptionBox;
 	private JTextPane ReplicateBox;
@@ -71,7 +84,7 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 	private JLabel UploadAssignLabel;
 	private JLabel PictureUploadTest;
 	private File selectedFile;
-	private Date selDate = null;
+	private Date selDate;
 	private JLabel error;
         
         private boolean checkCalendarVisisble;
@@ -91,14 +104,20 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 	public TaskCreate() {
 		checkCalendarVisisble=false;
 		initComponents();
+		this.backlog = null;
+		createEvents();
+		
+	}
+	
+	public TaskCreate(BoardUI backlog) {
+		checkCalendarVisisble=false;
+		this.backlog = backlog;
+		initComponents();
 		createEvents();
 		
 	}
 
 	private void createEvents() {
-		
-		
-		
 		AddFileButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//OpenFile() function for GUI only
@@ -125,7 +144,9 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 		CreateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Add() function
-				addTask();
+				if(!errorCheck()) {
+					addTask();
+				}
 			}
 		});
 		
@@ -183,11 +204,11 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 		SummaryBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		SummaryBox.setColumns(10);
 		
-		ProjectAssignBar = new JComboBox<String>();
+		ProjectAssignBar = new JComboBox<ComboItem>();
 		
-		SprintAssignBar = new JComboBox<String>();
+		SprintAssignBar = new JComboBox<Integer>();
 		
-		TaskTypeAssignBar = new JComboBox<String>();
+		TaskTypeAssignBar = new JComboBox<ComboItem>();
 		
 		SeverityAssignBar = new JComboBox<Integer>();
 		
@@ -213,7 +234,7 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 		
 		MemberAssignLabel = new JLabel("Assigned To");
 		
-		AssignedBar = new JComboBox<String>();
+		AssignedBar = new JComboBox<ComboItem>();
 		
 		UploadAssignLabel = new JLabel("Attach File\r\n");
 		
@@ -235,10 +256,25 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 		
 		PictureUploadTest = new JLabel("");
 		
-		error = new JLabel("Task create error will be shown here");
+		error = new JLabel("");
 		error.setForeground(Color.RED);
 		
-		/////////////////////////////////////////Populate Severity and Task Type/////////////////////////////////
+		/////////////////////////////////////////Populate all parameters/////////////////////////////////
+		List<Project> projects = Projecthold.getProjects();
+		for(int i = 0; i < projects.size(); i++) {
+			ProjectAssignBar.addItem(new ComboItem(projects.get(i).getName(), projects.get(i).getID()));
+		}
+		
+		List<User> users = Userhold.getUsers();
+		for(int i = 0; i < users.size(); i++) {
+			AssignedBar.addItem(new ComboItem(users.get(i).getName(), users.get(i).getID()));
+		}
+		
+		List<Sprint> sprints = Sprinthold.getSprints();
+		for(int i = 0; i < sprints.size(); i++) {
+			SprintAssignBar.addItem(sprints.get(i).getID());
+		}
+		
 		int[] severities = Utilities.makeSequence(1, 10);
 		for(int i = 0; i < severities.length; i++) {
 			SeverityAssignBar.addItem(severities[i]);
@@ -246,7 +282,7 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 		
 		TaskType[] types = TaskType.getAllTaskTypes();
     	for(int i = 0; i < types.length; i++) {
-    		TaskTypeAssignBar.addItem(types[i].getType());
+    		TaskTypeAssignBar.addItem(new ComboItem(types[i].toString(), types[i]));
     	}
 		
 		// Group Layout
@@ -404,8 +440,32 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
         }
 	}
 	
+	public boolean errorCheck() {
+		if(Utilities.compareWithTodayDate(selDate)<0) {
+			error.setText("Due date must be after today's date!");
+			return true;
+		}
+		if(CurrentUserhold.getUser()==null) {
+			error.setText("You must log in to add new task!");
+			return true;
+		}
+		return false;
+	}
+	
 	public void addTask() {
 		//add task and notify main UI
+		Task task = new Task(-1, (TaskType) ((ComboItem) TaskTypeAssignBar.getSelectedItem()).getValue(),
+				SummaryBox.getText(), (int) ((ComboItem) ProjectAssignBar.getSelectedItem()).getValue(),
+				(int) SprintAssignBar.getSelectedItem(), (int) SeverityAssignBar.getSelectedItem(),
+				TaskStatus.ONNEW, Utilities.getCurrentDate(), ReplicateBox.getText(),
+				DescriptionBox.getText(), SuggestionBox.getText(), selDate, selectedFile,
+				CurrentUserhold.getUser().getID(), new ArrayList<Integer>());
+		task.addAssignee((int)((ComboItem) AssignedBar.getSelectedItem()).getValue());
+		TaskHold.addTask(task);
+		System.out.print(TaskHold.filter(BoardType.BACKLOG).size());
+		if(this.backlog!=null) {
+			this.backlog.refresh();
+		}
 	}
 }
 
@@ -413,9 +473,21 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 class ComboItem
 {
     private String key;
-    private String value;
+    private Object value;
 
     public ComboItem(String key, String value)
+    {
+        this.key = key;
+        this.value = value;
+    }
+    
+    public ComboItem(String key, int value)
+    {
+        this.key = key;
+        this.value = value;
+    }
+    
+    public ComboItem(String key, TaskType value)
     {
         this.key = key;
         this.value = value;
@@ -432,7 +504,7 @@ class ComboItem
         return key;
     }
 
-    public String getValue()
+    public Object getValue()
     {
         return value;
     }

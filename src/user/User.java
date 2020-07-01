@@ -31,6 +31,13 @@ public class User {
     public User(int ID) {
         this.ID = ID;
     }
+    
+    public User(int ID, Role role, String name) {
+        this.ID = ID;
+        this.role = role;
+        this.name = name;
+    }
+    
     public User(int ID, Role role, String name, String profilePic, String email, String password, int accessRange) {
         this.ID = ID;
         this.role = role;

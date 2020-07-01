@@ -8,7 +8,6 @@ package user;
 import java.awt.Component;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import layout.LayoutUI;
 import log_in.LogInUI;
 import screen.ScreenUI;
 
@@ -57,7 +56,6 @@ public class UserUIDropdown extends javax.swing.JPanel {
             getAuthentication().setText("Log in");
             getUserUI().setVisible(false);
             CurrentUserhold.setUser(null);
-            LayoutUI.renderBoard();
             ScreenUI.renderUI();
         }
         else if(getAuthentication().getText().equals("Log in")){

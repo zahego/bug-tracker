@@ -5,8 +5,6 @@
  */
 package log_in;
 
-import TrungAndAnhIntegration.common.TaskHold.TaskHold;
-import layout.LayoutUI;
 import screen.ScreenUI;
 import team.Userhold;
 import user.CurrentUserhold;
@@ -117,13 +115,11 @@ public class LogInUI extends javax.swing.JFrame {
 
         if (!email.equals("") && !password.equals("")) {
             this.setErrorLabel(this.getEmailString().getText() + " " + String.valueOf(this.getPasswordString().getPassword()));
-            if (/*CurrentUserhold.logInhUser(email, password)*/true == true) {
-                User user = Userhold.search(email);
+            if (CurrentUserhold.logInhUser(email, password) == true) {
+                User user = Userhold.search(email, password);
                 CurrentUserhold.setUser(user);
                 ScreenUI.renderUI();
                 ScreenUI.getUserUI().getAuthentication().setText("Log out");
-                //reload task?
-                LayoutUI.renderBoard();
                 ScreenUI.getUserUI().setVisible(true);
                 this.dispose();
             }

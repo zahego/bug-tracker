@@ -10,6 +10,8 @@ import holder.task_hold.Taskhold;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.SwingUtilities;
+
+import TrungAndAnhIntegration.common.TaskHold.TaskHold;
 import project.Project;
 import screen.ScreenUI;
 import user.*;
@@ -29,16 +31,13 @@ public class MainTest {
         dev.setID(3);
         //can't print before insert, there's nothing there. TODO need to find a way so that thí is not null
         //System.out.println(dev.getProjecthold().getProjects().get(0).getProjectID());
-     
+        TaskHold.loadTask();
         ScreenUI screen=new ScreenUI();
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
         screen.displayJFrame();
         }
         });
-
-        
-       
-        }
+    }
 
 }

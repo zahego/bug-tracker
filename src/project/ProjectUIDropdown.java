@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.SwingUtilities;
-import layout.LayoutUI;
 import screen.ScreenUI;
 import setting.SettingUI;
 import team.TeamUIDropdown;
@@ -60,11 +59,17 @@ public class ProjectUIDropdown extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(projectDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(projectDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(projectDropDown, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(projectDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(114, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -101,14 +106,11 @@ public class ProjectUIDropdown extends javax.swing.JPanel {
                             update.setCreateUpdateLabel("Update Project");
                             update.setSubmitButton("Update");
                             update.setVisible(true);
-                            
 
                         }
                     }
-                    //reredner team and sprint and boards
-                    
+                    //reredner team and sprint
                     ProjectUIDropdown.setProjectAccessID(Projecthold.getProjects().get(i).getID());
-                    LayoutUI.renderBoard();
                     ScreenUI.getTeamUI().renderUI();
                     ScreenUI.getSprintUI().renderUI();
                     break;

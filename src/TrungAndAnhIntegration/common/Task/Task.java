@@ -8,7 +8,11 @@ import java.util.List;
 import TrungAndAnhIntegration.common.Enum.TaskStatus;
 import TrungAndAnhIntegration.common.Enum.TaskType;
 
-
+/**
+ * Class used for storing task object
+ * @author Trung Nguyen
+ *
+ */
 public class Task {
 	int ID;
 	TaskType type;
@@ -27,7 +31,7 @@ public class Task {
 	int assignerID;
 	List<Integer> assignees;
 	
-	/////////////////////////Constructor in development/////////////////////////////
+	/////////////////////////////////////////Constructor in development. Used in TaskHold//////////////////////////////////////////////////
 	public Task (int ID, TaskType type, String quickSummary, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate) {
 		this.ID = ID;
 		this.type = type;
@@ -47,10 +51,10 @@ public class Task {
 		this.assignees = new ArrayList<>();
 	}
 	
-	/////////////////////////Full fledged constructor//////////////////////////////////
-	public Task (int ID, String quickSummary, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate, String toReplicate, String fullDescription, String suggestion, Date dueDate, File file) {
+	/////////////////////////////////////Constructor without assigner and assignees////////////////////////////////////////
+	public Task (int ID, TaskType type, String quickSummary, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate, String toReplicate, String fullDescription, String suggestion, Date dueDate, File file) {
 		this.ID = ID;
-		this.type = TaskType.TASK;
+		this.type = type;
 		this.projectID = projectID;
 		this.sprintID = sprintID;
 		this.quickSummary = quickSummary;
@@ -66,6 +70,48 @@ public class Task {
 		this.assignerID = -1;
 		this.assignees = new ArrayList<>();
 	}
+	
+	///////////////////////////////////////////////Constructor without file & due date///////////////////////////////////////////////
+	public Task (int ID, TaskType type, String quickSummary, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate, String toReplicate, String fullDescription, String suggestion, int assignerID, List<Integer> assignees) {
+	this.ID = ID;
+	this.type = type;
+	this.projectID = projectID;
+	this.sprintID = sprintID;
+	this.quickSummary = quickSummary;
+	this.comments = new ArrayList<>();
+	this.severity = severity;
+	this.status = status;
+	this.reportedDate = reportedDate;
+	this.dueDate = null;
+	this.fullDescription = fullDescription;
+	this.toReplicate = toReplicate;
+	this.suggestion = suggestion;
+	this.attachedFile = null;
+	this.assignerID = assignerID;
+	this.assignees = assignees;
+	}
+	
+	///////////////////////////////////////////////Full fledged constructor///////////////////////////////////////////////
+	public Task (int ID, TaskType type, String quickSummary, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate, String toReplicate, String fullDescription, String suggestion, Date dueDate, File file, int assignerID, List<Integer> assignees) {
+		this.ID = ID;
+		this.type = type;
+		this.projectID = projectID;
+		this.sprintID = sprintID;
+		this.quickSummary = quickSummary;
+		this.comments = new ArrayList<>();
+		this.severity = severity;
+		this.status = status;
+		this.reportedDate = reportedDate;
+		this.dueDate = dueDate;
+		this.fullDescription = fullDescription;
+		this.toReplicate = toReplicate;
+		this.suggestion = suggestion;
+		this.attachedFile = file;
+		this.assignerID = assignerID;
+		this.assignees = assignees;
+	}
+	
+	//////////////////////////////////////////Getters, setters & add functions/////////////////////////////////////////////
 	
 	public String getToReplicate() {
 		return toReplicate;
@@ -93,6 +139,10 @@ public class Task {
 
 	public List<Integer> getAssignees() {
 		return assignees;
+	}
+	
+	public void addAssignee(int id) {
+		this.assignees.add(id);
 	}
 
 	public void setAssignees(List<Integer> assignees) {

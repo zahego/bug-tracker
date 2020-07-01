@@ -10,9 +10,6 @@ import TrungAndAnhIntegration.common.TaskHold.TaskHold;
 import TrungAndAnhIntegration.layout.views.BoardUI.BoardUI;
 import TrungAndAnhIntegration.layout.views.TaskCreate;
 import task.TaskCreateUpdateUI;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
  *
@@ -27,7 +24,7 @@ public class LayoutUI extends javax.swing.JPanel {
 
         initComponents();
         setPMinimizeHidden();
-        renderBoard();
+        addTask();
     }
 
     /**
@@ -443,7 +440,7 @@ public class LayoutUI extends javax.swing.JPanel {
     }//GEN-LAST:event_MinimizeButtonRActionPerformed
 
     private void AddTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddTaskButtonActionPerformed
-        TaskCreate taskcreate = new TaskCreate();
+        TaskCreate taskcreate = new TaskCreate(backlog);
         taskcreate.setVisible(true);
     }//GEN-LAST:event_AddTaskButtonActionPerformed
 
@@ -515,10 +512,10 @@ public class LayoutUI extends javax.swing.JPanel {
     private javax.swing.JButton MinimizeButtonL;
     private javax.swing.JButton MinimizeButtonM;
     private javax.swing.JButton MinimizeButtonR;
-    private static javax.swing.JScrollPane OnBacklogPanel;
-    private static javax.swing.JScrollPane OnFinishPanel;
-    private static javax.swing.JScrollPane OnGoingPanel;
-    private static javax.swing.JScrollPane OnTakenPanel;
+    private javax.swing.JScrollPane OnBacklogPanel;
+    private javax.swing.JScrollPane OnFinishPanel;
+    private javax.swing.JScrollPane OnGoingPanel;
+    private javax.swing.JScrollPane OnTakenPanel;
     private javax.swing.JPanel RightProjectPanel;
     private javax.swing.JTextField SearchBarL;
     private javax.swing.JTextField SearchBarR;
@@ -535,10 +532,10 @@ public class LayoutUI extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JButton sortR;
     // End of variables declaration//GEN-END:variables
-    private static BoardUI backlog;
-    private static BoardUI taken;
-    private static BoardUI ongoing;
-    private static BoardUI finish;
+    private BoardUI backlog;
+    private BoardUI taken;
+    private BoardUI ongoing;
+    private BoardUI finish;
 
     public void setPMinimizeHidden() {
         DeMinimizeButtonL.setVisible(false);
@@ -547,17 +544,13 @@ public class LayoutUI extends javax.swing.JPanel {
         DeMaximizeButton.setVisible(false);
     }
 
-    public static void addTaskToBoards() {
+    public void addTask() {
         TaskHold.loadTask();
         backlog = new BoardUI(BoardType.BACKLOG);
         taken = new BoardUI(BoardType.TAKEN);
         ongoing = new BoardUI(BoardType.ONGOING);
         finish = new BoardUI(BoardType.FINISH);
 
-        
-    }
-    public static void renderBoard(){
-        addTaskToBoards();
         OnBacklogPanel.setViewportView(backlog);
         OnTakenPanel.setViewportView(taken);
         OnGoingPanel.setViewportView(ongoing);
