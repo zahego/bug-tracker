@@ -92,7 +92,7 @@ private static int sprintAccessID = -1;
                         }
                     }
                     SprintUIDropdown.setSprintAccessID(Sprinthold.getSprints().get(i).getID());
-                    LayoutUI.renderBoard();
+                    ScreenUI.getLayoutUI().addTask();
                     break;
                 }
             }

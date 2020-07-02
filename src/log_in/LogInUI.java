@@ -123,7 +123,7 @@ public class LogInUI extends javax.swing.JFrame {
                 ScreenUI.renderUI();
                 ScreenUI.getUserUI().getAuthentication().setText("Log out");
                 //reload task?
-                LayoutUI.renderBoard();
+                ScreenUI.getLayoutUI().addTask();
                 ScreenUI.getUserUI().renderUI();
                 ScreenUI.getUserUI().setVisible(true);
                 this.dispose();

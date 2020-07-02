@@ -111,7 +111,7 @@ public class ProjectUIDropdown extends javax.swing.JPanel {
                     
                     ScreenUI.getTeamUI().renderUI();
                     ScreenUI.getSprintUI().renderUI();
-                    LayoutUI.renderBoard();
+                    ScreenUI.getLayoutUI().addTask();
                     break;
                 }
             }

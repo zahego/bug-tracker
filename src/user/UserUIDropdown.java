@@ -58,7 +58,7 @@ public class UserUIDropdown extends javax.swing.JPanel {
             getAuthentication().setText("Log in");
             //getUserUI().setVisible(false);
             CurrentUserhold.setUser(null);
-            LayoutUI.renderBoard();
+            ScreenUI.getLayoutUI().addTask();
             ScreenUI.renderUI();
         }
         else if(getAuthentication().getText().equals("Log in")){

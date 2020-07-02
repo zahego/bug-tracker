@@ -226,4 +226,18 @@ public class ScreenUI extends javax.swing.JFrame{
     public static void setSettingUI(SettingUI aSettingUI) {
         settingUI = aSettingUI;
     }
+
+    /**
+     * @return the layoutUI
+     */
+    public static layout.LayoutUI getLayoutUI() {
+        return layoutUI;
+    }
+
+    /**
+     * @param aLayoutUI the layoutUI to set
+     */
+    public static void setLayoutUI(layout.LayoutUI aLayoutUI) {
+        layoutUI = aLayoutUI;
+    }
 }
