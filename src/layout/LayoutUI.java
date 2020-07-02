@@ -13,6 +13,9 @@ import task.TaskCreateUpdateUI;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -186,6 +189,23 @@ public class LayoutUI extends javax.swing.JPanel {
                 DeMaximizeButtonActionPerformed(evt);
             }
         });
+        
+       JButton ProgressBoardButton = new JButton("P.Board");
+        ProgressBoardButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		ProgressBoard2 PBoard = new ProgressBoard2();
+        		PBoard.setVisible(true);
+        		//PBoard.columnHead c = new columnHead(); 
+        	}
+        });
+        
+        JButton MemberBoardButton = new JButton("M.Board");
+        MemberBoardButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		TeamMemberBoard MBoard = new TeamMemberBoard();
+        		MBoard.setVisible(true);
+        	}
+        });
 
         javax.swing.GroupLayout MidProjectPanelLayout = new javax.swing.GroupLayout(MidProjectPanel);
         MidProjectPanelLayout.setHorizontalGroup(
@@ -206,7 +226,11 @@ public class LayoutUI extends javax.swing.JPanel {
         							.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         							.addGap(353))))
         				.addGroup(MidProjectPanelLayout.createSequentialGroup()
-        					.addContainerGap(660, Short.MAX_VALUE)
+        					.addContainerGap()
+        					.addComponent(MemberBoardButton, GroupLayout.PREFERRED_SIZE, 69, Short.MAX_VALUE)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(ProgressBoardButton, GroupLayout.PREFERRED_SIZE, 67, Short.MAX_VALUE)
+        					.addGap(472)
         					.addComponent(MaximizeButton)
         					.addPreferredGap(ComponentPlacement.RELATED)
         					.addComponent(DeMaximizeButton)
@@ -221,7 +245,9 @@ public class LayoutUI extends javax.swing.JPanel {
         			.addGroup(MidProjectPanelLayout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(MinimizeButtonM, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
         				.addComponent(MaximizeButton, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(DeMaximizeButton, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(DeMaximizeButton, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(MemberBoardButton)
+        				.addComponent(ProgressBoardButton))
         			.addGap(8)
         			.addGroup(MidProjectPanelLayout.createParallelGroup(Alignment.LEADING)
         				.addComponent(jLabel2, Alignment.TRAILING)

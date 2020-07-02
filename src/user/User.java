@@ -170,6 +170,19 @@ public class User {
     }
 
     /**
+     * @return the projectname
+     */
+    public Object getProjectName() {
+        for (int i =0; i< Projecthold.getProjects().size();i++) {
+        	Projecthold.getProjects().get(i).getName();
+        }
+		return projecthold;
+		
+    }
+
+    
+    
+    /**
      * @return the name
      */
     public String getName() {
