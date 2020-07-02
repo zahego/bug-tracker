@@ -102,7 +102,6 @@ public class Sprint {
             int name = ((Long) sprint.get("name")).intValue();
             String duration = (String) sprint.get("duration");
             int projectID = ((Long) sprint.get("_projectID")).intValue();
-            
             sprintGet = new Sprint(ID, name, duration, projectID);
 
         } catch (Exception e) {

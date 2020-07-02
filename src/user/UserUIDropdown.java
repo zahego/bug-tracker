@@ -17,7 +17,6 @@ import screen.ScreenUI;
  * @author tug70
  */
 public class UserUIDropdown extends javax.swing.JPanel {
-    private static UserUI userUI=new UserUI();
     private static boolean isLogIn;
     /**
      * Creates new form UserUIDropdown
@@ -38,6 +37,7 @@ public class UserUIDropdown extends javax.swing.JPanel {
     private void initComponents() {
 
         authentication = new javax.swing.JButton();
+        userUI = new user.UserUI();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -50,12 +50,13 @@ public class UserUIDropdown extends javax.swing.JPanel {
             }
         });
         add(authentication, java.awt.BorderLayout.PAGE_START);
+        add(userUI, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void authenticationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authenticationActionPerformed
         if(getAuthentication().getText().equals("Log out")){
             getAuthentication().setText("Log in");
-            getUserUI().setVisible(false);
+            //getUserUI().setVisible(false);
             CurrentUserhold.setUser(null);
             LayoutUI.renderBoard();
             ScreenUI.renderUI();
@@ -63,6 +64,7 @@ public class UserUIDropdown extends javax.swing.JPanel {
         else if(getAuthentication().getText().equals("Log in")){
             LogInUI loginform= new LogInUI();
             loginform.setVisible(true);
+            //no need for rerender board here. Rerender board is called at log in
             
         }
     }//GEN-LAST:event_authenticationActionPerformed
@@ -70,19 +72,21 @@ public class UserUIDropdown extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton authentication;
+    private static user.UserUI userUI;
     // End of variables declaration//GEN-END:variables
     
 
 
     public void renderUI(){
-        setUserUI(new UserUI());
+        //UserUIDropdown.setUserUI(new UserUI());
+       // UserUIDropdown.getUserUI().setUserFromDatabase(7);
         //cuurent user already get set as this method is called but not before
         if(CurrentUserhold.getUser()!=null){
-        
-        getUserUI().setUserFromDatabase(CurrentUserhold.getUser().getID()-1);
-        
+        UserUIDropdown.getUserUI().setUserFromDatabase(CurrentUserhold.getUser().getID()-1);
         }
-        this.add(getUserUI());
+        else{
+            UserUIDropdown.getUserUI().setUserAtNull();
+        }
         
     }
 

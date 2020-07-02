@@ -8,10 +8,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 4,
             "taskStatus": "ONNEW",
-            "date": "12-12-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake task in project 1 sprint 1, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 7,
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 2,
@@ -22,10 +22,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 2,
             "taskStatus": "ONNEW",
-            "date": "11-11-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 2 sprint 1, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [1, 4, 5, 7, 8],
             "file": ""
         }, {
             "id": 3,
@@ -36,10 +36,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 5,
             "taskStatus": "ONGOING",
-            "date": "10-10-1998",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 3 sprint 1, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 6,
+            "assigneeIDs": [3, 8],
             "file": ""
         }, {
             "id": 4,
@@ -50,10 +50,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 6,
             "taskStatus": "ONTAKEN",
-            "date": "10-10-1996",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake test request in project 1, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 2,
+            "assigneeIDs": [6, 8],
             "file": ""
         }, {
             "id": 5,
@@ -64,10 +64,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 9,
             "taskStatus": "ONREVIEW",
-            "date": "10-10-2013",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 1 sprint 1, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 6,
@@ -78,10 +78,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 4,
             "taskStatus": "ONNEW",
-            "date": "10-10-2013",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 2 sprint 1, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 4,
+            "assigneeIDs": [1, 4, 5, 7, 8],
             "file": ""
         }, {
             "id": 7,
@@ -92,10 +92,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 2,
             "taskStatus": "ONFINISH",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 4,
+            "assigneeIDs": [3, 4, 6, 7, 8],
             "file": ""
         }, {
             "id": 8,
@@ -106,10 +106,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 2,
             "taskStatus": "ONGOING",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 7,
+            "assigneeIDs": [2, 8],
             "file": ""
         }, {
             "id": 9,
@@ -120,10 +120,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 2,
             "taskStatus": "ONTAKEN",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 2,
+            "assigneeIDs": [5, 8],
             "file": ""
         }, {
             "id": 10,
@@ -134,10 +134,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 7,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 1,
+            "assigneeIDs": [1, 4, 5, 7, 8],
             "file": ""
         }, {
             "id": 11,
@@ -148,10 +148,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 8,
             "taskStatus": "ONTAKEN",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake task in project 3 sprint 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 7,
+            "assigneeIDs": [3, 8],
             "file": ""
         }, {
             "id": 12,
@@ -162,10 +162,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 8,
             "taskStatus": "ONTAKEN",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 7,
+            "assigneeIDs": [2, 8],
             "file": ""
         }, {
             "id": 13,
@@ -176,10 +176,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 9,
             "taskStatus": "ONREVIEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 2,
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 14,
@@ -190,10 +190,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 10,
             "taskStatus": "ONGOING",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 1,
+            "assigneeIDs": [5, 8],
             "file": ""
         }, {
             "id": 15,
@@ -204,10 +204,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 10,
             "taskStatus": "ONFINISH",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 3 sprint 3, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 6,
+            "assigneeIDs": [3, 4, 6, 7, 8],
             "file": ""
         }, {
             "id": 16,
@@ -218,10 +218,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 1,
             "taskStatus": "ONTAKEN",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 4 sprint 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 6,
+            "assigneeIDs": [2, 8],
             "file": ""
         }, {
             "id": 17,
@@ -232,10 +232,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 2,
             "taskStatus": "ONGOING",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [1, 8],
             "file": ""
         }, {
             "id": 18,
@@ -246,10 +246,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 3,
             "taskStatus": "ONTAKEN",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake task in project 2 sprint 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 4,
+            "assigneeIDs": [1, 8],
             "file": ""
         }, {
             "id": 19,
@@ -260,24 +260,24 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 4,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake task in project 1 sprint 1, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 7,
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 20,
             "taskType": "TASK",
-            "projectID": 1,
-            "sprintID": 2,
+            "projectID": 2,
+            "sprintID": 5,
             "quickSummary": "fake task #5",
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 5,
             "taskStatus": "ONGOING",
-            "date": "12-10-2020",
-            "fullDescription": "this is just a fake task in project 1 sprint 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
+            "fullDescription": "this is just a fake task in project 2 sprint 1, no need to worry",
+            "assignerID": 1,
+            "assigneeIDs": [4, 8],
             "file": ""
         }, {
             "id": 21,
@@ -288,10 +288,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 7,
             "taskStatus": "ONTAKEN",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 1 sprint 3, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [1, 8],
             "file": ""
         }, {
             "id": 22,
@@ -302,10 +302,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 6,
             "taskStatus": "ONREVIEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 4,
+            "assigneeIDs": [1, 4, 5, 7, 8],
             "file": ""
         }, {
             "id": 23,
@@ -316,24 +316,24 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 4,
             "taskStatus": "ONTAKEN",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 1 sprint 3, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [2, 8],
             "file": ""
         }, {
             "id": 24,
             "taskType": "TASK",
-            "projectID": 1,
-            "sprintID": 3,
+            "projectID": 3,
+            "sprintID": 8,
             "quickSummary": "fake task #6",
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 6,
             "taskStatus": "ONGOING",
-            "date": "12-10-2020",
-            "fullDescription": "this is just a fake task in project 1 sprint 3, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
+            "fullDescription": "this is just a fake task in project 3 sprint 1, no need to worry",
+            "assignerID": 7,
+            "assigneeIDs": [6, 8],
             "file": ""
         }, {
             "id": 25,
@@ -344,10 +344,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 3,
             "taskStatus": "ONFINISH",
-            "date": "12-10-2020",
-            "fullDescription": "this is just a bogus bug report in project 1 sprint 3, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
+            "fullDescription": "this is just a bogus bug report in project 3 sprint 1, no need to worry",
+            "assignerID": 6,
+            "assigneeIDs": [3, 4, 6, 7, 8],
             "file": ""
         }, {
             "id": 26,
@@ -358,10 +358,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 3,
             "taskStatus": "ONTAKEN",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 4,
+            "assigneeIDs": [6, 8],
             "file": ""
         }, {
             "id": 27,
@@ -372,10 +372,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 7,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 28,
@@ -386,10 +386,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 8,
             "taskStatus": "ONREVIEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 1,
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 29,
@@ -400,10 +400,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 8,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 1 sprint 1, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 6,
+            "assigneeIDs": [3, 4, 6, 7, 8],
             "file": ""
         }, {
             "id": 30,
@@ -414,10 +414,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 9,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 2,
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 31,
@@ -428,10 +428,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 10,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 1 sprint 1, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 6,
+            "assigneeIDs": [3, 4, 6, 7, 8],
             "file": ""
         }, {
             "id": 32,
@@ -442,10 +442,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 1,
             "taskStatus": "ONFINISH",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 1 sprint 1, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 33,
@@ -456,10 +456,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 2,
             "taskStatus": "ONTAKEN",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake task in project 1 sprint 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 1,
+            "assigneeIDs": [1, 8],
             "file": ""
         }, {
             "id": 34,
@@ -470,10 +470,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 2,
             "taskStatus": "ONREVIEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 1 sprint 2, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 35,
@@ -484,10 +484,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 1,
             "taskStatus": "ONFINISH",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 2 sprint 2, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 36,
@@ -498,10 +498,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 10,
             "taskStatus": "ONFINISH",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 1 sprint 2, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 37,
@@ -512,10 +512,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 2,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 7,
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 38,
@@ -526,10 +526,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 3,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 1 sprint 3, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 39,
@@ -540,10 +540,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 4,
             "taskStatus": "ONREVIEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 1,
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 40,
@@ -554,10 +554,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 5,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 6,
+            "assigneeIDs": [3, 4, 6, 7, 8],
             "file": ""
         }, {
             "id": 41,
@@ -568,10 +568,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 4,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 2 sprint 1, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 6,
+            "assigneeIDs": [3, 4, 6, 7, 8],
             "file": ""
         }, {
             "id": 42,
@@ -582,10 +582,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 5,
             "taskStatus": "ONTAKEN",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 2 sprint 1, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [4, 8],
             "file": ""
         }, {
             "id": 43,
@@ -596,10 +596,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 7,
             "taskStatus": "ONFINISH",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake task in project 2 sprint 1, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 7,
+            "assigneeIDs": [1, 4, 5, 7, 8],
             "file": ""
         }, {
             "id": 44,
@@ -610,10 +610,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 3,
             "taskStatus": "ONREVIEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 2 sprint 2, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [1, 4, 5, 7, 8],
             "file": ""
         }, {
             "id": 45,
@@ -624,10 +624,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 5,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 2 sprint 3, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [1, 4, 5, 7, 8],
             "file": ""
         }, {
             "id": 46,
@@ -638,10 +638,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 6,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 4,
+            "assigneeIDs": [1, 4, 5, 7, 8],
             "file": ""
         }, {
             "id": 47,
@@ -652,10 +652,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 6,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 1 sprint 1, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 48,
@@ -666,10 +666,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 8,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 7,
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 49,
@@ -680,10 +680,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 3,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 2,
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 50,
@@ -694,10 +694,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 2,
             "taskStatus": "ONFINISH",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 1 sprint 2, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 51,
@@ -708,10 +708,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 9,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 2,
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 52,
@@ -722,10 +722,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 4,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 1 sprint 2, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 53,
@@ -736,10 +736,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 7,
             "taskStatus": "ONREVIEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 1 sprint 3, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 54,
@@ -750,10 +750,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 5,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 1 sprint 3, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [1, 2, 5, 7, 8],
             "file": ""
         }, {
             "id": 55,
@@ -764,10 +764,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 2,
             "taskStatus": "ONTAKEN",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [],
+            "assignerID": 7,
+            "assigneeIDs": [2, 8],
             "file": ""
         }, {
             "id": 56,
@@ -778,10 +778,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 8,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 2 sprint 1, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assigneeIDs": [1, 4, 5, 7, 8],
             "file": ""
         }, {
             "id": 57,
@@ -792,10 +792,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 5,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [],
+            "assignerID": 7,
+            "assigneeIDs": [1, 4, 5, 7, 8],
             "file": ""
         }, {
             "id": 58,
@@ -806,10 +806,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 3,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 2 sprint 2, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [],
+            "assigneeIDs": [1, 4, 5, 7, 8],
             "file": ""
         }, {
             "id": 59,
@@ -820,10 +820,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 6,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 3 sprint 2, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [1, 2],
+            "assignerID": 6,
+            "assigneeIDs": [3, 4, 6, 7, 8],
             "file": ""
         }, {
             "id": 60,
@@ -834,10 +834,10 @@
             "comment": ["dummy comment", "dummy comment v2", "dummy comment v3"],
             "severity": 2,
             "taskStatus": "ONNEW",
-            "date": "12-10-2020",
+            "dateCreated": "12-12-2020", "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 4 sprint 1, no need to worry",
-            "assignerID": 5,
-            "assigneeIDs": [],
+            "assignerID": 6,
+            "assigneeIDs": [2, 3, 6, 7, 8],
             "file": ""
         }],
     "project": [{

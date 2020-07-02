@@ -108,9 +108,10 @@ public class ProjectUIDropdown extends javax.swing.JPanel {
                     //reredner team and sprint and boards
                     
                     ProjectUIDropdown.setProjectAccessID(Projecthold.getProjects().get(i).getID());
-                    LayoutUI.renderBoard();
+                    
                     ScreenUI.getTeamUI().renderUI();
                     ScreenUI.getSprintUI().renderUI();
+                    LayoutUI.renderBoard();
                     break;
                 }
             }

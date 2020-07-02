@@ -38,7 +38,7 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
         UserRole = new javax.swing.JLabel();
         Portrait = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(153, 204, 255));
+        setBackground(new java.awt.Color(255, 204, 0));
         setMaximumSize(new java.awt.Dimension(244, 123));
 
         UserName.setBackground(new java.awt.Color(153, 255, 255));
@@ -128,9 +128,8 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(UserEmail)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(UserRole)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(UserRole)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Portrait.getAccessibleContext().setAccessibleName("PORTRAIT");
@@ -227,7 +226,9 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
     
     public void setUserFromDatabase(int num){
         //put this into current user hold
+        //this is for testing. Incase the method is called with a num
         CurrentUserhold.setUser(User.getUserFromDatabase(num));
+        
         this.setUserName(CurrentUserhold.getUser().getName());
         this.setUserEmail(CurrentUserhold.getUser().getEmail());
         this.setUserID(String.valueOf(CurrentUserhold.getUser().getID()));
@@ -236,8 +237,19 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
         //set icon
         ImageIcon icon = new ImageIcon(CurrentUserhold.getUser().getProfilePic());
         icon = new ImageIcon(icon.getImage().getScaledInstance(110, 110,  java.awt.Image.SCALE_SMOOTH)); 
+        this.setPortrait(icon);
         
+    }
+    public void setUserAtNull(){
         
+        this.setUserName("NAME");
+        this.setUserEmail("EMAIL");
+        this.setUserID("-1");
+        this.setUserRole("NO ONE");
+        
+        //set icon
+        ImageIcon icon = new ImageIcon("src/database/tempIcon.png");
+        icon = new ImageIcon(icon.getImage().getScaledInstance(110, 110,  java.awt.Image.SCALE_SMOOTH)); 
         this.setPortrait(icon);
         
     }

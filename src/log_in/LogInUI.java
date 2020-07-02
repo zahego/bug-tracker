@@ -124,7 +124,8 @@ public class LogInUI extends javax.swing.JFrame {
                 ScreenUI.getUserUI().getAuthentication().setText("Log out");
                 //reload task?
                 LayoutUI.renderBoard();
-                ScreenUI.getUserUI().setVisible(true);
+                ScreenUI.getUserUI().renderUI();
+               ScreenUI.getUserUI().setVisible(true);
                 this.dispose();
             }
         } else {

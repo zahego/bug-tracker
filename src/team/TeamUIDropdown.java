@@ -49,17 +49,11 @@ public class TeamUIDropdown extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(teamDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+            .addComponent(teamDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(teamDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(186, Short.MAX_VALUE))
+            .addComponent(teamDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -133,9 +127,9 @@ public class TeamUIDropdown extends javax.swing.JPanel {
                 }
             }
         }
-        //only allow user with access range higher than 2 to create new project (PM and ADMIN)
+        //only admin should do this
         if (CurrentUserhold.getUser() != null) {
-            if (CurrentUserhold.getUser().getAccessRange() > 2) {
+            if (CurrentUserhold.getUser().getAccessRange() > 3) {
                 this.teamDropdown.addItem("+ Add teammate");
             }
         }

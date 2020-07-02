@@ -5,6 +5,7 @@
  */
 package sprint;
 
+import layout.LayoutUI;
 import project.ProjectUIDropdown;
 import project.Projecthold;
 import screen.ScreenUI;
@@ -57,9 +58,9 @@ private static int sprintAccessID = -1;
     }// </editor-fold>//GEN-END:initComponents
 
     private void sprintDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sprintDropdownActionPerformed
-        Object selected = this.sprintDropdown.getSelectedItem();
+        Object selected = this.getSprintDropdown().getSelectedItem();
         if (selected == "--all sprint--") {
-            //ProjectUIDropdown.setProjectAccessID(-1);
+            SprintUIDropdown.setSprintAccessID(-1);
 
         } else if (selected == "+ Add sprint") {
             //adding new project
@@ -68,14 +69,16 @@ private static int sprintAccessID = -1;
             int ID = Sprinthold.getSprints().get(Sprinthold.getSprints().size() - 1).getID() + 1;
             create.setIDint(ID);
             create.getDeleteButton().setVisible(false);
-
+            SprintUIDropdown.setSprintAccessID(-1);
             create.setCreateUpdateLabel("Create Sprint");
             create.setSubmitButton("Create");
             create.setVisible(true);
         } else {
             //updating existed project
             for (int i = 0; i < Sprinthold.getSprints().size(); i++) {
-                if (String.valueOf(Sprinthold.getSprints().get(i).getName()).equals(selected)) {
+                //check condition of the name of the item and if the project of the sprint match the current chosen project.
+                //this is because some sprint name is identical so the first incident always get taken first
+                if (String.valueOf(Sprinthold.getSprints().get(i).getName()).equals(selected) && ProjectUIDropdown.getProjectAccessID()==Sprinthold.getSprints().get(i).getProjectID()) {
                     //check access range to see if user are allow to edit project--only PM and higher should do this
                     if (CurrentUserhold.getUser().getAccessRange() > 2) {
                         //check if in setting this is changed to true to prevent annoyance
@@ -85,14 +88,19 @@ private static int sprintAccessID = -1;
                             update.setCreateUpdateLabel("Update Sprint");
                             update.setSubmitButton("Update");
                             update.setVisible(true);
-
+                            
                         }
                     }
+                    SprintUIDropdown.setSprintAccessID(Sprinthold.getSprints().get(i).getID());
+                    LayoutUI.renderBoard();
                     break;
                 }
             }
+            
 
         }
+        
+        
 
     }//GEN-LAST:event_sprintDropdownActionPerformed
 
@@ -101,8 +109,8 @@ private static int sprintAccessID = -1;
     private javax.swing.JComboBox<String> sprintDropdown;
     // End of variables declaration//GEN-END:variables
     public void renderUI() {
-        sprintDropdown.removeAllItems();
-        this.sprintDropdown.addItem("--all sprint--");
+        getSprintDropdown().removeAllItems();
+        this.getSprintDropdown().addItem("--all sprint--");
         int projectID = ProjectUIDropdown.getProjectAccessID();
 
         for (int i = 0; i < Sprinthold.getSprints().size(); i++) {
@@ -114,15 +122,43 @@ private static int sprintAccessID = -1;
             else {
                 //condition to render only sprint with its projectID align with the project ID
                 if (Projecthold.getProjects().get(projectID - 1).getID() == Sprinthold.getSprints().get(i).getProjectID()) {
-                    this.sprintDropdown.addItem(String.valueOf(Sprinthold.getSprints().get(i).getName()));
+                    this.getSprintDropdown().addItem(String.valueOf(Sprinthold.getSprints().get(i).getName()));
                 }
             }
         }
         //only allow user with access range higher than 2 to create new project (PM and ADMIN)
         if (CurrentUserhold.getUser() != null) {
             if (CurrentUserhold.getUser().getAccessRange() > 2 && ProjectUIDropdown.getProjectAccessID() != -1) {
-                this.sprintDropdown.addItem("+ Add sprint");
+                this.getSprintDropdown().addItem("+ Add sprint");
             }
         }
+    }
+
+    /**
+     * @return the sprintAccessID
+     */
+    public static int getSprintAccessID() {
+        return sprintAccessID;
+    }
+
+    /**
+     * @param aSprintAccessID the sprintAccessID to set
+     */
+    public static void setSprintAccessID(int aSprintAccessID) {
+        sprintAccessID = aSprintAccessID;
+    }
+
+    /**
+     * @return the sprintDropdown
+     */
+    public javax.swing.JComboBox<String> getSprintDropdown() {
+        return sprintDropdown;
+    }
+
+    /**
+     * @param sprintDropdown the sprintDropdown to set
+     */
+    public void setSprintDropdown(javax.swing.JComboBox<String> sprintDropdown) {
+        this.sprintDropdown = sprintDropdown;
     }
 }

@@ -21,13 +21,7 @@ import javax.swing.GroupLayout.Alignment;
 public class ScreenUI extends javax.swing.JFrame{
     
     //drop down section
-    private static UserUIDropdown userUI = new UserUIDropdown();
-    private static ProjectUIDropdown projectUI= new ProjectUIDropdown();
-    private static TeamUIDropdown teamUI =new TeamUIDropdown();
-    private static SprintUIDropdown sprintUI = new SprintUIDropdown();
-    private static SettingUI settingUI= new SettingUI();
     
-    private static LayoutUI layoutUI=new LayoutUI();
     /**
      * Creates new form ScreenUI
      */
@@ -49,6 +43,12 @@ public class ScreenUI extends javax.swing.JFrame{
         dropDownsHolder = new javax.swing.JPanel();
         productName = new javax.swing.JLabel();
         boardsHolder = new javax.swing.JPanel();
+        layoutUI = new layout.LayoutUI();
+        teamUI = new team.TeamUIDropdown();
+        projectUI = new project.ProjectUIDropdown();
+        settingUI = new setting.SettingUI();
+        sprintUI = new sprint.SprintUIDropdown();
+        userUI = new user.UserUIDropdown();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -71,11 +71,11 @@ public class ScreenUI extends javax.swing.JFrame{
         dropDownsHolder.setLayout(dropDownsHolderLayout);
         dropDownsHolderLayout.setHorizontalGroup(
             dropDownsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1800, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         dropDownsHolderLayout.setVerticalGroup(
             dropDownsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 53, Short.MAX_VALUE)
+            .addGap(0, 46, Short.MAX_VALUE)
         );
 
         productName.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 24)); // NOI18N
@@ -86,11 +86,43 @@ public class ScreenUI extends javax.swing.JFrame{
         boardsHolder.setLayout(boardsHolderLayout);
         boardsHolderLayout.setHorizontalGroup(
             boardsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(boardsHolderLayout.createSequentialGroup()
+                .addGroup(boardsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(boardsHolderLayout.createSequentialGroup()
+                        .addGap(316, 316, 316)
+                        .addGroup(boardsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(teamUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(projectUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(614, 614, 614)
+                        .addComponent(userUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80)
+                        .addGroup(boardsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(settingUI, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sprintUI, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(boardsHolderLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(layoutUI, javax.swing.GroupLayout.PREFERRED_SIZE, 1842, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         boardsHolderLayout.setVerticalGroup(
             boardsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 898, Short.MAX_VALUE)
+            .addGroup(boardsHolderLayout.createSequentialGroup()
+                .addGroup(boardsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(boardsHolderLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(boardsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(boardsHolderLayout.createSequentialGroup()
+                                .addComponent(projectUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(56, 56, 56)
+                                .addComponent(teamUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(boardsHolderLayout.createSequentialGroup()
+                                .addComponent(sprintUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(settingUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(userUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(layoutUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(149, 149, 149))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -107,57 +139,18 @@ public class ScreenUI extends javax.swing.JFrame{
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
+                .addGap(19, 19, 19)
                 .addComponent(productName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dropDownsHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(boardsHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(boardsHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
      public void displayJFrame(){
-        
-        JPanel j=new JPanel();
-        JPanel j2=new JPanel();
-        //JPanel j1=new JPanel();
-        j.add(getUserUI());
-        j.add(getSettingUI());
-        GridLayout layout2=new GridLayout(1, 2);
-        j.setLayout(layout2);
-        j2.add(j);
-        //row 1
-        dropDownsHolder.add(getProjectUI());
-        //dropDownsHolder.add(j);
-        dropDownsHolder.add(getSprintUI());
-        //row 2
-        dropDownsHolder.add(getTeamUI());
-        //dropDownsHolder.add(j1);
-        dropDownsHolder.add(j);
-        //dropDownsHolder.add(getUserUI());
-        //dropDownsHolder.add(getSettingUI());
-        
-        
-        
-        getProjectUI().renderUI();
-        
-        this.pack();
-        //FlowLayout layout=new FlowLayout();
-        GridLayout layout=new GridLayout(2, 2);
-        
-        getProjectUI().setLayout(new FlowLayout(FlowLayout.LEFT));
-        j2.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        getSprintUI().setLayout(new FlowLayout(FlowLayout.RIGHT));
-        getTeamUI().setLayout(new FlowLayout(FlowLayout.LEFT));
-        //getSettingUI().setLayout(new FlowLayout(FlowLayout.RIGHT));
-        dropDownsHolder.setLayout(layout);
-        dropDownsHolder.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 100));
-        
-        
-        BorderLayout layout3=new BorderLayout();
-        boardsHolder.setLayout(layout3);
-        boardsHolder.add(layoutUI, BorderLayout.CENTER);
         
         
         
@@ -167,8 +160,8 @@ public class ScreenUI extends javax.swing.JFrame{
      public static void renderUI(){
          getProjectUI().renderUI();
          getTeamUI().renderUI();
-         getUserUI().renderUI();
          getSprintUI().renderUI();
+         getUserUI().renderUI();
      }
      
     public static void displayProjectCreate(boolean display){
@@ -179,7 +172,13 @@ public class ScreenUI extends javax.swing.JFrame{
     private javax.swing.JPanel boardsHolder;
     private javax.swing.JPanel dropDownsHolder;
     private javax.swing.JPanel jPanel1;
+    private static layout.LayoutUI layoutUI;
     private javax.swing.JLabel productName;
+    private static project.ProjectUIDropdown projectUI;
+    private static setting.SettingUI settingUI;
+    private static sprint.SprintUIDropdown sprintUI;
+    private static team.TeamUIDropdown teamUI;
+    private static user.UserUIDropdown userUI;
     // End of variables declaration//GEN-END:variables
 
     /**

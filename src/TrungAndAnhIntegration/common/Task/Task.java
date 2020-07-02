@@ -48,13 +48,13 @@ public class Task {
 	}
 	
 	/////////////////////////Full fledged constructor//////////////////////////////////
-	public Task (int ID, String quickSummary, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate, String toReplicate, String fullDescription, String suggestion, Date dueDate, File file) {
+	public Task (int ID, String quickSummary, List<String> comments, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate, String toReplicate, String fullDescription, String suggestion, Date dueDate, File file, int assignerID, List<Integer> assignees) {
 		this.ID = ID;
 		this.type = TaskType.TASK;
 		this.projectID = projectID;
 		this.sprintID = sprintID;
 		this.quickSummary = quickSummary;
-		this.comments = new ArrayList<>();
+		this.comments = comments;
 		this.severity = severity;
 		this.status = status;
 		this.reportedDate = reportedDate;
@@ -63,10 +63,28 @@ public class Task {
 		this.toReplicate = toReplicate;
 		this.suggestion = suggestion;
 		this.attachedFile = file;
-		this.assignerID = -1;
-		this.assignees = new ArrayList<>();
+		this.assignerID = assignerID;
+		this.assignees = assignees;
 	}
-	
+        //without File file
+	public Task (int ID, TaskType type, String quickSummary, List<String> comments, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate, Date dueDate, String toReplicate, String fullDescription, String suggestion, int assignerID, List<Integer> assignees) {
+		this.ID = ID;
+		this.type = type;
+		this.projectID = projectID;
+		this.sprintID = sprintID;
+		this.quickSummary = quickSummary;
+		this.comments = comments;
+		this.severity = severity;
+		this.status = status;
+		this.reportedDate = reportedDate;
+		this.dueDate = dueDate;
+		this.fullDescription = fullDescription;
+		this.toReplicate = toReplicate;
+		this.suggestion = suggestion;
+		this.attachedFile = null;
+		this.assignerID = assignerID;
+		this.assignees = assignees;
+	}
 	public String getToReplicate() {
 		return toReplicate;
 	}
