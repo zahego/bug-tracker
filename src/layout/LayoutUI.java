@@ -73,6 +73,7 @@ public class LayoutUI extends javax.swing.JPanel {
         DeMinimizeButtonR = new javax.swing.JButton();
         DeMinimizeButtonL = new javax.swing.JButton();
         DeMinimizeButtonM = new javax.swing.JButton();
+        
 
         setPreferredSize(new java.awt.Dimension(1405, 675));
 
@@ -190,7 +191,7 @@ public class LayoutUI extends javax.swing.JPanel {
             }
         });
         
-       JButton ProgressBoardButton = new JButton("P.Board");
+       ProgressBoardButton = new JButton("P.Board");
         ProgressBoardButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		ProgressBoard2 PBoard = new ProgressBoard2();
@@ -199,7 +200,7 @@ public class LayoutUI extends javax.swing.JPanel {
         	}
         });
         
-        JButton MemberBoardButton = new JButton("M.Board");
+        MemberBoardButton = new JButton("M.Board");
         MemberBoardButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		TeamMemberBoard MBoard = new TeamMemberBoard();
@@ -566,6 +567,8 @@ public class LayoutUI extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JButton sortR;
+    private javax.swing.JButton ProgressBoardButton;
+    private javax.swing.JButton MemberBoardButton;
     // End of variables declaration//GEN-END:variables
     private BoardUI backlog;
     private BoardUI taken;
