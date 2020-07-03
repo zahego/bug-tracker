@@ -398,7 +398,7 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
                 //Add() function
                 if (!errorCheck()) {
                     addTask();
-
+                    dispose();
                 }
 
             }

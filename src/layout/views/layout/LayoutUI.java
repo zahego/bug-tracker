@@ -7,6 +7,9 @@ package layout.views.layout;
 
 import common.Enum.BoardType;
 import common.Task.TaskHold;
+import common.Team.Userhold;
+import common.User.CurrentUserhold;
+import common.User.Role;
 import layout.views.BoardUI.BoardUI;
 import layout.views.TaskCreate;
 import javax.swing.GroupLayout;
@@ -30,8 +33,11 @@ public class LayoutUI extends javax.swing.JPanel {
         initComponents();
         setPMinimizeHidden();
         addTask();
+        
     }
-    private BoardUI backlog;
+    
+    	
+	private  BoardUI backlog;
     private BoardUI taken;
     private BoardUI ongoing;
     private BoardUI finish;
@@ -203,76 +209,6 @@ public class LayoutUI extends javax.swing.JPanel {
                 DeMaximizeButtonActionPerformed(evt);
             }
         });
-        
-       JButton ProgressBoardButton = new JButton("P.Board");
-        ProgressBoardButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		ProgressBoard2 PBoard = new ProgressBoard2();
-        		PBoard.setVisible(true);
-        		//PBoard.columnHead c = new columnHead(); 
-        	}
-        });
-        
-        JButton MemberBoardButton = new JButton("M.Board");
-        MemberBoardButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		TeamMemberBoard MBoard = new TeamMemberBoard();
-        		MBoard.setVisible(true);
-        	}
-        });
-
-        javax.swing.GroupLayout MidProjectPanelLayout = new javax.swing.GroupLayout(MidProjectPanel);
-        MidProjectPanelLayout.setHorizontalGroup(
-        	MidProjectPanelLayout.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(MidProjectPanelLayout.createSequentialGroup()
-        			.addGroup(MidProjectPanelLayout.createParallelGroup(Alignment.TRAILING)
-        				.addGroup(MidProjectPanelLayout.createSequentialGroup()
-        					.addGap(33)
-        					.addGroup(MidProjectPanelLayout.createParallelGroup(Alignment.TRAILING)
-        						.addGroup(MidProjectPanelLayout.createSequentialGroup()
-        							.addGap(353)
-        							.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        						.addComponent(jScrollPane3, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
-        					.addGap(12)
-        					.addGroup(MidProjectPanelLayout.createParallelGroup(Alignment.LEADING)
-        						.addComponent(jScrollPane5, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-        						.addGroup(MidProjectPanelLayout.createSequentialGroup()
-        							.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        							.addGap(353))))
-        				.addGroup(MidProjectPanelLayout.createSequentialGroup()
-        					.addContainerGap()
-        					.addComponent(MemberBoardButton, GroupLayout.PREFERRED_SIZE, 69, Short.MAX_VALUE)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(ProgressBoardButton, GroupLayout.PREFERRED_SIZE, 67, Short.MAX_VALUE)
-        					.addGap(472)
-        					.addComponent(MaximizeButton)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(DeMaximizeButton)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(MinimizeButtonM)
-        					.addGap(1)))
-        			.addGap(28))
-        );
-        MidProjectPanelLayout.setVerticalGroup(
-        	MidProjectPanelLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(MidProjectPanelLayout.createSequentialGroup()
-        			.addGroup(MidProjectPanelLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(MinimizeButtonM, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(MaximizeButton, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(DeMaximizeButton, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(MemberBoardButton)
-        				.addComponent(ProgressBoardButton))
-        			.addGap(8)
-        			.addGroup(MidProjectPanelLayout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(jLabel2, Alignment.TRAILING)
-        				.addComponent(jLabel1))
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
-        			.addGroup(MidProjectPanelLayout.createParallelGroup(Alignment.TRAILING)
-        				.addComponent(jScrollPane5, GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
-        				.addComponent(jScrollPane3, GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE))
-        			.addGap(79))
-        );
-        MidProjectPanel.setLayout(MidProjectPanelLayout);
 
         RightProjectPanel.setBackground(new java.awt.Color(102, 204, 0));
 
@@ -376,19 +312,20 @@ public class LayoutUI extends javax.swing.JPanel {
         	groupLayout.createParallelGroup(Alignment.LEADING)
         		.addGroup(groupLayout.createSequentialGroup()
         			.addGap(107)
-        			.addComponent(DeMinimizeButtonL, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+        			.addComponent(DeMinimizeButtonL, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         			.addGap(561)
-        			.addComponent(DeMinimizeButtonM, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+        			.addComponent(DeMinimizeButtonM, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         			.addGap(676)
-        			.addComponent(DeMinimizeButtonR, GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+        			.addComponent(DeMinimizeButtonR, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         			.addGap(12))
         		.addGroup(groupLayout.createSequentialGroup()
-        			.addGap(12)
-        			.addComponent(LeftProjectPanel, GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
-        			.addGap(7)
-        			.addComponent(MidProjectPanel, GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
-        			.addGap(7)
-        			.addComponent(RightProjectPanel, GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE))
+        			.addContainerGap()
+        			.addComponent(LeftProjectPanel, GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+        			.addGap(13)
+        			.addComponent(MidProjectPanel, GroupLayout.PREFERRED_SIZE, 835, Short.MAX_VALUE)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addComponent(RightProjectPanel, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+        			.addGap(27))
         );
         groupLayout.setVerticalGroup(
         	groupLayout.createParallelGroup(Alignment.LEADING)
@@ -401,15 +338,82 @@ public class LayoutUI extends javax.swing.JPanel {
         				.addComponent(DeMinimizeButtonR, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(MidProjectPanel, GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
         				.addComponent(LeftProjectPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        				.addGroup(groupLayout.createSequentialGroup()
-        					.addGap(2)
-        					.addComponent(MidProjectPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        				.addGroup(groupLayout.createSequentialGroup()
-        					.addGap(2)
-        					.addComponent(RightProjectPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        				.addComponent(RightProjectPanel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE))
         			.addGap(0))
         );
+        
+        MemberBoardButton = new JButton("M.Board");
+        MemberBoardButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		TeamMemberBoard MBoard = new TeamMemberBoard();
+        		MBoard.setVisible(true);
+        	}
+        });
+        
+        
+        	
+        
+        ProgressBoardButton = new JButton("P.Board");
+        ProgressBoardButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		ProgressBoard2 PBoard = new ProgressBoard2();
+        		PBoard.setVisible(true);
+        	}
+        });
+        
+        GroupLayout gl_MidProjectPanel = new GroupLayout(MidProjectPanel);
+        gl_MidProjectPanel.setHorizontalGroup(
+        	gl_MidProjectPanel.createParallelGroup(Alignment.LEADING)
+        		.addGroup(Alignment.TRAILING, gl_MidProjectPanel.createSequentialGroup()
+        			.addGap(647)
+        			.addComponent(MaximizeButton)
+        			.addGap(7)
+        			.addComponent(DeMaximizeButton)
+        			.addGap(7)
+        			.addComponent(MinimizeButtonM))
+        		.addGroup(gl_MidProjectPanel.createSequentialGroup()
+        			.addGap(331)
+        			.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+        			.addGap(67)
+        			.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        			.addGap(352))
+        		.addGroup(gl_MidProjectPanel.createSequentialGroup()
+        			.addGap(12)
+        			.addComponent(jScrollPane3, GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+        			.addGap(18)
+        			.addComponent(jScrollPane5, GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+        			.addGap(27))
+        		.addGroup(gl_MidProjectPanel.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(MemberBoardButton)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addComponent(ProgressBoardButton)
+        			.addContainerGap(664, Short.MAX_VALUE))
+        );
+        gl_MidProjectPanel.setVerticalGroup(
+        	gl_MidProjectPanel.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_MidProjectPanel.createSequentialGroup()
+        			.addGroup(gl_MidProjectPanel.createParallelGroup(Alignment.LEADING)
+        				.addComponent(MaximizeButton, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(DeMaximizeButton, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(MinimizeButtonM, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+        			.addGap(8)
+        			.addGroup(gl_MidProjectPanel.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jLabel2)
+        				.addComponent(jLabel1))
+        			.addGap(13)
+        			.addGroup(gl_MidProjectPanel.createParallelGroup(Alignment.LEADING)
+        				.addComponent(jScrollPane5, GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+        				.addComponent(jScrollPane3, GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE))
+        			.addGap(27)
+        			.addGroup(gl_MidProjectPanel.createParallelGroup(Alignment.LEADING, false)
+        				.addComponent(ProgressBoardButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        				.addComponent(MemberBoardButton, GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
+        			.addContainerGap())
+        );
+        MidProjectPanel.setLayout(gl_MidProjectPanel);
         setLayout(groupLayout);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -549,37 +553,39 @@ public class LayoutUI extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddTaskButton;
-    private javax.swing.JButton DeMaximizeButton;
-    private javax.swing.JButton DeMinimizeButtonL;
-    private javax.swing.JButton DeMinimizeButtonM;
-    private javax.swing.JButton DeMinimizeButtonR;
-    private javax.swing.JButton FilterL;
-    private javax.swing.JPanel LeftProjectPanel;
-    private javax.swing.JButton MaximizeButton;
-    private javax.swing.JPanel MidProjectPanel;
-    private javax.swing.JButton MinimizeButtonL;
-    private javax.swing.JButton MinimizeButtonM;
-    private javax.swing.JButton MinimizeButtonR;
-    private javax.swing.JScrollPane OnBacklogPanel;
-    private javax.swing.JScrollPane OnFinishPanel;
-    private javax.swing.JScrollPane OnGoingPanel;
-    private javax.swing.JScrollPane OnTakenPanel;
-    private javax.swing.JPanel RightProjectPanel;
-    private javax.swing.JTextField SearchBarL;
-    private javax.swing.JTextField SearchBarR;
-    private javax.swing.JButton SearchIconL;
-    private javax.swing.JButton SearchIconR;
-    private javax.swing.JButton SortL;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton filterR;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JButton sortR;
+    private  javax.swing.JButton AddTaskButton;
+    private  javax.swing.JButton DeMaximizeButton;
+    private  javax.swing.JButton DeMinimizeButtonL;
+    private  javax.swing.JButton DeMinimizeButtonM;
+    private  javax.swing.JButton DeMinimizeButtonR;
+    private  javax.swing.JButton FilterL;
+    private  javax.swing.JPanel LeftProjectPanel;
+    private  javax.swing.JButton MaximizeButton;
+    private  javax.swing.JPanel MidProjectPanel;
+    private  javax.swing.JButton MinimizeButtonL;
+    private  javax.swing.JButton MinimizeButtonM;
+    private  javax.swing.JButton MinimizeButtonR;
+    private  javax.swing.JScrollPane OnBacklogPanel;
+    private  javax.swing.JScrollPane OnFinishPanel;
+    private  javax.swing.JScrollPane OnGoingPanel;
+    private  javax.swing.JScrollPane OnTakenPanel;
+    private  javax.swing.JPanel RightProjectPanel;
+    private  javax.swing.JTextField SearchBarL;
+    private  javax.swing.JTextField SearchBarR;
+    private  javax.swing.JButton SearchIconL;
+    private  javax.swing.JButton SearchIconR;
+    private  javax.swing.JButton SortL;
+    private  javax.swing.ButtonGroup buttonGroup1;
+    private  javax.swing.JButton filterR;
+    private  javax.swing.JLabel jLabel1;
+    private  javax.swing.JLabel jLabel2;
+    private  javax.swing.JScrollPane jScrollPane1;
+    private  javax.swing.JScrollPane jScrollPane3;
+    private  javax.swing.JScrollPane jScrollPane5;
+    private  javax.swing.JScrollPane jScrollPane7;
+    private  javax.swing.JButton sortR;
+    private  JButton MemberBoardButton;
+    private  JButton ProgressBoardButton;
     // End of variables declaration//GEN-END:variables
     
 
@@ -595,7 +601,25 @@ public class LayoutUI extends javax.swing.JPanel {
         OnTakenPanel.setViewportView(taken);
         OnGoingPanel.setViewportView(ongoing);
         OnFinishPanel.setViewportView(finish);
-    }
+        
+        MemberBoardButton.setVisible(false);
+    	ProgressBoardButton.setVisible(false);
+    	System.out.print(CurrentUserhold.getUser());
+    	
+    	
+    	// Add ProgressBoardButton n MemberBoardButton for PM and Admin Role
+        	if (CurrentUserhold.getUser()!=null) {
+        	if (CurrentUserhold.getUser().getAccessRange()>2) {
+        		MemberBoardButton.setVisible(true);
+        		ProgressBoardButton.setVisible(true);
+        
+        	} else {
+        		MemberBoardButton.setVisible(false);
+        		ProgressBoardButton.setVisible(false);
+        	}
+		
+	}}
+    
     public void refreshAllBoard(){
         backlog.refresh();
         taken.refresh();

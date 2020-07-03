@@ -44,7 +44,7 @@
             "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 3 sprint 1, no need to worry",
             "assignerID": 6,
-            "assigneeIDs": [3, 8],
+            "assigneeIDs": [3, 7, 8],
             "file": "",
             "comment": []
         }, {
@@ -60,7 +60,7 @@
             "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake test request in project 1, no need to worry",
             "assignerID": 2,
-            "assigneeIDs": [6, 8],
+            "assigneeIDs": [6, 7, 8],
             "file": "",
             "comment": []
         }, {
@@ -152,7 +152,7 @@
             "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
             "assignerID": 7,
-            "assigneeIDs": [2, 8],
+            "assigneeIDs": [2, 7, 8],
             "file": "",
             "comment": []
         }, {
@@ -168,7 +168,7 @@
             "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
             "assignerID": 2,
-            "assigneeIDs": [5, 8],
+            "assigneeIDs": [5, 7, 8],
             "file": "",
             "comment": []
         }, {
@@ -200,7 +200,7 @@
             "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake task in project 3 sprint 2, no need to worry",
             "assignerID": 7,
-            "assigneeIDs": [3, 8],
+            "assigneeIDs": [3, 7, 8],
             "file": "",
             "comment": []
         }, {
@@ -216,7 +216,7 @@
             "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
             "assignerID": 7,
-            "assigneeIDs": [2, 8],
+            "assigneeIDs": [2, 7, 8],
             "file": "",
             "comment": []
         }, {
@@ -248,7 +248,7 @@
             "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
             "assignerID": 1,
-            "assigneeIDs": [5, 8],
+            "assigneeIDs": [5, 7, 8],
             "file": "",
             "comment": []
         }, {
@@ -308,7 +308,7 @@
             "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 4 sprint 2, no need to worry",
             "assignerID": 6,
-            "assigneeIDs": [2, 8],
+            "assigneeIDs": [2,7, 8],
             "file": "",
             "comment": []
         }, {
@@ -324,7 +324,7 @@
             "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 8],
+            "assigneeIDs": [1,7, 8],
             "file": "",
             "comment": []
         }, {
@@ -340,7 +340,7 @@
             "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake task in project 2 sprint 2, no need to worry",
             "assignerID": 4,
-            "assigneeIDs": [1, 8],
+            "assigneeIDs": [1,7, 8],
             "file": "",
             "comment": []
         }, {
@@ -372,7 +372,7 @@
             "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake task in project 2 sprint 1, no need to worry",
             "assignerID": 1,
-            "assigneeIDs": [4, 8],
+            "assigneeIDs": [4,7, 8],
             "file": "",
             "comment": []
         }, {
@@ -388,7 +388,7 @@
             "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 1 sprint 3, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [1, 8],
+            "assigneeIDs": [1,7, 8],
             "file": "",
             "comment": []
         }, {
@@ -420,7 +420,7 @@
             "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 1 sprint 3, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [2, 8],
+            "assigneeIDs": [2,7, 8],
             "file": "",
             "comment": []
         }, {
@@ -436,7 +436,7 @@
             "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake task in project 3 sprint 1, no need to worry",
             "assignerID": 7,
-            "assigneeIDs": [6, 8],
+            "assigneeIDs": [6,7, 8],
             "file": "",
             "comment": []
         }, {
@@ -496,7 +496,7 @@
             "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
             "assignerID": 4,
-            "assigneeIDs": [6, 8],
+            "assigneeIDs": [6,7, 8],
             "file": "",
             "comment": []
         }, {
@@ -629,7 +629,7 @@
             "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake task in project 1 sprint 2, no need to worry",
             "assignerID": 1,
-            "assigneeIDs": [1, 8],
+            "assigneeIDs": [1,7, 8],
             "file": "",
             "comment": []
         }, {
@@ -815,7 +815,7 @@
             "dateDue": "12-12-2020",
             "fullDescription": "this is just a bogus bug report in project 2 sprint 1, no need to worry",
             "assignerID": 5,
-            "assigneeIDs": [4, 8],
+            "assigneeIDs": [4,7, 8],
             "file": "",
             "comment": []
         }, {
@@ -1065,7 +1065,7 @@
             "dateDue": "12-12-2020",
             "fullDescription": "this is just a fake new feature in project 2, no need to worry",
             "assignerID": 7,
-            "assigneeIDs": [2, 8],
+            "assigneeIDs": [2,7, 8],
             "file": "",
             "comment": []
         }, {
@@ -1256,8 +1256,8 @@
             "role": "PROJECT_MANAGER",
             "image": "src/resources/pm.png",
             "name": "Stean Fisher",
-            "email": "steavieFi@gmail.com",
-            "password": "kull123",
+            "email": "2",
+            "password": "2",
             "accessRange": 3,
             "_projects": [1, 2, 3, 4],
             "_tasks": []

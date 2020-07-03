@@ -2,6 +2,7 @@ package layout.views.layout;
 
 import java.awt.BorderLayout;
 import layout.views.project.ProjectUIDropdown;
+import common.Enum.TaskStatus;
 import common.Project.Projecthold;
 import layout.views.screen.ScreenUI;
 import layout.views.setting.SettingUI;
@@ -10,6 +11,7 @@ import common.User.CurrentUserhold;
 import layout.views.user.UserUICreateUpdate;
 import java.awt.EventQueue;
 import common.User.Role;
+import common.Task.*;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -24,6 +26,7 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class ProgressBoard2 extends JFrame {
 
@@ -56,6 +59,8 @@ public class ProgressBoard2 extends JFrame {
 	 * Create the frame.
 	 */
 	public ProgressBoard2() {
+		setTitle("Bug Tracker 3000 - Project Progress Board");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ProgressBoard2.class.getResource("/layout/resource/BugTracker.png")));
 		
 		initcomponent();
 		eventHandler();
@@ -83,31 +88,36 @@ public class ProgressBoard2 extends JFrame {
         	
         	
             //all projecti chosen. All team member will be displayed
+        	if (Userhold.getUsers().get(i).getRole() != Role.ADMIN && Userhold.getUsers().get(i).getRole() != Role.PROJECT_MANAGER) {
             if (projectID == -1  ) {
-            	if (Userhold.getUsers().get(i).getRole() != Role.ADMIN && Userhold.getUsers().get(i).getRole() != Role.PROJECT_MANAGER) {
+            	 
             	DefaultTableModel model =(DefaultTableModel) ProgressTable.getModel();
+            	int a ;
 				model.addRow(new Object[] {
 						
-						Userhold.getUsers().get(i).getID(),
+						a = Userhold.getUsers().get(i).getID(),
 						Userhold.getUsers().get(i).getName(),
 						Userhold.getUsers().get(i).getEmail(),
 						Userhold.getUsers().get(i).getRole(),
+						"Select Project to check",
+						"Select Project to check"
 						
-		});}
+		});
                 //display team member based on project
             } else {
                 for (int k = 0; k < Projecthold.getProjects().get(projectID - 1).getTeam().length; k++) {
                     //condition to render only team member that the user have access to for the project
                     if (Projecthold.getProjects().get(projectID - 1).getTeam()[k] == Userhold.getUsers().get(i).getID()) {
                     	DefaultTableModel model =(DefaultTableModel) ProgressTable.getModel();
-        				model.addRow(new Object[] {
+        				int a ;
+						model.addRow(new Object[] {
         						
-        						Userhold.getUsers().get(k).getID(),
-        						Userhold.getUsers().get(k).getName(),
-        						Userhold.getUsers().get(k).getEmail(),
-        						Userhold.getUsers().get(k).getRole(),
-        						TaskCreatedCount(),
-        						TaskOngoingAndOntakenCount()
+        						a = Userhold.getUsers().get(i).getID(),
+        						Userhold.getUsers().get(i).getName(),
+        						Userhold.getUsers().get(i).getEmail(),
+        						Userhold.getUsers().get(i).getRole(),
+        						GetOnNewReviewTask(a),
+        						GetOngoingAndOntakenTask(a)
         						
         						
         						
@@ -119,18 +129,46 @@ public class ProgressBoard2 extends JFrame {
             }
         
         
-    }}
+    }}}
+	
+	private Object GetOnNewReviewTask(int a) {
+		int count = 0;
+		// TODO Auto-generated method stub
+		 for (int i = 0; i < TaskHold.getTaskList().size() ; i++) {
+			 if (TaskHold.getTaskList().get(i).getStatus() == TaskStatus.ONNEW || TaskHold.getTaskList().get(i).getStatus() == TaskStatus.ONREVIEW ) {
+	                if (a > -1) {
+	            
+	                    if (TaskHold.getTaskList().get(i).getAssignerID() == a) {
+	                        //if team array contain the the user, add the project to Object
+	                         count = count + 1;
+	                         
+	                        
+	                    }
+	                }
+	            
+	        }}
+		return count;}
 
 	
-	private Object TaskOngoingAndOntakenCount() {
+	private Object GetOngoingAndOntakenTask(int a) {
+		int count = 0;
 		// TODO Auto-generated method stub
-		return null;
-	}
+		 for (int i = 0; i < TaskHold.getTaskList().size() ; i++) {
+			 if (TaskHold.getTaskList().get(i).getStatus() == TaskStatus.ONTAKEN || TaskHold.getTaskList().get(i).getStatus() == TaskStatus.ONGOING ) {
+	                if (a > -1) {
+	                    if (TaskHold.getTaskList().get(i).getAssignees().contains(a)) {
+	                        //if team array contain the the user, add the number of tasks to object
+	                         count = count + 1;
+	                         
+	                        
+	                    }
+	                }
+	            
+	        }}
+		return count;}
+	
 
-	private Object TaskCreatedCount() {
-		return AddingRow;
-		// TODO Auto-generated method stub
-		}
+	
         
 		
 	
@@ -224,13 +262,14 @@ public class ProgressBoard2 extends JFrame {
 				
 				ProgressTable.setModel(new DefaultTableModel(
 					new Object[][] {
-						{null, null, null, null, null, null},
-						{null, null, null, null, null, null},
 					},
-					new String[]  {
+					new String[] {
 						"ID", "Name", "Email", "Role", "Task Posted ", "Task OnGoing"
 					}
 				));
+				ProgressTable.getColumnModel().getColumn(0).setPreferredWidth(37);
+				ProgressTable.getColumnModel().getColumn(4).setPreferredWidth(95);
+				ProgressTable.getColumnModel().getColumn(5).setPreferredWidth(95);
 				scrollPane.setViewportView(ProgressTable);
 				contentPane.setLayout(gl_contentPane);
 			} }

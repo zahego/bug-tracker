@@ -12,6 +12,7 @@ import common.Team.Userhold;
 import common.User.CurrentUserhold;
 import common.User.User;
 import static layout.views.user.UserUIDropdown.getUserUI;
+import java.awt.Toolkit;
 
 /**
  *
@@ -23,6 +24,8 @@ public class LogInUI extends javax.swing.JFrame {
      * Creates new form LogInUI
      */
     public LogInUI() {
+    	setTitle("Bug Tracker 3000 - Log In");
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(LogInUI.class.getResource("/layout/resource/BugTracker.png")));
         initComponents();
         this.getErrorLabel().setVisible(false);
     }

@@ -256,17 +256,22 @@ public class TeamMemberBoard extends JFrame {
 				);
 				
 				MemberTable = new JTable();
-				MemberTable.setEnabled(false);
+				MemberTable.setEnabled(true);
 				
 				MemberTable.setModel(new DefaultTableModel(
 					new Object[][] {
-						{null, null, null, null, null, null},
-						{null, null, null, null, null, null},
+						{null, null, null, null, null, null, null},
 					},
-					new String[]  {
-						"ID", "Name", "Email", "Role", "Task Posted ", "Task OnGoing"
+					new String[] {
+						"ID", "Name", "Email", "Role", "Project 1 ", "Project 2", "Available"
 					}
 				));
+				MemberTable.getColumnModel().getColumn(0).setPreferredWidth(32);
+				MemberTable.getColumnModel().getColumn(1).setPreferredWidth(104);
+				MemberTable.getColumnModel().getColumn(2).setPreferredWidth(105);
+				MemberTable.getColumnModel().getColumn(4).setPreferredWidth(98);
+				MemberTable.getColumnModel().getColumn(5).setPreferredWidth(98);
+				MemberTable.getColumnModel().getColumn(6).setPreferredWidth(92);
 				scrollPane.setViewportView(MemberTable);
 				contentPane.setLayout(gl_contentPane);
 			} }
