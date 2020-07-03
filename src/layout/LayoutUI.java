@@ -9,7 +9,6 @@ import TrungAndAnhIntegration.common.Enum.BoardType;
 import TrungAndAnhIntegration.common.TaskHold.TaskHold;
 import TrungAndAnhIntegration.layout.views.BoardUI.BoardUI;
 import TrungAndAnhIntegration.layout.views.TaskCreate;
-import task.TaskCreateUpdateUI;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -31,6 +30,21 @@ public class LayoutUI extends javax.swing.JPanel {
         initComponents();
         setPMinimizeHidden();
         addTask();
+    }
+    private BoardUI backlog;
+    private BoardUI taken;
+    private BoardUI ongoing;
+    private BoardUI finish;
+
+    public void addLog(){
+        //this loadTask could be extremely troublesome
+        TaskHold.loadTask();
+        
+        
+        backlog = new BoardUI(BoardType.BACKLOG);
+        taken = new BoardUI(BoardType.TAKEN);
+        ongoing = new BoardUI(BoardType.ONGOING);
+        finish = new BoardUI(BoardType.FINISH);
     }
 
     /**
@@ -400,12 +414,12 @@ public class LayoutUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SearchIconLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchIconLActionPerformed
-        TaskCreateUpdateUI taskcreate = new TaskCreateUpdateUI();
+        TaskCreate taskcreate = new TaskCreate();
         taskcreate.setVisible(true);
     }//GEN-LAST:event_SearchIconLActionPerformed
 
     private void SearchIconRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchIconRActionPerformed
-        TaskCreateUpdateUI taskcreate = new TaskCreateUpdateUI();
+        TaskCreate taskcreate = new TaskCreate();
         taskcreate.setVisible(true);
     }//GEN-LAST:event_SearchIconRActionPerformed
 
@@ -475,7 +489,7 @@ public class LayoutUI extends javax.swing.JPanel {
     }//GEN-LAST:event_MinimizeButtonRActionPerformed
 
     private void AddTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddTaskButtonActionPerformed
-        TaskCreate taskcreate = new TaskCreate();
+        TaskCreate taskcreate = new TaskCreate(backlog);
         taskcreate.setVisible(true);
     }//GEN-LAST:event_AddTaskButtonActionPerformed
 
@@ -567,10 +581,7 @@ public class LayoutUI extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JButton sortR;
     // End of variables declaration//GEN-END:variables
-    private BoardUI backlog;
-    private BoardUI taken;
-    private BoardUI ongoing;
-    private BoardUI finish;
+    
 
     public void setPMinimizeHidden() {
         DeMinimizeButtonL.setVisible(false);
@@ -578,14 +589,18 @@ public class LayoutUI extends javax.swing.JPanel {
         DeMinimizeButtonM.setVisible(false);
         DeMaximizeButton.setVisible(false);
     }
-
     public void addTask() {
-        TaskHold.loadTask();
-        backlog = new BoardUI(BoardType.BACKLOG);
-        taken = new BoardUI(BoardType.TAKEN);
-        ongoing = new BoardUI(BoardType.ONGOING);
-        finish = new BoardUI(BoardType.FINISH);
-
+        addLog();
+        OnBacklogPanel.setViewportView(backlog);
+        OnTakenPanel.setViewportView(taken);
+        OnGoingPanel.setViewportView(ongoing);
+        OnFinishPanel.setViewportView(finish);
+    }
+    public void refreshAllBoard(){
+        backlog.refresh();
+        taken.refresh();
+        ongoing.refresh();
+        finish.refresh();
         OnBacklogPanel.setViewportView(backlog);
         OnTakenPanel.setViewportView(taken);
         OnGoingPanel.setViewportView(ongoing);

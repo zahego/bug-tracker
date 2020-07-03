@@ -111,7 +111,7 @@ public class TeamMemberBoard extends JFrame {
 	private Object GetProjectName1(int a) {
 		Object Pname = null;
 		// TODO Auto-generated method stub
-		 for (int i = 0; i < Projecthold.getProjects().size()-1 ; i++) {
+		 for (int i = 0; i < Projecthold.getProjects().size() ; i++) {
 	            //another loop to check the that project at [i]'s team array contain the current user ID
 	            for (int j = 0; j < Projecthold.getProjects().get(i).getTeam().length; j++) {
 	                if (a > -1) {
@@ -137,6 +137,7 @@ public class TeamMemberBoard extends JFrame {
 	            for (int j = 0; j < Projecthold.getProjects().get(i).getTeam().length; j++) {
 	                if (a > -1) {
 	                    if (Projecthold.getProjects().get(i).getTeam()[j] == a) {
+                                
 	                        //if team array contain the the user, add the project to Object
 	                         Pname = Projecthold.getProjects().get(i).getName();
 	                         

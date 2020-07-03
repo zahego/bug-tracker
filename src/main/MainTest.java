@@ -5,8 +5,8 @@
  */
 package main;
 
+import TrungAndAnhIntegration.common.TaskHold.TaskHold;
 import project.Projecthold;
-import holder.task_hold.Taskhold;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.SwingUtilities;
@@ -22,7 +22,7 @@ public class MainTest {
 
     public static void main(String args[]) {
         Projecthold projects = new Projecthold();
-        Taskhold tasks = new Taskhold();
+        TaskHold tasks = new TaskHold();
         User dev = new User(2, Role.DEVELOPER, "chump", "lol", "deve@gmail.com", "dunnt", 2, projects, tasks);
         Project webber=new Project(9, "webber", new Date(), new Date(), new Date(), "strick", new int[0]);
         //System.out.println(dev.getID());

@@ -216,5 +216,8 @@ public class Task {
 	public void setAttachedFile(File attachedFile) {
 		this.attachedFile = attachedFile;
 	}
+	public void addAssignee(int id) {
+		this.assignees.add(id);
+	}
 }
 

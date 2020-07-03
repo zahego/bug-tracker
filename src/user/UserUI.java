@@ -248,7 +248,7 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
         this.setUserRole("NO ONE");
         
         //set icon
-        ImageIcon icon = new ImageIcon("src/database/tempIcon.png");
+        ImageIcon icon = new ImageIcon("src/resources/tempIcon.png");
         icon = new ImageIcon(icon.getImage().getScaledInstance(110, 110,  java.awt.Image.SCALE_SMOOTH)); 
         this.setPortrait(icon);
         

@@ -9,7 +9,7 @@ public enum TaskStatus {
 		this.status = status;
 	}
 	
-	public String getStatus() {
+	public String toString() {
 		return this.status;
 	}
 }

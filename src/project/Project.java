@@ -114,7 +114,7 @@ public class Project {
         Project projectGet = new Project(-1, "", new Date(), new Date(), new Date(), "", new int[0]);
         JSONParser jsonParser = new JSONParser();
         try {
-            FileReader reader = new FileReader("src/database/database.json");
+            FileReader reader = new FileReader("src/resources/database.json");
 
             //Read JSON file
             JSONObject obj = (JSONObject) jsonParser.parse(reader);
@@ -150,7 +150,7 @@ public class Project {
         int projectNumber=0;
         JSONParser jsonParser = new JSONParser();
         try {
-            FileReader reader = new FileReader("src/database/database.json");
+            FileReader reader = new FileReader("src/resources/database.json");
 
             //Read JSON file
             JSONObject obj = (JSONObject) jsonParser.parse(reader);

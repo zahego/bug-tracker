@@ -89,7 +89,7 @@ public class Sprint {
         Sprint sprintGet = new Sprint(-1, -1, "", -1);
         JSONParser jsonParser = new JSONParser();
         try {
-            FileReader reader = new FileReader("src/database/database.json");
+            FileReader reader = new FileReader("src/resources/database.json");
 
             //Read JSON file
             JSONObject obj = (JSONObject) jsonParser.parse(reader);
@@ -114,7 +114,7 @@ public class Sprint {
         int sprintNumber = 0;
         JSONParser jsonParser = new JSONParser();
         try {
-            FileReader reader = new FileReader("src/database/database.json");
+            FileReader reader = new FileReader("src/resources/database.json");
 
             //Read JSON file
             JSONObject obj = (JSONObject) jsonParser.parse(reader);

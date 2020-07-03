@@ -5,7 +5,7 @@
  */
 package user;
 
-import holder.task_hold.Taskhold;
+import TrungAndAnhIntegration.common.TaskHold.TaskHold;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.ImageIcon;
@@ -340,7 +340,7 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
             String password= this.getPasswordString().getText();
             String passwordConfirm = this.getConfirmPasswordString().getText();
             int accessRange= Integer.parseInt(this.getAccessRangeInt().getText());
-            Taskhold taskhold=new Taskhold();
+            TaskHold taskhold=new TaskHold();
             Projecthold projecthold=new Projecthold();
             
             User addUser = new User(-1, Role.DEVELOPER, "", "", "", "", -1, projecthold, taskhold);

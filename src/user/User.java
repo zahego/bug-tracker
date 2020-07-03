@@ -5,8 +5,8 @@
  */
 package user;
 
+import TrungAndAnhIntegration.common.TaskHold.TaskHold;
 import project.Project;
-import holder.task_hold.Taskhold;
 import project.Projecthold;
 import java.io.FileReader;
 import org.json.simple.*;
@@ -25,7 +25,7 @@ public class User {
     private String email;
     private String password;
     private int accessRange;
-    private Taskhold taskhold;
+    private TaskHold taskhold;
     private Projecthold projecthold;
     
     public User(int ID) {
@@ -41,7 +41,7 @@ public class User {
         this.accessRange = accessRange;
     }
 
-    public User(int ID, Role role, String name, String profilePic, String email, String password, int accessRange, Projecthold projecthold, Taskhold taskhold) {
+    public User(int ID, Role role, String name, String profilePic, String email, String password, int accessRange, Projecthold projecthold, TaskHold taskhold) {
         this.ID = ID;
         this.role = role;
         this.profilePic = profilePic;
@@ -138,16 +138,16 @@ public class User {
     }
 
     /**
-     * @return the taskhold
+     * @return the TaskHold
      */
-    public Taskhold getTaskhold() {
+    public TaskHold getTaskhold() {
         return taskhold;
     }
 
     /**
-     * @param taskhold the taskhold to set
+     * @param taskhold the TaskHold to set
      */
-    public void setTaskhold(Taskhold taskhold) {
+    public void setTaskhold(TaskHold taskhold) {
         this.taskhold = taskhold;
     }
 
@@ -187,7 +187,7 @@ public class User {
         User userGet = new User(-1, Role.DEVELOPER, "", "", "", "", -1);
         JSONParser jsonParser = new JSONParser();
         try {
-            FileReader reader = new FileReader("src/database/database.json");
+            FileReader reader = new FileReader("src/resources/database.json");
 
             //Read JSON file
             JSONObject obj = (JSONObject) jsonParser.parse(reader);
@@ -220,7 +220,7 @@ public class User {
         int userNumber = 0;
         JSONParser jsonParser = new JSONParser();
         try {
-            FileReader reader = new FileReader("src/database/database.json");
+            FileReader reader = new FileReader("src/resources/database.json");
 
             //Read JSON file
             JSONObject obj = (JSONObject) jsonParser.parse(reader);

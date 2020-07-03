@@ -649,7 +649,7 @@ public class layoutViews extends JFrame {
 		SortL.addItem("Z-A");
 		
 		SortL.setSelectedItem("Sort Here");	
-		SortL.addActionListener(new ActionListener() {
+		/*SortL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource()== SortL) {
 					JComboBox<?> cb = (JComboBox<?>)e.getSource();
@@ -667,13 +667,13 @@ public class layoutViews extends JFrame {
 					}
 				}
 			}
-		});
+		});*/
 		
 		SortR.addItem("A-Z");
 		SortR.addItem("Z-A");
 		
 		SortR.setSelectedItem("Sort Here");
-		SortR.addActionListener(new ActionListener() {
+		/*SortR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource()== SortR) {
 					JComboBox<?> cb = (JComboBox<?>)e.getSource();
@@ -692,7 +692,7 @@ public class layoutViews extends JFrame {
 				}
 			}
 		});
-		
+		*/
 		FilterL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
