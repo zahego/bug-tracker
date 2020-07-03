@@ -12,8 +12,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import project.Project;
-import user.User;
+import common.Project.Project;
+import common.User.User;
 
 /**
  *

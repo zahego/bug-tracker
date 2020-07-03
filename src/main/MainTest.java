@@ -5,14 +5,15 @@
  */
 package main;
 
-import TrungAndAnhIntegration.common.TaskHold.TaskHold;
-import project.Projecthold;
+import common.User.Role;
+import common.User.User;
+import common.Task.TaskHold;
+import common.Project.Projecthold;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.SwingUtilities;
-import project.Project;
-import screen.ScreenUI;
-import user.*;
+import common.Project.Project;
+import layout.views.screen.ScreenUI;
 
 /**
  *
