@@ -947,8 +947,8 @@
             "role": "PROJECT_MANAGER",
             "image": "src/database/pm.png",
             "name": "Stean Fisher",
-            "email": "steavieFi@gmail.com",
-            "password": "kull123",
+            "email": "1",
+            "password": "1",
             "accessRange": 3,
             "_projects": [1, 2, 3, 4],
             "_tasks":[]

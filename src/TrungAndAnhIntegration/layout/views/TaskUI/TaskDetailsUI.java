@@ -13,6 +13,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class TaskDetailsUI extends JFrame {
 
@@ -53,23 +54,21 @@ public class TaskDetailsUI extends JFrame {
 		JLabel date = new JLabel(Utilities.getDateString(task.getReportedDate()));
 		
 		JLabel taskStatus = new JLabel(task.getStatus().toString());
+		
+		JLabel taskIDLabel = new JLabel("ID:");
+		
+		JLabel sprintIDLabel = new JLabel("Sprint:");
+		
+		JLabel projectIDLabel = new JLabel("Project ID:");
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(19)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-							.addGroup(gl_panel.createSequentialGroup()
-								.addComponent(quickSummary)
-								.addContainerGap())
-							.addGroup(gl_panel.createSequentialGroup()
-								.addComponent(taskID)
-								.addGap(114)
-								.addComponent(projectID)
-								.addGap(158)
-								.addComponent(sprintID, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addGap(30)))
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(quickSummary)
+							.addContainerGap())
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addComponent(assigner)
@@ -78,16 +77,33 @@ public class TaskDetailsUI extends JFrame {
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addComponent(taskStatus)
 								.addComponent(assignees))
-							.addGap(262))))
+							.addGap(262))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(taskIDLabel)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(taskID, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+							.addGap(95)
+							.addComponent(projectIDLabel)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(projectID)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(sprintIDLabel)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(sprintID, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+							.addGap(59))))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(taskID)
 						.addComponent(projectID)
-						.addComponent(sprintID))
+						.addComponent(taskID)
+						.addComponent(taskIDLabel)
+						.addComponent(projectIDLabel)
+						.addComponent(sprintID)
+						.addComponent(sprintIDLabel))
 					.addGap(18)
 					.addComponent(quickSummary)
 					.addGap(18)

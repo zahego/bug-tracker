@@ -40,16 +40,36 @@ public class Board {
 		return tasks;
 	}
 	
-	public void sortAsc() {
-		Collections.sort(tasks, new SortSummaryAscending()); 
+	public void sortSummaryAsc() {
+		Collections.sort(tasks, new SortSummaryAsc()); 
 	}
 	
-	public void sortDesc() {
-		Collections.sort(tasks, new SortSummaryDescending()); 
+	public void sortSummaryDesc() {
+		Collections.sort(tasks, new SortSummaryDesc()); 
+	}
+	
+	public void sortDueDate() {
+		Collections.sort(tasks, new SortDueDate()); 
+	}
+	
+	public void sortSeverityDesc() {
+		Collections.sort(tasks, new SortSeverityDesc()); 
+	}
+	
+	public void sortSeverityAsc() {
+		Collections.sort(tasks, new SortSeverityAsc()); 
+	}
+	
+	public void sortIDAsc() {
+		Collections.sort(tasks, new SortIDAsc()); 
+	}
+	
+	public void sortIDDesc() {
+		Collections.sort(tasks, new SortIDDesc()); 
 	}
 }
 
-class SortSummaryAscending implements Comparator<Task> 
+class SortSummaryAsc implements Comparator<Task> 
 { 
     // Used for sorting in ascending order of 
     // roll name 
@@ -59,12 +79,68 @@ class SortSummaryAscending implements Comparator<Task>
     } 
 } 
 
-class SortSummaryDescending implements Comparator<Task> 
+class SortSummaryDesc implements Comparator<Task> 
 { 
     // Used for sorting in ascending order of 
     // roll name 
     public int compare(Task a, Task b) 
     { 
         return -(a.getQuickSummary().compareTo(b.getQuickSummary())); 
+    } 
+} 
+
+class SortDueDate implements Comparator<Task> 
+{ 
+    // Used for sorting in ascending order of 
+    // roll name 
+    public int compare(Task a, Task b) 
+    { 
+    	if (a.getDueDate()==null) return -1;
+    	if (b.getDueDate()==null) return 1;
+        return a.getDueDate().compareTo(b.getDueDate()); 
+    } 
+} 
+
+class SortSeverityAsc implements Comparator<Task> 
+{ 
+    // Used for sorting in ascending order of 
+    // roll name 
+    public int compare(Task a, Task b) 
+    { 
+    	int cmp = a.getSeverity() > b.getSeverity() ? +1 : a.getSeverity() < b.getSeverity() ? -1 : 0;
+        return cmp;
+    } 
+} 
+
+class SortSeverityDesc implements Comparator<Task> 
+{ 
+    // Used for sorting in ascending order of 
+    // roll name 
+    public int compare(Task a, Task b) 
+    { 
+    	int cmp = a.getSeverity() > b.getSeverity() ? +1 : a.getSeverity() < b.getSeverity() ? -1 : 0;
+        return -cmp;
+    } 
+} 
+
+class SortIDAsc implements Comparator<Task> 
+{ 
+    // Used for sorting in ascending order of 
+    // roll name 
+    public int compare(Task a, Task b) 
+    { 
+    	int cmp = a.getID() > b.getID() ? +1 : a.getID() < b.getID() ? -1 : 0;
+        return cmp;
+    } 
+} 
+
+class SortIDDesc implements Comparator<Task> 
+{ 
+    // Used for sorting in ascending order of 
+    // roll name 
+    public int compare(Task a, Task b) 
+    { 
+    	int cmp = a.getID() > b.getID() ? +1 : a.getID() < b.getID() ? -1 : 0;
+        return -cmp;
     } 
 } 

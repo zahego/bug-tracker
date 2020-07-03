@@ -385,7 +385,7 @@ public class LayoutUI extends javax.swing.JPanel {
     }//GEN-LAST:event_MaximizeButtonActionPerformed
 
     private void SortLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SortLActionPerformed
-        SortUI sortL = new SortUI();
+        SortUI sortL = new SortUI(backlog);
         sortL.setVisible(true);
     }//GEN-LAST:event_SortLActionPerformed
 
@@ -396,7 +396,7 @@ public class LayoutUI extends javax.swing.JPanel {
     }//GEN-LAST:event_MinimizeButtonLActionPerformed
 
     private void sortRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortRActionPerformed
-        SortUI sortR = new SortUI();
+        SortUI sortR = new SortUI(finish);
         sortR.setVisible(true);
     }//GEN-LAST:event_sortRActionPerformed
 

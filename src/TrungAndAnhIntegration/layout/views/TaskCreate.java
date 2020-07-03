@@ -101,14 +101,6 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 	/**
 	 * Create the frame.
 	 */
-	public TaskCreate() {
-		checkCalendarVisisble=false;
-		initComponents();
-		this.backlog = null;
-		createEvents();
-		
-	}
-	
 	public TaskCreate(BoardUI backlog) {
 		checkCalendarVisisble=false;
 		this.backlog = backlog;
@@ -441,6 +433,10 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 	}
 	
 	public boolean errorCheck() {
+		if(this.backlog==null) {
+			error.setText("Dev Error: backlog has not been passed to TaskCreate constructor");
+			return true;
+		}
 		if(Utilities.compareWithTodayDate(selDate)<0) {
 			error.setText("Due date must be after today's date!");
 			return true;
@@ -463,9 +459,8 @@ public class TaskCreate extends JFrame implements PropertyChangeListener  {
 		task.addAssignee((int)((ComboItem) AssignedBar.getSelectedItem()).getValue());
 		TaskHold.addTask(task);
 		System.out.print(TaskHold.filter(BoardType.BACKLOG).size());
-		if(this.backlog!=null) {
-			this.backlog.refresh();
-		}
+		this.backlog.refresh();
+		dispose();
 	}
 }
 
