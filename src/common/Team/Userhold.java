@@ -70,6 +70,19 @@ public class Userhold {
             }
         }
     }
+    public static void bublesort(ArrayList<Integer> team){
+        for(int i=0;i<team.size()-1;i++){
+            for(int j=0;j<team.size()-i-1;j++){
+                if(team.get(j)>team.get(j+1)){
+                    
+                    //exchange the 2 team next to each other 
+                    int tempUser=team.get(j);
+                    team.set(j, team.get(j+1));
+                    team.set(j+1, tempUser);
+                }
+            }
+        }
+    }
     // delete
     public static void delete(User new_user){
         Userhold.users.remove(new_user);
@@ -88,5 +101,35 @@ public class Userhold {
             }
         }
         return user;
+    }
+    public static String searchName(String name){
+       String email="";
+        for(int i=0; i<Userhold.getUsers().size();i++){
+            if(name.equals(Userhold.getUsers().get(i).getName())){
+                email=Userhold.getUsers().get(i).getEmail();
+                break;
+            }
+        }
+        return email;
+    }
+    public static String searchID(int ID){
+        String name="";
+        for(int i=0; i<Userhold.getUsers().size();i++){
+            if(ID==(Userhold.getUsers().get(i).getID())){
+                name=Userhold.getUsers().get(i).getName();
+                break;
+            }
+        }
+        return name;
+    }
+    public static int searchNmeOutputID(String name){
+    int ID=-1;
+        for(int i=0; i<Userhold.getUsers().size();i++){
+            if(name.equals(Userhold.getUsers().get(i).getName())){
+                ID=Userhold.getUsers().get(i).getID();
+                break;
+            }
+        }
+        return ID;
     }
 }

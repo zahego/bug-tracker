@@ -18,13 +18,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="EditProject" max="32767" attributes="0"/>
-                  <Component id="editSprint" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
+                  <Component id="editSprint" max="32767" attributes="0"/>
+                  <Component id="editProject" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="editTeam" min="-2" pref="97" max="-2" attributes="0"/>
-                  <Component id="editTeam1" min="-2" pref="97" max="-2" attributes="0"/>
+                  <Component id="sendEmailToggle" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -33,29 +33,22 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="EditProject" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="editTeam" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="editProject" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="editSprint" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="editTeam1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="sendEmailToggle" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="EditProject">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="edit project"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EditProjectActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JToggleButton" name="editSprint">
       <Properties>
+        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="edit sprint"/>
       </Properties>
       <Events>
@@ -64,18 +57,29 @@
     </Component>
     <Component class="javax.swing.JToggleButton" name="editTeam">
       <Properties>
+        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="edit team"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editTeamActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="editTeam1">
+    <Component class="javax.swing.JToggleButton" name="sendEmailToggle">
       <Properties>
-        <Property name="text" type="java.lang.String" value="edit user"/>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="send Email"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editTeam1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sendEmailToggleActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="editProject">
+      <Properties>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="edit project"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editProjectActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

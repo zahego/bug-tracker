@@ -95,6 +95,19 @@ public class TeamUIDropdown extends javax.swing.JPanel {
 
                         }
                     }
+                    //for every one, not limited to access range
+                    if (SettingUI.isSendEmailToggle() == true) {
+                        //this is to make it so that only 1 pop up will appear
+                        if(!SettingUI.isTeamEditToggle() == true){
+                        String toEmail = Userhold.searchName(selected.toString());
+                        if (!toEmail.isEmpty()) {
+                            SendEmailUI sendEmail = new SendEmailUI();
+                            sendEmail.setFromString(CurrentUserhold.getUser().getEmail());
+                            sendEmail.setToString(toEmail);
+                            sendEmail.setVisible(true);
+                        }
+                        }
+                    }
                     //reredner sprint
                     ScreenUI.getUserUI().renderUI();
                     break;
@@ -120,9 +133,9 @@ public class TeamUIDropdown extends javax.swing.JPanel {
                 this.teamDropdown.addItem(Userhold.getUsers().get(i).getName());
                 //dispaly team member based on project
             } else {
-                for (int j = 0; j < Projecthold.getProjects().get(projectID - 1).getTeam().length; j++) {
+                for (int j = 0; j < Projecthold.getProjects().get(projectID - 1).getTeam().size(); j++) {
                     //condition to render only team member that the user have access to for the project
-                    if (Projecthold.getProjects().get(projectID - 1).getTeam()[j] == Userhold.getUsers().get(i).getID()) {
+                    if (Projecthold.getProjects().get(projectID - 1).getTeam().get(j) == Userhold.getUsers().get(i).getID()) {
                         this.teamDropdown.addItem(Userhold.getUsers().get(i).getName());
                     }
                 }

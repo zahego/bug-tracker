@@ -5,6 +5,7 @@
  */
 package common.Comment;
 
+import common.Task.TaskHold;
 import java.util.ArrayList;
 
 /**
@@ -12,32 +13,42 @@ import java.util.ArrayList;
  * @author tug70
  */
 public class CommentsAllHold {
-    private static ArrayList<CommentsOneTaskHold> allCommentHold;
+    private static ArrayList<Comment> allCommentHold;
     
-    /*public static void populateCommentsAllHold(){
+    public static void populateCommentsAllHold(){
         
-        int size=Project.getSizeFromDatabase();
+        int commentSize=Comment.getAllCommentSizeFromDatabase();
+        
+        int taskSize=TaskHold.getTaskList().size();
         //have to declare new array, populate that array then push it back to the static array since this work. 
         //This is probably having something to do with not declaring new ArrayList<>() at the top
-        ArrayList<Project> projectList=new ArrayList<>();
-        for(int i=0; i<size; i++){
-            projectList.add(Project.getProjectFromDatabase(i));
-            
+        ArrayList<Comment> commentAllList=new ArrayList<>();
+        for(int i=0; i<taskSize; i++){
+            int commentSizeOfTask=Comment.getSizeCommentsOfOneTaskFromDatabase(i);
+            if(commentSizeOfTask!=0){
+            for(int j=0; j<commentSizeOfTask; j++){
+                Comment comment=Comment.getCommentFromDatabase(i, j);
+                commentAllList.add(comment);
+           
+                System.out.println("from comment all hold "+i+" "+comment.getComment());
+            }
+            }
         }
-        Projecthold.setProjects(projectList);
-    }*/
+        CommentsAllHold.setAllCommentHold(commentAllList);
+    }
+    
     
     /**
      * @return the allCommentHold
      */
-    public static ArrayList<CommentsOneTaskHold> getAllCommentHold() {
+    public static ArrayList<Comment> getAllCommentHold() {
         return allCommentHold;
     }
 
     /**
      * @param aAllCommentHold the allCommentHold to set
      */
-    public static void setAllCommentHold(ArrayList<CommentsOneTaskHold> aAllCommentHold) {
+    public static void setAllCommentHold(ArrayList<Comment> aAllCommentHold) {
         allCommentHold = aAllCommentHold;
     }
 }

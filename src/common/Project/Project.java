@@ -7,6 +7,7 @@ package common.Project;
 
 import java.io.FileReader;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -22,14 +23,14 @@ public class Project {
     private Date startDate;
     private Date dueDate;
     private String summary;
-    private int[] team;
+    private ArrayList<Integer> team;
     
     public Project(){
     };
     public Project(int projectID){
         this.ID=projectID;
     }
-    public Project(int projectID, String projectName, Date createDate, Date startDate, Date dueDate, String summary, int[] team){
+    public Project(int projectID, String projectName, Date createDate, Date startDate, Date dueDate, String summary, ArrayList<Integer> team){
         this.ID=projectID;
         this.name=projectName;
         this.createDate=createDate;
@@ -111,7 +112,7 @@ public class Project {
     
     //TODO get the size of JSONArray instead of num like this
     public static Project getProjectFromDatabase(int num) {
-        Project projectGet = new Project(-1, "", new Date(), new Date(), new Date(), "", new int[0]);
+        Project projectGet = new Project(-1, "", new Date(), new Date(), new Date(), "", new ArrayList<>());
         JSONParser jsonParser = new JSONParser();
         try {
             FileReader reader = new FileReader("src/resources/database.json");
@@ -133,9 +134,9 @@ public class Project {
             //populate array of user ID for the project
             JSONArray dbTeam=(JSONArray) project.get("_team");
             int size=dbTeam.size();
-            int[] team=new int[size];
+            ArrayList<Integer> team=new ArrayList<>();
             for(int i=0; i<size; i++){
-                team[i]=((Long) dbTeam.get(i)).intValue();
+                team.add(((Long) dbTeam.get(i)).intValue());
             }
             //TODO rethink about having projecthold and taskhold
             projectGet = new Project(projectID, projectName, createDate, startDate, dueDate, summary, team);
@@ -181,14 +182,14 @@ public class Project {
     /**
      * @return the team
      */
-    public int[] getTeam() {
+    public ArrayList<Integer> getTeam() {
         return team;
     }
 
     /**
      * @param team the team to set
      */
-    public void setTeam(int[] team) {
+    public void setTeam(ArrayList<Integer> team) {
         this.team = team;
     }
     

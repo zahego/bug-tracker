@@ -1,5 +1,6 @@
 package layout.views;
 
+import common.Comment.CommentsOneTaskHold;
 import java.awt.Color;
 
 import javax.swing.JFrame;
@@ -398,10 +399,11 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
                 //Add() function
                 if (!errorCheck()) {
                     addTask();
-
+                    ((JFrame) CreateButton.getParent().getParent().getParent().getParent()).dispose();
                 }
-
+                
             }
+
         });
 
         ProjectAssignBar.addActionListener(new ActionListener() {
@@ -480,8 +482,9 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
 
     public void addTask() {
         //add task and notify main UI
-        Task task = new Task(/*fix this*/TaskHold.newTaskIDCalculation(), (TaskType) ((ComboItem) TaskTypeAssignBar.getSelectedItem()).getValue(),
-                SummaryBox.getText(), new ArrayList<String>(), (int) ((ComboItem) ProjectAssignBar.getSelectedItem()).getValue(),
+        //may want to use a different commentsonetaskhold in the future
+        Task task = new Task(TaskHold.newTaskIDCalculation(), (TaskType) ((ComboItem) TaskTypeAssignBar.getSelectedItem()).getValue(),
+                SummaryBox.getText(), new CommentsOneTaskHold(), (int) ((ComboItem) ProjectAssignBar.getSelectedItem()).getValue(),
                 (int) SprintAssignBar.getSelectedItem(), (int) SeverityAssignBar.getSelectedItem(),
                 TaskStatus.ONNEW, Utilities.getCurrentDate(), selDate, ReplicateBox.getText(),
                 DescriptionBox.getText(), SuggestionBox.getText(), /*selectedFile,*/

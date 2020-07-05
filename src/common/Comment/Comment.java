@@ -96,6 +96,9 @@ public class Comment {
             for(int i=0;i<taskObjects.size();i++){
                 JSONObject currentTaskObject = (JSONObject) taskObjects.get(i);
                 JSONArray currentCommentObjects =(JSONArray) currentTaskObject.get("comment");
+                if(currentCommentObjects.size()>0){
+                    projectNumber=projectNumber+currentCommentObjects.size();
+                }
                 //if(){
                // projectNumber++;
                 //}
@@ -105,5 +108,89 @@ public class Comment {
             System.out.println(e);
         }
         return projectNumber;
+    }
+
+    /**
+     * @return the taskID
+     */
+    public int getTaskID() {
+        return taskID;
+    }
+
+    /**
+     * @param taskID the taskID to set
+     */
+    public void setTaskID(int taskID) {
+        this.taskID = taskID;
+    }
+
+    /**
+     * @return the commentID
+     */
+    public int getCommentID() {
+        return commentID;
+    }
+
+    /**
+     * @param commentID the commentID to set
+     */
+    public void setCommentID(int commentID) {
+        this.commentID = commentID;
+    }
+
+    /**
+     * @return the date
+     */
+    public Date getDate() {
+        return date;
+    }
+
+    /**
+     * @param date the date to set
+     */
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    /**
+     * @return the commenterID
+     */
+    public int getCommenterID() {
+        return commenterID;
+    }
+
+    /**
+     * @param commenterID the commenterID to set
+     */
+    public void setCommenterID(int commenterID) {
+        this.commenterID = commenterID;
+    }
+
+    /**
+     * @return the taskStatus
+     */
+    public TaskStatus getTaskStatus() {
+        return taskStatus;
+    }
+
+    /**
+     * @param taskStatus the taskStatus to set
+     */
+    public void setTaskStatus(TaskStatus taskStatus) {
+        this.taskStatus = taskStatus;
+    }
+
+    /**
+     * @return the comment
+     */
+    public String getComment() {
+        return comment;
+    }
+
+    /**
+     * @param comment the comment to set
+     */
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

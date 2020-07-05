@@ -1,5 +1,7 @@
 package common.Task;
 
+import common.Comment.Comment;
+import common.Comment.CommentsOneTaskHold;
 import java.util.List;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -41,6 +43,8 @@ public class TaskHold {
                 for (Object taskObj : tasks) {
                     JSONObject task = (JSONObject) taskObj;
 
+                    int userID = Long.valueOf((long) task.get("id")).intValue();
+
                     //this is so that we dont have to use assigneeFromDB.contains(CurrentUserhold.getUser().getID()), which will continue to loop once again
                     boolean userIDContainsInTaskAssigneeID = false;
 
@@ -55,12 +59,20 @@ public class TaskHold {
                             }
                         }
                     }
+
+                    //get the comment
+                    CommentsOneTaskHold commentHold = new CommentsOneTaskHold();
+                    //this is because we can't access to the curent position of the current task. So use ID-1 as a replacement
+                    if (Comment.getSizeCommentsOfOneTaskFromDatabase(userID - 1) != 0) {
+                        commentHold.populateCommentsOneTakHold(userID - 1);
+                    }
+
                     //create a new task for adding
                     Task new_task = new Task(
-                            Long.valueOf((long) task.get("id")).intValue(),
+                            userID,
                             TaskType.valueOf((String) task.get("taskType")),
                             (String) task.get("quickSummary"),
-                            new ArrayList<>(),
+                            commentHold,
                             Long.valueOf((long) task.get("projectID")).intValue(),
                             Long.valueOf((long) task.get("sprintID")).intValue(),
                             Long.valueOf((long) task.get("severity")).intValue(),
@@ -107,7 +119,6 @@ public class TaskHold {
             }
         }
     }*/
-
     public static void addTask(Task task) {
         getTaskList().add(task);
     }
@@ -168,7 +179,8 @@ public class TaskHold {
         }
         return ret;
     }
-        public static List<Task> filterForNewList(BoardType type) {
+
+    public static List<Task> filterForNewList(BoardType type) {
         List<Task> ret = new ArrayList<>();
         switch (type) {
             case BACKLOG:

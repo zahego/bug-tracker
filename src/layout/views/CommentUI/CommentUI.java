@@ -5,8 +5,10 @@
  */
 package layout.views.CommentUI;
 
+import common.Comment.Comment;
 import common.Enum.TaskStatus;
 import common.Ultilities.Utilities;
+import common.User.User;
 import java.util.Date;
 import javax.swing.ImageIcon;
 
@@ -160,5 +162,14 @@ public class CommentUI extends javax.swing.JPanel {
      */
     public void setTaskStatusEnum(TaskStatus taskStatusEnum) {
         this.taskStatusEnum.setText(taskStatusEnum.name());
+    }
+    public void renderCommentUI(Comment comment){
+        this.setCommentString(comment.getComment());
+        this.setDateDate(comment.getDate());
+        this.setTaskStatusEnum(comment.getTaskStatus());
+        
+        int commenterID=comment.getCommenterID();
+        User commenter=User.getUserFromDatabase(commenterID-1);
+        this.setProfilePic(commenter.getProfilePic());
     }
 }
