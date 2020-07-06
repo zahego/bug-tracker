@@ -1,4 +1,4 @@
-package layout.views;
+package layout.views.CalendarWindowUI;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.event.MouseAdapter;
@@ -10,10 +10,9 @@ import javax.swing.JFrame;
 import com.mindfusion.scheduling.Calendar;
 import com.mindfusion.scheduling.ThemeType;
 import com.mindfusion.common.*;
-import java.awt.Toolkit;
 
 
-public class CalendarWindowViews extends JFrame {	
+public class CalendarWindowUI extends JFrame {	
 	
 	/**
 	 * 
@@ -24,17 +23,8 @@ public class CalendarWindowViews extends JFrame {
 	Calendar calendar = new Calendar();
 	protected PropertyChangeSupport changeSupport;
 
-	public CalendarWindowViews()
+	public CalendarWindowUI()
 	{
-		/*addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseExited(MouseEvent e) {
-				dispose();
-			}
-		});*/
-		
-		
-		
 		initComponents();
 		createEvents();
 		

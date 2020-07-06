@@ -96,9 +96,9 @@ public class ProgressBoard2 extends JFrame {
 		});}
                 //display team member based on project
             } else {
-                for (int k = 0; k < Projecthold.getProjects().get(projectID - 1).getTeam().length; k++) {
+                for (int k = 0; k < Projecthold.getProjects().get(projectID - 1).getTeam().size(); k++) {
                     //condition to render only team member that the user have access to for the project
-                    if (Projecthold.getProjects().get(projectID - 1).getTeam()[k] == Userhold.getUsers().get(i).getID()) {
+                    if (Projecthold.getProjects().get(projectID - 1).getTeam().get(k) == Userhold.getUsers().get(i).getID()) {
                     	DefaultTableModel model =(DefaultTableModel) ProgressTable.getModel();
         				model.addRow(new Object[] {
         						

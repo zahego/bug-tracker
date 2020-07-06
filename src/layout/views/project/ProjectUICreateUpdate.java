@@ -7,11 +7,16 @@ package layout.views.project;
 
 import common.Project.Projecthold;
 import common.Project.Project;
+import common.Team.Userhold;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import layout.views.screen.ScreenUI;
 import common.User.CurrentUserhold;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JList;
 
 /**
  *
@@ -26,8 +31,13 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame {
      */
     public ProjectUICreateUpdate() {
         initComponents();
+        if (!listModel.isEmpty()) {
+            listModel.clear();
+        }
+        this.getSelectedUserList().setModel(listModel);
+
         this.getErrorText().setVisible(false);
-        if(CurrentUserhold.getUser().getAccessRange()<3){
+        if (CurrentUserhold.getUser().getAccessRange() < 3) {
             this.getDeleteButton().setVisible(false);
         }
     }
@@ -41,6 +51,8 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         nameString = new javax.swing.JTextField();
         IDint = new javax.swing.JTextField();
         nameLabel = new javax.swing.JLabel();
@@ -59,8 +71,9 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame {
         deleteButton = new javax.swing.JButton();
         teamDropDown = new javax.swing.JComboBox<>();
         errorText = new javax.swing.JLabel();
-        teamScrollPane = new javax.swing.JScrollPane();
-        addedUsers = new javax.swing.JTextArea();
+        listScroll = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        selectedUserList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Create Project");
@@ -122,13 +135,39 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame {
         );
 
         teamDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        teamDropDown.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                teamDropDownPopupMenuWillBecomeVisible(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                teamDropDownPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        teamDropDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teamDropDownActionPerformed(evt);
+            }
+        });
 
         errorText.setForeground(new java.awt.Color(255, 51, 51));
         errorText.setText("error");
 
-        addedUsers.setColumns(20);
-        addedUsers.setRows(5);
-        teamScrollPane.setViewportView(addedUsers);
+        selectedUserList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        selectedUserList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        selectedUserList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                selectedUserListMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(selectedUserList);
+
+        listScroll.setViewportView(jScrollPane2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,7 +198,7 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame {
                                     .addComponent(dueDateDate, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                                     .addComponent(jScrollPane1))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(teamScrollPane))))
+                            .addComponent(listScroll))))
                 .addGap(82, 82, 82))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -204,10 +243,11 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(teamLabel)
                     .addComponent(teamDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(teamScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(buttonSection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(listScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(buttonSection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -254,11 +294,38 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_deleteButtonActionPerformed
 
+    private void teamDropDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamDropDownActionPerformed
+        Object selected = this.teamDropDown.getSelectedItem();
+
+        if (selected != null && ProjectUIDropdown.isAllowListEvent()) {
+            if (!this.listModel.contains(selected.toString())) {
+                this.addList(selected.toString());
+            }
+        }
+        else{
+            
+        }
+    }//GEN-LAST:event_teamDropDownActionPerformed
+
+    private void selectedUserListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectedUserListMouseClicked
+        int selected = this.getSelectedUserList().getSelectedIndex();
+        this.removeList(selected);
+    }//GEN-LAST:event_selectedUserListMouseClicked
+
+    private void teamDropDownPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_teamDropDownPopupMenuWillBecomeVisible
+        ProjectUIDropdown.setAllowListEvent(true);
+    }//GEN-LAST:event_teamDropDownPopupMenuWillBecomeVisible
+
+    private void teamDropDownPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_teamDropDownPopupMenuWillBecomeInvisible
+        ProjectUIDropdown.setAllowListEvent(false);
+    }//GEN-LAST:event_teamDropDownPopupMenuWillBecomeInvisible
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel IDLabel;
     private javax.swing.JTextField IDint;
-    private javax.swing.JTextArea addedUsers;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JPanel buttonSection;
     private javax.swing.JLabel createUpdateLabel;
     private javax.swing.JButton deleteButton;
@@ -266,8 +333,11 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame {
     private javax.swing.JLabel endDateLabel;
     private javax.swing.JLabel errorText;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane listScroll;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameString;
+    private javax.swing.JList<String> selectedUserList;
     private javax.swing.JTextField startDateDate;
     private javax.swing.JLabel startDateLabel;
     private javax.swing.JButton submitButton;
@@ -275,8 +345,9 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame {
     private javax.swing.JTextArea summaryString;
     private javax.swing.JComboBox<String> teamDropDown;
     private javax.swing.JLabel teamLabel;
-    private javax.swing.JScrollPane teamScrollPane;
     // End of variables declaration//GEN-END:variables
+    private DefaultListModel<String> listModel = new DefaultListModel<>();
+
     public Project createProjectFromFields() {
         try {
             //get all the attributes to insert in Project class
@@ -286,9 +357,22 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame {
             Date createDate = new Date();
             String summary = this.getSummaryString().getText();
             int ID = Integer.parseInt(this.getIDint().getText());
-            int[] team=new int[1];
-            team[0]=CurrentUserhold.getUser().getID();
-            
+            //team will store ID of user
+            ArrayList<Integer> team = new ArrayList<>();
+            for(int i=0;i<listModel.size();i++){
+                int userID=Userhold.searchNmeOutputID(listModel.get(i));
+                team.add(userID);
+            }
+            //have to add admin
+            if(!team.contains(8)){
+                team.add(8);
+            }
+            //add the current user who create the project, which is usually PM
+            if(!team.contains(CurrentUserhold.getUser().getID())){
+                team.add(CurrentUserhold.getUser().getID());
+            }
+            Userhold.bublesort(team);
+
             //add all attribute to a new project Object
             Project addProject = new Project(ID, name, createDate, startDate, dueDate, summary, team);
             return addProject;
@@ -388,8 +472,8 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame {
     /**
      * @param teamDropDown the teamDropDown to set
      */
-    public void setTeamDropDown(javax.swing.JComboBox<String> teamDropDown) {
-        this.teamDropDown = teamDropDown;
+    public void setTeamDropDown(String teamDropDown) {
+        this.teamDropDown.addItem(teamDropDown);
     }
 
     /**
@@ -446,5 +530,57 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame {
      */
     public void setSubmitButton(String submitButton) {
         this.submitButton.setText(submitButton);
+    }
+
+    /**
+     * @return the listScroll
+     */
+    public javax.swing.JScrollPane getListScroll() {
+        return listScroll;
+    }
+
+    /**
+     * @param listScroll the listScroll to set
+     */
+    public void setListScroll(javax.swing.JScrollPane listScroll) {
+        this.listScroll = listScroll;
+    }
+
+    /**
+     * @return the selectedUserList
+     */
+    public javax.swing.JList<String> getSelectedUserList() {
+        return selectedUserList;
+    }
+
+    /**
+     * @param selectedUserList the selectedUserList to set
+     */
+    public void setSelectedUserList(javax.swing.JList<String> selectedUserList) {
+        this.selectedUserList = selectedUserList;
+    }
+
+    public void addList(String add) {
+        getListModel().addElement(add);
+    }
+
+    public void removeList(int remove) {
+        if (remove != -1) {
+            getListModel().remove(remove);
+        }
+    }
+
+    /**
+     * @return the listModel
+     */
+    public DefaultListModel<String> getListModel() {
+        return listModel;
+    }
+
+    /**
+     * @param listModel the listModel to set
+     */
+    public void setListModel(DefaultListModel<String> listModel) {
+        this.listModel = listModel;
     }
 }

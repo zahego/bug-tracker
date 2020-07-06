@@ -13,6 +13,7 @@ public class SettingUI extends javax.swing.JPanel {
     private static boolean ProjectEditToggle;
     private static boolean SprintEditToggle;
     private static boolean TeamEditToggle;
+    private static boolean SendEmailToggle;
     /**
      * Creates new form settingUI
      */
@@ -21,6 +22,7 @@ public class SettingUI extends javax.swing.JPanel {
         ProjectEditToggle=false;
         SprintEditToggle=false;
         TeamEditToggle=false;
+        SendEmailToggle=false;
     }
 
     /**
@@ -32,18 +34,12 @@ public class SettingUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        EditProject = new javax.swing.JButton();
         editSprint = new javax.swing.JToggleButton();
         editTeam = new javax.swing.JToggleButton();
-        editTeam1 = new javax.swing.JToggleButton();
+        sendEmailToggle = new javax.swing.JToggleButton();
+        editProject = new javax.swing.JToggleButton();
 
-        EditProject.setText("edit project");
-        EditProject.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditProjectActionPerformed(evt);
-            }
-        });
-
+        editSprint.setSelected(true);
         editSprint.setText("edit sprint");
         editSprint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,6 +47,7 @@ public class SettingUI extends javax.swing.JPanel {
             }
         });
 
+        editTeam.setSelected(true);
         editTeam.setText("edit team");
         editTeam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,10 +55,19 @@ public class SettingUI extends javax.swing.JPanel {
             }
         });
 
-        editTeam1.setText("edit user");
-        editTeam1.addActionListener(new java.awt.event.ActionListener() {
+        sendEmailToggle.setSelected(true);
+        sendEmailToggle.setText("send Email");
+        sendEmailToggle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editTeam1ActionPerformed(evt);
+                sendEmailToggleActionPerformed(evt);
+            }
+        });
+
+        editProject.setSelected(true);
+        editProject.setText("edit project");
+        editProject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editProjectActionPerformed(evt);
             }
         });
 
@@ -71,30 +77,25 @@ public class SettingUI extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(EditProject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(editSprint, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(editSprint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editProject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(editTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editTeam1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(sendEmailToggle)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EditProject)
-                    .addComponent(editTeam))
+                    .addComponent(editTeam)
+                    .addComponent(editProject))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editSprint)
-                    .addComponent(editTeam1)))
+                    .addComponent(sendEmailToggle)))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void EditProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditProjectActionPerformed
-        setProjectEditToggle(!isProjectEditToggle());
-       
-    }//GEN-LAST:event_EditProjectActionPerformed
 
     private void editSprintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editSprintActionPerformed
        setSprintEditToggle(!isSprintEditToggle());
@@ -104,16 +105,20 @@ public class SettingUI extends javax.swing.JPanel {
         setTeamEditToggle(!isTeamEditToggle());
     }//GEN-LAST:event_editTeamActionPerformed
 
-    private void editTeam1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editTeam1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editTeam1ActionPerformed
+    private void sendEmailToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendEmailToggleActionPerformed
+        setSendEmailToggle(!isSendEmailToggle());
+    }//GEN-LAST:event_sendEmailToggleActionPerformed
+
+    private void editProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProjectActionPerformed
+        setProjectEditToggle(!isProjectEditToggle());
+    }//GEN-LAST:event_editProjectActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton EditProject;
+    private javax.swing.JToggleButton editProject;
     private javax.swing.JToggleButton editSprint;
     private javax.swing.JToggleButton editTeam;
-    private javax.swing.JToggleButton editTeam1;
+    private javax.swing.JToggleButton sendEmailToggle;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -156,5 +161,19 @@ public class SettingUI extends javax.swing.JPanel {
      */
     public static void setTeamEditToggle(boolean aTeamEditToggle) {
         TeamEditToggle = aTeamEditToggle;
+    }
+
+    /**
+     * @return the SendEmailToggle
+     */
+    public static boolean isSendEmailToggle() {
+        return SendEmailToggle;
+    }
+
+    /**
+     * @param aSendEmailToggle the SendEmailToggle to set
+     */
+    public static void setSendEmailToggle(boolean aSendEmailToggle) {
+        SendEmailToggle = aSendEmailToggle;
     }
 }

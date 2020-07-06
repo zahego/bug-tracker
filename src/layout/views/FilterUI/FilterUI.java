@@ -1,4 +1,4 @@
-package layout.views;
+package layout.views.FilterUI;
 
 
 
@@ -16,7 +16,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class FilterViews extends JFrame {
+public class FilterUI extends JFrame {
 
 	/**
 	 * 
@@ -35,11 +35,6 @@ public class FilterViews extends JFrame {
 	public JButton FilterButton;
 	
 	// for Filter Testing
-	
-	
-	
-	
-
 	/**
 	 * Launch the application.
 	 */
@@ -47,7 +42,7 @@ public class FilterViews extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FilterViews frame = new FilterViews();
+					FilterUI frame = new FilterUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -63,7 +58,7 @@ public class FilterViews extends JFrame {
 	
 	
 	
-	public FilterViews() {
+	public FilterUI() {
 		
 		
 		initComponents();
@@ -82,7 +77,7 @@ public class FilterViews extends JFrame {
 		
 	
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FilterViews.class.getResource("/layout/resource/BugTracker.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FilterUI.class.getResource("/layout/resource/BugTracker.png")));
 		setTitle("Bug Tracker 3000 - Filter Options\r\n");
 		setResizable(false);
 		

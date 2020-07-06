@@ -1,17 +1,18 @@
-package layout.views;
+package layout.views.TaskCreate;
 
+import common.Comment.CommentsOneTaskHold;
 import java.awt.Color;
 
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import common.Enum.BoardType;
 import common.Enum.TaskStatus;
 import common.Enum.TaskType;
 import common.Task.Task;
 import common.Task.TaskHold;
 import common.Ultilities.Utilities;
 import layout.views.BoardUI.BoardUI;
+import layout.views.CalendarWindowUI.CalendarWindowUI;
 import common.Project.Project;
 import common.Project.Projecthold;
 import common.Sprint.Sprint;
@@ -45,11 +46,9 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import layout.views.screen.ScreenUI;
 
 public class TaskCreate extends JFrame implements PropertyChangeListener {
 
@@ -228,7 +227,16 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
         for (int i = 0; i < types.length; i++) {
             TaskTypeAssignBar.addItem(new ComboItem(types[i].toString(), types[i]));
         }
-
+        //default Duedate, thss is kinda restrictig tho
+        
+        try{
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        DueDateBar.setText("12/12/2020");
+        selDate=sdf.parse("12/12/2020");
+        }
+        catch(Exception e){
+            System.out.println("error when create task: "+e);
+        }
         // Group Layout
         GroupLayout gl_TaskCreate = new GroupLayout(TaskCreate);
         gl_TaskCreate.setHorizontalGroup(
@@ -398,10 +406,11 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
                 //Add() function
                 if (!errorCheck()) {
                     addTask();
-
+                    ((JFrame) CreateButton.getParent().getParent().getParent().getParent()).dispose();
                 }
-
+                
             }
+
         });
 
         ProjectAssignBar.addActionListener(new ActionListener() {
@@ -425,7 +434,7 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
             }
         });
 
-        CalendarWindowViews calendar = new CalendarWindowViews();
+        CalendarWindowUI calendar = new CalendarWindowUI();
         calendar.setUndecorated(true);
         calendar.addPropertyChangeListener(this);
 
@@ -457,7 +466,7 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent event) {
         //get the selected date from the calendar control and set it to the text field
         if (event.getPropertyName().equals("selectedDate")) {
-
+            
             java.util.Calendar cal = (java.util.Calendar) event.getNewValue();
             selDate = cal.getTime();
             DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyy");
@@ -480,15 +489,16 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
 
     public void addTask() {
         //add task and notify main UI
-        Task task = new Task(/*fix this*/TaskHold.newTaskIDCalculation(), (TaskType) ((ComboItem) TaskTypeAssignBar.getSelectedItem()).getValue(),
-                SummaryBox.getText(), new ArrayList<String>(), (int) ((ComboItem) ProjectAssignBar.getSelectedItem()).getValue(),
+        //may want to use a different commentsonetaskhold in the future
+        Task task = new Task(TaskHold.getTaskList().size(), (TaskType) ((ComboItem) TaskTypeAssignBar.getSelectedItem()).getValue(),
+                SummaryBox.getText(), new CommentsOneTaskHold(), (int) ((ComboItem) ProjectAssignBar.getSelectedItem()).getValue(),
                 (int) SprintAssignBar.getSelectedItem(), (int) SeverityAssignBar.getSelectedItem(),
                 TaskStatus.ONNEW, Utilities.getCurrentDate(), selDate, ReplicateBox.getText(),
                 DescriptionBox.getText(), SuggestionBox.getText(), /*selectedFile,*/
                 CurrentUserhold.getUser().getID(), new ArrayList<Integer>());
-
+        System.out.println(String.valueOf(task.getDueDate()));
         task.addAssignee((int) ((ComboItem) AssignedBar.getSelectedItem()).getValue());
-        TaskHold.addToNewTaskList(task);
+        TaskHold.addTask(task);
         if (this.backlog != null) {
 
             this.backlog.refresh();

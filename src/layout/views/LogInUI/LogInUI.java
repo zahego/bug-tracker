@@ -125,7 +125,7 @@ public class LogInUI extends javax.swing.JFrame {
                 //reload task?
                 ScreenUI.getLayoutUI().addTask();
                 ScreenUI.getUserUI().renderUI();
-                ScreenUI.getUserUI().setVisible(true);
+                //ScreenUI.getUserUI().setVisible(true);
                 this.dispose();
             } else {
                 getErrorLabel().setVisible(true);

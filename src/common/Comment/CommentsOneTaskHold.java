@@ -22,18 +22,22 @@ public class CommentsOneTaskHold {
     public CommentsOneTaskHold(){
         
     }
-    //without void, this need an instance
-    public void populateCommentsOneTakHold(int taskNum){
-        
+    //without static, this need an instance
+    public ArrayList<Comment> populateCommentsOneTakHold(int taskNum){
         int size=Comment.getSizeCommentsOfOneTaskFromDatabase(taskNum);
         //have to declare new array, populate that array then push it back to the static array since this work. 
         //This is probably having something to do with not declaring new ArrayList<>() at the top
         ArrayList<Comment> commentList=new ArrayList<>();
+        //for reseting purpose
+        setComment(commentList);
         for(int i=0; i<size; i++){
             commentList.add(Comment.getCommentFromDatabase(taskNum, i));
             
         }
+        //huh?
         setComment(commentList);
+        
+        return commentList;
     }
 
     /**

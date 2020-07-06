@@ -6,6 +6,7 @@
 package layout.views.project;
 
 import common.Project.Projecthold;
+import common.Team.Userhold;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -18,6 +19,8 @@ import layout.views.screen.ScreenUI;
 import layout.views.setting.SettingUI;
 import layout.views.team.TeamUIDropdown;
 import common.User.CurrentUserhold;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
 /**
  *
@@ -28,6 +31,7 @@ public class ProjectUIDropdown extends javax.swing.JPanel {
     //return the project ID when clicked or -1 if all project or add project was clicked
     private static int projectAccessID = -1;
     private boolean editable = false;
+    private static boolean allowListEvent =false;
 
     /**
      * Creates new form ProjectUI
@@ -84,7 +88,23 @@ public class ProjectUIDropdown extends javax.swing.JPanel {
             create.getDeleteButton().setVisible(false);
             create.setCreateUpdateLabel("Create Project");
             create.setSubmitButton("Create");
+
+            //populate team dropdown
+            create.getTeamDropDown().removeAllItems();
+
+            for (int j = 0; j < Userhold.getUsers().size(); j++) {
+                //remove admin and pm as they will be included in all project
+                if (Userhold.getUsers().get(j).getID() != 7 && Userhold.getUsers().get(j).getID() != 8) {
+                    String name = Userhold.getUsers().get(j).getName();
+                    if (!name.isEmpty()) {
+                        create.setTeamDropDown(name);
+                    }
+                }
+                
+            }
+
             create.setVisible(true);
+            
             //reredner team and sprint
             ProjectUIDropdown.setProjectAccessID(-1);
             ScreenUI.getTeamUI().renderUI();
@@ -101,22 +121,32 @@ public class ProjectUIDropdown extends javax.swing.JPanel {
                             update.setUpdateInformation(Projecthold.getProjects().get(i));
                             update.setCreateUpdateLabel("Update Project");
                             update.setSubmitButton("Update");
+                            //populate team dropdown
+                            update.getTeamDropDown().removeAllItems();
+                            for (int j = 0; j < Projecthold.getProjects().get(i).getTeam().size(); j++) {
+                                String allUser = Userhold.getUsers().get(j).getName();
+                                if (!allUser.isEmpty()) {
+                                    update.setTeamDropDown(allUser);
+                                }
+                                String onProject = Userhold.searchID(Projecthold.getProjects().get(i).getTeam().get(j));
+                                if (!onProject.isEmpty()) {
+                                    update.addList(onProject);
+                                }
+                            }
                             update.setVisible(true);
-                            
-
                         }
                     }
                     //reredner team and sprint and boards
-                    
+
                     ProjectUIDropdown.setProjectAccessID(Projecthold.getProjects().get(i).getID());
-                    
+
                     ScreenUI.getTeamUI().renderUI();
                     ScreenUI.getSprintUI().renderUI();
                     ScreenUI.getLayoutUI().addTask();
                     break;
                 }
             }
-
+            //this.setAllowListEvent(true);
         }
 
     }//GEN-LAST:event_projectDropDownActionPerformed
@@ -133,13 +163,13 @@ public class ProjectUIDropdown extends javax.swing.JPanel {
         //first loop to loop through all project
         for (int i = 0; i < Projecthold.getProjects().size(); i++) {
             //another loop to check the that project at [i]'s team array contain the current user ID
-            for (int j = 0; j < Projecthold.getProjects().get(i).getTeam().length; j++) {
+            for (int j = 0; j < Projecthold.getProjects().get(i).getTeam().size(); j++) {
                 if (CurrentUserhold.getUser() != null) {
-                    if (Projecthold.getProjects().get(i).getTeam()[j] == CurrentUserhold.getUser().getID()) {
+                    if (Projecthold.getProjects().get(i).getTeam().get(j) == CurrentUserhold.getUser().getID()) {
                         //if team array contain the the user, add the project to project dropdown
                         this.projectDropDown.addItem(Projecthold.getProjects().get(i).getName());
                     }
-                } 
+                }
             }
         }
         //only allow user with access range higher than 2 to create new project (PM and ADMIN)
@@ -162,6 +192,20 @@ public class ProjectUIDropdown extends javax.swing.JPanel {
      */
     public static void setProjectAccessID(int projectAccessID) {
         ProjectUIDropdown.projectAccessID = projectAccessID;
+    }
+
+    /**
+     * @return the allowListEvent
+     */
+    public static boolean isAllowListEvent() {
+        return allowListEvent;
+    }
+
+    /**
+     * @param aAllowListEvent the allowListEvent to set
+     */
+    public static void setAllowListEvent(boolean aAllowListEvent) {
+        allowListEvent = aAllowListEvent;
     }
 
 }

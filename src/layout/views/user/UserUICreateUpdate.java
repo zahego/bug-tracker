@@ -56,9 +56,6 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
         roleRole = new javax.swing.JTextField();
         accessRangeLabel = new javax.swing.JLabel();
         accessRangeInt = new javax.swing.JTextField();
-        sendAnEmailLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        emailSendArea = new javax.swing.JTextArea();
         confirmPasswordLabel = new javax.swing.JLabel();
         confirmPasswordString = new javax.swing.JTextField();
 
@@ -120,19 +117,21 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
 
         accessRangeLabel.setText("Access Range:");
 
-        sendAnEmailLabel.setText("Send an email:");
-
-        emailSendArea.setColumns(20);
-        emailSendArea.setRows(5);
-        jScrollPane1.setViewportView(emailSendArea);
-
         confirmPasswordLabel.setText("Confirm password:");
+
+        confirmPasswordString.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmPasswordStringActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(buttonSection, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(buttonSection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -144,90 +143,89 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(emailLabel)
-                                    .addComponent(passwordLabel)
-                                    .addComponent(IDLabel)
-                                    .addComponent(imageLabel)
-                                    .addComponent(nameLabel))
-                                .addGap(58, 58, 58)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(IDint, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                    .addComponent(nameString)
-                                    .addComponent(passwordString)
-                                    .addComponent(emailString)
-                                    .addComponent(ImageImage)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(accessRangeLabel)
-                                        .addComponent(confirmPasswordLabel))
-                                    .addGap(10, 10, 10)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(confirmPasswordString)
-                                        .addComponent(accessRangeInt)))
-                                .addComponent(sendAnEmailLabel)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(roleLabel)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                                    .addComponent(roleRole, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(33, 33, 33))
+                            .addComponent(emailLabel)
+                            .addComponent(passwordLabel)
+                            .addComponent(IDLabel)
+                            .addComponent(imageLabel)
+                            .addComponent(nameLabel)
+                            .addComponent(accessRangeLabel)
+                            .addComponent(roleLabel)
+                            .addComponent(confirmPasswordLabel))
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(IDint)
+                            .addComponent(nameString)
+                            .addComponent(passwordString)
+                            .addComponent(emailString)
+                            .addComponent(ImageImage, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                            .addComponent(accessRangeInt)
+                            .addComponent(roleRole, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                            .addComponent(confirmPasswordString))))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addComponent(createUpdateLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorText)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(IDLabel)
-                    .addComponent(IDint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ImageImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(imageLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(IDint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nameString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ImageImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(emailString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(passwordString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(passwordLabel)))
+                        .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(emailLabel)
-                            .addComponent(emailString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(passwordLabel)
-                        .addComponent(passwordString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirmPasswordLabel)
-                    .addComponent(confirmPasswordString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(confirmPasswordString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(confirmPasswordLabel)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(IDLabel)
+                        .addGap(27, 27, 27)
+                        .addComponent(nameLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(imageLabel)
+                        .addGap(19, 19, 19)
+                        .addComponent(emailLabel)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(roleLabel)
-                    .addComponent(roleRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(accessRangeLabel)
-                    .addComponent(accessRangeInt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sendAnEmailLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                .addGap(20, 20, 20)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(roleRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(accessRangeInt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(accessRangeLabel))))
+                .addGap(73, 73, 73)
                 .addComponent(buttonSection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        for (int i = 0; i < Userhold.getUsers().size(); i++) {
+            if (Integer.parseInt(this.getIDint().getText()) == Userhold.getUsers().get(i).getID()) {
+                Userhold.delete(Userhold.getUsers().get(i));
+                break;
+            }
+        }
+        //rerender the dropdown in screenUI
+        ScreenUI.getTeamUI().renderUI();
+        //Close the Project create window
+        this.dispose();
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         //TODO handle case of error
@@ -257,18 +255,9 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_submitButtonActionPerformed
 
-    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        for (int i = 0; i < Userhold.getUsers().size(); i++) {
-            if (Integer.parseInt(this.getIDint().getText()) == Userhold.getUsers().get(i).getID()) {
-                Userhold.delete(Userhold.getUsers().get(i));
-                break;
-            }
-        }
-        //rerender the dropdown in screenUI
-        ScreenUI.getTeamUI().renderUI();
-        //Close the Project create window
-        this.dispose();
-    }//GEN-LAST:event_deleteButtonActionPerformed
+    private void confirmPasswordStringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPasswordStringActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmPasswordStringActionPerformed
 
     /**
      * @param args the command line arguments
@@ -317,18 +306,15 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
     private javax.swing.JLabel createUpdateLabel;
     private javax.swing.JButton deleteButton;
     private javax.swing.JLabel emailLabel;
-    private javax.swing.JTextArea emailSendArea;
     private javax.swing.JTextField emailString;
     private javax.swing.JLabel errorText;
     private javax.swing.JLabel imageLabel;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameString;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField passwordString;
     private javax.swing.JLabel roleLabel;
     private javax.swing.JTextField roleRole;
-    private javax.swing.JLabel sendAnEmailLabel;
     private javax.swing.JButton submitButton;
     // End of variables declaration//GEN-END:variables
     public User createUserFromFields() {
@@ -439,20 +425,6 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
      */
     public javax.swing.JButton getDeleteButton() {
         return deleteButton;
-    }
-
-    /**
-     * @return the emailSendArea
-     */
-    public javax.swing.JTextArea getEmailSendArea() {
-        return emailSendArea;
-    }
-
-    /**
-     * @param emailSendArea the emailSendArea to set
-     */
-    public void setEmailSendArea(String emailSendArea) {
-        this.emailSendArea.setText(emailSendArea);
     }
 
     /**

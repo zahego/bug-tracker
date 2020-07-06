@@ -1,5 +1,7 @@
 package common.Task;
 
+import common.Comment.Comment;
+import common.Comment.CommentsOneTaskHold;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,7 +17,7 @@ public class Task {
 	int projectID;
 	int sprintID;
 	String quickSummary;
-	List<String> comments; 
+	CommentsOneTaskHold comments; 
 	int severity;
 	TaskStatus status;
 	Date reportedDate;
@@ -34,7 +36,7 @@ public class Task {
 		this.projectID = projectID;
 		this.sprintID = sprintID;
 		this.quickSummary = quickSummary;
-		this.comments = new ArrayList<>();
+		this.comments = new CommentsOneTaskHold();
 		this.severity = severity;
 		this.status = status;
 		this.reportedDate = reportedDate;
@@ -48,7 +50,7 @@ public class Task {
 	}
 	
 	/////////////////////////Full fledged constructor//////////////////////////////////
-	public Task (int ID, String quickSummary, List<String> comments, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate, String toReplicate, String fullDescription, String suggestion, Date dueDate, File file, int assignerID, List<Integer> assignees) {
+	public Task (int ID, String quickSummary, CommentsOneTaskHold comments, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate, String toReplicate, String fullDescription, String suggestion, Date dueDate, File file, int assignerID, List<Integer> assignees) {
 		this.ID = ID;
 		this.type = TaskType.TASK;
 		this.projectID = projectID;
@@ -67,7 +69,7 @@ public class Task {
 		this.assignees = assignees;
 	}
         //without File file
-	public Task (int ID, TaskType type, String quickSummary, List<String> comments, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate, Date dueDate, String toReplicate, String fullDescription, String suggestion, int assignerID, List<Integer> assignees) {
+	public Task (int ID, TaskType type, String quickSummary, CommentsOneTaskHold comments, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate, Date dueDate, String toReplicate, String fullDescription, String suggestion, int assignerID, List<Integer> assignees) {
 		this.ID = ID;
 		this.type = type;
 		this.projectID = projectID;
@@ -157,16 +159,16 @@ public class Task {
 		this.quickSummary = quickSummary;
 	}
 
-	public List<String> getComments() {
+	public CommentsOneTaskHold getComments() {
 		return comments;
 	}
 
-	public void setComments(List<String> comments) {
+	public void setComments(CommentsOneTaskHold comments) {
 		this.comments = comments;
 	}
 	
-	public void addComment(String comment) {
-		this.comments.add(comment);
+	public void addComment(Comment comment) {
+		this.comments.getComment().add(comment);
 	}
 
 	public int getSeverity() {
