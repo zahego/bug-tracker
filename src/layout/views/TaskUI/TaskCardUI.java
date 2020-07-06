@@ -129,8 +129,10 @@ public class TaskCardUI extends JPanel {
         if (task.getReportedDate().compareTo(dateAfter50) < 0) {
             date.setBackground(new Color(193, 50, 46));
         }
-
+        
+        //case of ontaken log, ongoing log or any case where task is assigned
         JLabel userIcon = new JLabel("");
+        //could check the condition of 3 user, assigned user, pm and admin as well
         if (task.getAssignees().size() == 2) {
             if (task.getAssignees().get(0) != 8) {
                 ImageIcon icon = new ImageIcon(Userhold.getUsers().get(task.getAssignees().get(0) - 1).getProfilePic());
@@ -141,7 +143,7 @@ public class TaskCardUI extends JPanel {
                 icon = new ImageIcon(icon.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
                 userIcon.setIcon(icon);
             }
-
+        //randomly render user based on mod 3 and 4 just to make the task look busy
         } else if (task.getAssignees().size() == 5) {
             if (task.getAssignees().get(0) != 8) {
                 if(task.getID()%3==0){

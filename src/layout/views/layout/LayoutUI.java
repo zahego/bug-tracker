@@ -5,6 +5,7 @@
  */
 package layout.views.layout;
 
+import common.Comment.CommentsAllHold;
 import common.Enum.BoardType;
 import common.Task.TaskHold;
 import layout.views.BoardUI.BoardUI;
@@ -29,6 +30,9 @@ public class LayoutUI extends javax.swing.JPanel {
 
         initComponents();
         setPMinimizeHidden();
+        TaskHold.loadTask();
+        CommentsAllHold.populateCommentsAllHold();
+        TaskHold.loadEmptyTask();
         addTask();
     }
     private BoardUI backlog;
@@ -37,14 +41,17 @@ public class LayoutUI extends javax.swing.JPanel {
     private BoardUI finish;
 
     public void addLog(){
-        //this loadTask could be extremely troublesome
-        TaskHold.loadTask();
-        
         
         backlog = new BoardUI(BoardType.BACKLOG);
         taken = new BoardUI(BoardType.TAKEN);
         ongoing = new BoardUI(BoardType.ONGOING);
         finish = new BoardUI(BoardType.FINISH);
+    }
+    public void rerenderAllBoard(){
+        //backlog.refresh();
+        //taken.refresh();
+        //ongoing.refresh();
+        finish.refresh();
     }
 
     /**

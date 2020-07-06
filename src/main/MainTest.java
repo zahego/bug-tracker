@@ -39,10 +39,10 @@ public class MainTest {
         Project webber = new Project(9, "webber", new Date(), new Date(), new Date(), "strick", new ArrayList<>());
         //System.out.println(dev.getID());
         dev.setID(3);
-        CurrentUserhold.setUser(User.getUserFromDatabase(7));
+        CurrentUserhold.setUser(User.getUserFromDatabase(0));
         TaskHold.loadTask();
         CommentsAllHold.populateCommentsAllHold();
-        System.out.println(CommentsAllHold.getAllCommentHold().size());
+        System.out.println("from main test "+CommentsAllHold.getAllCommentHold().size());
         //can't print before insert, there's nothing there. TODO need to find a way so that thí is not null
         //System.out.println(dev.getProjecthold().getProjects().get(0).getProjectID());
         

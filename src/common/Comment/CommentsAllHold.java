@@ -30,7 +30,7 @@ public class CommentsAllHold {
                 Comment comment=Comment.getCommentFromDatabase(i, j);
                 commentAllList.add(comment);
            
-                System.out.println("from comment all hold "+i+" "+comment.getComment());
+                //System.out.println("from comment all hold "+i+" "+comment.getComment());
             }
             }
         }
