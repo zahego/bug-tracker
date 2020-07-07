@@ -5,6 +5,10 @@
  */
 package layout.views.layout;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ContainerEvent;
+import java.awt.event.ContainerListener;
+
 import common.Comment.CommentsAllHold;
 import common.Enum.BoardType;
 import common.Task.TaskHold;
@@ -47,6 +51,11 @@ public class LayoutUI extends javax.swing.JPanel {
         taken = new BoardUI(BoardType.TAKEN);
         ongoing = new BoardUI(BoardType.ONGOING);
         finish = new BoardUI(BoardType.FINISH);
+        
+        backlog.addContainerListener(new componentChangeListener());
+        taken.addContainerListener(new componentChangeListener());
+        ongoing.addContainerListener(new componentChangeListener());
+        finish.addContainerListener(new componentChangeListener());
     }
     public void rerenderAllBoard(){
         //backlog.refresh();
@@ -396,7 +405,7 @@ public class LayoutUI extends javax.swing.JPanel {
     }//GEN-LAST:event_SearchIconLActionPerformed
 
     private void SearchIconRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchIconRActionPerformed
-    	finish.search(SearchBarL.getText());
+    	finish.search(SearchBarR.getText());
     }//GEN-LAST:event_SearchIconRActionPerformed
 
     private void MaximizeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaximizeButtonActionPerformed
@@ -581,5 +590,19 @@ public class LayoutUI extends javax.swing.JPanel {
         OnTakenPanel.setViewportView(taken);
         OnGoingPanel.setViewportView(ongoing);
         OnFinishPanel.setViewportView(finish);
+    }
+    
+    class componentChangeListener implements ContainerListener {
+
+    	@Override
+    	public void componentAdded(ContainerEvent arg0) {
+    		
+    	}
+
+    	@Override
+    	public void componentRemoved(ContainerEvent arg0) {
+    		revalidate();
+    	}
+    	
     }
 }

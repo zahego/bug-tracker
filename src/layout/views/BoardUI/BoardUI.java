@@ -7,6 +7,7 @@ import common.Enum.BoardType;
 import common.Task.Task;
 import common.Task.TaskHold;
 import common.User.CurrentUserhold;
+import layout.views.SwitchBoardPopUp.SwitchBoardPopUp;
 import layout.views.TaskUI.TaskCardUI;
 import layout.views.TaskUI.TaskDetailsUI;
 
@@ -56,6 +57,15 @@ public class BoardUI extends JPanel {
                                         TaskDetailsUI details = new TaskDetailsUI(task);
                                         details.setVisible(true);
                                         details.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                                    } else if (me.isPopupTrigger()) {
+                                    	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
+                                        menu.show(me.getComponent(), me.getX(), me.getY());
+                                    }
+                                }
+                                public void mouseReleased(MouseEvent me) {
+                                	if (me.isPopupTrigger()) {
+                                    	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
+                                        menu.show(me.getComponent(), me.getX(), me.getY());
                                     }
                                 }
                             });
