@@ -1,4 +1,48 @@
 {
+    "alert": [{
+            "id": 1,
+            "name": "Alert 1 from PM",
+            "message": "this is a fake Alert #1, Have Fun",
+            "senderID": 7,
+            "receiverIDs": [1, 2, 5, 8],
+        }, {
+            "id": 2,
+            "name": "Alert 2 from developer",
+            "message": "this is a fake Alert #2, Have Fun",
+            "senderID": 1,
+            "receiverIDs": [ 3, 2, 5, 7],
+        }, {
+           "id": 3,
+            "name": "Alert 3 from tester",
+            "message": "this is a fake Alert #1, Have Fun",
+            "senderID": 3,
+            "receiverIDs": [1, 2, 5, 7, 8],
+        }, {
+             "id": 4,
+            "name": "Alert 4 from admin",
+            "message": "this is a fake Alert #1, Have Fun",
+            "senderID": 8,
+            "receiverIDs": [1, 2, 3, 4, 5, 7 ],
+        }{
+           "id": 5,
+            "name": "Alert 5 from tester",
+            "message": "this is a fake Alert #1, Have Fun",
+            "senderID": 3,
+            "receiverIDs": [1, 2, 5, 7, 8],
+        },{
+           "id": 6,
+            "name": "Alert 6 from tester",
+            "message": "this is a fake Alert #1, Have Fun",
+            "senderID": 3,
+            "receiverIDs": [1, 2, 5, 7, 8],
+        },{
+           "id": 7,
+            "name": "Alert 3 from tester",
+            "message": "this is a fake Alert #1, Have Fun",
+            "senderID": 6,
+            "receiverIDs": [1, 2, 5, 7, 8],
+        },],
+
     "task": [{
             "id": 1,
             "taskType": "TASK",
@@ -1246,8 +1290,8 @@
             "role": "TESTER",
             "image": "src/resources/tester_2.png",
             "name": "Bard Carl",
-            "email": "Barrrrrl123@gmail.com",
-            "password": "fffff1111",
+            "email": "hello",
+            "password": "hello",
             "accessRange": 1,
             "_projects": [3, 4],
             "_tasks": []

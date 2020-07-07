@@ -5,6 +5,8 @@
  */
 package layout.views.screen;
 import layout.views.FilterViews;
+import layout.views.AlertUI.AlertUI;
+
 import java.awt.*;
 import javax.swing.*;
 import layout.views.layout.LayoutUI;
@@ -14,6 +16,15 @@ import layout.views.team.TeamUIDropdown;
 import layout.views.user.UserUIDropdown;
 import layout.views.setting.SettingUI;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+
+import common.Alert.Alert;
+import common.Alert.AlertHold;
+import common.Task.TaskHold;
+import common.User.CurrentUserhold;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 /**
  *
  * @author tug70
@@ -106,28 +117,58 @@ public class ScreenUI extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(layoutUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+        
+        AlertButton = new JButton("Alert\r\n");
+        
+        
+        
+        
+        
+        AlertButton.addActionListener(new ActionListener() {
+        	
+        	public void actionPerformed(ActionEvent arg0) {
+        		if (CurrentUserhold.getUser() != null) {
+        		AlertUI alert = new AlertUI();
+        		alert.setVisible(true);
+        		
+        	}else {
+            	JOptionPane.showMessageDialog(null, "You must log in to see Alert","Alert", JOptionPane.OK_OPTION);
+            }}
+        }); 
+        
+        if (AlertHold.getAlertList() != null) {
+        	AlertButton.setForeground(Color.RED);
+        	
+        } else {
+        	AlertButton.setForeground(Color.BLACK);
+        }
+       
+        
+        
+        
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(boardsHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(779, 779, 779)
-                .addComponent(productName)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addComponent(boardsHolder, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(779)
+        			.addComponent(productName)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addComponent(AlertButton))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(productName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(boardsHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(15)
+        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        				.addComponent(productName, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(AlertButton, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
+        			.addGap(18)
+        			.addComponent(boardsHolder, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap())
         );
+        getContentPane().setLayout(layout);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -157,8 +198,13 @@ public class ScreenUI extends javax.swing.JFrame{
     private static layout.views.sprint.SprintUIDropdown sprintUI;
     private static layout.views.team.TeamUIDropdown teamUI;
     private static layout.views.user.UserUIDropdown userUI;
+    private JButton AlertButton;
     // End of variables declaration//GEN-END:variables
 
+    
+    
+    
+    
     /**
      * @return the userUI
      */
