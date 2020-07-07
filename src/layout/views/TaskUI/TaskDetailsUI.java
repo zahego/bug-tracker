@@ -1,6 +1,7 @@
 package layout.views.TaskUI;
 
 
+import common.Enum.TaskStatus;
 import common.Project.Projecthold;
 import java.awt.BorderLayout;
 
@@ -38,6 +39,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -65,8 +67,8 @@ public class TaskDetailsUI extends JFrame implements PropertyChangeListener{
     private JLabel sprintID;
     private JTextArea quickSummary;
     private JLabel reportedDate;
-    private JLabel taskStatus;
-    private JLabel severity;
+    private JComboBox taskStatus;
+    private JComboBox severity;
     private JTextField dueDate;
     private JTextArea fullDescriptionString;
     private JTextArea replicateString;
@@ -120,9 +122,29 @@ public class TaskDetailsUI extends JFrame implements PropertyChangeListener{
         sprintID = new JLabel(String.valueOf(task.getSprintID()));
         quickSummary = new JTextArea(task.getQuickSummary());
         reportedDate = new JLabel(Utilities.getDateString(task.getReportedDate()));
-        taskStatus = new JLabel(task.getStatus().toString());
-        severity = new JLabel(String.valueOf(task.getSeverity()));
-        System.out.println(String.valueOf(task.getDueDate()));
+         /////severity, and task status, add so that current severity goes to the top////
+        taskStatus = new JComboBox<>();
+        //this is bad programming practice but the number of taskStatus is fixed, we'll see what to do in the future
+        taskStatus.addItem(task.getStatus().toString());
+        for(TaskStatus taskyStatus: TaskStatus.values()){
+            if(!taskyStatus.equals(task.getStatus())){
+                taskStatus.addItem(taskyStatus.toString());
+            }
+        }
+        
+       
+        severity= new JComboBox<>();
+        int[] severities = Utilities.makeSequence(1, 10);
+        severity.addItem(task.getSeverity());
+        for (int i = 0; i < severities.length; i++) {
+           if(i==(task.getSeverity()-1)){
+                i++;
+            }
+            else{
+            severity.addItem(severities[i]);
+            }
+        }
+        ///////////severity//////////////
         dueDate = new JTextField(Utilities.getDateString(task.getDueDate()));
         fullDescriptionString = new JTextArea(task.getFullDescription());
         replicateString = new JTextArea(task.getToReplicate());
@@ -191,8 +213,8 @@ public class TaskDetailsUI extends JFrame implements PropertyChangeListener{
         /////////////////////design////////////////////////////////
         quickSummary.setFont(new Font("Tahoma", Font.BOLD, 14));
         reportedDate.setHorizontalAlignment(SwingConstants.CENTER);
-        taskStatus.setHorizontalAlignment(SwingConstants.CENTER);
-        severity.setHorizontalAlignment(SwingConstants.CENTER);
+        //taskStatus.setHorizontalAlignment(SwingConstants.CENTER);
+        //severity.setHorizontalAlignment(SwingConstants.CENTER);
         dueDate.setHorizontalAlignment(SwingConstants.CENTER);
         imageFile2.setHorizontalAlignment(SwingConstants.CENTER);
         imageFile1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -368,10 +390,13 @@ public class TaskDetailsUI extends JFrame implements PropertyChangeListener{
                 task.setFullDescription(fullDescriptionString.getText());
                 task.setToReplicate(replicateString.getText());
                 task.setDueDate(selDate);
+                task.setSeverity(Integer.parseInt(severity.getSelectedItem().toString()));
+                task.setStatus(TaskStatus.valueOf(taskStatus.getSelectedItem().toString()));
                 task.setSuggestion(SuggestionString.getText());
                 TaskHold.getTaskList().set(Integer.parseInt(taskID.getText()) - 1, task);
 
                 ScreenUI.getLayoutUI().refreshAllBoard();
+                ((JFrame) updateButton.getParent().getParent().getParent().getParent().getParent().getParent()).dispose();
             }
         });
         addCommentButton.addActionListener(new ActionListener() {

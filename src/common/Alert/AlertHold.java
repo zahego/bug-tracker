@@ -40,7 +40,6 @@ public class AlertHold {
 	                if (receiverFromDB != null) {
 	                    for (int i = 0; i < receiverFromDB.size(); i++) {
 	                    	receiverIDs.add(((Long) receiverFromDB.get(i)).intValue());
-	                    	 System.out.println("Test Database" + receiverIDs.get(i));
 	                    	 
 	                    	
 	                    }
@@ -57,17 +56,13 @@ public class AlertHold {
 	    
 	    public static void loadEmptyAlert() {
 	        getEmptyAlertList().add(new Alert(0, "Nothing here", "Nothing here"));
-	        System.out.print("testAlert");
 	       
 	    }
 	    
 	    public static List<Alert> add() {
 	        List<Alert> ret = new ArrayList<>();
-	        //System.out.print("Add" + getAlertList().size() );
 	                for (int i = 0; i < getAlertList().size(); i++) {
 	                        ret.add(getAlertList().get(i));
-	                        
-	                     //   System.out.print("Add" + getAlertList().get(i).getID() );
 	                }
 					return ret;
 	

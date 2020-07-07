@@ -46,7 +46,6 @@ import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -222,8 +221,8 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
         int currentProjID = (int) ((ComboItem) ProjectAssignBar.getSelectedItem()).getValue();
         AssignedBar.removeAllItems();
         for (int i = 0; i < users.size(); i++) {
-            for (int j = 0; j < Projecthold.getProjects().get(currentProjID-1).getTeam().size(); j++) {
-                if (users.get(i).getID() == Projecthold.getProjects().get(currentProjID-1).getTeam().get(j)) {
+            for (int j = 0; j < Projecthold.getProjects().get(currentProjID - 1).getTeam().size(); j++) {
+                if (users.get(i).getID() == Projecthold.getProjects().get(currentProjID - 1).getTeam().get(j)) {
                     AssignedBar.addItem(new ComboItem(users.get(i).getName(), users.get(i).getID()));
                 }
             }
@@ -233,14 +232,12 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
         SprintAssignBar.removeAllItems();
         for (int j = 0; j < Projecthold.getProjects().size(); j++) {
             if (Projecthold.getProjects().get(j).getName().equals(ProjectAssignBar.getSelectedItem().toString())) {
-                System.out.println(ProjectAssignBar.getSelectedItem());
                 projectID = Projecthold.getProjects().get(j).getID();
                 break;
             }
         }
         for (int i = 0; i < sprints.size(); i++) {
             if (sprints.get(i).getProjectID() == projectID) {
-
                 SprintAssignBar.addItem(sprints.get(i).getName());
             }
         }
@@ -458,8 +455,20 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
                 int result = file.showSaveDialog(null);
                 //if the user clicks on save in Jfilechooser
                 if (result == JFileChooser.APPROVE_OPTION) {
-                    selectedFile[0] = file.getSelectedFile();
-                    String path = selectedFile[0].getAbsolutePath();
+                    if (selectedFile[0] == null) {
+                        selectedFile[0] = file.getSelectedFile();
+                        String path = selectedFile[0].getAbsolutePath();
+                        listFileModel.addElement(path);
+                    } else if (selectedFile[1] == null) {
+                        selectedFile[1] = file.getSelectedFile();
+                        String path = selectedFile[1].getAbsolutePath();
+                        listFileModel.addElement(path);
+
+                    } else if (selectedFile[2] == null) {
+                        selectedFile[2] = file.getSelectedFile();
+                        String path = selectedFile[2].getAbsolutePath();
+                        listFileModel.addElement(path);
+                    }
                 } //if the user cancels
                 else if (result == JFileChooser.CANCEL_OPTION) {
                     System.out.println("No File Select");
@@ -501,8 +510,8 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
                 int currentProjID = (int) ((ComboItem) ProjectAssignBar.getSelectedItem()).getValue();
                 AssignedBar.setModel(new DefaultComboBoxModel<ComboItem>());
                 for (int i = 0; i < users.size(); i++) {
-                    for (int j = 0; j < Projecthold.getProjects().get(currentProjID-1).getTeam().size(); j++) {
-                        if (users.get(i).getID() == Projecthold.getProjects().get(projectID-1).getTeam().get(j)) {
+                    for (int j = 0; j < Projecthold.getProjects().get(currentProjID - 1).getTeam().size(); j++) {
+                        if (users.get(i).getID() == Projecthold.getProjects().get(projectID - 1).getTeam().get(j)) {
                             AssignedBar.addItem(new ComboItem(users.get(i).getName(), users.get(i).getID()));
                         }
                     }
@@ -564,10 +573,11 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
         });
         AssignedBar.addPopupMenuListener(new PopupMenuListener() {
             public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
-                isAllowListAssigneeEvent=true;
+                isAllowListAssigneeEvent = true;
             }
+
             public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
-                isAllowListAssigneeEvent=false;
+                isAllowListAssigneeEvent = false;
             }
 
             public void popupMenuCanceled(PopupMenuEvent e) {
@@ -578,7 +588,20 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int selected = listAssignee.getSelectedIndex();
+                if(selected!=-1){
                 listAssigneeModel.remove(selected);
+                }
+            }
+        });
+        listFile.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int selected = listFile.getSelectedIndex();
+                System.out.println("listevent" +selected);
+                if(selected!=-1){
+                listFileModel.remove(selected);
+                selectedFile[selected]=null;
+                }
 
             }
         });
@@ -640,12 +663,6 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
         TaskHold.addTask(task);
         if (this.backlog != null) {
             this.backlog.refresh();
-            //ScreenUI.getLayoutUI().addTask();
-            /*for (int i = 0; i < this.backlog.getBoard().getNewTasks().size(); i++) {
-                System.out.println(this.backlog.getBoard().getNewTasks().get(i).getID());
-                System.out.println(this.backlog.getBoard().getNewTasks().get(i).getQuickSummary());
-            }*/
-
         }
     }
 }
