@@ -123,6 +123,9 @@ public class BoardUI extends JPanel {
                             this.add(card);
                         } else if (SprintUIDropdown.getSprintAccessID() == task.getSprintID()) {
                             TaskCardUI card = new TaskCardUI(task);
+                            
+                            
+                            
                             card.addMouseListener(new MouseAdapter() {
                                 public void mousePressed(MouseEvent me) {
                                     if (me.getClickCount() == 2) {

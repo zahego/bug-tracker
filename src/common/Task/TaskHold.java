@@ -86,10 +86,11 @@ public class TaskHold {
 
     ////////////////////////////////end of new addition//////////////////////////////////////////////
     public static void loadEmptyTask() {
-        getEmptyTaskList().add(new Task(0, TaskType.BUGREPORT, "there is no user record. Log in to see projects", -1, -1, 10, TaskStatus.ONNEW, new Date()));
+        getEmptyTaskList().add(new Task(0, TaskType.BUGREPORT, "there is no user record", -1, -1, 10, TaskStatus.ONNEW, new Date()));
         getEmptyTaskList().add(new Task(1, TaskType.BUGREPORT, "there is no user record. Log in to see projects", -1, -1, 10, TaskStatus.ONTAKEN, new Date()));
         getEmptyTaskList().add(new Task(2, TaskType.BUGREPORT, "there is no user record. Log in to see projects", -1, -1, 10, TaskStatus.ONGOING, new Date()));
         getEmptyTaskList().add(new Task(3, TaskType.BUGREPORT, "Admin email: anon@anon.anon", -1, -1, 10, TaskStatus.ONFINISH, new Date()));
+        System.out.print("testTask");
     }
 
     public static void addTask(Task task) {

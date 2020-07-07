@@ -57,6 +57,7 @@ public class LayoutUI extends javax.swing.JPanel {
         //taken.refresh();
         //ongoing.refresh();
         finish.refresh();
+       
     }
 
     /**
