@@ -12,9 +12,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import project.Project;
-import task.Task;
-import user.User;
+import common.Project.Project;
+import common.User.User;
 
 /**
  *
@@ -22,8 +21,8 @@ import user.User;
  */
 public class UserTest {
     ArrayList<Project> projects=new ArrayList<Project>();
-    Task[] tasks=new Task[1];
-    User dev=new User(2, Role.DEVELOPER, "lol", "deve@gmail.com", "dunnt", 2, projects, tasks);
+   /* Task[] tasks=new Task[1];
+    User dev=new User(2, Role.DEVELOPER, "lol", "deve@gmail.com", "dunnt", 2, projects, tasks);*/
     
     @BeforeClass
     public static void setUpClass() {

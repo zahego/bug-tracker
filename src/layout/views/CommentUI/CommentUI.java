@@ -7,10 +7,13 @@ package layout.views.CommentUI;
 
 import common.Comment.Comment;
 import common.Enum.TaskStatus;
+import common.Task.TaskHold;
 import common.Ultilities.Utilities;
 import common.User.User;
 import java.util.Date;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import layout.views.screen.ScreenUI;
 
 /**
  *
@@ -39,6 +42,12 @@ public class CommentUI extends javax.swing.JPanel {
         commentString = new javax.swing.JLabel();
         taskStatusEnum = new javax.swing.JLabel();
         profilePic = new javax.swing.JLabel();
+
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         dateDate.setText("date");
 
@@ -95,6 +104,26 @@ public class CommentUI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        if (evt.getClickCount() == 2) {
+            int result = JOptionPane.showConfirmDialog(null, "Delete Comment?", "Alert",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+            if (result == JOptionPane.YES_OPTION) {
+                Comment commentDelete = new Comment();
+                for (int i = 0; i < TaskHold.getTaskList().get(taskID - 1).getComments().getComment().size(); i++) {
+                    if (TaskHold.getTaskList().get(taskID - 1).getComments().getComment().get(i).getCommentID() == commentID) {
+                        commentDelete=TaskHold.getTaskList().get(taskID - 1).getComments().getComment().get(i);
+                        TaskHold.getTaskList().get(taskID - 1).getComments().getComment().remove(i);
+                        break;
+                    }
+                }
+                this.setVisible(false);
+                ScreenUI.getLayoutUI().refreshAllBoard();
+            }
+        }
+    }//GEN-LAST:event_formMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel commentPanel;
@@ -104,8 +133,10 @@ public class CommentUI extends javax.swing.JPanel {
     private javax.swing.JLabel taskStatusEnum;
     // End of variables declaration//GEN-END:variables
 
+    private int taskID;
+    private int commentID;
+
     public void renderUI(int num) {
-        
     }
 
     /**
@@ -148,7 +179,7 @@ public class CommentUI extends javax.swing.JPanel {
      */
     public void setProfilePic(String profilePic) {
         ImageIcon icon = new ImageIcon(profilePic);
-        icon = new ImageIcon(icon.getImage().getScaledInstance(53, 51,  java.awt.Image.SCALE_SMOOTH)); 
+        icon = new ImageIcon(icon.getImage().getScaledInstance(53, 51, java.awt.Image.SCALE_SMOOTH));
         this.profilePic.setIcon(icon);
     }
 
@@ -165,13 +196,43 @@ public class CommentUI extends javax.swing.JPanel {
     public void setTaskStatusEnum(TaskStatus taskStatusEnum) {
         this.taskStatusEnum.setText(taskStatusEnum.name());
     }
-    public void renderCommentUI(Comment comment){
+
+    public void renderCommentUI(Comment comment) {
         this.setCommentString(comment.getComment());
         this.setDateDate(comment.getDate());
         this.setTaskStatusEnum(comment.getTaskStatus());
-        
-        int commenterID=comment.getCommenterID();
-        User commenter=User.getUserFromDatabase(commenterID-1);
+        this.setTaskID(comment.getTaskID());
+        this.setCommentID(comment.getCommentID());
+        int commenterID = comment.getCommenterID();
+        User commenter = User.getUserFromDatabase(commenterID - 1);
         this.setProfilePic(commenter.getProfilePic());
+    }
+
+    /**
+     * @return the taskID
+     */
+    public int getTaskID() {
+        return taskID;
+    }
+
+    /**
+     * @param taskID the taskID to set
+     */
+    public void setTaskID(int taskID) {
+        this.taskID = taskID;
+    }
+
+    /**
+     * @return the commentID
+     */
+    public int getCommentID() {
+        return commentID;
+    }
+
+    /**
+     * @param commentID the commentID to set
+     */
+    public void setCommentID(int commentID) {
+        this.commentID = commentID;
     }
 }

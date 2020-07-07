@@ -34,37 +34,31 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
-                      <Component id="createUpdateLabel" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="startDateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="endDateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="summaryLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="IDLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="teamLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+
+                  <Component id="nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="startDateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="endDateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="summaryLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="IDLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="teamLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="IDint" alignment="0" pref="176" max="32767" attributes="0"/>
+                  <Component id="teamDropDown" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="nameString" alignment="0" max="32767" attributes="0"/>
+                          <Component id="startDateDate" alignment="0" pref="176" max="32767" attributes="0"/>
+                          <Component id="dueDateDate" alignment="0" pref="176" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+
                       </Group>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="IDint" alignment="0" pref="176" max="32767" attributes="0"/>
-                          <Component id="teamDropDown" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="nameString" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="startDateDate" alignment="0" pref="176" max="32767" attributes="0"/>
-                                  <Component id="dueDateDate" alignment="0" pref="176" max="32767" attributes="0"/>
-                                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="listScroll" max="32767" attributes="0"/>
-                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
+                  <Component id="listScroll" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
           </Group>
@@ -77,6 +71,7 @@
               <Component id="errorText" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
+          <Component id="createUpdateLabel" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -192,6 +187,10 @@
     </Container>
     <Component class="javax.swing.JLabel" name="createUpdateLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="CREATE PROJECT"/>
       </Properties>
     </Component>

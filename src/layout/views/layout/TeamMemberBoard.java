@@ -1,15 +1,10 @@
 package layout.views.layout;
 
-import java.awt.BorderLayout;
-import layout.views.project.ProjectUIDropdown;
+
 import common.Project.Projecthold;
-import layout.views.screen.ScreenUI;
-import layout.views.setting.SettingUI;
 import common.Team.Userhold;
-import common.User.CurrentUserhold;
-import layout.views.user.UserUICreateUpdate;
 import java.awt.EventQueue;
-import common.User.Role;
+import common.Enum.Role;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

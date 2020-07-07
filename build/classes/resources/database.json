@@ -540,12 +540,8 @@
 
             "severity": 8,
             "taskStatus": "ONNEW",
-<<<<<<< HEAD:src/database/database.json
-            "date": "12-10-2020",
-=======
             "dateCreated": "12-12-2020",
             "dateDue": "12-12-2020",
->>>>>>> 4969eceb49b02ad3c4e937175645cae7a9a2c75c:src/resources/database.json
             "fullDescription": "this is just a bogus bug report in project 1 sprint 1, no need to worry",
             "assignerID": 6,
             "assigneeIDs": [3, 4, 6, 7, 8],
@@ -1129,12 +1125,8 @@
 
             "severity": 6,
             "taskStatus": "ONNEW",
-<<<<<<< HEAD:src/database/database.json
-            "date": "12-10-2020",
-=======
             "dateCreated": "12-12-2020",
             "dateDue": "12-12-2020",
->>>>>>> 4969eceb49b02ad3c4e937175645cae7a9a2c75c:src/resources/database.json
             "fullDescription": "this is just a bogus bug report in project 3 sprint 2, no need to worry",
             "assignerID": 6,
             "assigneeIDs": [3, 4, 6, 7, 8],

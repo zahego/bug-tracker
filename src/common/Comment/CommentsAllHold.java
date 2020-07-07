@@ -13,31 +13,32 @@ import java.util.ArrayList;
  * @author tug70
  */
 public class CommentsAllHold {
+
+
     private static ArrayList<Comment> allCommentHold;
-    
-    public static void populateCommentsAllHold(){
-        
-        int commentSize=Comment.getAllCommentSizeFromDatabase();
-        
-        int taskSize=TaskHold.getTaskList().size();
+
+    public static void populateCommentsAllHold() {
+
+        int taskSize = TaskHold.getTaskHoldSizeFromDatabase();
         //have to declare new array, populate that array then push it back to the static array since this work. 
         //This is probably having something to do with not declaring new ArrayList<>() at the top
-        ArrayList<Comment> commentAllList=new ArrayList<>();
-        for(int i=0; i<taskSize; i++){
-            int commentSizeOfTask=Comment.getSizeCommentsOfOneTaskFromDatabase(i);
-            if(commentSizeOfTask!=0){
-            for(int j=0; j<commentSizeOfTask; j++){
-                Comment comment=Comment.getCommentFromDatabase(i, j);
-                commentAllList.add(comment);
-           
-                //System.out.println("from comment all hold "+i+" "+comment.getComment());
-            }
+        ArrayList<Comment> commentAllList = new ArrayList<>();
+        if (taskSize != -1) {
+            for (int i = 0; i < taskSize; i++) {
+                int commentSizeOfTask = Comment.getSizeCommentsOfOneTaskFromDatabase(i);
+                if (commentSizeOfTask != 0) {
+                    for (int j = 0; j < commentSizeOfTask; j++) {
+                        Comment comment = Comment.getCommentFromDatabase(i, j);
+                        commentAllList.add(comment);
+
+                    }
+                }
+
             }
         }
         CommentsAllHold.setAllCommentHold(commentAllList);
     }
-    
-    
+
     /**
      * @return the allCommentHold
      */

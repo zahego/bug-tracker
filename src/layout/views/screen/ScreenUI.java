@@ -5,20 +5,14 @@
  */
 package layout.views.screen;
 import layout.views.FilterUI.FilterUI;
-import java.awt.*;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.event.ContainerEvent;
-import java.awt.event.ContainerListener;
-
-import javax.swing.*;
-import layout.views.layout.LayoutUI;
+import common.Comment.CommentsAllHold;
+import common.Task.TaskHold;
+import java.awt.Toolkit;
 import layout.views.project.ProjectUIDropdown;
 import layout.views.sprint.SprintUIDropdown;
 import layout.views.team.TeamUIDropdown;
 import layout.views.user.UserUIDropdown;
 import layout.views.setting.SettingUI;
-import javax.swing.GroupLayout.Alignment;
 /**
  *
  * @author tug70
@@ -31,7 +25,9 @@ public class ScreenUI extends javax.swing.JFrame{
      * Creates new form ScreenUI
      */
     public ScreenUI() {
-        
+        CommentsAllHold.populateCommentsAllHold();
+        TaskHold.loadTask();
+        TaskHold.loadEmptyTask();
         initComponents();
     }
 
@@ -53,7 +49,7 @@ public class ScreenUI extends javax.swing.JFrame{
         sprintUI = new layout.views.sprint.SprintUIDropdown();
         settingUI = new layout.views.setting.SettingUI();
         layoutUI = new layout.views.layout.LayoutUI();
-        
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(

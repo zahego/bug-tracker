@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -27,6 +26,7 @@ public class Board {
     }
 
     public List<Task> filter(int projectID, int sprintID, int userID) {
+
         List<Task> ret = new ArrayList<>();
         for (int i = 0; i < this.getTasks().size(); i++) {
             if ((projectID == -1 || getTasks().get(i).getProjectID() == projectID) 

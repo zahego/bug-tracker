@@ -25,7 +25,7 @@ public class Task {
 	String fullDescription;
 	String toReplicate;
 	String suggestion;
-	File attachedFile;
+	File[] attachedFile= new File[3];
 	int assignerID;
 	List<Integer> assignees;
 	
@@ -50,7 +50,9 @@ public class Task {
 	}
 	
 	/////////////////////////Full fledged constructor//////////////////////////////////
-	public Task (int ID, String quickSummary, CommentsOneTaskHold comments, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate, String toReplicate, String fullDescription, String suggestion, Date dueDate, File file, int assignerID, List<Integer> assignees) {
+
+	public Task (int ID, String quickSummary, CommentsOneTaskHold comments, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate, String toReplicate, String fullDescription, String suggestion, Date dueDate, File[] file, int assignerID, List<Integer> assignees) {
+
 		this.ID = ID;
 		this.type = TaskType.TASK;
 		this.projectID = projectID;
@@ -69,7 +71,8 @@ public class Task {
 		this.assignees = assignees;
 	}
         //without File file
-	public Task (int ID, TaskType type, String quickSummary, CommentsOneTaskHold comments, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate, Date dueDate, String toReplicate, String fullDescription, String suggestion, int assignerID, List<Integer> assignees) {
+	public Task (int ID, TaskType type, String quickSummary, CommentsOneTaskHold comments, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate, Date dueDate, String toReplicate, String fullDescription, String suggestion, File[] file, int assignerID, List<Integer> assignees) {
+
 		this.ID = ID;
 		this.type = type;
 		this.projectID = projectID;
@@ -83,7 +86,7 @@ public class Task {
 		this.fullDescription = fullDescription;
 		this.toReplicate = toReplicate;
 		this.suggestion = suggestion;
-		this.attachedFile = null;
+		this.attachedFile = file;
 		this.assignerID = assignerID;
 		this.assignees = assignees;
 	}
@@ -211,11 +214,11 @@ public class Task {
 		this.fullDescription = fullDescription;
 	}
 
-	public File getAttachedFile() {
+	public File[] getAttachedFile() {
 		return attachedFile;
 	}
 
-	public void setAttachedFile(File attachedFile) {
+	public void setAttachedFile(File[] attachedFile) {
 		this.attachedFile = attachedFile;
 	}
 	public void addAssignee(int id) {

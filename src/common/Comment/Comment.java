@@ -25,6 +25,8 @@ public class Comment {
     private TaskStatus taskStatus;
     private String comment;
 
+    
+    public Comment(){}
     public Comment(int taskID, int commentID, int commenterID, TaskStatus taskStatus, String comment, Date date) {
         this.taskID=taskID;
         this.commentID=commentID;

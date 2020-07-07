@@ -5,17 +5,15 @@
  */
 package layout.views.layout;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 
 import common.Comment.CommentsAllHold;
-import common.Enum.BoardType;
-import common.Task.TaskHold;
-import layout.views.TaskCreate.TaskCreate;
-import layout.views.BoardUI.BoardUI;
 import layout.views.FilterUI.FilterUI;
 import layout.views.SortUI.SortUI;
+import common.Enum.BoardType;
+import layout.views.BoardUI.BoardUI;
+import layout.views.TaskUI.TaskCreate;
 
 /**
  *
@@ -35,9 +33,6 @@ public class LayoutUI extends javax.swing.JPanel {
 
         initComponents();
         setPMinimizeHidden();
-        TaskHold.loadTask();
-        CommentsAllHold.populateCommentsAllHold();
-        TaskHold.loadEmptyTask();
         addTask();
     }
     private BoardUI backlog;
@@ -406,6 +401,7 @@ public class LayoutUI extends javax.swing.JPanel {
 
     private void SearchIconRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchIconRActionPerformed
     	finish.search(SearchBarR.getText());
+
     }//GEN-LAST:event_SearchIconRActionPerformed
 
     private void MaximizeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaximizeButtonActionPerformed

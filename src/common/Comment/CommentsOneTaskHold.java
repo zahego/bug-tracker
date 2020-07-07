@@ -5,39 +5,39 @@
  */
 package common.Comment;
 
-import common.Comment.Comment;
+
 import java.util.ArrayList;
 
-/**
- *
- * @author tug70
- */
-
-//the comment hold for 1 task, this is why this is not public
 public class CommentsOneTaskHold {
+
     private ArrayList<Comment> comment;
-    public CommentsOneTaskHold(ArrayList<Comment> comment){
-        this.comment=comment;
+
+    public CommentsOneTaskHold(ArrayList<Comment> comment) {
+        this.comment = comment;
     }
-    public CommentsOneTaskHold(){
-        
+
+    public CommentsOneTaskHold() {
+
     }
+
     //without static, this need an instance
-    public ArrayList<Comment> populateCommentsOneTakHold(int taskNum){
-        int size=Comment.getSizeCommentsOfOneTaskFromDatabase(taskNum);
-        //have to declare new array, populate that array then push it back to the static array since this work. 
-        //This is probably having something to do with not declaring new ArrayList<>() at the top
-        ArrayList<Comment> commentList=new ArrayList<>();
+    public void populateCommentsOneTakHold(int taskNum) {
+        ArrayList<Comment> commentList = new ArrayList<>();
         //for reseting purpose
         setComment(commentList);
-        for(int i=0; i<size; i++){
-            commentList.add(Comment.getCommentFromDatabase(taskNum, i));
-            
+        if (!CommentsAllHold.getAllCommentHold().isEmpty()) {
+            int size = CommentsAllHold.getAllCommentHold().size();
+            //have to declare new array, populate that array then push it back to the static array since this work. 
+            //This is probably having something to do with not declaring new ArrayList<>() at the top
+            for (int i = 0; i < size; i++) {
+                if (CommentsAllHold.getAllCommentHold().get(i).getTaskID() == taskNum) {
+                    commentList.add(CommentsAllHold.getAllCommentHold().get(i));
+                }
+
+            }
+            setComment(commentList);
         }
-        //huh?
-        setComment(commentList);
-        
-        return commentList;
+
     }
 
     /**

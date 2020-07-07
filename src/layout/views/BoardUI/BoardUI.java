@@ -7,7 +7,6 @@ import common.Enum.BoardType;
 import common.Task.Task;
 import common.Task.TaskHold;
 import common.User.CurrentUserhold;
-import layout.views.SwitchBoardPopUp.SwitchBoardPopUp;
 import layout.views.TaskUI.TaskCardUI;
 import layout.views.TaskUI.TaskDetailsUI;
 
@@ -17,6 +16,7 @@ import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import layout.views.SwitchBoardPopUp.SwitchBoardPopUp;
 import layout.views.project.ProjectUIDropdown;
 import layout.views.sprint.SprintUIDropdown;
 
@@ -41,6 +41,7 @@ public class BoardUI extends JPanel {
     public void renderBoard(List<Task> tasks) {
         if (CurrentUserhold.getUser() != null) {
             //get all task of that particular board || pretty much a population call || tasks now hold all the task of that board
+
             for (int i = 0; i < tasks.size(); i++) {
                 Task task = tasks.get(i);
                 
@@ -57,6 +58,7 @@ public class BoardUI extends JPanel {
                                         TaskDetailsUI details = new TaskDetailsUI(task);
                                         details.setVisible(true);
                                         details.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
                                     } else if (me.isPopupTrigger()) {
                                     	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
                                         menu.show(me.getComponent(), me.getX(), me.getY());
@@ -79,6 +81,7 @@ public class BoardUI extends JPanel {
                                         TaskDetailsUI details = new TaskDetailsUI(task);
                                         details.setVisible(true);
                                         details.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
                                     } else if (me.isPopupTrigger()) {
                                     	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
                                         menu.show(me.getComponent(), me.getX(), me.getY());
@@ -103,6 +106,7 @@ public class BoardUI extends JPanel {
                                         TaskDetailsUI details = new TaskDetailsUI(task);
                                         details.setVisible(true);
                                         details.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
                                     } else if (me.isPopupTrigger()) {
                                     	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
                                         menu.show(me.getComponent(), me.getX(), me.getY());
@@ -112,6 +116,7 @@ public class BoardUI extends JPanel {
                                 	if (me.isPopupTrigger()) {
                                     	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
                                         menu.show(me.getComponent(), me.getX(), me.getY());
+
                                     }
                                 }
                             });
@@ -124,6 +129,7 @@ public class BoardUI extends JPanel {
                                         TaskDetailsUI details = new TaskDetailsUI(task);
                                         details.setVisible(true);
                                         details.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
                                     } else if (me.isPopupTrigger()) {
                                     	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
                                         menu.show(me.getComponent(), me.getX(), me.getY());
@@ -133,6 +139,7 @@ public class BoardUI extends JPanel {
                                 	if (me.isPopupTrigger()) {
                                     	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
                                         menu.show(me.getComponent(), me.getX(), me.getY());
+
                                     }
                                 }
                             });
@@ -174,6 +181,7 @@ public class BoardUI extends JPanel {
     public void refresh() {
         this.getBoard().refresh();
         this.removeAll();
+
         renderBoard(board.read());
     }
 
@@ -235,7 +243,6 @@ public class BoardUI extends JPanel {
     public Board getBoard() {
         return board;
     }
-    
     /**
      * @param board the board to set
      */

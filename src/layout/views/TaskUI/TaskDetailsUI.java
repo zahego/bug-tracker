@@ -1,7 +1,6 @@
 package layout.views.TaskUI;
 
-import common.Comment.CommentsOneTaskHold;
-import common.Enum.TaskType;
+
 import common.Project.Projecthold;
 import java.awt.BorderLayout;
 
@@ -29,16 +28,24 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import layout.views.CalendarWindowViews;
 import layout.views.CommentUI.CommentAddUI;
 import layout.views.screen.ScreenUI;
 
-public class TaskDetailsUI extends JFrame {
+public class TaskDetailsUI extends JFrame implements PropertyChangeListener{
 
     /**
      *
@@ -60,7 +67,7 @@ public class TaskDetailsUI extends JFrame {
     private JLabel reportedDate;
     private JLabel taskStatus;
     private JLabel severity;
-    private JLabel dueDate;
+    private JTextField dueDate;
     private JTextArea fullDescriptionString;
     private JTextArea replicateString;
     private JTextArea SuggestionString;
@@ -73,6 +80,8 @@ public class TaskDetailsUI extends JFrame {
     private JButton addFileButton;
     private JButton updateButton;
     private JButton deleteButton;
+    private boolean checkCalendarVisisble;
+    private Date selDate;
 
     /**
      * Create the frame.
@@ -104,6 +113,8 @@ public class TaskDetailsUI extends JFrame {
         ///////////////////////end of const///////////////////
 
         //////////////////////variable///////////////////////
+
+        checkCalendarVisisble = false;
         taskID = new JLabel(String.valueOf(task.getID()));
         projectID = new JLabel(String.valueOf(task.getProjectID()));
         sprintID = new JLabel(String.valueOf(task.getSprintID()));
@@ -112,17 +123,27 @@ public class TaskDetailsUI extends JFrame {
         taskStatus = new JLabel(task.getStatus().toString());
         severity = new JLabel(String.valueOf(task.getSeverity()));
         System.out.println(String.valueOf(task.getDueDate()));
-        dueDate = new JLabel(Utilities.getDateString(task.getDueDate()));
+        dueDate = new JTextField(Utilities.getDateString(task.getDueDate()));
         fullDescriptionString = new JTextArea(task.getFullDescription());
         replicateString = new JTextArea(task.getToReplicate());
         SuggestionString = new JTextArea(task.getSuggestion());
         imageFile2 = new JLabel("");
         imageFile1 = new JLabel("");
         imageFile3 = new JLabel("");
-        if (task.getAttachedFile() != null) {
-            ImageIcon image = new ImageIcon(task.getAttachedFile().getAbsolutePath());
+        for(int i=0;i<task.getAttachedFile().length;i++){
+        if (task.getAttachedFile()[i] != null) {
+            ImageIcon image = new ImageIcon(task.getAttachedFile()[i].getAbsolutePath());
             image = new ImageIcon(image.getImage().getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH));
+            if(i==0){
             imageFile1.setIcon(image);
+            }
+            else if(i==1){
+              imageFile2.setIcon(image);  
+            }
+            else if(i==2){
+              imageFile3.setIcon(image);  
+            }
+        }
         }
 
         assignerProfilePic = new JLabel("icon");
@@ -343,11 +364,12 @@ public class TaskDetailsUI extends JFrame {
     private void createEvents(Task task) {
         updateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                    task.setQuickSummary(quickSummary.getText());
-                    task.setFullDescription(fullDescriptionString.getText());
-                    task.setToReplicate(replicateString.getText());
-                    task.setSuggestion(SuggestionString.getText());
-                    TaskHold.getTaskList().set(Integer.parseInt(taskID.getText()) - 1, task);
+                task.setQuickSummary(quickSummary.getText());
+                task.setFullDescription(fullDescriptionString.getText());
+                task.setToReplicate(replicateString.getText());
+                task.setDueDate(selDate);
+                task.setSuggestion(SuggestionString.getText());
+                TaskHold.getTaskList().set(Integer.parseInt(taskID.getText()) - 1, task);
 
                 ScreenUI.getLayoutUI().refreshAllBoard();
             }
@@ -373,7 +395,21 @@ public class TaskDetailsUI extends JFrame {
                 int result = file.showSaveDialog(null);
                 //if the user clicks on save in Jfilechooser
                 if (result == JFileChooser.APPROVE_OPTION) {
-                    task.setAttachedFile(file.getSelectedFile());
+                    if (task.getAttachedFile()[0] == null) {
+                        task.getAttachedFile()[0] = file.getSelectedFile();
+                    } else {
+                        if (task.getAttachedFile()[1] == null) {
+                            task.getAttachedFile()[1] = file.getSelectedFile();
+                        } else {
+                            if (task.getAttachedFile()[2] == null) {
+                                task.getAttachedFile()[2] = file.getSelectedFile();
+                            }
+                            else{
+                                System.out.println("full, stop it!!");
+                            }
+                        }
+
+                    }
                 } //if the user cancels
                 else if (result == JFileChooser.CANCEL_OPTION) {
                     System.out.println("No File Select");
@@ -381,5 +417,37 @@ public class TaskDetailsUI extends JFrame {
             }
 
         });
+        CalendarWindowViews calendar = new CalendarWindowViews();
+        calendar.setUndecorated(true);
+        calendar.addPropertyChangeListener(this);
+        
+        dueDate.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                if (checkCalendarVisisble == false) {
+                    calendar.setLocation(dueDate.getLocationOnScreen().x, (dueDate.getLocationOnScreen().y + dueDate.getHeight()));
+                    calendar.setVisible(true);
+                    checkCalendarVisisble = true;
+                } else {
+                    calendar.dispose();
+                    checkCalendarVisisble = false;
+                }
+
+            }
+        });
+    }
+    @Override
+    public void propertyChange(PropertyChangeEvent event) {
+        //get the selected date from the calendar control and set it to the text field
+        if (event.getPropertyName().equals("selectedDate")) {
+
+            java.util.Calendar cal = (java.util.Calendar) event.getNewValue();
+            selDate = cal.getTime();
+            DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyy");
+            String strDate = dateFormat.format(selDate);
+            dueDate.setText(strDate);
+        }
     }
 }
