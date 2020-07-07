@@ -66,12 +66,12 @@ public class AlertUI extends JFrame {
 				alertsend.getTeamDropDown().removeAllItems();
 				for (int j = 0; j < Userhold.getUsers().size(); j++) {
 	                //remove current user
-	                if (Userhold.getUsers().get(j).getID() != CurrentUserhold.getUser().getID()) {
+	               /* if (Userhold.getUsers().get(j).getID() != CurrentUserhold.getUser().getID()) {
 	                    String name = Userhold.getUsers().get(j).getName();
 	                    if (!name.isEmpty()) {
 	                        alertsend.setTeamDropDown(name);
 	                    }
-	                }
+	                }*/
 	                
 	            } alertsend.setVisible(true);
 			}

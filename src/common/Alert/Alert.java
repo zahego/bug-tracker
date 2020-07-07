@@ -61,6 +61,10 @@ public class Alert {
     
     
 
+	public Alert(int i, String text, String text2, int value, int id2, ArrayList<Integer> receivers2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void setcurrentuserID(int currentuserID) {
 		this.currentuserID = currentuserID;
 	}
@@ -122,30 +126,7 @@ public class Alert {
 	
 	
 
-	public String getSenderName() {
-		return null;
-	}
-
-	public String getSenderRole() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getReceiverName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getReceiverRole() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getStatus() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-    
+	
     
    
 }

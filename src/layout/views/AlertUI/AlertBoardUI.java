@@ -14,6 +14,7 @@ import common.Alert.AlertHold;
 import common.AlertBoard.AlertBoard;
 import common.Board.Board;
 import common.Enum.BoardType;
+import common.Project.Projecthold;
 import common.Task.Task;
 import common.User.CurrentUserhold;
 import layout.views.screen.ScreenUI;
@@ -39,15 +40,17 @@ public class AlertBoardUI extends JPanel {
 	        
 	    }
 
+	
 
 	
 
 	private void renderAlertBoard(List<Alert> alerts) {
 		// TODO Auto-generated method stub
+		this.removeAll();
 		if (CurrentUserhold.getUser() != null) {
             //get all task of that particular board || pretty much a population call || tasks now hold all the task of that board
 		
-		//System.out.println("TEst Here : " + CurrentUserhold.getUser().getID());
+		
 			//List<Alert> alerts = getAlertBoard().getAlerts();
 			for (int i = 0; i < alerts.size(); i++) {
 				Alert alert = alerts.get(i);

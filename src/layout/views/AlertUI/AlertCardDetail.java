@@ -75,7 +75,7 @@ public class AlertCardDetail extends JFrame {
 		
 		StatusLabel = new JLabel("Status :");
 		
-		Status = new JLabel(alert.getStatus());
+		Status = new JLabel();
 		
 		if(alert.getSender()==(CurrentUserhold.getUser().getID())){
 			Status = new JLabel("SENT");
