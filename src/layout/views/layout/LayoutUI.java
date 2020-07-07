@@ -601,7 +601,7 @@ public class LayoutUI extends javax.swing.JPanel {
 
     	@Override
     	public void componentRemoved(ContainerEvent arg0) {
-    		revalidate();
+    		LayoutUI.this.revalidate();
     	}
     	
     }

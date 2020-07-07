@@ -79,6 +79,15 @@ public class BoardUI extends JPanel {
                                         TaskDetailsUI details = new TaskDetailsUI(task);
                                         details.setVisible(true);
                                         details.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                                    } else if (me.isPopupTrigger()) {
+                                    	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
+                                        menu.show(me.getComponent(), me.getX(), me.getY());
+                                    }
+                                }
+                                public void mouseReleased(MouseEvent me) {
+                                	if (me.isPopupTrigger()) {
+                                    	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
+                                        menu.show(me.getComponent(), me.getX(), me.getY());
                                     }
                                 }
                             });
@@ -94,6 +103,15 @@ public class BoardUI extends JPanel {
                                         TaskDetailsUI details = new TaskDetailsUI(task);
                                         details.setVisible(true);
                                         details.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                                    } else if (me.isPopupTrigger()) {
+                                    	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
+                                        menu.show(me.getComponent(), me.getX(), me.getY());
+                                    }
+                                }
+                                public void mouseReleased(MouseEvent me) {
+                                	if (me.isPopupTrigger()) {
+                                    	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
+                                        menu.show(me.getComponent(), me.getX(), me.getY());
                                     }
                                 }
                             });
@@ -106,6 +124,15 @@ public class BoardUI extends JPanel {
                                         TaskDetailsUI details = new TaskDetailsUI(task);
                                         details.setVisible(true);
                                         details.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                                    } else if (me.isPopupTrigger()) {
+                                    	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
+                                        menu.show(me.getComponent(), me.getX(), me.getY());
+                                    }
+                                }
+                                public void mouseReleased(MouseEvent me) {
+                                	if (me.isPopupTrigger()) {
+                                    	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
+                                        menu.show(me.getComponent(), me.getX(), me.getY());
                                     }
                                 }
                             });

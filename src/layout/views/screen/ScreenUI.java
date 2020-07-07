@@ -6,6 +6,11 @@
 package layout.views.screen;
 import layout.views.FilterUI.FilterUI;
 import java.awt.*;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.event.ContainerEvent;
+import java.awt.event.ContainerListener;
+
 import javax.swing.*;
 import layout.views.layout.LayoutUI;
 import layout.views.project.ProjectUIDropdown;
@@ -48,7 +53,7 @@ public class ScreenUI extends javax.swing.JFrame{
         sprintUI = new layout.views.sprint.SprintUIDropdown();
         settingUI = new layout.views.setting.SettingUI();
         layoutUI = new layout.views.layout.LayoutUI();
-
+        
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
