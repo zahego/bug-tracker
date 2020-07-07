@@ -34,7 +34,7 @@ public class AlertHold {
 	                String name = (String) alert.get("name");
 	                String message = (String) alert.get("message");
 
-	                List<Integer> receiverIDs = new ArrayList<>();
+	                ArrayList<Integer> receiverIDs = new ArrayList<>();
 	                
 	                JSONArray receiverFromDB = (JSONArray) alert.get("receiverIDs");
 	                if (receiverFromDB != null) {

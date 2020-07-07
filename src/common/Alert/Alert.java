@@ -17,7 +17,7 @@ public class Alert {
     private String name;
     private String message;
     int sender;
-    List<Integer> receivers;
+    ArrayList<Integer> receivers;
     private CurrentUserhold currentuserhold;
     int currentuserID;
    
@@ -35,7 +35,7 @@ public class Alert {
 		
 	}
     
-    public Alert (int iD, String name, String message, List<Integer> receivers, int sender  ) {
+    public Alert (int iD, String name, String message, ArrayList<Integer> receivers, int sender  ) {
 		this.ID = iD;
 		this.name = name;
 		this.message = message;
@@ -47,7 +47,7 @@ public class Alert {
 		
 	}
     
-    public Alert (int iD,String name, String message, List<Integer> receivers ) {
+    public Alert (int iD,String name, String message, ArrayList<Integer> receivers ) {
 		this.ID = iD;
 		this.name = name;
 		this.message = message;
@@ -77,7 +77,7 @@ public class Alert {
 		return sender;
 	}
     
-	public List<Integer> getReceivers() {
+	public ArrayList<Integer> getReceivers() {
 		return receivers;
 	}
 

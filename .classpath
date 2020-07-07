@@ -5,5 +5,6 @@
 	<classpathentry kind="lib" path="C:/Users/admin/Desktop/BT Project Old File/bug-tracker - merge ver 1/lib/JPlanner.jar"/>
 	<classpathentry kind="lib" path="C:/Users/admin/Downloads/json-simple-1.1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/admin/Downloads/javax.mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin/Desktop/commons-lang3-3.9.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

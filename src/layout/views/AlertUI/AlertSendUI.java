@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+
 import layout.views.project.ProjectUIDropdown;
 import layout.views.screen.ScreenUI;
 
@@ -34,10 +35,15 @@ import javax.swing.event.PopupMenuListener;
 
 import common.Alert.Alert;
 import common.Alert.AlertHold;
+import common.Comment.CommentsOneTaskHold;
+import common.Enum.TaskStatus;
+import common.Enum.TaskType;
 import common.Project.Project;
 import common.Project.Projecthold;
+import common.Task.Task;
 import common.Task.TaskHold;
 import common.Team.Userhold;
+import common.Ultilities.Utilities;
 import common.User.CurrentUserhold;
 
 import javax.swing.event.PopupMenuEvent;
@@ -62,6 +68,7 @@ public class AlertSendUI extends JFrame {
 	private JComboBox<String> teamDropDown_1;
 	private DefaultListModel<String> listModel = new DefaultListModel<>();
 	private JTextField IDint;
+	private DefaultListModel<String> listReceiverModel  = new DefaultListModel<>();
 	/**
 	 * Launch the application.
 	 */
@@ -86,13 +93,15 @@ public class AlertSendUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				//Add to AlertHold
 				
-				Alert addAlert = createAlertFromFields();
+				//Alert addAlert = createAlertFromFields();
 
 		        //TODO refactor this method to make better sense and reduce time complexity
 		        
 		        //for inserting new Alert
 		        
-		        AlertHold.insert(addAlert);
+		        //AlertHold.insert(addAlert);
+		        addAlert();
+               
 		        ((JFrame) SendButton.getParent().getParent().getParent().getParent()).dispose();
 		        
 		        //Close the Alert create window
@@ -375,7 +384,44 @@ public class AlertSendUI extends JFrame {
 
     }
    
+    public void addAlert() {
+        //add task and notify main UI
+        ArrayList<Integer> receivers = new ArrayList<>();
+        if (listReceiverModel.size() == 0) {
+        	receivers = AlertHold.getAlertList().get((int) ((ComboItem) teamDropDown.getSelectedItem()).getValue() - 1).getReceivers();
+        } else {
+            for (int i = 0; i < listReceiverModel.size(); i++) {
+                int userID = Userhold.searchNmeOutputID(listReceiverModel.get(i));
+                receivers.add(userID);
+            }
+            //have to add admin
+            if (!receivers.contains(8)) {
+            	receivers.add(8);
+            }
+            //add the current user who create the project, which is usually PM
+            if (!receivers.contains(CurrentUserhold.getUser().getID())) {
+            	receivers.add(CurrentUserhold.getUser().getID());
+            }
+        }
+
+        Alert alert = new Alert(AlertHold.getAlertList().size() + 1,
+                NameString.getText(),messageString.getText(), receivers);
+        
+        alert.addReceivers((int) ((ComboItem) teamDropDown.getSelectedItem()).getValue());
+        AlertHold.addAlert(alert);
+       
+            
+            
+            //ScreenUI.getLayoutUI().addTask();
+            /*for (int i = 0; i < this.backlog.getBoard().getNewTasks().size(); i++) {
+                System.out.println(this.backlog.getBoard().getNewTasks().get(i).getID());
+                System.out.println(this.backlog.getBoard().getNewTasks().get(i).getQuickSummary());
+            }*/
+
+        }
     
+    
+
     
     /**
      * @return the nameString
@@ -415,4 +461,39 @@ public class AlertSendUI extends JFrame {
     public void setIDint(int IDint) {
         this.IDint.setText(String.valueOf(IDint));
     }
+    
+    
 }
+
+class ComboItem {
+
+    private String key;
+    private Object value;
+
+    public ComboItem(String key, String value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    public ComboItem(String key, int value) {
+        this.key = key;
+        this.value = value;
+    }
+
+   
+
+    @Override
+    public String toString() {
+        return key;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public Object getValue() {
+        return value;
+    }}
+
+
+

@@ -1,5 +1,6 @@
 package layout.views.AlertUI;
 
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -15,6 +16,7 @@ import common.Board.Board;
 import common.Enum.BoardType;
 import common.Task.Task;
 import common.User.CurrentUserhold;
+import layout.views.screen.ScreenUI;
 
 
 public class AlertBoardUI extends JPanel {
@@ -31,7 +33,7 @@ public class AlertBoardUI extends JPanel {
 		board = new AlertBoard();
 		initcomponent();
 		eventhandler();
-		renderAlertBoard();
+		renderAlertBoard(board.read());
 		
 	        
 	        
@@ -40,19 +42,19 @@ public class AlertBoardUI extends JPanel {
 
 	
 
-	private void renderAlertBoard() {
+	private void renderAlertBoard(List<Alert> alerts) {
 		// TODO Auto-generated method stub
 		if (CurrentUserhold.getUser() != null) {
             //get all task of that particular board || pretty much a population call || tasks now hold all the task of that board
 		
 		//System.out.println("TEst Here : " + CurrentUserhold.getUser().getID());
-			List<Alert> alerts = getAlertBoard().getAlerts();
+			//List<Alert> alerts = getAlertBoard().getAlerts();
 			for (int i = 0; i < alerts.size(); i++) {
 				Alert alert = alerts.get(i);
 				
 				
 				//System.out.println("TEst Here : " + alert.getReceivers());
-				if(alert.getReceivers().contains(CurrentUserhold.getUser().getID())){
+				if(alert.getReceivers().contains(CurrentUserhold.getUser().getID()) || alert.getSender()==CurrentUserhold.getUser().getID()){
 				AlertCard card = new AlertCard(alert);
 				
 				card.addMouseListener(new MouseAdapter() { 
@@ -61,11 +63,17 @@ public class AlertBoardUI extends JPanel {
 			        		    AlertCardDetail details = new AlertCardDetail(alert);
 			        		    details.setVisible(true);
 			        		    details.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			        		    
+			        		  
 			        	  }
 			          } 
 			    });
 				//System.out.println("TEst Here : " + alert.getReceivers());
 				this.add(card);
+				ScreenUI.getAlertButton().setForeground(Color.RED);
+				
+			}else {
+				ScreenUI.getAlertButton().setForeground(Color.BLACK);
 				
 			}}}}
 	                
@@ -75,7 +83,7 @@ public class AlertBoardUI extends JPanel {
 	 public void refresh() {
 	        this.getAlertBoard().refresh();
 	        this.removeAll();
-	        renderAlertBoard();
+	        renderAlertBoard(board.read());
 	    }
 
 	private AlertBoard getAlertBoard() {
