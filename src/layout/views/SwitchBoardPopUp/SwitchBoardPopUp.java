@@ -41,8 +41,10 @@ public class SwitchBoardPopUp extends JPopupMenu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				task.setStatus(TaskStatus.ONNEW);
-				ScreenUI.getLayoutUI().addTask();
+				if(task.getStatus()!=TaskStatus.ONNEW) {
+					task.setStatus(TaskStatus.ONNEW);
+					ScreenUI.getLayoutUI().addTask();
+				}
 			}
     		
     	});
@@ -50,8 +52,10 @@ public class SwitchBoardPopUp extends JPopupMenu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				task.setStatus(TaskStatus.ONTAKEN);
-				ScreenUI.getLayoutUI().addTask();
+				if(task.getStatus()!=TaskStatus.ONTAKEN) {
+					task.setStatus(TaskStatus.ONTAKEN);
+					ScreenUI.getLayoutUI().addTask();
+				}
 			}
     		
     	});
@@ -59,8 +63,10 @@ public class SwitchBoardPopUp extends JPopupMenu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				task.setStatus(TaskStatus.ONGOING);
-				ScreenUI.getLayoutUI().addTask();
+				if(task.getStatus()!=TaskStatus.ONGOING) {
+					task.setStatus(TaskStatus.ONGOING);
+					ScreenUI.getLayoutUI().addTask();
+				}
 			}
     		
     	});
@@ -68,8 +74,10 @@ public class SwitchBoardPopUp extends JPopupMenu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				task.setStatus(TaskStatus.ONREVIEW);
-				ScreenUI.getLayoutUI().addTask();
+				if(task.getStatus()!=TaskStatus.ONREVIEW) {
+					task.setStatus(TaskStatus.ONREVIEW);
+					ScreenUI.getLayoutUI().addTask();
+				}
 			}
     		
     	});
@@ -77,8 +85,10 @@ public class SwitchBoardPopUp extends JPopupMenu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				task.setStatus(TaskStatus.ONFINISH);
-				ScreenUI.getLayoutUI().addTask();
+				if(task.getStatus()!=TaskStatus.ONFINISH) {
+					task.setStatus(TaskStatus.ONFINISH);
+					ScreenUI.getLayoutUI().addTask();
+				}
 			}
     		
     	});
