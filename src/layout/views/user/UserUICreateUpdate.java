@@ -5,12 +5,9 @@
  */
 package layout.views.user;
 
-import common.User.Role;
+import common.Enum.Role;
 import common.User.User;
 import common.Task.TaskHold;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.swing.ImageIcon;
 import common.Project.Projecthold;
 import layout.views.screen.ScreenUI;
 import common.Team.Userhold;
@@ -109,6 +106,7 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
         IDLabel.setText("ID:");
 
         errorText.setForeground(new java.awt.Color(255, 51, 51));
+        errorText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         errorText.setText("error");
 
         createUpdateLabel.setText("CREATE USER");
@@ -135,32 +133,32 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(170, 170, 170)
-                        .addComponent(errorText))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(150, 150, 150)
                         .addComponent(createUpdateLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(emailLabel)
-                            .addComponent(passwordLabel)
-                            .addComponent(IDLabel)
-                            .addComponent(imageLabel)
-                            .addComponent(nameLabel)
-                            .addComponent(accessRangeLabel)
-                            .addComponent(roleLabel)
-                            .addComponent(confirmPasswordLabel))
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(IDint)
-                            .addComponent(nameString)
-                            .addComponent(passwordString)
-                            .addComponent(emailString)
-                            .addComponent(ImageImage, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                            .addComponent(accessRangeInt)
-                            .addComponent(roleRole, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                            .addComponent(confirmPasswordString))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(emailLabel)
+                                    .addComponent(passwordLabel)
+                                    .addComponent(IDLabel)
+                                    .addComponent(imageLabel)
+                                    .addComponent(nameLabel)
+                                    .addComponent(accessRangeLabel)
+                                    .addComponent(roleLabel)
+                                    .addComponent(confirmPasswordLabel))
+                                .addGap(36, 36, 36)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(IDint)
+                                    .addComponent(nameString)
+                                    .addComponent(passwordString)
+                                    .addComponent(emailString)
+                                    .addComponent(ImageImage, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                                    .addComponent(accessRangeInt)
+                                    .addComponent(roleRole, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                                    .addComponent(confirmPasswordString)))
+                            .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

@@ -5,17 +5,9 @@
  */
 package layout.views.layout;
 
-import common.Comment.CommentsAllHold;
 import common.Enum.BoardType;
-import common.Task.TaskHold;
 import layout.views.BoardUI.BoardUI;
-import layout.views.TaskCreate;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import layout.views.TaskUI.TaskCreate;
 
 /**
  *
@@ -30,9 +22,6 @@ public class LayoutUI extends javax.swing.JPanel {
 
         initComponents();
         setPMinimizeHidden();
-        TaskHold.loadTask();
-        CommentsAllHold.populateCommentsAllHold();
-        TaskHold.loadEmptyTask();
         addTask();
     }
     private BoardUI backlog;

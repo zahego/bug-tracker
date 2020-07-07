@@ -4,16 +4,15 @@
  * and open the template in the editor.
  */
 package layout.views.screen;
+import common.Comment.CommentsAllHold;
+import common.Task.TaskHold;
+import java.awt.Toolkit;
 import layout.views.FilterViews;
-import java.awt.*;
-import javax.swing.*;
-import layout.views.layout.LayoutUI;
 import layout.views.project.ProjectUIDropdown;
 import layout.views.sprint.SprintUIDropdown;
 import layout.views.team.TeamUIDropdown;
 import layout.views.user.UserUIDropdown;
 import layout.views.setting.SettingUI;
-import javax.swing.GroupLayout.Alignment;
 /**
  *
  * @author tug70
@@ -26,7 +25,9 @@ public class ScreenUI extends javax.swing.JFrame{
      * Creates new form ScreenUI
      */
     public ScreenUI() {
-        
+        CommentsAllHold.populateCommentsAllHold();
+        TaskHold.loadTask();
+        TaskHold.loadEmptyTask();
         initComponents();
     }
 

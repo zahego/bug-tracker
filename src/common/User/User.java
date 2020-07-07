@@ -5,6 +5,7 @@
  */
 package common.User;
 
+import common.Enum.Role;
 import common.Task.TaskHold;
 import common.Project.Project;
 import common.Project.Projecthold;

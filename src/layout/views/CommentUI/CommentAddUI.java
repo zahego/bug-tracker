@@ -12,6 +12,7 @@ import common.Task.TaskHold;
 import common.User.CurrentUserhold;
 import java.util.ArrayList;
 import java.util.Date;
+import layout.views.screen.ScreenUI;
 
 /**
  *
@@ -154,6 +155,7 @@ public class CommentAddUI extends javax.swing.JFrame {
             TaskHold.getTaskList().get(taskID-1).getComments().setComment(new ArrayList<Comment>());
         }
         TaskHold.getTaskList().get(taskID-1).getComments().getComment().add(comment);
+        ScreenUI.getLayoutUI().refreshAllBoard();
         this.dispose();
     }//GEN-LAST:event_addButtonActionPerformed
 

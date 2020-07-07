@@ -4,8 +4,6 @@ import javax.swing.JPanel;
 
 import common.Board.Board;
 import common.Enum.BoardType;
-import common.Enum.TaskStatus;
-import common.Project.Projecthold;
 import common.Task.Task;
 import common.Task.TaskHold;
 import common.User.CurrentUserhold;

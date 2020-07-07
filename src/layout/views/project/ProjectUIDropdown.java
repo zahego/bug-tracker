@@ -7,20 +7,9 @@ package layout.views.project;
 
 import common.Project.Projecthold;
 import common.Team.Userhold;
-import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-import javax.swing.SwingUtilities;
-import layout.views.layout.LayoutUI;
 import layout.views.screen.ScreenUI;
 import layout.views.setting.SettingUI;
-import layout.views.team.TeamUIDropdown;
 import common.User.CurrentUserhold;
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
 
 /**
  *

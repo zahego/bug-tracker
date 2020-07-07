@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import com.mindfusion.scheduling.Calendar;
 import com.mindfusion.scheduling.ThemeType;
 import com.mindfusion.common.*;
-import java.awt.Toolkit;
 
 
 public class CalendarWindowViews extends JFrame {	
@@ -123,6 +122,7 @@ public class CalendarWindowViews extends JFrame {
 	}
 	
 	//adds a listener for the PropertyChange event
+        @Override
 	 public void addPropertyChangeListener(PropertyChangeListener listener) {
 		 changeSupport.addPropertyChangeListener(listener);
 	    }

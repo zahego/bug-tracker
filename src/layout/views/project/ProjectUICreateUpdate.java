@@ -15,8 +15,6 @@ import layout.views.screen.ScreenUI;
 import common.User.CurrentUserhold;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JList;
 
 /**
  *

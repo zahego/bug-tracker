@@ -1,24 +1,18 @@
 package common.Task;
 
-import common.Comment.Comment;
 import common.Comment.CommentsOneTaskHold;
 import java.util.List;
-import java.io.FileReader;
 import java.util.ArrayList;
 
 import common.Enum.BoardType;
 import common.Enum.TaskStatus;
 import common.Enum.TaskType;
-import common.Task.Task;
 import common.Ultilities.Utilities;
 import java.util.Date;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import layout.views.project.ProjectUIDropdown;
-import layout.views.sprint.SprintUIDropdown;
-import common.User.CurrentUserhold;
+import java.io.File;
 
 public class TaskHold {
 
@@ -27,7 +21,7 @@ public class TaskHold {
 
     private static int currentNewTaskListID = 0;
 
-    //////////////////now this method can handle rerender everytime it is recalled////////////////////////////
+    /////////////////strictly for loading now////////////////////////////
     public static void loadTask() {
 
         getTaskList().clear();
@@ -49,10 +43,10 @@ public class TaskHold {
                 //get the comment
                 CommentsOneTaskHold commentHold = new CommentsOneTaskHold();
                 //this is because we can't access to the curent position of the current task. So use ID-1 as a replacement
-                if (Comment.getSizeCommentsOfOneTaskFromDatabase(userID - 1) != 0) {
-                    commentHold.populateCommentsOneTakHold(userID - 1);
-                }
-
+                //if (Comment.getSizeCommentsOfOneTaskFromDatabase(userID - 1) != 0) {
+                    commentHold.populateCommentsOneTakHold(userID);
+                //}
+                File[] file=new File[3];
                 //create a new task for adding
                 Task new_task = new Task(
                         userID,
@@ -68,33 +62,25 @@ public class TaskHold {
                         "",
                         (String) task.get("fullDescription"),
                         "",
+                        file,
                         Long.valueOf((long) task.get("assignerID")).intValue(),
                         assigneeIDs
                 );
-
-                /*if (CurrentUserhold.getUser() != null) {
-                        if (userIDContainsInTaskAssigneeID == true) {
-                            if (ProjectUIDropdown.getProjectAccessID() == -1) {
-                                if (SprintUIDropdown.getSprintAccessID() == -1) {
-                                    getTaskList().add(new_task);
-                                } else if (SprintUIDropdown.getSprintAccessID() == Long.valueOf((long) task.get("sprintID")).intValue()) {
-                                    getTaskList().add(new_task);
-                                }
-                            } else if (ProjectUIDropdown.getProjectAccessID() == Long.valueOf((long) task.get("projectID")).intValue()) {
-                                if (SprintUIDropdown.getSprintAccessID() == -1) {
-                                    getTaskList().add(new_task);
-                                } else if (SprintUIDropdown.getSprintAccessID() == Long.valueOf((long) task.get("sprintID")).intValue()) {
-                                    getTaskList().add(new_task);
-                                }
-                            }
-                        }
-                    }*/
                 getTaskList().add(new_task);
             }
             // }
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    public static int getTaskHoldSizeFromDatabase(){
+        try{
+        JSONArray tasks = Utilities.readFile("task");
+        return tasks.size();
+        }
+        catch(Exception e){
+            return -1;
         }
     }
 

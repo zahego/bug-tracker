@@ -7,7 +7,6 @@ package layout.views.user;
 
 import common.User.CurrentUserhold;
 import common.User.User;
-import com.sun.xml.internal.ws.api.Component;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;

@@ -20,12 +20,15 @@ public class Board {
     }
 
     public void refresh() {
+        
         setTasks(new ArrayList<>(TaskHold.filter(getType())));
     }
 
     public List<Task> filter(int projectID, int sprintID, int userID) {
+        System.out.println("reach heref");
         List<Task> ret = new ArrayList<>();
         for (int i = 0; i < this.getTasks().size(); i++) {
+            System.out.println("from board: "+this.getTasks().get(i).getID());
             if ((projectID == -1 || getTasks().get(i).getProjectID() == projectID) 
                     && (sprintID == -1 || getTasks().get(i).getSprintID() == sprintID) 
                     && (userID == -1 || getTasks().get(i).getAssignees().contains(userID))) {

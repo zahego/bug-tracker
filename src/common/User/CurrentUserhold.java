@@ -5,7 +5,6 @@
  */
 package common.User;
 
-import common.User.User;
 import common.Team.Userhold;
 
 /**

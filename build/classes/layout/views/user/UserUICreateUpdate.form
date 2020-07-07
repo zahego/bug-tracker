@@ -27,12 +27,8 @@
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               <Component id="buttonSection" min="-2" max="-2" attributes="0"/>
           </Group>
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
-                      <Component id="errorText" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
                       <Component id="createUpdateLabel" min="-2" max="-2" attributes="0"/>
@@ -40,25 +36,30 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="41" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="emailLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="passwordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="IDLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="imageLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="accessRangeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="roleLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="confirmPasswordLabel" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="IDint" alignment="0" max="32767" attributes="0"/>
-                          <Component id="nameString" alignment="0" max="32767" attributes="0"/>
-                          <Component id="passwordString" alignment="0" max="32767" attributes="0"/>
-                          <Component id="emailString" alignment="0" max="32767" attributes="0"/>
-                          <Component id="ImageImage" alignment="0" pref="161" max="32767" attributes="0"/>
-                          <Component id="accessRangeInt" alignment="0" max="32767" attributes="0"/>
-                          <Component id="roleRole" alignment="0" pref="161" max="32767" attributes="0"/>
-                          <Component id="confirmPasswordString" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="emailLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="passwordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="IDLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="imageLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="accessRangeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="roleLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="confirmPasswordLabel" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="IDint" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="nameString" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="passwordString" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="emailString" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="ImageImage" alignment="0" pref="161" max="32767" attributes="0"/>
+                                  <Component id="accessRangeInt" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="roleRole" alignment="0" pref="161" max="32767" attributes="0"/>
+                                  <Component id="confirmPasswordString" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="errorText" alignment="0" min="-2" pref="306" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -210,6 +211,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="ff" type="rgb"/>
         </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="error"/>
       </Properties>
     </Component>

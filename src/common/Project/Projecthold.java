@@ -5,7 +5,6 @@
  */
 package common.Project;
 import java.util.ArrayList;
-import common.Project.Project;
 /**
  *
  * @author tug70

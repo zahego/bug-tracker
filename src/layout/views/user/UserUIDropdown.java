@@ -6,10 +6,6 @@
 package layout.views.user;
 
 import common.User.CurrentUserhold;
-import java.awt.Component;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import layout.views.layout.LayoutUI;
 import layout.views.LogInUI.LogInUI;
 import layout.views.screen.ScreenUI;
 
