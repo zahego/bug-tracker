@@ -119,6 +119,12 @@ public class AlertCard extends JPanel {
 		// TODO Auto-generated constructor stub
 		initcomponent();
 		eventhandler();
+		
+		
+		
+		
+		
+		
 	}
 
 

@@ -17,6 +17,8 @@ import common.Enum.BoardType;
 import common.Project.Projecthold;
 import common.Task.Task;
 import common.User.CurrentUserhold;
+import layout.views.BoardUI.BoardUI;
+import layout.views.SwitchBoardPopUp.SwitchBoardPopUp;
 import layout.views.screen.ScreenUI;
 
 public class AlertBoardUI extends JPanel {
@@ -37,17 +39,15 @@ public class AlertBoardUI extends JPanel {
 
 	private void renderAlertBoard(List<Alert> alerts) {
 		// TODO Auto-generated method stub
-		this.removeAll();
 		if (CurrentUserhold.getUser() != null) {
 			// get all task of that particular board || pretty much a population call ||
 			// tasks now hold all the task of that board
 
 			// List<Alert> alerts = getAlertBoard().getAlerts();
-			System.out.println("alert size:"+alerts.size());
+			//System.out.println("alert size:"+alerts.size());
 			for (int i = 0; i < alerts.size(); i++) {
-				
 				Alert alert = alerts.get(i);
-
+				//render by project 
 				// System.out.println("TEst Here : " + alert.getReceivers());
 				if (alert.getReceivers().contains(CurrentUserhold.getUser().getID())
 						|| alert.getSender() == CurrentUserhold.getUser().getID()) {
@@ -60,7 +60,7 @@ public class AlertBoardUI extends JPanel {
 								details.setVisible(true);
 								details.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-							}
+							} 
 						}
 					});
 					// System.out.println("TEst Here : " + alert.getReceivers());
@@ -68,6 +68,7 @@ public class AlertBoardUI extends JPanel {
 					ScreenUI.getAlertButton().setForeground(Color.RED);
 
 				} else {
+					
 					ScreenUI.getAlertButton().setForeground(Color.BLACK);
 
 				}

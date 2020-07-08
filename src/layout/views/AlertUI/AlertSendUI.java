@@ -53,6 +53,7 @@ import layout.views.BoardUI.BoardUI;
 
 
 import javax.swing.event.PopupMenuEvent;
+import java.awt.Toolkit;
 
 public class AlertSendUI extends JFrame {
 
@@ -90,6 +91,8 @@ public class AlertSendUI extends JFrame {
 	 * Create the frame.
 	 */
 	public AlertSendUI() {
+		setTitle("Bug Tracker 3000 - Alert Sending");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(AlertSendUI.class.getResource("/layout/resource/BugTracker.png")));
 		alertboardUI = new AlertBoardUI();
 		initComponent();
 		eventHandler();
@@ -261,7 +264,8 @@ public class AlertSendUI extends JFrame {
         teamDropDown_1.removeAllItems();
         for (int i = 0; i < users.size(); i++) {
             for (int j = 0; j < Projecthold.getProjects().get(currentProjID-1).getTeam().size(); j++) {
-                if (users.get(i).getID() == Projecthold.getProjects().get(currentProjID-1).getTeam().get(j)) {
+            	
+                if (users.get(i).getID() == Projecthold.getProjects().get(currentProjID-1).getTeam().get(j) ) {
                 	teamDropDown_1.addItem(new ComboItem(users.get(i).getName(), users.get(i).getID()));
                 }
             }
@@ -319,11 +323,13 @@ public class AlertSendUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				
+				
                 for (int j = 0; j < Projecthold.getProjects().size(); j++) {
+                	if(Projecthold.getProjects().get(j).getTeam().contains(CurrentUserhold.getUser().getID())) {
                     if (Projecthold.getProjects().get(j).getName().equals(ProjectAssignBar.getSelectedItem().toString())) {
                         projectID = Projecthold.getProjects().get(j).getID();
                         break;
-                    }
+                    }}
                 }
                 
                 int currentProjID = (int) ((ComboItem) ProjectAssignBar.getSelectedItem()).getValue();
@@ -522,22 +528,24 @@ public class AlertSendUI extends JFrame {
         }
 
         Alert alert = new Alert(AlertHold.getAlertList().size() + 1,
-                NameString.getText(), messageString.getText(), receivers);
+                NameString.getText(), messageString.getText(), receivers, CurrentUserhold.getUser().getID());
         
         alert.addReceivers((int) ((ComboItem) teamDropDown_1.getSelectedItem()).getValue());
         AlertHold.addAlert(alert);
        // System.out.println("Hello Herre" + AlertHold.getAlertList().get(AlertHold.getAlertList().size()-1).getName());
         
-        if (this.alertboardUI != null) {
+       if (this.alertboardUI != null) {
             this.alertboardUI.refresh();
             AlertUI.addAlert();
         	/*System.out.println("form alertsendui"+this.alertboardUI.getAlertBoard().read().size());
         	this.alertboardUI.getAlertBoard().clear();
         	System.out.println("form alertsendui"+this.alertboardUI.getAlertBoard().read().size());
-        	this.alertboardUI = null;
-        	*/
+        	this.alertboardUI = null;*/
+        	
         }
     }
+
+	
 }
 
 class ComboItem {

@@ -44,6 +44,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import layout.views.CalendarWindowViews;
 import layout.views.CommentUI.CommentAddUI;
 import layout.views.screen.ScreenUI;
+import java.awt.Toolkit;
 
 public class TaskDetailsUI extends JFrame implements PropertyChangeListener{
 
@@ -87,6 +88,8 @@ public class TaskDetailsUI extends JFrame implements PropertyChangeListener{
      * Create the frame.
      */
     public TaskDetailsUI(Task task) {
+    	setTitle("Bug Tracker 3000 - Task Details");
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(TaskDetailsUI.class.getResource("/layout/resource/BugTracker.png")));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 556, 760);
         contentPane = new JPanel();

@@ -11,6 +11,7 @@ import common.Task.TaskHold;
 import common.Project.Projecthold;
 import layout.views.screen.ScreenUI;
 import common.Team.Userhold;
+import java.awt.Toolkit;
 
 /**
  *
@@ -22,6 +23,8 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
      * Creates new form UserUICreateUpdate
      */
     public UserUICreateUpdate() {
+    	setTitle("Bug Tracker 3000 - Create User");
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(UserUICreateUpdate.class.getResource("/layout/resource/BugTracker.png")));
         initComponents();
     }
 

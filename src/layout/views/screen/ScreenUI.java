@@ -38,11 +38,13 @@ public class ScreenUI extends javax.swing.JFrame{
      * Creates new form ScreenUI
      */
     public ScreenUI() {
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(ScreenUI.class.getResource("/layout/resource/BugTracker.png")));
         CommentsAllHold.populateCommentsAllHold();
         TaskHold.loadTask();
         TaskHold.loadEmptyTask();
         initComponents();
         AlertRender();
+        AlertHold.loadAlert(); 
     }
 
     /**
@@ -76,7 +78,7 @@ public class ScreenUI extends javax.swing.JFrame{
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Dev Screen");
+        setTitle("Bug Tracker 3000 - Screen");
         setBounds(new java.awt.Rectangle(0, 0, 100, 100));
 
         productName.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 24)); // NOI18N

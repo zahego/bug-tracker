@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JRadioButton;
+import java.awt.Toolkit;
 
 /**
  *
@@ -42,6 +43,8 @@ public class SortUI extends javax.swing.JFrame {
      * Creates new form SortUI
      */
     public SortUI(BoardUI boardUI) {
+    	setTitle("Bug Tracker 3000 - Sort");
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(SortUI.class.getResource("/layout/resource/BugTracker.png")));
     	toSort = boardUI;
         initComponents();
     }
@@ -53,7 +56,6 @@ public class SortUI extends javax.swing.JFrame {
      */
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(280, 340));
         confirmSortButton = new JButton("Confirm");
         confirmSortButton.addActionListener(new ActionListener() {

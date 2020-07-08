@@ -13,12 +13,12 @@ import common.User.*;
 
 
 public class Alert {
-	private int ID;
-    private String name;
-    private String message;
+	int ID;
+    String name;
+    String message;
     int sender;
-    ArrayList<Integer> receivers;
-    private CurrentUserhold currentuserhold;
+    List<Integer> receivers;
+    CurrentUserhold currentuserhold;
     int currentuserID;
    
     
@@ -51,7 +51,7 @@ public class Alert {
 		this.ID = iD;
 		this.name = name;
 		this.message = message;
-		this.sender = sender;
+		//this.sender = sender;
 		this.receivers = receivers;
 		this.currentuserID = -1;
 		this.currentuserhold = new CurrentUserhold();
@@ -81,7 +81,7 @@ public class Alert {
 		return sender;
 	}
     
-	public ArrayList<Integer> getReceivers() {
+	public List<Integer> getReceivers() {
 		return receivers;
 	}
 

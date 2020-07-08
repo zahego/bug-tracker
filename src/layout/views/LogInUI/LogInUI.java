@@ -11,6 +11,7 @@ import common.User.CurrentUserhold;
 import common.User.User;
 import layout.views.AlertUI.AlertUI;
 import layout.views.screen.ScreenUI;
+import java.awt.Toolkit;
 
 
 
@@ -24,6 +25,8 @@ public class LogInUI extends javax.swing.JFrame {
      * Creates new form LogInUI
      */
     public LogInUI() {
+    	setTitle("Bug Tracker 3000 - Log In");
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(LogInUI.class.getResource("/layout/resource/BugTracker.png")));
         initComponents();
         this.getErrorLabel().setVisible(false);
     }

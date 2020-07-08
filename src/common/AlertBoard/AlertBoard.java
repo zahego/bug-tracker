@@ -3,14 +3,14 @@ package common.AlertBoard;
 import java.util.ArrayList;
 
 import java.util.List;
-
+import org.apache.commons.lang3.StringUtils;
 import common.Alert.Alert;
 import common.Alert.AlertHold;
 
 
 public class AlertBoard {
 	
-	private static List<Alert> alerts;
+	private List<Alert> alerts;
         
 	
 	public AlertBoard() {
@@ -23,7 +23,7 @@ public class AlertBoard {
 	}
 	public void refresh() {
 		
-        setAlerts(new ArrayList<>(AlertBoard.filter(8)));
+        setAlerts(new ArrayList<>(AlertHold.add()));
       //  
     }
 	
@@ -48,7 +48,7 @@ public class AlertBoard {
     /**
      * @return the tasks
      */
-    public static List<Alert> getAlerts() {
+    public List<Alert> getAlerts() {
         return alerts;
     }
 
