@@ -22,12 +22,12 @@ import java.awt.event.ActionEvent;
 
 public class AlertUI extends JFrame {
 
-	private JPanel contentPane;
-	private JButton SendAlertButton;
-	private JScrollPane AlertBoardPanel;
-	private JButton DeleteButton;
-	private JScrollPane AlertPanel;
-	
+	private static JPanel contentPane;
+	private static JButton SendAlertButton;
+	private static JScrollPane AlertBoardPanel;
+	private static JButton DeleteButton;
+	private static JScrollPane AlertPanel;
+	private static AlertBoardUI alertboard;
 	
 	
 	
@@ -47,16 +47,16 @@ public class AlertUI extends JFrame {
 	
 	}
 	
-	private AlertBoardUI alertboard;
 	
-	private void addAlert() {
+	
+	public static void addAlert() {
 		alertboard = new AlertBoardUI();
 		// TODO Auto-generated method stub
 		AlertPanel.setViewportView(alertboard);
 		
 	}
 
-	private void eventhandler() {
+	public static void eventhandler() {
 		// TODO Auto-generated method stub
 		SendAlertButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -88,7 +88,7 @@ public class AlertUI extends JFrame {
 		
 	}
 
-	private void initcomponent() {
+	public void initcomponent() {
 		// TODO Auto-generated method stub
 		setBounds(100, 100, 655, 518);
 		contentPane = new JPanel();

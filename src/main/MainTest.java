@@ -30,9 +30,9 @@ public class MainTest {
         Project webber = new Project(9, "webber", new Date(), new Date(), new Date(), "strick", new ArrayList<>());
         //System.out.println(dev.getID());
 
-        /*dev.setID(3);
-        CurrentUserhold.setUser(User.getUserFromDatabase(0));
-        CommentsAllHold.populateCommentsAllHold();
+        dev.setID(8);
+        CurrentUserhold.setUser(User.getUserFromDatabase(7));
+        /*CommentsAllHold.populateCommentsAllHold();
         TaskHold.loadTask();*/
         
         //System.out.println("from main test "+CommentsAllHold.getAllCommentHold().size());

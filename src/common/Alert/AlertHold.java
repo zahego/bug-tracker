@@ -61,7 +61,7 @@ public class AlertHold {
 	       
 	    }
 	    
-	    public static List<Alert> add() {
+		public static List<Alert> add() {
 	        List<Alert> ret = new ArrayList<>();
 	        //System.out.print("Add" + getAlertList().size() );
 	                for (int i = 0; i < getAlertList().size(); i++) {

@@ -90,6 +90,7 @@ public class AlertSendUI extends JFrame {
 	 * Create the frame.
 	 */
 	public AlertSendUI() {
+		alertboardUI = new AlertBoardUI();
 		initComponent();
 		eventHandler();
 		if (!listModel.isEmpty()) {
@@ -102,23 +103,23 @@ public class AlertSendUI extends JFrame {
 	private void eventHandler() {
 		// TODO Auto-generated method stub
 		SendButton.addActionListener(new ActionListener() {
-			private AlertBoardUI alertboardUI;
+			//private AlertBoardUI alertboardUI;
 
 			public void actionPerformed(ActionEvent arg0) {
 				//Add to AlertHold
 				
-				Alert addAlert = createAlertFromFields();
+				//Alert addAlert = createAlertFromFields();
 
 		        //for inserting new Alert
 		        
-		        AlertHold.insert(addAlert);
+		       // AlertHold.insert(addAlert);
 		        //AlertBoardUI.renderAlertBoard();
 
 		        
 		        
 		        
 		        
-		       // addTask();
+		       addAlert();
 		        ((JFrame) SendButton.getParent().getParent().getParent().getParent()).dispose();
 		        
 		        //Close the Alert create window
@@ -229,6 +230,8 @@ public class AlertSendUI extends JFrame {
         SelectedUserList = new javax.swing.JList<>();
         SelectedUserList_1 = new JList();
         teamDropDown_1 = new JComboBox<ComboItem>();
+        ProjectAssignBar = new JComboBox<ComboItem>();
+         //alertboardUI = new AlertBoardUI();
         teamDropDown_1.addPopupMenuListener(new PopupMenuListener() {
         	public void popupMenuCanceled(PopupMenuEvent e) {
         	}
@@ -244,11 +247,13 @@ public class AlertSendUI extends JFrame {
        // teamDropDown_1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
       // System.out.println("PrintDropDown" + teamDropDown.getSelectedItem());
         
-        /* List<Project> projects = Projecthold.getProjects();
+        List<Project> projects = Projecthold.getProjects();
         
         for (int i = 0; i < projects.size(); i++) {
         	//System.out.println("TEST MOOO"  + projects.get(i).getID());
-            ProjectAssignBar.addItem(new ComboItem(projects.get(i).getName(), projects.get(i).getID()));
+        	ComboItem x= new ComboItem(projects.get(i).getName(), projects.get(i).getID());
+        	System.out.println("Test Herre :" + x.getValue());
+            ProjectAssignBar.addItem(x);
         }
 
         users = Userhold.getUsers();
@@ -260,7 +265,7 @@ public class AlertSendUI extends JFrame {
                 	teamDropDown_1.addItem(new ComboItem(users.get(i).getName(), users.get(i).getID()));
                 }
             }
-        }*/
+        }
        
         
         SelectedUserList_1.setModel(new javax.swing.AbstractListModel<String>() {
@@ -308,7 +313,8 @@ public class AlertSendUI extends JFrame {
 		
 		ProjectAssignBarLabel = new JLabel("Project");
 		
-		ProjectAssignBar = new JComboBox<ComboItem>();
+		
+		
 		ProjectAssignBar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -495,7 +501,7 @@ public class AlertSendUI extends JFrame {
         this.IDint.setText(String.valueOf(IDint));
     }
     
-    public void addTask() {
+    public void addAlert() {
         //add task and notify main UI
         ArrayList<Integer> receivers = new ArrayList<>();
         if (listReceiverModel.size() == 0) {
@@ -520,12 +526,16 @@ public class AlertSendUI extends JFrame {
         
         alert.addReceivers((int) ((ComboItem) teamDropDown_1.getSelectedItem()).getValue());
         AlertHold.addAlert(alert);
+       // System.out.println("Hello Herre" + AlertHold.getAlertList().get(AlertHold.getAlertList().size()-1).getName());
+        
         if (this.alertboardUI != null) {
             this.alertboardUI.refresh();
-            
-            
-            
-
+            AlertUI.addAlert();
+        	/*System.out.println("form alertsendui"+this.alertboardUI.getAlertBoard().read().size());
+        	this.alertboardUI.getAlertBoard().clear();
+        	System.out.println("form alertsendui"+this.alertboardUI.getAlertBoard().read().size());
+        	this.alertboardUI = null;
+        	*/
         }
     }
 }
@@ -545,10 +555,7 @@ class ComboItem {
         this.value = value;
     }
 
-    public ComboItem(String key, TaskType value) {
-        this.key = key;
-        this.value = value;
-    }
+   
 
     @Override
     public String toString() {
