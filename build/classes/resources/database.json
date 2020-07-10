@@ -1308,7 +1308,7 @@
         }, {
             "id": 8,
             "role": "ADMIN",
-            "image": "src/resources/admin.png",
+            "image": "resources/admin.png",
             "name": "Annonymous Hackivity",
             "email": "1",
             "password": "notgonnatellyou",

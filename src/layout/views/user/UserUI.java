@@ -7,6 +7,7 @@ package layout.views.user;
 
 import common.User.CurrentUserhold;
 import common.User.User;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
@@ -223,7 +224,18 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
     public void setPortrait(ImageIcon Portrait) {
         this.Portrait.setIcon(Portrait);
     }
-    
+    public ClassLoader getClassLoader(){
+        ClassLoader cLoader=null;
+        try{
+        Class cls = Class.forName("layout.views.user.UserUI");
+            // returns the ClassLoader object associated with this Class
+            cLoader = cls.getClassLoader();
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+            return cLoader;
+    }
     
     public void setUserFromDatabase(int num){
         //put this into current user hold
@@ -236,9 +248,14 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
         this.setUserRole(CurrentUserhold.getUser().getRole().name());
         
         //set icon
-        ImageIcon icon = new ImageIcon(CurrentUserhold.getUser().getProfilePic());
+        try{
+        ImageIcon icon = new ImageIcon(ImageIO.read(getClassLoader().getResource(CurrentUserhold.getUser().getProfilePic())));
         icon = new ImageIcon(icon.getImage().getScaledInstance(110, 110,  java.awt.Image.SCALE_SMOOTH)); 
         this.setPortrait(icon);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
         
     }
     public void setUserAtNull(){
