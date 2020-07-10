@@ -5,7 +5,11 @@
  */
 package common.Sprint;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -88,11 +92,31 @@ public class Sprint {
     public static Sprint getSprintFromDatabase(int num) {
         Sprint sprintGet = new Sprint(-1, -1, "", -1);
         JSONParser jsonParser = new JSONParser();
+        
         try {
-            FileReader reader = new FileReader("src/resources/database.json");
+            
+        
+        Class cls = Class.forName("common.Sprint.Sprint");
+    	// returns the ClassLoader object assosiated with this Class
+    	ClassLoader cLoader = cls.getClassLoader();
+    	InputStream inputStream = cLoader.getResourceAsStream("resources/database.json");
+    	if (inputStream != null ) {
+    		BufferedReader streamReader = new BufferedReader (
+    				new InputStreamReader(inputStream,"UTF-8"));
+    		StringBuilder responseStrBuilder = new StringBuilder();
+    		
+    		String inputStr;
+    		while ((inputStr = streamReader.readLine()) != null) {
+    		responseStrBuilder.append(inputStr);	
+    		
+    	}
+    	
 
-            //Read JSON file
-            JSONObject obj = (JSONObject) jsonParser.parse(reader);
+        //Read JSON file
+        JSONObject obj = (JSONObject) jsonParser.parse(responseStrBuilder.toString());
+      
+        
+        
             //get the sprint aray
             JSONArray sprintObject = (JSONArray) obj.get("sprint");
             //get the sprint at sprint array of "num" position
@@ -104,7 +128,7 @@ public class Sprint {
             int projectID = ((Long) sprint.get("_projectID")).intValue();
             sprintGet = new Sprint(ID, name, duration, projectID);
 
-        } catch (Exception e) {
+        }} catch (Exception e) {
             System.out.println(e);
         }
         return sprintGet;

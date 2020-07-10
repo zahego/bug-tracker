@@ -13,8 +13,12 @@ import java.util.Date;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class TaskHold {
 
@@ -27,8 +31,14 @@ public class TaskHold {
     public static void loadTask() {
 
         getTaskList().clear();
+        
         try {
-            JSONArray tasks = Utilities.readFile("task");
+        	
+    		
+    		
+
+    	    JSONArray tasks = Utilities.readFile("task");
+        		
             for (Object taskObj : tasks) {
                 JSONObject task = (JSONObject) taskObj;
                 int userID = Long.valueOf((long) task.get("id")).intValue();

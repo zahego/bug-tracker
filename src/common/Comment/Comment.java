@@ -6,7 +6,11 @@
 package common.Comment;
 
 import common.Enum.TaskStatus;
+
+import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.json.simple.JSONArray;
@@ -40,10 +44,26 @@ public class Comment {
         Comment commentGet = new Comment(-1, -1, -1, TaskStatus.ONNEW, "", new Date());
         JSONParser jsonParser = new JSONParser();
         try {
-            FileReader reader = new FileReader("src/resources/database.json");
+
+        	Class cls = Class.forName("common.Comment.Comment");
+        	// returns the ClassLoader object assosiated with this Class
+        	ClassLoader cLoader = cls.getClassLoader();
+        	InputStream inputStream = cLoader.getResourceAsStream("resources/database.json");
+        	if (inputStream != null ) {
+        		BufferedReader streamReader = new BufferedReader (
+        				new InputStreamReader(inputStream,"UTF-8"));
+        		StringBuilder responseStrBuilder = new StringBuilder();
+        		
+        		String inputStr;
+        		while ((inputStr = streamReader.readLine()) != null) {
+        		responseStrBuilder.append(inputStr);	
+        		
+        	}
+        	
 
             //Read JSON file
-            JSONObject obj = (JSONObject) jsonParser.parse(reader);
+            JSONObject obj = (JSONObject) jsonParser.parse(responseStrBuilder.toString());
+          
             //get the comment aray
             JSONArray taskArray = (JSONArray) obj.get("task");
             JSONObject currentTaskObject = (JSONObject) taskArray.get(taskPosition);
@@ -59,7 +79,7 @@ public class Comment {
             Date date = new SimpleDateFormat("MM-dd-yyyy").parse((String) currentCommentObject.get("commentDate"));
             commentGet = new Comment(taskID, commentID, commenterID, taskStatus, comment, date);
 
-        } catch (Exception e) {
+        }} catch (Exception e) {
             System.out.println(e);
         }
         return commentGet;
@@ -69,17 +89,31 @@ public class Comment {
         int projectNumber=0;
         JSONParser jsonParser = new JSONParser();
         try {
-            FileReader reader = new FileReader("src/resources/database.json");
+        	Class cls = Class.forName("common.Comment.Comment");
+        	// returns the ClassLoader object assosiated with this Class
+        	ClassLoader cLoader = cls.getClassLoader();
+        	InputStream inputStream = cLoader.getResourceAsStream("resources/database.json");
+        	if (inputStream != null ) {
+        		BufferedReader streamReader = new BufferedReader (
+        				new InputStreamReader(inputStream,"UTF-8"));
+        		StringBuilder responseStrBuilder = new StringBuilder();
+        		
+        		String inputStr;
+        		while ((inputStr = streamReader.readLine()) != null) {
+        		responseStrBuilder.append(inputStr);	
+        		
+        	}
+        	
 
             //Read JSON file
-            JSONObject obj = (JSONObject) jsonParser.parse(reader);
+            JSONObject obj = (JSONObject) jsonParser.parse(responseStrBuilder.toString());
             //get the comment aray
             JSONArray taskObjects = (JSONArray) obj.get("task");
             JSONObject currentTaskObject = (JSONObject) taskObjects.get(num);
             JSONArray currentCommentObjects =(JSONArray) currentTaskObject.get("comment");
             projectNumber=currentCommentObjects.size();
 
-        } catch (Exception e) {
+        }} catch (Exception e) {
             System.out.println(e);
         }
         return projectNumber;
@@ -89,10 +123,24 @@ public class Comment {
         int projectNumber=0;
         JSONParser jsonParser = new JSONParser();
         try {
-            FileReader reader = new FileReader("src/resources/database.json");
+        	Class cls = Class.forName("common.Comment.Comment");
+        	// returns the ClassLoader object assosiated with this Class
+        	ClassLoader cLoader = cls.getClassLoader();
+        	InputStream inputStream = cLoader.getResourceAsStream("resources/database.json");
+        	if (inputStream != null ) {
+        		BufferedReader streamReader = new BufferedReader (
+        				new InputStreamReader(inputStream,"UTF-8"));
+        		StringBuilder responseStrBuilder = new StringBuilder();
+        		
+        		String inputStr;
+        		while ((inputStr = streamReader.readLine()) != null) {
+        		responseStrBuilder.append(inputStr);	
+        		
+        	}
+        	
 
             //Read JSON file
-            JSONObject obj = (JSONObject) jsonParser.parse(reader);
+            JSONObject obj = (JSONObject) jsonParser.parse(responseStrBuilder.toString());
             //get the comment aray
             JSONArray taskObjects = (JSONArray) obj.get("task");
             for(int i=0;i<taskObjects.size();i++){
@@ -106,7 +154,7 @@ public class Comment {
                 //}
             }
 
-        } catch (Exception e) {
+        }} catch (Exception e) {
             System.out.println(e);
         }
         return projectNumber;

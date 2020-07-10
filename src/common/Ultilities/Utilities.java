@@ -1,6 +1,9 @@
 package common.Ultilities;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,14 +39,42 @@ public class Utilities {
 	
 	public static JSONArray readFile(String s) throws Exception {
 		JSONParser jsonParser = new JSONParser();
+		JSONArray arr = null;
         try {
-            FileReader reader = new FileReader("src/resources/database.json");
-            JSONObject obj = (JSONObject) jsonParser.parse(reader);
-            JSONArray arr = (JSONArray) obj.get(s);
-            return arr;
-        } catch (Exception e) {
+        	Class cls = Class.forName("common.Task.TaskHold");
+        	// returns the ClassLoader object assosiated with this Class
+        	ClassLoader cLoader = cls.getClassLoader();
+        	InputStream inputStream = cLoader.getResourceAsStream("resources/database.json");
+        	if (inputStream != null ) {
+        		BufferedReader streamReader = new BufferedReader (
+        				new InputStreamReader(inputStream,"UTF-8"));
+        		StringBuilder responseStrBuilder = new StringBuilder();
+        		
+        		String inputStr;
+        		while ((inputStr = streamReader.readLine()) != null) {
+        		responseStrBuilder.append(inputStr);	
+        		
+        	}
+        	
+
+            //Read JSON file
+            //JSONObject obj = (JSONObject) jsonParser.parse(responseStrBuilder.toString());
+          
+
+    	   // JSONArray alerts = Utilities.readFile("alert");
+        		JSONObject obj = (JSONObject) jsonParser.parse(responseStrBuilder.toString());
+        	
+/////////////////////////////////////////////////////////
+           /* FileReader reader = new FileReader("src/resources/database.json");
+            JSONObject obj = (JSONObject) jsonParser.parse(reader);*/
+        		arr = (JSONArray) obj.get(s);
+            
+        } return arr;
+        	} catch (Exception e) {
+        	
         	throw e;
         }
+		
 	}
 	
 	public static int[] makeSequence(int begin, int end) {
