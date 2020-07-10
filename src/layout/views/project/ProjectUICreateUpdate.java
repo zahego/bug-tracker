@@ -15,6 +15,7 @@ import layout.views.screen.ScreenUI;
 import common.User.CurrentUserhold;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import java.awt.Toolkit;
 
 /**
  *
@@ -28,6 +29,7 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame {
      * Creates new form ProjectUICreate1
      */
     public ProjectUICreateUpdate() {
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(ProjectUICreateUpdate.class.getResource("/layout/resource/BugTracker.png")));
         initComponents();
         if (!listModel.isEmpty()) {
             listModel.clear();
@@ -74,7 +76,7 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame {
         selectedUserList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Create Project");
+        setTitle("Bug Tracker 3000 - Create Project");
         setLocation(new java.awt.Point(100, 100));
 
         IDint.setEditable(false);

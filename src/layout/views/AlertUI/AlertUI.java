@@ -19,15 +19,16 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class AlertUI extends JFrame {
 
-	private JPanel contentPane;
-	private JButton SendAlertButton;
-	private JScrollPane AlertBoardPanel;
-	private JButton DeleteButton;
-	private JScrollPane AlertPanel;
-	
+	private static JPanel contentPane;
+	private static JButton SendAlertButton;
+	private static JScrollPane AlertBoardPanel;
+	private static JButton DeleteButton;
+	private static JScrollPane AlertPanel;
+	private static AlertBoardUI alertboard;
 	
 	
 	
@@ -37,26 +38,27 @@ public class AlertUI extends JFrame {
 	 * 
 	 */
 	public AlertUI() {
+		setTitle("Bug Tracker 3000 - Alert System");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(AlertUI.class.getResource("/layout/resource/BugTracker.png")));
 		 
 	        
-	   AlertHold.loadAlert();  
-	   AlertHold.loadEmptyAlert();
+	   
 		initcomponent();
 		eventhandler();
 		addAlert();
 	
 	}
 	
-	private AlertBoardUI alertboard;
 	
-	private void addAlert() {
+	
+	public static void addAlert() {
 		alertboard = new AlertBoardUI();
 		// TODO Auto-generated method stub
 		AlertPanel.setViewportView(alertboard);
 		
 	}
 
-	private void eventhandler() {
+	public static void eventhandler() {
 		// TODO Auto-generated method stub
 		SendAlertButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -65,13 +67,8 @@ public class AlertUI extends JFrame {
 				alertsend.setIDint(ID);
 				alertsend.getTeamDropDown().removeAllItems();
 				for (int j = 0; j < Userhold.getUsers().size(); j++) {
-	                //remove current user
-	                if (Userhold.getUsers().get(j).getID() != CurrentUserhold.getUser().getID()) {
-	                    String name = Userhold.getUsers().get(j).getName();
-	                    if (!name.isEmpty()) {
-	                        alertsend.setTeamDropDown(name);
-	                    }
-	                }
+	               
+					
 	                
 	            } alertsend.setVisible(true);
 			}
@@ -88,7 +85,7 @@ public class AlertUI extends JFrame {
 		
 	}
 
-	private void initcomponent() {
+	public void initcomponent() {
 		// TODO Auto-generated method stub
 		setBounds(100, 100, 655, 518);
 		contentPane = new JPanel();
@@ -107,20 +104,20 @@ public class AlertUI extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(AlertBoardPanel, GroupLayout.PREFERRED_SIZE, 594, GroupLayout.PREFERRED_SIZE)
+						.addComponent(AlertBoardPanel, GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
 						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
 							.addComponent(DeleteButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addComponent(SendAlertButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)))
-					.addContainerGap(21, Short.MAX_VALUE))
+					.addGap(21))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(21)
-					.addComponent(AlertBoardPanel, GroupLayout.PREFERRED_SIZE, 353, GroupLayout.PREFERRED_SIZE)
+					.addComponent(AlertBoardPanel, GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(SendAlertButton)
-					.addPreferredGap(ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+					.addGap(11)
 					.addComponent(DeleteButton)
 					.addContainerGap())
 		);

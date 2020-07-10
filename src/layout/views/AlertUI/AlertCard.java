@@ -57,11 +57,11 @@ public class AlertCard extends JPanel {
 			}
 		
 		
-		SenderRole = new JLabel(alert.getSenderRole());
+		SenderRole = new JLabel();
 		
 		StatusLabel = new JLabel("Status: ");
 		
-		Status = new JLabel(alert.getStatus());
+		Status = new JLabel();
 			if(alert.getSender()==(CurrentUserhold.getUser().getID())){
 				Status = new JLabel("SENT");
 			} else {
@@ -119,6 +119,12 @@ public class AlertCard extends JPanel {
 		// TODO Auto-generated constructor stub
 		initcomponent();
 		eventhandler();
+		
+		
+		
+		
+		
+		
 	}
 
 

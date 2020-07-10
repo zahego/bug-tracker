@@ -3,7 +3,7 @@ package common.AlertBoard;
 import java.util.ArrayList;
 
 import java.util.List;
-
+import org.apache.commons.lang3.StringUtils;
 import common.Alert.Alert;
 import common.Alert.AlertHold;
 
@@ -18,17 +18,22 @@ public class AlertBoard {
 		alerts = new ArrayList<>(AlertHold.add());
         
 	}
+	public void clear() {
+		alerts = new ArrayList<>();
+	}
 	public void refresh() {
-        setAlerts(new ArrayList<>());
+		
+        setAlerts(new ArrayList<>(AlertHold.add()));
+      //  
     }
 	
-	
-	public List<Alert> filter(int userID){
+	//System.out.println("Print Here Here :");
+	public static List<Alert> filter(int userID){
 		
 		List<Alert> ret = new ArrayList<>();
-		for(int i = 0; i < this.getAlerts().size(); i++) {
-			if(userID==-1||getAlerts().get(i).getReceivers().contains(userID)) {
-				ret.add(getAlerts().get(i));
+		for(int i = 0; i < AlertHold.getAlertList().size(); i++) {
+			if(userID==-1||AlertHold.getAlertList().get(i).getReceivers().contains(userID)) {
+				ret.add(AlertHold.getAlertList().get(i));
 			}
 		}
 		return ret;

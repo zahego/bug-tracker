@@ -3,10 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/M:/netbean/project/bug%20tracker/src/resources/database.json</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/screen/ScreenUI.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/LogInUI/LogInUI.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/layout/LayoutUI.java</file>
+=======
+            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/project/ProjectUIDropdown.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/common/User/User.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/FilterUI/FilterUI.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/CalendarWindowViews.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/main/MainTest.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/project/NewClass.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/nbproject/build-impl.xml</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/CalendarWindowUI/CalendarWindowUI.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/team/TeamUIDropdown.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/common/Alert/AlertHold.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/common/Task/TaskHold.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/user/UserUI.java</file>
+>>>>>>> anh-4
         </group>
     </open-files>
 </project-private>

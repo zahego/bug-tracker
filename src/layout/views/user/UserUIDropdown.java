@@ -5,7 +5,10 @@
  */
 package layout.views.user;
 
+import java.awt.Color;
+
 import common.User.CurrentUserhold;
+import layout.views.AlertUI.AlertUI;
 import layout.views.LogInUI.LogInUI;
 import layout.views.screen.ScreenUI;
 
@@ -55,6 +58,7 @@ public class UserUIDropdown extends javax.swing.JPanel {
             getAuthentication().setText("Log in");
             //getUserUI().setVisible(false);
             CurrentUserhold.setUser(null);
+            ScreenUI.getAlertButton().setForeground(Color.BLACK);
             ScreenUI.getLayoutUI().addTask();
             ScreenUI.renderUI();
         }

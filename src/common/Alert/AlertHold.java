@@ -1,5 +1,6 @@
 package common.Alert;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -8,7 +9,10 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import common.Alert.Alert;
+import common.Enum.TaskStatus;
+import common.Enum.TaskType;
 import common.Project.Project;
+import common.Task.Task;
 import common.Ultilities.Utilities;
 
 
@@ -34,32 +38,51 @@ public class AlertHold {
 	                String name = (String) alert.get("name");
 	                String message = (String) alert.get("message");
 
-	                List<Integer> receiverIDs = new ArrayList<>();
+	                ArrayList<Integer> receiverIDs = new ArrayList<>();
 	                
 	                JSONArray receiverFromDB = (JSONArray) alert.get("receiverIDs");
 	                if (receiverFromDB != null) {
 	                    for (int i = 0; i < receiverFromDB.size(); i++) {
 	                    	receiverIDs.add(((Long) receiverFromDB.get(i)).intValue());
 	                    	 
-	                    	
+	                    }	
 	                    }
 	                    
-	                    
-	                } 	getAlertList().add(new Alert(iD, name, message, receiverIDs, senderID)) ;              
+	                   
+	                  //create a new task for adding
+	                    Alert new_alert = new Alert(
+	                            iD,
+	                            (String) alert.get("name"),
+	                            (String) alert.get("message"),
+	                            receiverIDs,
+	                            senderID
+	                    ); 
+ 
+	                 getAlertList().add(new_alert) ;         
              
-	            }
+	            } 
 	            }
 
 	        catch (Exception e) {
 	            e.printStackTrace();
-	        }}
+	        }
+	    	}
+	    
+	    public static int getAlertHoldSizeFromDatabase() {
+	        try {
+	            JSONArray alerts = Utilities.readFile("alert");
+	            return alerts.size();
+	        } catch (Exception e) {
+	            return -1;
+	        }
+	    }
 	    
 	    public static void loadEmptyAlert() {
 	        getEmptyAlertList().add(new Alert(0, "Nothing here", "Nothing here"));
 	       
 	    }
 	    
-	    public static List<Alert> add() {
+		public static List<Alert> add() {
 	        List<Alert> ret = new ArrayList<>();
 	                for (int i = 0; i < getAlertList().size(); i++) {
 	                        ret.add(getAlertList().get(i));

@@ -39,7 +39,7 @@
            "id": 7,
             "name": "Alert 3 from tester",
             "message": "this is a fake Alert #1, Have Fun",
-            "senderID": 6,
+            "senderID": 5,
             "receiverIDs": [1, 2, 5, 7, 8]
         }],
 

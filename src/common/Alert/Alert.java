@@ -13,12 +13,12 @@ import common.User.*;
 
 
 public class Alert {
-	private int ID;
-    private String name;
-    private String message;
+	int ID;
+    String name;
+    String message;
     int sender;
     List<Integer> receivers;
-    private CurrentUserhold currentuserhold;
+    CurrentUserhold currentuserhold;
     int currentuserID;
    
     
@@ -35,7 +35,7 @@ public class Alert {
 		
 	}
     
-    public Alert (int iD, String name, String message, List<Integer> receivers, int sender  ) {
+    public Alert (int iD, String name, String message, ArrayList<Integer> receivers, int sender  ) {
 		this.ID = iD;
 		this.name = name;
 		this.message = message;
@@ -47,11 +47,11 @@ public class Alert {
 		
 	}
     
-    public Alert (int iD,String name, String message, List<Integer> receivers ) {
+    public Alert (int iD,String name, String message, ArrayList<Integer> receivers ) {
 		this.ID = iD;
 		this.name = name;
 		this.message = message;
-		this.sender = sender;
+		//this.sender = sender;
 		this.receivers = receivers;
 		this.currentuserID = -1;
 		this.currentuserhold = new CurrentUserhold();
@@ -60,6 +60,10 @@ public class Alert {
 	}
     
     
+
+	public Alert(int i, String text, String text2, int value, int id2, ArrayList<Integer> receivers2) {
+		// TODO Auto-generated constructor stub
+	}
 
 	public void setcurrentuserID(int currentuserID) {
 		this.currentuserID = currentuserID;
@@ -122,30 +126,7 @@ public class Alert {
 	
 	
 
-	public String getSenderName() {
-		return null;
-	}
-
-	public String getSenderRole() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getReceiverName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getReceiverRole() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getStatus() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-    
+	
     
    
 }

@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import com.mindfusion.scheduling.Calendar;
 import com.mindfusion.scheduling.ThemeType;
 import com.mindfusion.common.*;
+import java.awt.Toolkit;
 
 
 public class CalendarWindowUI extends JFrame {	
@@ -25,6 +26,7 @@ public class CalendarWindowUI extends JFrame {
 
 	public CalendarWindowUI()
 	{
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CalendarWindowUI.class.getResource("/layout/resource/BugTracker.png")));
 		initComponents();
 		createEvents();
 		

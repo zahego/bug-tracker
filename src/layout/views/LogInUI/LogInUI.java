@@ -5,10 +5,13 @@
  */
 package layout.views.LogInUI;
 
+import common.Alert.AlertHold;
 import common.Team.Userhold;
 import common.User.CurrentUserhold;
 import common.User.User;
+import layout.views.AlertUI.AlertUI;
 import layout.views.screen.ScreenUI;
+import java.awt.Toolkit;
 
 
 
@@ -22,6 +25,8 @@ public class LogInUI extends javax.swing.JFrame {
      * Creates new form LogInUI
      */
     public LogInUI() {
+    	setTitle("Bug Tracker 3000 - Log In");
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(LogInUI.class.getResource("/layout/resource/BugTracker.png")));
         initComponents();
         this.getErrorLabel().setVisible(false);
     }
@@ -130,6 +135,13 @@ public class LogInUI extends javax.swing.JFrame {
                 ScreenUI.getLayoutUI().addTask();
                 ScreenUI.getUserUI().renderUI();
                 //ScreenUI.getUserUI().setVisible(true);
+                AlertUI alert = new AlertUI();
+                for (int i = 0; i< AlertHold.getAlertList().size(); i++ ) {
+                if (AlertHold.getAlertList().get(i).getReceivers().contains(CurrentUserhold.getUser().getID())) {
+                alert.setVisible(true);
+                }else {
+                	alert.setVisible(false);
+                }}
                 this.dispose();
             } else {
                 getErrorLabel().setVisible(true);
@@ -140,7 +152,7 @@ public class LogInUI extends javax.swing.JFrame {
             this.setErrorLabel("Email or password must both be filled to continue");
         }
     }//GEN-LAST:event_submitButtonActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */

@@ -13,6 +13,7 @@ import common.User.CurrentUserhold;
 import java.util.ArrayList;
 import java.util.Date;
 import layout.views.screen.ScreenUI;
+import java.awt.Toolkit;
 
 /**
  *
@@ -24,6 +25,8 @@ public class CommentAddUI extends javax.swing.JFrame {
      * Creates new form CommentAddUI
      */
     public CommentAddUI() {
+    	setTitle("Bug Tracker 3000 - Create Comment");
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(CommentAddUI.class.getResource("/layout/resource/BugTracker.png")));
         initComponents();
     }
 
