@@ -191,22 +191,26 @@ public class User {
         User userGet = new User(-1, Role.DEVELOPER, "", "", "", "", -1);
         JSONParser jsonParser = new JSONParser();
         try {
-            Class cls = Class.forName("common.User.User");
-            // returns the ClassLoader object associated with this Class
-            ClassLoader cLoader = cls.getClassLoader();
-            InputStream inputStream = cLoader.getResourceAsStream("resources/database.json");
-            //FileReader reader = new FileReader("src/resources/database.json");
-            if (inputStream != null) {
-                BufferedReader streamReader = new BufferedReader(
-                        new InputStreamReader(inputStream, "UTF-8"));
-                StringBuilder responseStrBuilder = new StringBuilder();
+        	
+        	Class cls = Class.forName("common.User.User");
+        	// returns the ClassLoader object assosiated with this Class
+        	ClassLoader cLoader = cls.getClassLoader();
+        	InputStream inputStream = cLoader.getResourceAsStream("resources/database.json");
+        	if (inputStream != null ) {
+        		BufferedReader streamReader = new BufferedReader (
+        				new InputStreamReader(inputStream,"UTF-8"));
+        		StringBuilder responseStrBuilder = new StringBuilder();
+        		
+        		String inputStr;
+        		while ((inputStr = streamReader.readLine()) != null) {
+        		responseStrBuilder.append(inputStr);	
+        		
+        	}
+        	
 
-                String inputStr;
-                while ((inputStr = streamReader.readLine()) != null) {
-                    responseStrBuilder.append(inputStr);
-                }
             //Read JSON file
             JSONObject obj = (JSONObject) jsonParser.parse(responseStrBuilder.toString());
+          
             //get the user aray
             JSONArray userObject = (JSONArray) obj.get("user");
             //get the user at user array of "num" position
@@ -225,8 +229,9 @@ public class User {
 
             //TODO rethink about having projecthold and taskhold
             userGet = new User(ID, role, name, profilePic, email, password, accessRange);
-            }
-        } catch (Exception e) {
+
+
+        }} catch (Exception e) {
             System.out.println(e);
         }
         return userGet;

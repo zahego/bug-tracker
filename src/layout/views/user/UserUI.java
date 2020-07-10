@@ -229,17 +229,18 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
     public void setPortrait(ImageIcon Portrait) {
         this.Portrait.setIcon(Portrait);
     }
-    public ClassLoader getClassLoader(){
-        ClassLoader cLoader=null;
-        try{
-        Class cls = Class.forName("layout.views.user.UserUI");
-            // returns the ClassLoader object associated with this Class
-            cLoader = cls.getClassLoader();
-        }
-        catch(Exception e){
-            System.out.println(e);
-        }
-            return cLoader;
+
+    
+    public ClassLoader getClassLoader() {
+    	ClassLoader cLoader = null;
+    	try {
+    		Class cls = Class.forName("layout.views.user.UserUI");
+    		// returns the ClassLoader object assosciated with this Class
+    		cLoader = cls.getClassLoader();
+    	}
+    	catch (Exception e) {
+    		System.out.println(e);
+    	} return cLoader;
     }
     
     public void setUserFromDatabase(int num){
@@ -253,15 +254,15 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
         this.setUserRole(CurrentUserhold.getUser().getRole().name());
         
         //set icon
-        try{
+        try {
         ImageIcon icon = new ImageIcon(ImageIO.read(getClassLoader().getResource(CurrentUserhold.getUser().getProfilePic())));
-        icon = new ImageIcon(icon.getImage().getScaledInstance(110, 110,  java.awt.Image.SCALE_SMOOTH)); 
+        // should set int for size here
+        icon = new ImageIcon(icon.getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH)); 
         this.setPortrait(icon);
         }
-        catch(Exception e){
-            System.out.println(e);
+        catch (Exception e) {
+        	System.out.println(e);
         }
-        
     }
     public void setUserAtNull(){
         
@@ -270,10 +271,7 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
         this.setUserID("-1");
         this.setUserRole("NO ONE");
         
-        //set icon
-        ImageIcon icon = new ImageIcon("src/resources/tempIcon.png");
-        icon = new ImageIcon(icon.getImage().getScaledInstance(110, 110,  java.awt.Image.SCALE_SMOOTH)); 
-        this.setPortrait(icon);
+        
         
     }
     

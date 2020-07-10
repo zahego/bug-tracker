@@ -5,7 +5,10 @@
  */
 package common.Project;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -115,10 +118,31 @@ public class Project {
         Project projectGet = new Project(-1, "", new Date(), new Date(), new Date(), "", new ArrayList<>());
         JSONParser jsonParser = new JSONParser();
         try {
-            FileReader reader = new FileReader("src/resources/database.json");
+            /*FileReader reader = new FileReader("src/resources/database.json");
 
             //Read JSON file
-            JSONObject obj = (JSONObject) jsonParser.parse(reader);
+            JSONObject obj = (JSONObject) jsonParser.parse(reader);*/
+        	
+        	
+        	Class cls = Class.forName("common.Project.Project");
+        	// returns the ClassLoader object assosiated with this Class
+        	ClassLoader cLoader = cls.getClassLoader();
+        	InputStream inputStream = cLoader.getResourceAsStream("resources/database.json");
+        	if (inputStream != null ) {
+        		BufferedReader streamReader = new BufferedReader (
+        				new InputStreamReader(inputStream,"UTF-8"));
+        		StringBuilder responseStrBuilder = new StringBuilder();
+        		
+        		String inputStr;
+        		while ((inputStr = streamReader.readLine()) != null) {
+        		responseStrBuilder.append(inputStr);	
+        		
+        	}
+        	
+
+            //Read JSON file
+            JSONObject obj = (JSONObject) jsonParser.parse(responseStrBuilder.toString());
+          
             //get the project aray
             JSONArray projectObject = (JSONArray) obj.get("project");
             //get the project at project array of "num" position
@@ -141,7 +165,7 @@ public class Project {
             //TODO rethink about having projecthold and taskhold
             projectGet = new Project(projectID, projectName, createDate, startDate, dueDate, summary, team);
 
-        } catch (Exception e) {
+        }} catch (Exception e) {
             System.out.println(e);
         }
         return projectGet;
