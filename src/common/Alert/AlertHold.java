@@ -1,12 +1,16 @@
 package common.Alert;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import common.Alert.Alert;
 import common.Enum.TaskStatus;
@@ -29,8 +33,9 @@ public class AlertHold {
 	    	getAlertList().clear();
 	   
 	    	try {
-
-	    	    JSONArray alerts = Utilities.readFile("alert");
+	    		
+	    		
+	    		JSONArray alerts = Utilities.readFile("alert");
 	            for (Object alertObj : alerts) {
 	                JSONObject alert = (JSONObject) alertObj;
 	                int iD = Long.valueOf((long) alert.get("id")).intValue();
