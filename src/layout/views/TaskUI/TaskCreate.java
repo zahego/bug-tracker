@@ -636,10 +636,13 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
                 TaskStatus.ONNEW, Utilities.getCurrentDate(), selDate, ReplicateBox.getText(),
                 DescriptionBox.getText(), SuggestionBox.getText(), selectedFile,
                 CurrentUserhold.getUser().getID(), assignees);
+        
         task.addAssignee((int) ((ComboItem) AssignedBar.getSelectedItem()).getValue());
         TaskHold.addTask(task);
         if (this.backlog != null) {
             this.backlog.refresh();
+            
+            
             //ScreenUI.getLayoutUI().addTask();
             /*for (int i = 0; i < this.backlog.getBoard().getNewTasks().size(); i++) {
                 System.out.println(this.backlog.getBoard().getNewTasks().get(i).getID());

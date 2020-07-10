@@ -46,7 +46,8 @@ public class TaskHold {
                 //this is because we can't access to the curent position of the current task. So use ID-1 as a replacement
 
                 commentHold.populateCommentsOneTakHold(userID);
-                File[] file = new File[3];
+               File[] file = new File[3];
+                
                 //create a new task for adding
                 Task new_task = new Task(
                         userID,

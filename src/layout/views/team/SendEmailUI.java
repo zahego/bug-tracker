@@ -13,6 +13,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.awt.Toolkit;
 
 /**
  *
@@ -24,6 +25,8 @@ public class SendEmailUI extends javax.swing.JFrame {
      * Creates new form SendEmail
      */
     public SendEmailUI() {
+    	setTitle("Bug Tracker 3000 - Send Email");
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(SendEmailUI.class.getResource("/layout/resource/BugTracker.png")));
         initComponents();
         this.getErrorText().setVisible(false);
     }

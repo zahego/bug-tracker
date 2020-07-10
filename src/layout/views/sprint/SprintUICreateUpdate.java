@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import layout.views.project.ProjectUIDropdown;
 import layout.views.screen.ScreenUI;
+import java.awt.Toolkit;
 
 /**
  *
@@ -22,6 +23,8 @@ public class SprintUICreateUpdate extends javax.swing.JFrame {
      * Creates new form SprintUICreateUpdate
      */
     public SprintUICreateUpdate() {
+    	setTitle("Bug Tracker 3000 - Create Sprint");
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(SprintUICreateUpdate.class.getResource("/layout/resource/BugTracker.png")));
         initComponents();
     }
 

@@ -15,6 +15,7 @@ import layout.views.sprint.SprintUIDropdown;
 import layout.views.team.TeamUIDropdown;
 import layout.views.user.UserUIDropdown;
 import layout.views.setting.SettingUI;
+import layout.views.AlertUI.AlertBoardUI;
 
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -37,10 +38,13 @@ public class ScreenUI extends javax.swing.JFrame{
      * Creates new form ScreenUI
      */
     public ScreenUI() {
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(ScreenUI.class.getResource("/layout/resource/BugTracker.png")));
         CommentsAllHold.populateCommentsAllHold();
         TaskHold.loadTask();
         TaskHold.loadEmptyTask();
         initComponents();
+        AlertRender();
+        AlertHold.loadAlert(); 
     }
 
     /**
@@ -74,7 +78,7 @@ public class ScreenUI extends javax.swing.JFrame{
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Dev Screen");
+        setTitle("Bug Tracker 3000 - Screen");
         setBounds(new java.awt.Rectangle(0, 0, 100, 100));
 
         productName.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 24)); // NOI18N
@@ -122,10 +126,6 @@ public class ScreenUI extends javax.swing.JFrame{
         
         AlertButton = new JButton("Alert\r\n");
         
-        
-        
-        
-        
         AlertButton.addActionListener(new ActionListener() {
         	
         	public void actionPerformed(ActionEvent arg0) {
@@ -138,12 +138,7 @@ public class ScreenUI extends javax.swing.JFrame{
             }}
         }); 
         
-        if (AlertHold.getAlertList() != null) {
-        	AlertButton.setForeground(Color.RED);
-        	
-        } else {
-        	AlertButton.setForeground(Color.BLACK);
-        }
+        
        
         
         
@@ -184,6 +179,8 @@ public class ScreenUI extends javax.swing.JFrame{
          getTeamUI().renderUI();
          getSprintUI().renderUI();
          getUserUI().renderUI();
+         
+         
      }
      
     public static void displayProjectCreate(boolean display){
@@ -200,12 +197,38 @@ public class ScreenUI extends javax.swing.JFrame{
     private static layout.views.sprint.SprintUIDropdown sprintUI;
     private static layout.views.team.TeamUIDropdown teamUI;
     private static layout.views.user.UserUIDropdown userUI;
-    private JButton AlertButton;
+    private static JButton AlertButton;
     // End of variables declaration//GEN-END:variables
 
     
     
+    public void AlertRender() {
+    	System.out.println("Test Screen : " + AlertHold.getAlertList().size());
+    	for (int i = 0; i < AlertHold.getAlertList().size();i++) {
+            if(AlertHold.getAlertList().get(i).getReceivers().contains(CurrentUserhold.getUser().getID())) {
+           // if (AlertHold.getAlertList() != null) {
+            	AlertButton.setForeground(Color.RED);
+            	
+            } else {
+            	AlertButton.setForeground(Color.BLACK);
+            }}
+    	
+    }
     
+    
+    /**
+     * @return the AlertButton
+     */
+    public static JButton getAlertButton() {
+        return AlertButton;
+    }
+
+    /**
+     * @param aUserUI the userUI to set
+     */
+    public static void setAlertButton(JButton alertbutton) {
+    	AlertButton = alertbutton;
+    }
     
     /**
      * @return the userUI

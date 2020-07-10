@@ -1,8 +1,5 @@
 package layout.views.AlertUI;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -17,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
+import java.awt.Toolkit;
 
 public class AlertCardDetail extends JFrame {
 
@@ -41,6 +39,8 @@ public class AlertCardDetail extends JFrame {
 	 * @param alert 
 	 */
 	public AlertCardDetail(Alert alert) {
+		setTitle("Bug Tracker 3000 - Alert Details");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(AlertCardDetail.class.getResource("/layout/resource/BugTracker.png")));
 		
 		
 
@@ -59,6 +59,7 @@ public class AlertCardDetail extends JFrame {
 		
 		scrollPane = new JScrollPane();
 		SenderName = new JLabel();
+		SenderRole = new JLabel();
 		for (int i = 0; i< Userhold.getUsers().size(); i++)
 			if(alert.getSender()==(Userhold.getUsers().get(i).getID())){
 				SenderName = new JLabel(Userhold.getUsers().get(i).getName());
@@ -75,7 +76,7 @@ public class AlertCardDetail extends JFrame {
 		
 		StatusLabel = new JLabel("Status :");
 		
-		Status = new JLabel(alert.getStatus());
+		Status = new JLabel();
 		
 		if(alert.getSender()==(CurrentUserhold.getUser().getID())){
 			Status = new JLabel("SENT");
@@ -91,22 +92,24 @@ public class AlertCardDetail extends JFrame {
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 562, GroupLayout.PREFERRED_SIZE)
+								.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(SenderLabel)
+									.addComponent(SenderLabel, GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
 									.addGap(18)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addComponent(SenderRole)
 										.addGroup(gl_contentPane.createSequentialGroup()
 											.addComponent(SenderName)
 											.addGap(306)
-											.addComponent(StatusLabel)
+											.addComponent(StatusLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(Status))))))
+											.addComponent(Status)))
+									.addGap(145))))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(253)
-							.addComponent(AlertName)))
-					.addContainerGap(119, Short.MAX_VALUE))
+							.addComponent(AlertName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(256)))
+					.addGap(6))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -121,10 +124,10 @@ public class AlertCardDetail extends JFrame {
 							.addComponent(StatusLabel)))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(SenderRole)
-					.addPreferredGap(ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+					.addGap(28)
 					.addComponent(AlertName)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 344, GroupLayout.PREFERRED_SIZE)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		
