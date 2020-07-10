@@ -16,6 +16,7 @@ import java.awt.Font;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class TaskCardUI extends JPanel {
 
@@ -33,7 +34,7 @@ public class TaskCardUI extends JPanel {
         setBackground(Color.WHITE);
         /////////////////////////////////////////////new integration from Minh's branch start here///////////////////////////////////////////
         JLabel quickSummary = new JLabel(task.getQuickSummary());
-        quickSummary.setFont(new Font("Serif", Font.BOLD, 17));
+        quickSummary.setFont(new Font("Serif", Font.BOLD, 14));
         //condition to rerender the taskType name()
         //declaration to see if this work
         JLabel taskType = new JLabel(task.getType().name());
@@ -158,38 +159,38 @@ public class TaskCardUI extends JPanel {
         ///////////////////////////////////////////////////End of new integration///////////////////////////////////////
         GroupLayout groupLayout = new GroupLayout(this);
         groupLayout.setHorizontalGroup(
-                groupLayout.createParallelGroup(Alignment.LEADING)
-                        .addGroup(groupLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-                                        .addGroup(groupLayout.createSequentialGroup()
-                                                .addComponent(userIcon, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(31)
-                                                .addComponent(severity, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18)
-                                                .addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-                                                        .addComponent(taskStatus, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(taskType, GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
-                                                .addGap(10))
-                                        .addComponent(quickSummary, GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE))
-                                .addGap(20))
-                        .addComponent(date, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+        	groupLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(groupLayout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addComponent(userIcon, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+        					.addPreferredGap(ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+        					.addComponent(severity, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+        					.addGap(18)
+        					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+        						.addComponent(taskStatus, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        						.addComponent(taskType, GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
+        					.addGap(10))
+        				.addComponent(quickSummary, GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE))
+        			.addGap(20))
+        		.addComponent(date, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
         );
         groupLayout.setVerticalGroup(
-                groupLayout.createParallelGroup(Alignment.LEADING)
-                        .addGroup(groupLayout.createSequentialGroup()
-                                .addComponent(quickSummary, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-                                .addGap(6)
-                                .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                                        .addComponent(userIcon, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-                                        .addGroup(groupLayout.createSequentialGroup()
-                                                .addComponent(taskType, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18)
-                                                .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                                                        .addComponent(severity, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(taskStatus, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))))
-                                .addGap(6)
-                                .addComponent(date, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE))
+        	groupLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(groupLayout.createSequentialGroup()
+        			.addComponent(quickSummary, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+        			.addGap(6)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addComponent(taskType, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+        					.addPreferredGap(ComponentPlacement.UNRELATED)
+        					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(taskStatus, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(severity, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)))
+        				.addComponent(userIcon, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
+        			.addGap(18)
+        			.addComponent(date, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE))
         );
         setLayout(groupLayout);
     }

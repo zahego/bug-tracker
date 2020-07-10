@@ -43,8 +43,12 @@ public class ProjectUIDropdown extends javax.swing.JPanel {
 
         projectDropDown = new javax.swing.JComboBox<>();
 
+        setPreferredSize(new java.awt.Dimension(110, 20));
+
+        projectDropDown.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         projectDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--all project--", "+ Add project" }));
         projectDropDown.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        projectDropDown.setPreferredSize(new java.awt.Dimension(110, 20));
         projectDropDown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 projectDropDownActionPerformed(evt);
@@ -55,11 +59,13 @@ public class ProjectUIDropdown extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(projectDropDown, 0, 142, Short.MAX_VALUE)
+            .addComponent(projectDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(projectDropDown, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(projectDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

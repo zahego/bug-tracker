@@ -39,32 +39,42 @@ public class SettingUI extends javax.swing.JPanel {
         sendEmailToggle = new javax.swing.JToggleButton();
         editProject = new javax.swing.JToggleButton();
 
+        setPreferredSize(new java.awt.Dimension(190, 50));
+
+        editSprint.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         editSprint.setSelected(true);
         editSprint.setText("edit sprint");
+        editSprint.setPreferredSize(new java.awt.Dimension(85, 20));
         editSprint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editSprintActionPerformed(evt);
             }
         });
 
+        editTeam.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         editTeam.setSelected(true);
         editTeam.setText("edit team");
+        editTeam.setPreferredSize(new java.awt.Dimension(85, 20));
         editTeam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editTeamActionPerformed(evt);
             }
         });
 
+        sendEmailToggle.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         sendEmailToggle.setSelected(true);
         sendEmailToggle.setText("send Email");
+        sendEmailToggle.setPreferredSize(new java.awt.Dimension(85, 20));
         sendEmailToggle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sendEmailToggleActionPerformed(evt);
             }
         });
 
+        editProject.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         editProject.setSelected(true);
         editProject.setText("edit project");
+        editProject.setPreferredSize(new java.awt.Dimension(85, 20));
         editProject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editProjectActionPerformed(evt);
@@ -77,23 +87,23 @@ public class SettingUI extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(editSprint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(editProject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(29, 29, 29)
+                    .addComponent(editProject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editSprint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(editTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sendEmailToggle)))
+                    .addComponent(sendEmailToggle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editTeam, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editTeam)
-                    .addComponent(editProject))
-                .addGap(18, 18, 18)
+                    .addComponent(editProject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editSprint)
-                    .addComponent(sendEmailToggle)))
+                    .addComponent(editSprint, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sendEmailToggle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
