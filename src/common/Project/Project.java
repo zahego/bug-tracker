@@ -6,7 +6,6 @@
 package common.Project;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
@@ -15,11 +14,13 @@ import java.util.Date;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
 /**
  *
  * @author tug70
  */
 public class Project {
+
     private int ID;
     private String name;
     private Date createDate;
@@ -27,20 +28,23 @@ public class Project {
     private Date dueDate;
     private String summary;
     private ArrayList<Integer> team;
-    
-    public Project(){
-    };
-    public Project(int projectID){
-        this.ID=projectID;
+
+    public Project() {
     }
-    public Project(int projectID, String projectName, Date createDate, Date startDate, Date dueDate, String summary, ArrayList<Integer> team){
-        this.ID=projectID;
-        this.name=projectName;
-        this.createDate=createDate;
-        this.startDate=startDate;
-        this.dueDate=dueDate;
-        this.summary=summary;
-        this.team=team;
+
+    ;
+    public Project(int projectID) {
+        this.ID = projectID;
+    }
+
+    public Project(int projectID, String projectName, Date createDate, Date startDate, Date dueDate, String summary, ArrayList<Integer> team) {
+        this.ID = projectID;
+        this.name = projectName;
+        this.createDate = createDate;
+        this.startDate = startDate;
+        this.dueDate = dueDate;
+        this.summary = summary;
+        this.team = team;
     }
 
     /**
@@ -112,77 +116,83 @@ public class Project {
     public void setSummary(String summary) {
         this.summary = summary;
     }
-    
+
     //TODO get the size of JSONArray instead of num like this
     public static Project getProjectFromDatabase(int num) {
         Project projectGet = new Project(-1, "", new Date(), new Date(), new Date(), "", new ArrayList<>());
         JSONParser jsonParser = new JSONParser();
         try {
-            /*FileReader reader = new FileReader("src/resources/database.json");
+            Class cls = Class.forName("common.Project.Project");
+            // returns the ClassLoader object assosiated with this Class
+            ClassLoader cLoader = cls.getClassLoader();
+            InputStream inputStream = cLoader.getResourceAsStream("resources/database.json");
+            if (inputStream != null) {
+                BufferedReader streamReader = new BufferedReader(
+                        new InputStreamReader(inputStream, "UTF-8"));
+                StringBuilder responseStrBuilder = new StringBuilder();
 
-            //Read JSON file
-            JSONObject obj = (JSONObject) jsonParser.parse(reader);*/
-        	
-        	
-        	Class cls = Class.forName("common.Project.Project");
-        	// returns the ClassLoader object assosiated with this Class
-        	ClassLoader cLoader = cls.getClassLoader();
-        	InputStream inputStream = cLoader.getResourceAsStream("resources/database.json");
-        	if (inputStream != null ) {
-        		BufferedReader streamReader = new BufferedReader (
-        				new InputStreamReader(inputStream,"UTF-8"));
-        		StringBuilder responseStrBuilder = new StringBuilder();
-        		
-        		String inputStr;
-        		while ((inputStr = streamReader.readLine()) != null) {
-        		responseStrBuilder.append(inputStr);	
-        		
-        	}
-        	
+                String inputStr;
+                while ((inputStr = streamReader.readLine()) != null) {
+                    responseStrBuilder.append(inputStr);
 
-            //Read JSON file
-            JSONObject obj = (JSONObject) jsonParser.parse(responseStrBuilder.toString());
-          
-            //get the project aray
-            JSONArray projectObject = (JSONArray) obj.get("project");
-            //get the project at project array of "num" position
-            JSONObject project = (JSONObject) projectObject.get(num);
+                }
+                //Read JSON file
+                JSONObject obj = (JSONObject) jsonParser.parse(responseStrBuilder.toString());
 
-            //get all fields
-            int projectID = ((Long) project.get("id")).intValue();
-            String projectName = (String) project.get("name");
-            Date createDate = new SimpleDateFormat("MM-dd-yyyy").parse((String) project.get("createDate"));
-            Date startDate = new SimpleDateFormat("MM-dd-yyyy").parse((String) project.get("startDate"));
-            Date dueDate = new SimpleDateFormat("MM-dd-yyyy").parse((String) project.get("dueDate"));
-            String summary = (String) project.get("summary");
-            //populate array of user ID for the project
-            JSONArray dbTeam=(JSONArray) project.get("_team");
-            int size=dbTeam.size();
-            ArrayList<Integer> team=new ArrayList<>();
-            for(int i=0; i<size; i++){
-                team.add(((Long) dbTeam.get(i)).intValue());
+                //get the project aray
+                JSONArray projectObject = (JSONArray) obj.get("project");
+                //get the project at project array of "num" position
+                JSONObject project = (JSONObject) projectObject.get(num);
+
+                //get all fields
+                int projectID = ((Long) project.get("id")).intValue();
+                String projectName = (String) project.get("name");
+                Date createDate = new SimpleDateFormat("MM-dd-yyyy").parse((String) project.get("createDate"));
+                Date startDate = new SimpleDateFormat("MM-dd-yyyy").parse((String) project.get("startDate"));
+                Date dueDate = new SimpleDateFormat("MM-dd-yyyy").parse((String) project.get("dueDate"));
+                String summary = (String) project.get("summary");
+                //populate array of user ID for the project
+                JSONArray dbTeam = (JSONArray) project.get("_team");
+                int size = dbTeam.size();
+                ArrayList<Integer> team = new ArrayList<>();
+                for (int i = 0; i < size; i++) {
+                    team.add(((Long) dbTeam.get(i)).intValue());
+                }
+                projectGet = new Project(projectID, projectName, createDate, startDate, dueDate, summary, team);
+
             }
-            //TODO rethink about having projecthold and taskhold
-            projectGet = new Project(projectID, projectName, createDate, startDate, dueDate, summary, team);
-
-        }} catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
         return projectGet;
     }
-    
-    public static int getSizeFromDatabase(){
-        int projectNumber=0;
+
+    public static int getSizeFromDatabase() {
+        int projectNumber = 0;
         JSONParser jsonParser = new JSONParser();
         try {
-            FileReader reader = new FileReader("src/resources/database.json");
+            Class cls = Class.forName("common.Project.Project");
+            // returns the ClassLoader object assosiated with this Class
+            ClassLoader cLoader = cls.getClassLoader();
+            InputStream inputStream = cLoader.getResourceAsStream("resources/database.json");
+            if (inputStream != null) {
+                BufferedReader streamReader = new BufferedReader(
+                        new InputStreamReader(inputStream, "UTF-8"));
+                StringBuilder responseStrBuilder = new StringBuilder();
 
-            //Read JSON file
-            JSONObject obj = (JSONObject) jsonParser.parse(reader);
-            //get the project aray
-            JSONArray projectObject = (JSONArray) obj.get("project");
-            projectNumber=projectObject.size();
+                String inputStr;
+                while ((inputStr = streamReader.readLine()) != null) {
+                    responseStrBuilder.append(inputStr);
 
+                }
+
+                //Read JSON file
+                JSONObject obj = (JSONObject) jsonParser.parse(responseStrBuilder.toString());
+                //get the project aray
+                JSONArray projectObject = (JSONArray) obj.get("project");
+                projectNumber = projectObject.size();
+
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -216,5 +226,5 @@ public class Project {
     public void setTeam(ArrayList<Integer> team) {
         this.team = team;
     }
-    
+
 }

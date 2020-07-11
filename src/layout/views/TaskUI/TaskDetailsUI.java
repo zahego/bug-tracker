@@ -47,6 +47,7 @@ import layout.views.CalendarWindowViews;
 import layout.views.CommentUI.CommentAddUI;
 import layout.views.screen.ScreenUI;
 import java.awt.Toolkit;
+import javax.imageio.ImageIO;
 
 public class TaskDetailsUI extends JFrame implements PropertyChangeListener{
 
@@ -92,8 +93,8 @@ public class TaskDetailsUI extends JFrame implements PropertyChangeListener{
     public TaskDetailsUI(Task task) {
     	setTitle("Bug Tracker 3000 - Task Details");
     	setIconImage(Toolkit.getDefaultToolkit().getImage(TaskDetailsUI.class.getResource("/layout/resource/BugTracker.png")));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 556, 760);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setBounds(50, 50, 606, 760);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(new BorderLayout(0, 0));
@@ -125,6 +126,7 @@ public class TaskDetailsUI extends JFrame implements PropertyChangeListener{
         sprintID = new JLabel(String.valueOf(task.getSprintID()));
         quickSummary = new JTextArea(task.getQuickSummary());
         reportedDate = new JLabel(Utilities.getDateString(task.getReportedDate()));
+        selDate=task.getReportedDate();
          /////severity, and task status, add so that current severity goes to the top////
         taskStatus = new JComboBox<>();
         //this is bad programming practice but the number of taskStatus is fixed, we'll see what to do in the future
@@ -157,50 +159,38 @@ public class TaskDetailsUI extends JFrame implements PropertyChangeListener{
         imageFile3 = new JLabel("");
         for(int i=0;i<task.getAttachedFile().length;i++){
         if (task.getAttachedFile()[i] != null) {
-            ImageIcon image = new ImageIcon(task.getAttachedFile()[i].getAbsolutePath());
-            image = new ImageIcon(image.getImage().getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH));
             if(i==0){
-            imageFile1.setIcon(image);
+            imageFile1.setIcon(setProfileProfilePic(task, i));
             }
             else if(i==1){
-              imageFile2.setIcon(image);  
+              imageFile2.setIcon(setProfileProfilePic(task, i)); 
             }
             else if(i==2){
-              imageFile3.setIcon(image);  
+              imageFile3.setIcon(setProfileProfilePic(task, i));
             }
         }
         }
 
         assignerProfilePic = new JLabel("icon");
         //get assigner
-        ImageIcon assignerIcon = new ImageIcon(Userhold.getUsers().get(task.getAssignerID() - 1).getProfilePic());
-        assignerIcon = new ImageIcon(assignerIcon.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
-        assignerProfilePic.setIcon(assignerIcon);
+        assignerProfilePic.setIcon(setProfilePicAssigner(task));
 
         assigneeIconPic = new JLabel("N/A");
         //could check the condition of 3 user, assigned user, pm and admin as well
         if (task.getAssignees().size() == 2) {
             if (task.getAssignees().get(0) != 8) {
-                ImageIcon assigneeIcon = new ImageIcon(Userhold.getUsers().get(task.getAssignees().get(0) - 1).getProfilePic());
-                assigneeIcon = new ImageIcon(assigneeIcon.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
-                assigneeIconPic.setIcon(assigneeIcon);
+                assigneeIconPic.setIcon(setProfilePicAssignee(task, 0));
             } else {
-                ImageIcon assigneeIcon = new ImageIcon(Userhold.getUsers().get(task.getAssignees().get(1) - 1).getProfilePic());
-                assigneeIcon = new ImageIcon(assigneeIcon.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
-                assigneeIconPic.setIcon(assigneeIcon);
+                assigneeIconPic.setIcon(setProfilePicAssignee(task, 1));
             }
             //randomly render user based on mod 3 and 4 just to make the task look busy
         } else if (task.getAssignees().size() == 5) {
             if (task.getAssignees().get(0) != 8) {
                 if (task.getID() % 3 == 0) {
-                    ImageIcon assigneeIcon = new ImageIcon(Userhold.getUsers().get(task.getAssignees().get(0) - 1).getProfilePic());
-                    assigneeIcon = new ImageIcon(assigneeIcon.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
-                    assigneeIconPic.setIcon(assigneeIcon);
+                    assigneeIconPic.setIcon(setProfilePicAssignee(task, 0));
                 }
                 if (task.getID() % 4 == 0) {
-                    ImageIcon assigneeIcon = new ImageIcon(Userhold.getUsers().get(task.getAssignees().get(1) - 1).getProfilePic());
-                    assigneeIcon = new ImageIcon(assigneeIcon.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
-                    assigneeIconPic.setIcon(assigneeIcon);
+                    assigneeIconPic.setIcon(setProfilePicAssignee(task, 1));
                 }
             }
         }
@@ -211,10 +201,14 @@ public class TaskDetailsUI extends JFrame implements PropertyChangeListener{
         addFileButton = new JButton("Add File");
         updateButton = new JButton("Update");
         deleteButton = new JButton("Delete");
+        deleteButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
         //////////////////////end of button//////////////////////////
 
         /////////////////////design////////////////////////////////
-        quickSummary.setFont(new Font("Tahoma", Font.BOLD, 14));
+        quickSummary.setFont(new Font("Tahoma", Font.BOLD, 12));
         reportedDate.setHorizontalAlignment(SwingConstants.CENTER);
         //taskStatus.setHorizontalAlignment(SwingConstants.CENTER);
         //severity.setHorizontalAlignment(SwingConstants.CENTER);
@@ -229,135 +223,134 @@ public class TaskDetailsUI extends JFrame implements PropertyChangeListener{
         /////////////////////////////////////////////////////////////////////////////end of populate task info//////////////////////////////////////////
         GroupLayout gl_panel = new GroupLayout(taskInfo);
         gl_panel.setHorizontalGroup(
-                gl_panel.createParallelGroup(Alignment.LEADING)
-                        .addGroup(gl_panel.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-                                                .addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-                                                        .addGroup(gl_panel.createSequentialGroup()
-                                                                .addComponent(addCommentButton)
-                                                                .addGap(2)
-                                                                .addComponent(addFileButton)
-                                                                .addPreferredGap(ComponentPlacement.RELATED)
-                                                                .addComponent(updateButton)
-                                                                .addPreferredGap(ComponentPlacement.RELATED)
-                                                                .addComponent(deleteButton))
-                                                        .addGroup(gl_panel.createSequentialGroup()
-                                                                .addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-                                                                        .addGroup(gl_panel.createSequentialGroup()
-                                                                                .addComponent(taskIDLabel, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-                                                                                .addPreferredGap(ComponentPlacement.RELATED)
-                                                                                .addComponent(taskID, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                                                                                .addPreferredGap(ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
-                                                                                .addComponent(projectIDLabel, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
-                                                                                .addGap(18)
-                                                                                .addComponent(projectID, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-                                                                                .addGap(18)
-                                                                                .addComponent(sprintIDLabel, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE))
-                                                                        .addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-                                                                                .addGroup(gl_panel.createSequentialGroup()
-                                                                                        .addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-                                                                                                .addGroup(gl_panel.createSequentialGroup()
-                                                                                                        .addComponent(assignerLabel)
-                                                                                                        .addGap(12)
-                                                                                                        .addComponent(assignerProfilePic, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-                                                                                                        .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                                        .addComponent(assigneesLabel)
-                                                                                                        .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                                        .addComponent(assigneeIconPic, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-                                                                                                        .addGap(105)
-                                                                                                        .addComponent(severity, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
-                                                                                                .addGroup(gl_panel.createSequentialGroup()
-                                                                                                        .addComponent(imageFile1, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-                                                                                                        .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                                        .addComponent(imageFile2, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
-                                                                                                        .addPreferredGap(ComponentPlacement.RELATED)
-                                                                                                        .addComponent(imageFile3, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)))
-                                                                                        .addGap(25))
-                                                                                .addComponent(quickSummary, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 283, GroupLayout.PREFERRED_SIZE))
-                                                                        .addGroup(gl_panel.createSequentialGroup()
-                                                                                .addComponent(fullDescriptionLabel, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
-                                                                                .addGap(300)))
-                                                                .addPreferredGap(ComponentPlacement.RELATED)
-                                                                .addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-                                                                        .addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-                                                                                .addComponent(sprintID, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(reportedDate, GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                                                                                .addComponent(dueDate, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                                        .addComponent(taskStatus, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE))
-                                                                .addGap(5)))
-                                                .addGap(30))
-                                        .addGroup(gl_panel.createSequentialGroup()
-                                                .addComponent(replicateLabel, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
-                                                .addContainerGap(465, Short.MAX_VALUE))
-                                        .addGroup(gl_panel.createSequentialGroup()
-                                                .addComponent(suggestionLabel, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
-                                                .addContainerGap(440, Short.MAX_VALUE))
-                                        .addGroup(gl_panel.createSequentialGroup()
-                                                .addComponent(SuggestionString, GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
-                                                .addGap(30))
-                                        .addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-                                                .addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-                                                        .addComponent(fullDescriptionString, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
-                                                        .addComponent(replicateString, GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE))
-                                                .addGap(30))))
+        	gl_panel.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_panel.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(gl_panel.createSequentialGroup()
+        					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+        						.addComponent(fullDescriptionLabel, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
+        						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+        							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+        								.addGroup(gl_panel.createSequentialGroup()
+        									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+        										.addGroup(gl_panel.createSequentialGroup()
+        											.addComponent(assignerLabel)
+        											.addGap(12)
+        											.addComponent(assignerProfilePic, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+        											.addPreferredGap(ComponentPlacement.UNRELATED)
+        											.addComponent(assigneesLabel)
+        											.addPreferredGap(ComponentPlacement.UNRELATED)
+        											.addComponent(assigneeIconPic, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
+        										.addGroup(gl_panel.createSequentialGroup()
+        											.addComponent(imageFile1, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+        											.addPreferredGap(ComponentPlacement.UNRELATED)
+        											.addComponent(imageFile2, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
+        											.addPreferredGap(ComponentPlacement.RELATED)
+        											.addComponent(imageFile3, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)))
+        									.addGap(146))
+        								.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+        									.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+        										.addComponent(quickSummary, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+        										.addGroup(gl_panel.createSequentialGroup()
+        											.addComponent(taskIDLabel, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+        											.addPreferredGap(ComponentPlacement.RELATED)
+        											.addComponent(taskID, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+        											.addPreferredGap(ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
+        											.addComponent(projectIDLabel, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+        											.addGap(18)
+        											.addComponent(projectID, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)))
+        									.addGap(18)))
+        							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+        								.addComponent(sprintIDLabel, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
+        								.addGroup(gl_panel.createSequentialGroup()
+        									.addPreferredGap(ComponentPlacement.RELATED)
+        									.addComponent(severity, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)))))
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+        						.addComponent(sprintID, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(reportedDate, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+        						.addComponent(dueDate, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+        						.addComponent(taskStatus, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE))
+        					.addGap(35))
+        				.addGroup(gl_panel.createSequentialGroup()
+        					.addComponent(replicateLabel, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
+        					.addContainerGap(510, Short.MAX_VALUE))
+        				.addGroup(gl_panel.createSequentialGroup()
+        					.addComponent(suggestionLabel, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
+        					.addContainerGap(485, Short.MAX_VALUE))
+        				.addGroup(gl_panel.createSequentialGroup()
+        					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+        						.addComponent(fullDescriptionString, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+        						.addComponent(replicateString, GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE))
+        					.addGap(30))
+        				.addGroup(gl_panel.createSequentialGroup()
+        					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+        						.addGroup(gl_panel.createSequentialGroup()
+        							.addComponent(addCommentButton)
+        							.addGap(2)
+        							.addComponent(addFileButton)
+        							.addPreferredGap(ComponentPlacement.RELATED)
+        							.addComponent(updateButton)
+        							.addPreferredGap(ComponentPlacement.RELATED)
+        							.addComponent(deleteButton))
+        						.addComponent(SuggestionString, GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE))
+        					.addGap(30))))
         );
         gl_panel.setVerticalGroup(
-                gl_panel.createParallelGroup(Alignment.LEADING)
-                        .addGroup(gl_panel.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-                                        .addComponent(projectID)
-                                        .addComponent(projectIDLabel)
-                                        .addComponent(taskIDLabel)
-                                        .addComponent(taskID)
-                                        .addComponent(sprintIDLabel)
-                                        .addComponent(sprintID))
-                                .addGap(18)
-                                .addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-                                        .addComponent(quickSummary, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(reportedDate))
-                                .addGap(18)
-                                .addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_panel.createSequentialGroup()
-                                                .addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-                                                        .addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-                                                                .addComponent(assignerLabel)
-                                                                .addComponent(assigneesLabel)
-                                                                .addComponent(assignerProfilePic, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
-                                                        .addComponent(assigneeIconPic, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
-                                                .addGap(53)
-                                                .addComponent(fullDescriptionLabel))
-                                        .addGroup(gl_panel.createSequentialGroup()
-                                                .addComponent(dueDate)
-                                                .addPreferredGap(ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                                                .addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-                                                        .addComponent(taskStatus, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(severity, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
-                                                .addGap(52)))
-                                .addPreferredGap(ComponentPlacement.RELATED)
-                                .addComponent(fullDescriptionString, GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                                .addGap(18)
-                                .addComponent(replicateLabel)
-                                .addGap(18)
-                                .addComponent(replicateString, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18)
-                                .addComponent(suggestionLabel)
-                                .addGap(18)
-                                .addComponent(SuggestionString, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18)
-                                .addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-                                        .addComponent(imageFile1, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(imageFile2, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(imageFile3, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
-                                .addGap(45)
-                                .addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-                                        .addComponent(addCommentButton)
-                                        .addComponent(addFileButton)
-                                        .addComponent(updateButton)
-                                        .addComponent(deleteButton))
-                                .addContainerGap())
+        	gl_panel.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_panel.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(projectID)
+        				.addComponent(projectIDLabel)
+        				.addComponent(taskIDLabel)
+        				.addComponent(taskID)
+        				.addComponent(sprintIDLabel)
+        				.addComponent(sprintID))
+        			.addGap(18)
+        			.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+        				.addGroup(gl_panel.createSequentialGroup()
+        					.addComponent(quickSummary, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+        					.addGap(18)
+        					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+        						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+        							.addComponent(assignerLabel)
+        							.addComponent(assigneesLabel)
+        							.addComponent(assignerProfilePic, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
+        						.addComponent(assigneeIconPic, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
+        					.addGap(53)
+        					.addComponent(fullDescriptionLabel))
+        				.addGroup(gl_panel.createSequentialGroup()
+        					.addComponent(reportedDate)
+        					.addGap(18)
+        					.addComponent(dueDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        					.addGap(28)
+        					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(taskStatus, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(severity, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))))
+        			.addGap(8)
+        			.addComponent(fullDescriptionString, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+        			.addComponent(replicateLabel)
+        			.addGap(18)
+        			.addComponent(replicateString, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
+        			.addGap(18)
+        			.addComponent(suggestionLabel)
+        			.addGap(18)
+        			.addComponent(SuggestionString, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+        			.addGap(18)
+        			.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(imageFile1, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(imageFile2, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(imageFile3, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
+        			.addGap(34)
+        			.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(addCommentButton)
+        				.addComponent(addFileButton)
+        				.addComponent(updateButton)
+        				.addComponent(deleteButton))
+        			.addGap(21))
         );
         taskInfo.setLayout(gl_panel);
         if (!task.getType().name().equals("BUGREPORT")) {
@@ -476,6 +469,61 @@ public class TaskDetailsUI extends JFrame implements PropertyChangeListener{
             DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyy");
             String strDate = dateFormat.format(selDate);
             dueDate.setText(strDate);
+        }
+    }
+    public ClassLoader getClassLoader() {
+    	ClassLoader cLoader = null;
+    	try {
+    		Class cls = Class.forName("layout.views.TaskUI.TaskDetailsUI");
+    		// returns the ClassLoader object assosciated with this Class
+    		cLoader = cls.getClassLoader();
+    	}
+    	catch (Exception e) {
+    		System.out.println(e);
+    	} return cLoader;
+    }
+
+    /**
+     * @param profilePic the profilePic to set
+     */
+    public ImageIcon setProfilePicAssignee(Task task, int num) {
+        ImageIcon icon=null;
+        try {
+        icon = new ImageIcon(ImageIO.read(getClassLoader().getResource(Userhold.getUsers().get(task.getAssignees().get(num) - 1).getProfilePic())));
+        // should set int for size here
+        icon = new ImageIcon(icon.getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
+        return icon;
+        }
+        catch (Exception e) {
+        	System.out.println(e);
+                return icon;
+        }
+    }
+    public ImageIcon setProfilePicAssigner(Task task) {
+        ImageIcon icon=null;
+        try {
+        icon = new ImageIcon(ImageIO.read(getClassLoader().getResource(Userhold.getUsers().get(task.getAssignerID() - 1).getProfilePic())));
+        // should set int for size here
+        icon = new ImageIcon(icon.getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
+        return icon;
+        }
+        catch (Exception e) {
+        	System.out.println(e);
+                return icon;
+        }
+    }
+    public ImageIcon setProfileProfilePic(Task task, int num) {
+        ImageIcon icon=null;
+        try {
+            System.out.println(task.getAttachedFile()[num].getAbsolutePath());
+        icon = new ImageIcon(task.getAttachedFile()[num].getAbsolutePath());
+        // should set int for size here
+        icon = new ImageIcon(icon.getImage().getScaledInstance(150, 150,  java.awt.Image.SCALE_SMOOTH));
+        return icon;
+        }
+        catch (Exception e) {
+        	System.out.println(e);
+                return icon;
         }
     }
 }

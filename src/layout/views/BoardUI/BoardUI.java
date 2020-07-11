@@ -28,17 +28,20 @@ public class BoardUI extends JPanel {
     private static final long serialVersionUID = 7331854978956106556L;
 
     private Board board;
+    private int numOfCardDisplay;
 
     /**
      * Create the panel.
      */
     public BoardUI(BoardType type) {
+        numOfCardDisplay=0;
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         board = new Board(type);
         renderBoard(board.read());
     }
 
     public void renderBoard(List<Task> tasks) {
+        setNumOfCardDisplay(0);
         if (CurrentUserhold.getUser() != null) {
             //get all task of that particular board || pretty much a population call || tasks now hold all the task of that board
 
@@ -52,6 +55,7 @@ public class BoardUI extends JPanel {
                         //render by sprint
                         if (SprintUIDropdown.getSprintAccessID() == -1) {
                             TaskCardUI card = new TaskCardUI(task);
+                            setNumOfCardDisplay(getNumOfCardDisplay() + 1);
                             card.addMouseListener(new MouseAdapter() {
                                 public void mousePressed(MouseEvent me) {
                                     if (me.getClickCount() == 2) {
@@ -75,6 +79,7 @@ public class BoardUI extends JPanel {
                             this.add(card);
                         } else if (SprintUIDropdown.getSprintAccessID() == task.getSprintID()) {
                             TaskCardUI card = new TaskCardUI(task);
+                            setNumOfCardDisplay(getNumOfCardDisplay() + 1);
                             card.addMouseListener(new MouseAdapter() {
                                 public void mousePressed(MouseEvent me) {
                                     if (me.getClickCount() == 2) {
@@ -100,6 +105,7 @@ public class BoardUI extends JPanel {
                     } else if (ProjectUIDropdown.getProjectAccessID() == task.getProjectID()) {
                         if (SprintUIDropdown.getSprintAccessID() == -1) {
                             TaskCardUI card = new TaskCardUI(task);
+                            setNumOfCardDisplay(getNumOfCardDisplay() + 1);
                             card.addMouseListener(new MouseAdapter() {
                                 public void mousePressed(MouseEvent me) {
                                     if (me.getClickCount() == 2) {
@@ -123,9 +129,7 @@ public class BoardUI extends JPanel {
                             this.add(card);
                         } else if (SprintUIDropdown.getSprintAccessID() == task.getSprintID()) {
                             TaskCardUI card = new TaskCardUI(task);
-                            
-                            
-                            
+                            setNumOfCardDisplay(getNumOfCardDisplay() + 1);
                             card.addMouseListener(new MouseAdapter() {
                                 public void mousePressed(MouseEvent me) {
                                     if (me.getClickCount() == 2) {
@@ -155,20 +159,20 @@ public class BoardUI extends JPanel {
         } //condition for log out
         else {
             for (int i = 0; i < TaskHold.getEmptyTaskList().size(); i++) {
-                if ((TaskHold.getEmptyTaskList().get(i).getStatus().name() == "ONNEW" || TaskHold.getEmptyTaskList().get(i).getStatus().name() == "ONREVIEW")
-                        && this.getBoard().getType().name() == "BACKLOG") {
+                if ((TaskHold.getEmptyTaskList().get(i).getStatus().name().equals("ONNEW") || TaskHold.getEmptyTaskList().get(i).getStatus().name().equals("ONREVIEW"))
+                        && this.getBoard().getType().name().equals("BACKLOG")) {
                     TaskCardUI card = new TaskCardUI(TaskHold.getEmptyTaskList().get(i));
                     this.add(card);
-                } else if (TaskHold.getEmptyTaskList().get(i).getStatus().name() == "ONTAKEN"
-                        && this.getBoard().getType().name() == "TAKEN") {
+                } else if (TaskHold.getEmptyTaskList().get(i).getStatus().name().equals("ONTAKEN") 
+                        && this.getBoard().getType().name().equals("TAKEN")) {
                     TaskCardUI card = new TaskCardUI(TaskHold.getEmptyTaskList().get(i));
                     this.add(card);
-                } else if (TaskHold.getEmptyTaskList().get(i).getStatus().name() == "ONGOING"
-                        && this.getBoard().getType().name() == "ONGOING") {
+                } else if (TaskHold.getEmptyTaskList().get(i).getStatus().name().equals("ONGOING")
+                        && this.getBoard().getType().name().equals("ONGOING")) {
                     TaskCardUI card = new TaskCardUI(TaskHold.getEmptyTaskList().get(i));
                     this.add(card);
-                } else if (TaskHold.getEmptyTaskList().get(i).getStatus().name() == "ONFINISH"
-                        && this.getBoard().getType().name() == "FINISH") {
+                } else if (TaskHold.getEmptyTaskList().get(i).getStatus().name().equals("ONFINISH")
+                        && this.getBoard().getType().name().equals("FINISH")) {
                     TaskCardUI card = new TaskCardUI(TaskHold.getEmptyTaskList().get(i));
                     this.add(card);
                 }
@@ -251,5 +255,138 @@ public class BoardUI extends JPanel {
      */
     public void setBoard(Board board) {
         this.board = board;
+    }
+
+    /**
+     * @return the numOfCardDisplay
+     */
+    public int getNumOfCardDisplay() {
+        return numOfCardDisplay;
+    }
+
+    /**
+     * @param numOfCardDisplay the numOfCardDisplay to set
+     */
+    public void setNumOfCardDisplay(int numOfCardDisplay) {
+        this.numOfCardDisplay = numOfCardDisplay;
+    }
+    
+    public void renderBoardAssignedTask(List<Task> tasks) {
+        
+        setNumOfCardDisplay(0);
+        if (CurrentUserhold.getUser() != null) {
+            //get all task of that particular board || pretty much a population call || tasks now hold all the task of that board
+
+            for (int i = 0; i < tasks.size(); i++) {
+                Task task = tasks.get(i);
+                
+                //render by user?
+                if(task.getAssignees().contains(CurrentUserhold.getUser().getID())&&task.getAssignees().size()==2){
+                    //render by project
+                    if (ProjectUIDropdown.getProjectAccessID() == -1) {
+                        //render by sprint
+                        if (SprintUIDropdown.getSprintAccessID() == -1) {
+                            TaskCardUI card = new TaskCardUI(task);
+                            setNumOfCardDisplay(getNumOfCardDisplay() + 1);
+                            card.addMouseListener(new MouseAdapter() {
+                                public void mousePressed(MouseEvent me) {
+                                    if (me.getClickCount() == 2) {
+                                        TaskDetailsUI details = new TaskDetailsUI(task);
+                                        details.setVisible(true);
+                                        details.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+                                    } else if (me.isPopupTrigger()) {
+                                    	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
+                                        menu.show(me.getComponent(), me.getX(), me.getY());
+                                    }
+                                }
+                                public void mouseReleased(MouseEvent me) {
+                                	if (me.isPopupTrigger()) {
+                                    	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
+                                        menu.show(me.getComponent(), me.getX(), me.getY());
+                                    }
+                                }
+                            });
+                            //this refer to the JPanel 
+                            this.add(card);
+                        } else if (SprintUIDropdown.getSprintAccessID() == task.getSprintID()) {
+                            TaskCardUI card = new TaskCardUI(task);
+                            setNumOfCardDisplay(getNumOfCardDisplay() + 1);
+                            card.addMouseListener(new MouseAdapter() {
+                                public void mousePressed(MouseEvent me) {
+                                    if (me.getClickCount() == 2) {
+                                        TaskDetailsUI details = new TaskDetailsUI(task);
+                                        details.setVisible(true);
+                                        details.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+                                    } else if (me.isPopupTrigger()) {
+                                    	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
+                                        menu.show(me.getComponent(), me.getX(), me.getY());
+                                    }
+                                }
+                                public void mouseReleased(MouseEvent me) {
+                                	if (me.isPopupTrigger()) {
+                                    	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
+                                        menu.show(me.getComponent(), me.getX(), me.getY());
+                                    }
+                                }
+                            });
+                            //this refer to the JPanel 
+                            this.add(card);
+                        }
+                    } else if (ProjectUIDropdown.getProjectAccessID() == task.getProjectID()) {
+                        if (SprintUIDropdown.getSprintAccessID() == -1) {
+                            TaskCardUI card = new TaskCardUI(task);
+                            setNumOfCardDisplay(getNumOfCardDisplay() + 1);
+                            card.addMouseListener(new MouseAdapter() {
+                                public void mousePressed(MouseEvent me) {
+                                    if (me.getClickCount() == 2) {
+                                        TaskDetailsUI details = new TaskDetailsUI(task);
+                                        details.setVisible(true);
+                                        details.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+                                    } else if (me.isPopupTrigger()) {
+                                    	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
+                                        menu.show(me.getComponent(), me.getX(), me.getY());
+                                    }
+                                }
+                                public void mouseReleased(MouseEvent me) {
+                                	if (me.isPopupTrigger()) {
+                                    	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
+                                        menu.show(me.getComponent(), me.getX(), me.getY());
+
+                                    }
+                                }
+                            });
+                            this.add(card);
+                        } else if (SprintUIDropdown.getSprintAccessID() == task.getSprintID()) {
+                            TaskCardUI card = new TaskCardUI(task);
+                            setNumOfCardDisplay(getNumOfCardDisplay() + 1);
+                            card.addMouseListener(new MouseAdapter() {
+                                public void mousePressed(MouseEvent me) {
+                                    if (me.getClickCount() == 2) {
+                                        TaskDetailsUI details = new TaskDetailsUI(task);
+                                        details.setVisible(true);
+                                        details.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+                                    } else if (me.isPopupTrigger()) {
+                                    	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
+                                        menu.show(me.getComponent(), me.getX(), me.getY());
+                                    }
+                                }
+                                public void mouseReleased(MouseEvent me) {
+                                	if (me.isPopupTrigger()) {
+                                    	SwitchBoardPopUp menu = new SwitchBoardPopUp(task, BoardUI.this);
+                                        menu.show(me.getComponent(), me.getX(), me.getY());
+
+                                    }
+                                }
+                            });
+                            this.add(card);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

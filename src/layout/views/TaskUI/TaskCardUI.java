@@ -14,6 +14,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.Date;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -29,15 +30,16 @@ public class TaskCardUI extends JPanel {
      * Create the panel.
      */
     public TaskCardUI(Task task) {
-        setMaximumSize(new Dimension(1000, 150));
         setBorder(new LineBorder(new Color(0, 0, 0)));
         setBackground(Color.WHITE);
         /////////////////////////////////////////////new integration from Minh's branch start here///////////////////////////////////////////
         JLabel quickSummary = new JLabel(task.getQuickSummary());
+        quickSummary.setVerticalAlignment(SwingConstants.TOP);
         quickSummary.setFont(new Font("Serif", Font.BOLD, 14));
         //condition to rerender the taskType name()
         //declaration to see if this work
         JLabel taskType = new JLabel(task.getType().name());
+        taskType.setFont(new Font("Tahoma", Font.PLAIN, 8));
         taskType.setHorizontalAlignment(SwingConstants.CENTER);
         taskType.setForeground(Color.white);
         if (task.getType().name().equals("BUGREPORT")) {
@@ -62,6 +64,7 @@ public class TaskCardUI extends JPanel {
 
         String severrity = String.valueOf(task.getSeverity());
         JLabel severity = new JLabel(severrity);
+        severity.setFont(new Font("Tahoma", Font.PLAIN, 8));
         severity.setHorizontalAlignment(SwingConstants.CENTER);
         severity.setForeground(new Color(119, 38, 61));
         if (severrity.equals("1")) {
@@ -88,6 +91,7 @@ public class TaskCardUI extends JPanel {
         severity.setOpaque(true);
 
         JLabel taskStatus = new JLabel(task.getStatus().name());
+        taskStatus.setFont(new Font("Tahoma", Font.PLAIN, 8));
         taskStatus.setHorizontalAlignment(SwingConstants.CENTER);
         taskStatus.setForeground(Color.WHITE);
         if (task.getStatus().name().equals("ONNEW")) {
@@ -131,26 +135,18 @@ public class TaskCardUI extends JPanel {
         //could check the condition of 3 user, assigned user, pm and admin as well
         if (task.getAssignees().size() == 2) {
             if (task.getAssignees().get(0) != 8) {
-                ImageIcon icon = new ImageIcon(Userhold.getUsers().get(task.getAssignees().get(0) - 1).getProfilePic());
-                icon = new ImageIcon(icon.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
-                userIcon.setIcon(icon);
+                userIcon.setIcon(setProfilePic(task, 0));
             } else {
-                ImageIcon icon = new ImageIcon(Userhold.getUsers().get(task.getAssignees().get(1) - 1).getProfilePic());
-                icon = new ImageIcon(icon.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
-                userIcon.setIcon(icon);
+                userIcon.setIcon(setProfilePic(task, 1));
             }
         //randomly render user based on mod 3 and 4 just to make the task look busy
         } else if (task.getAssignees().size() == 5) {
             if (task.getAssignees().get(0) != 8) {
                 if(task.getID()%3==0){
-                ImageIcon icon = new ImageIcon(Userhold.getUsers().get(task.getAssignees().get(0) - 1).getProfilePic());
-                icon = new ImageIcon(icon.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
-                userIcon.setIcon(icon);
+                userIcon.setIcon(setProfilePic(task, 0));
                 }
                 if(task.getID()%4==0){
-                 ImageIcon icon = new ImageIcon(Userhold.getUsers().get(task.getAssignees().get(1) - 1).getProfilePic());
-                icon = new ImageIcon(icon.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
-                userIcon.setIcon(icon);
+                userIcon.setIcon(setProfilePic(task, 1));
                 }
             }
         }
@@ -160,38 +156,65 @@ public class TaskCardUI extends JPanel {
         GroupLayout groupLayout = new GroupLayout(this);
         groupLayout.setHorizontalGroup(
         	groupLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(groupLayout.createSequentialGroup()
+        		.addComponent(date, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+        		.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
         			.addContainerGap()
         			.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-        				.addGroup(groupLayout.createSequentialGroup()
+        				.addComponent(quickSummary, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+        				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
         					.addComponent(userIcon, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-        					.addComponent(severity, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-        					.addGap(18)
-        					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-        						.addComponent(taskStatus, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        						.addComponent(taskType, GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
-        					.addGap(10))
-        				.addComponent(quickSummary, GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE))
-        			.addGap(20))
-        		.addComponent(date, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+        					.addGap(45)
+        					.addComponent(severity, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+        					.addPreferredGap(ComponentPlacement.UNRELATED)
+        					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+        						.addComponent(taskType, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+        						.addComponent(taskStatus, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        			.addGap(30))
         );
         groupLayout.setVerticalGroup(
         	groupLayout.createParallelGroup(Alignment.LEADING)
         		.addGroup(groupLayout.createSequentialGroup()
         			.addComponent(quickSummary, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-        			.addGap(6)
-        			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+        				.addComponent(userIcon, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
         				.addGroup(groupLayout.createSequentialGroup()
         					.addComponent(taskType, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
         					.addPreferredGap(ComponentPlacement.UNRELATED)
         					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
         						.addComponent(taskStatus, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-        						.addComponent(severity, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)))
-        				.addComponent(userIcon, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
+        						.addComponent(severity, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))))
         			.addGap(18)
         			.addComponent(date, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE))
         );
         setLayout(groupLayout);
+    }
+    public ClassLoader getClassLoader() {
+    	ClassLoader cLoader = null;
+    	try {
+    		Class cls = Class.forName("layout.views.TaskUI.TaskCardUI");
+    		// returns the ClassLoader object assosciated with this Class
+    		cLoader = cls.getClassLoader();
+    	}
+    	catch (Exception e) {
+    		System.out.println(e);
+    	} return cLoader;
+    }
+
+    /**
+     * @param profilePic the profilePic to set
+     */
+    public ImageIcon setProfilePic(Task task, int num) {
+        ImageIcon icon=null;
+        try {
+        icon = new ImageIcon(ImageIO.read(getClassLoader().getResource(Userhold.getUsers().get(task.getAssignees().get(num) - 1).getProfilePic())));
+        // should set int for size here
+        icon = new ImageIcon(icon.getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
+        return icon;
+        }
+        catch (Exception e) {
+        	System.out.println(e);
+                return icon;
+        }
     }
 }

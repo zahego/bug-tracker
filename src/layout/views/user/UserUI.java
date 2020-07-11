@@ -257,7 +257,7 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
         try {
         ImageIcon icon = new ImageIcon(ImageIO.read(getClassLoader().getResource(CurrentUserhold.getUser().getProfilePic())));
         // should set int for size here
-        icon = new ImageIcon(icon.getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH)); 
+        icon = new ImageIcon(icon.getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH)); 
         this.setPortrait(icon);
         }
         catch (Exception e) {
@@ -271,7 +271,15 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
         this.setUserID("-1");
         this.setUserRole("NO ONE");
         
-        
+        try {
+        ImageIcon icon = new ImageIcon(ImageIO.read(getClassLoader().getResource("resources/tempIcon.png")));
+        // should set int for size here
+        icon = new ImageIcon(icon.getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH)); 
+        this.setPortrait(icon);
+        }
+        catch (Exception e) {
+        	System.out.println(e);
+        }
         
     }
     

@@ -87,7 +87,7 @@ public class AlertUI extends JFrame {
 
 	public void initcomponent() {
 		// TODO Auto-generated method stub
-		setBounds(100, 100, 655, 518);
+		setBounds(50, 50, 655, 518);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

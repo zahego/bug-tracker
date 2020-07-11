@@ -9,6 +9,10 @@ import javax.swing.JPopupMenu;
 
 import common.Enum.TaskStatus;
 import common.Task.Task;
+import common.User.CurrentUserhold;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import layout.views.BoardUI.BoardUI;
 import layout.views.screen.ScreenUI;
 
@@ -43,6 +47,7 @@ public class SwitchBoardPopUp extends JPopupMenu {
 			public void actionPerformed(ActionEvent e) {
 				if(task.getStatus()!=TaskStatus.ONNEW) {
 					task.setStatus(TaskStatus.ONNEW);
+                                        task.setAssignees(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8)));
 					ScreenUI.getLayoutUI().addTask();
 				}
 			}
@@ -54,6 +59,7 @@ public class SwitchBoardPopUp extends JPopupMenu {
 			public void actionPerformed(ActionEvent e) {
 				if(task.getStatus()!=TaskStatus.ONTAKEN) {
 					task.setStatus(TaskStatus.ONTAKEN);
+                                        task.setAssignees(new ArrayList<>(Arrays.asList(CurrentUserhold.getUser().getID(), 8)));
 					ScreenUI.getLayoutUI().addTask();
 				}
 			}
@@ -65,6 +71,7 @@ public class SwitchBoardPopUp extends JPopupMenu {
 			public void actionPerformed(ActionEvent e) {
 				if(task.getStatus()!=TaskStatus.ONGOING) {
 					task.setStatus(TaskStatus.ONGOING);
+                                        task.setAssignees(new ArrayList<>(Arrays.asList(CurrentUserhold.getUser().getID(), 8)));
 					ScreenUI.getLayoutUI().addTask();
 				}
 			}
@@ -76,6 +83,7 @@ public class SwitchBoardPopUp extends JPopupMenu {
 			public void actionPerformed(ActionEvent e) {
 				if(task.getStatus()!=TaskStatus.ONREVIEW) {
 					task.setStatus(TaskStatus.ONREVIEW);
+                                        task.setAssignees(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8)));
 					ScreenUI.getLayoutUI().addTask();
 				}
 			}
@@ -87,6 +95,7 @@ public class SwitchBoardPopUp extends JPopupMenu {
 			public void actionPerformed(ActionEvent e) {
 				if(task.getStatus()!=TaskStatus.ONFINISH) {
 					task.setStatus(TaskStatus.ONFINISH);
+                                        task.setAssignees(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8)));
 					ScreenUI.getLayoutUI().addTask();
 				}
 			}

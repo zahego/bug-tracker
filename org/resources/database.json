@@ -1238,7 +1238,7 @@
     "user": [{
             "id": 1,
             "role": "DEVELOPER",
-            "image": "src/resources/developer_1.png",
+            "image": "resources/developer_1.png",
             "name": "John Doe",
             "email": "hunterman@gmail.com",
             "password": "encrypted",
@@ -1248,7 +1248,7 @@
         }, {
             "id": 2,
             "role": "DEVELOPER",
-            "image": "src/resources/developer_2.png",
+            "image": "resources/developer_2.png",
             "name": "Baldo Stunnin",
             "email": "dezoit@gmail.com",
             "password": "passwordz",
@@ -1258,7 +1258,7 @@
         }, {
             "id": 3,
             "role": "DEVELOPER",
-            "image": "src/resources/developer_3.png",
+            "image": "resources/developer_3.png",
             "name": "Klein Young",
             "email": "funnywee@yahoo.com",
             "password": "poison",
@@ -1268,7 +1268,7 @@
         }, {
             "id": 4,
             "role": "DEVELOPER",
-            "image": "src/resources/developer_4.png",
+            "image": "resources/developer_4.png",
             "name": "Dunner Lumstemskin",
             "email": "donnerL@gmail.com",
             "password": "qweasdzxc",
@@ -1278,7 +1278,7 @@
         }, {
             "id": 5,
             "role": "TESTER",
-            "image": "src/resources/tester_1.png",
+            "image": "resources/tester_1.png",
             "name": "Kevin Finn",
             "email": "KevFin@gmail.com",
             "password": "asd123",
@@ -1288,7 +1288,7 @@
         }, {
             "id": 6,
             "role": "TESTER",
-            "image": "src/resources/tester_2.png",
+            "image": "resources/tester_2.png",
             "name": "Bard Carl",
             "email": "hello",
             "password": "hello",
@@ -1298,7 +1298,7 @@
         }, {
             "id": 7,
             "role": "PROJECT_MANAGER",
-            "image": "src/resources/pm.png",
+            "image": "resources/pm.png",
             "name": "Stean Fisher",
             "email": "steavieFi@gmail.com",
             "password": "kull123",
@@ -1308,7 +1308,7 @@
         }, {
             "id": 8,
             "role": "ADMIN",
-            "image": "src/resources/admin.png",
+            "image": "resources/admin.png",
             "name": "Annonymous Hackivity",
             "email": "1",
             "password": "notgonnatellyou",

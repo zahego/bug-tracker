@@ -48,6 +48,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JTextArea;
@@ -107,16 +108,6 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
     private JList<String> listAssignee;
     private JList<String> listFile;
     private List<User> users;
-
-    ;
-
-    public ImageIcon ResizeImage(String ImagePath) {
-        ImageIcon MyImage = new ImageIcon(ImagePath);
-        Image img = MyImage.getImage();
-        ImageIcon image = new ImageIcon(img);
-        return image;
-    }
-
     /**
      * Create the frame.
      */
@@ -143,7 +134,7 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
         setTitle("Bug Tracker 3000 - Task Create");
 
         //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 582, 945);
+        setBounds(50, 0, 582, 945);
         TaskCreate = new JPanel();
         TaskCreate.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(TaskCreate);
@@ -254,9 +245,9 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
         //default Duedate, thss is kinda restrictig tho
 
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-            DueDateBar.setText("12/12/2020");
-            selDate = sdf.parse("12/12/2020");
+            SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+            DueDateBar.setText("12-12-2020");
+            selDate = sdf.parse("12-12-2020");
         } catch (Exception e) {
             System.out.println("error when create task: " + e);
         }

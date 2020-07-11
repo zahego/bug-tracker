@@ -6,7 +6,6 @@
 package common.Sprint;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -19,20 +18,23 @@ import org.json.simple.parser.JSONParser;
  * @author tug70
  */
 public class Sprint {
+
     private int ID;
     private int name;
     private String duration;
     private int projectID;
-    
-    public Sprint(int ID){
-        this.ID=ID;
+
+    public Sprint(int ID) {
+        this.ID = ID;
     }
-    public Sprint(int ID, int name, String duration, int projectID){
-        this.ID=ID;
-        this.name=name;
-        this.duration=duration;
-        this.projectID=projectID;
+
+    public Sprint(int ID, int name, String duration, int projectID) {
+        this.ID = ID;
+        this.name = name;
+        this.duration = duration;
+        this.projectID = projectID;
     }
+
     /**
      * @return the ID
      */
@@ -88,47 +90,42 @@ public class Sprint {
     public void setProjectID(int projectID) {
         this.projectID = projectID;
     }
-    
+
     public static Sprint getSprintFromDatabase(int num) {
         Sprint sprintGet = new Sprint(-1, -1, "", -1);
         JSONParser jsonParser = new JSONParser();
-        
+
         try {
-            
-        
-        Class cls = Class.forName("common.Sprint.Sprint");
-    	// returns the ClassLoader object assosiated with this Class
-    	ClassLoader cLoader = cls.getClassLoader();
-    	InputStream inputStream = cLoader.getResourceAsStream("resources/database.json");
-    	if (inputStream != null ) {
-    		BufferedReader streamReader = new BufferedReader (
-    				new InputStreamReader(inputStream,"UTF-8"));
-    		StringBuilder responseStrBuilder = new StringBuilder();
-    		
-    		String inputStr;
-    		while ((inputStr = streamReader.readLine()) != null) {
-    		responseStrBuilder.append(inputStr);	
-    		
-    	}
-    	
 
-        //Read JSON file
-        JSONObject obj = (JSONObject) jsonParser.parse(responseStrBuilder.toString());
-      
-        
-        
-            //get the sprint aray
-            JSONArray sprintObject = (JSONArray) obj.get("sprint");
-            //get the sprint at sprint array of "num" position
-            JSONObject sprint = (JSONObject) sprintObject.get(num);
-            //get all fields
-            int ID = ((Long) sprint.get("id")).intValue();
-            int name = ((Long) sprint.get("name")).intValue();
-            String duration = (String) sprint.get("duration");
-            int projectID = ((Long) sprint.get("_projectID")).intValue();
-            sprintGet = new Sprint(ID, name, duration, projectID);
+            Class cls = Class.forName("common.Sprint.Sprint");
+            // returns the ClassLoader object assosiated with this Class
+            ClassLoader cLoader = cls.getClassLoader();
+            InputStream inputStream = cLoader.getResourceAsStream("resources/database.json");
+            if (inputStream != null) {
+                BufferedReader streamReader = new BufferedReader(
+                        new InputStreamReader(inputStream, "UTF-8"));
+                StringBuilder responseStrBuilder = new StringBuilder();
+                String inputStr;
+                while ((inputStr = streamReader.readLine()) != null) {
+                    responseStrBuilder.append(inputStr);
+                }
 
-        }} catch (Exception e) {
+                //Read JSON file
+                JSONObject obj = (JSONObject) jsonParser.parse(responseStrBuilder.toString());
+
+                //get the sprint aray
+                JSONArray sprintObject = (JSONArray) obj.get("sprint");
+                //get the sprint at sprint array of "num" position
+                JSONObject sprint = (JSONObject) sprintObject.get(num);
+                //get all fields
+                int ID = ((Long) sprint.get("id")).intValue();
+                int name = ((Long) sprint.get("name")).intValue();
+                String duration = (String) sprint.get("duration");
+                int projectID = ((Long) sprint.get("_projectID")).intValue();
+                sprintGet = new Sprint(ID, name, duration, projectID);
+
+            }
+        } catch (Exception e) {
             System.out.println(e);
         }
         return sprintGet;
@@ -138,18 +135,30 @@ public class Sprint {
         int sprintNumber = 0;
         JSONParser jsonParser = new JSONParser();
         try {
-            FileReader reader = new FileReader("src/resources/database.json");
+            Class cls = Class.forName("common.Sprint.Sprint");
+            // returns the ClassLoader object assosiated with this Class
+            ClassLoader cLoader = cls.getClassLoader();
+            InputStream inputStream = cLoader.getResourceAsStream("resources/database.json");
+            if (inputStream != null) {
+                BufferedReader streamReader = new BufferedReader(
+                        new InputStreamReader(inputStream, "UTF-8"));
+                StringBuilder responseStrBuilder = new StringBuilder();
+                String inputStr;
+                while ((inputStr = streamReader.readLine()) != null) {
+                    responseStrBuilder.append(inputStr);
+                }
 
-            //Read JSON file
-            JSONObject obj = (JSONObject) jsonParser.parse(reader);
-            //get the project aray
-            JSONArray sprintObject = (JSONArray) obj.get("sprint");
-            sprintNumber = sprintObject.size();
+                //Read JSON file
+                JSONObject obj = (JSONObject) jsonParser.parse(responseStrBuilder.toString());
+                //get the project aray
+                JSONArray sprintObject = (JSONArray) obj.get("sprint");
+                sprintNumber = sprintObject.size();
 
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
         return sprintNumber;
     }
-    
+
 }

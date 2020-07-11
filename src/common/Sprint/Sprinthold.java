@@ -57,7 +57,7 @@ public class Sprinthold {
                     //exchange the 2 ID of the adjacent sprints
                     int tempID=sprints.get(j).getID();
                     sprints.get(j).setID(sprints.get(j+1).getID());
-                    sprints.get(j+1).setID(sprints.get(j).getID());
+                    sprints.get(j+1).setID(tempID);
                     
                     //exchange the 2 sprints next to each other 
                     Sprint tempSprint=sprints.get(j);

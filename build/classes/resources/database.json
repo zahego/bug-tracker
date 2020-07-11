@@ -1240,8 +1240,8 @@
             "role": "DEVELOPER",
             "image": "resources/developer_1.png",
             "name": "John Doe",
-            "email": "hunterman@gmail.com",
-            "password": "encrypted",
+            "email": "dev",
+            "password": "a",
             "accessRange": 2,
             "_projects": [1, 2],
             "_tasks": []
@@ -1250,8 +1250,8 @@
             "role": "DEVELOPER",
             "image": "resources/developer_2.png",
             "name": "Baldo Stunnin",
-            "email": "dezoit@gmail.com",
-            "password": "passwordz",
+            "email": "tug64107@temple.edu",
+            "password": "toepowder",
             "accessRange": 2,
             "_projects": [1, 4],
             "_tasks": []
@@ -1311,7 +1311,7 @@
             "image": "resources/admin.png",
             "name": "Annonymous Hackivity",
             "email": "1",
-            "password": "notgonnatellyou",
+            "password": "a",
             "accessRange": 4,
             "_projects": [1, 2, 3, 4],
             "_tasks": []

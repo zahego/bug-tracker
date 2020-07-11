@@ -54,34 +54,28 @@ import layout.views.BoardUI.BoardUI;
 
 import javax.swing.event.PopupMenuEvent;
 import java.awt.Toolkit;
+import javax.swing.JTextArea;
 
 public class AlertSendUI extends JFrame {
 
 	private JPanel AlertSendPanel;
 	private JTextField NameString;
-	private JTextField messageString;
 	private JLabel AlertNameLabel;
 	private JLabel Message;
-	private JScrollPane MessageScrollPane;
 	private JLabel ReceiverLabel;
 	private JButton SendButton;
 	private JScrollPane listScroll;
 	private JScrollPane listScroll_1;
-	private JScrollPane jScrollPane2;
 	private JList<String> SelectedUserList;
-	private JList<String> SelectedUserList_1;
-	private JComboBox<String> teamDropDown; 
-	private JComboBox<ComboItem> teamDropDown_1;
+	private JComboBox<ComboItem> teamDropDown;
 	private DefaultListModel<String> listModel = new DefaultListModel<>();
 	private JTextField IDint;
-	private DefaultListModel<String> listReceiverModel  = new DefaultListModel<>();
-
 	private JLabel ProjectAssignBarLabel;
-	
 	private JComboBox<ComboItem> ProjectAssignBar;
 	private AlertBoardUI alertboardUI;
 	private List<User> users;
 	int projectID = 1;
+	private JTextArea messageString;
 	/**
 	 * Launch the application.
 	 */
@@ -99,49 +93,24 @@ public class AlertSendUI extends JFrame {
 		if (!listModel.isEmpty()) {
             listModel.clear();
         }
-        this.getSelectedUserList().setModel(listModel);
 		
 	}
 
 	private void eventHandler() {
 		// TODO Auto-generated method stub
 		SendButton.addActionListener(new ActionListener() {
-			//private AlertBoardUI alertboardUI;
-
 			public void actionPerformed(ActionEvent arg0) {
-				//Add to AlertHold
-				
-				//Alert addAlert = createAlertFromFields();
-
-		        //for inserting new Alert
-		        
-		       // AlertHold.insert(addAlert);
-		        //AlertBoardUI.renderAlertBoard();
-
-		        
-		        
-		        
-		        
 		       addAlert();
 		        ((JFrame) SendButton.getParent().getParent().getParent().getParent()).dispose();
-		        
-		        //Close the Alert create window
-		       
-				
-				
-			
 			}
-			
-		}); }
+		}); 
+		}
 	
 	/**
      * @return the teamDropDown
      */
-	
-	
-    
 	public javax.swing.JComboBox<ComboItem> getTeamDropDown() {
-        return teamDropDown_1;
+        return teamDropDown;
     }
 
     /**
@@ -149,7 +118,7 @@ public class AlertSendUI extends JFrame {
      */
     
 	public void setTeamDropDown(ComboItem teamDropDown) {
-        this.teamDropDown_1.addItem(teamDropDown);
+        this.teamDropDown.addItem(teamDropDown);
     }
 	
 	public DefaultListModel<String> getListModel() {
@@ -178,14 +147,14 @@ public class AlertSendUI extends JFrame {
      * @return the selectedUserList
      */
     public javax.swing.JList<String> getSelectedUserList() {
-        return SelectedUserList_1;
+    	return this.SelectedUserList;
     }
 
     /**
      * @param selectedUserList the selectedUserList to set
      */
     public void setSelectedUserList(javax.swing.JList<String> selectedUserList) {
-        this.SelectedUserList_1 = selectedUserList;
+        this.SelectedUserList = selectedUserList;
     }
 
 	
@@ -198,10 +167,6 @@ public class AlertSendUI extends JFrame {
             getListModel().remove(remove);
         }
     }
-    private void selectedUserListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectedUserListMouseClicked
-        int selected = this.getSelectedUserList().getSelectedIndex();
-        this.removeList(selected);
-    }//GEN-LAST:event_selectedUserListMouseClicked
     
 	private void teamDropDownPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_teamDropDownPopupMenuWillBecomeVisible
         ProjectUIDropdown.setAllowListEvent(true);
@@ -212,7 +177,7 @@ public class AlertSendUI extends JFrame {
     }//GEN-LAST:event_teamDropDownPopupMenuWillBecomeInvisible
     
     private void teamDropDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamDropDownActionPerformed
-        Object selected = this.teamDropDown_1.getSelectedItem();
+        Object selected = this.teamDropDown.getSelectedItem();
 
         if (selected != null && ProjectUIDropdown.isAllowListEvent()) {
             if (!this.listModel.contains(selected.toString())) {
@@ -224,18 +189,21 @@ public class AlertSendUI extends JFrame {
             
         }
     }//GEN-LAST:event_teamDropDownActionPerformed
-	
+    private void selectedUserListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectedUserListMouseClicked
+        int selected = this.getSelectedUserList().getSelectedIndex();
+        this.removeList(selected);
+    }//GEN-LAST:event_selectedUserListMouseClicked
+    
 	private void initComponent() {
-		
+		setBounds(50, 50, 486, 578);
         
         listScroll = new javax.swing.JScrollPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
         SelectedUserList = new javax.swing.JList<>();
-        SelectedUserList_1 = new JList();
-        teamDropDown_1 = new JComboBox<ComboItem>();
+        teamDropDown = new JComboBox<ComboItem>();
         ProjectAssignBar = new JComboBox<ComboItem>();
          //alertboardUI = new AlertBoardUI();
-        teamDropDown_1.addPopupMenuListener(new PopupMenuListener() {
+        SelectedUserList.setModel(listModel);
+        teamDropDown.addPopupMenuListener(new PopupMenuListener() {
         	public void popupMenuCanceled(PopupMenuEvent e) {
         	}
         	public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
@@ -245,44 +213,33 @@ public class AlertSendUI extends JFrame {
         		teamDropDownPopupMenuWillBecomeVisible(e);
         	}
         });
-		
-		//System.out.println("PrintDropDown" + team);
-       // teamDropDown_1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-      // System.out.println("PrintDropDown" + teamDropDown.getSelectedItem());
-        
+        SelectedUserList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                selectedUserListMouseClicked(evt);
+            }
+        });
         List<Project> projects = Projecthold.getProjects();
         
         for (int i = 0; i < projects.size(); i++) {
-        	//System.out.println("TEST MOOO"  + projects.get(i).getID());
         	ComboItem x= new ComboItem(projects.get(i).getName(), projects.get(i).getID());
-        	System.out.println("Test Herre :" + x.getValue());
             ProjectAssignBar.addItem(x);
         }
 
         users = Userhold.getUsers();
         int currentProjID = (int) ((ComboItem) ProjectAssignBar.getSelectedItem()).getValue();
-        teamDropDown_1.removeAllItems();
+        teamDropDown.removeAllItems();
         for (int i = 0; i < users.size(); i++) {
             for (int j = 0; j < Projecthold.getProjects().get(currentProjID-1).getTeam().size(); j++) {
             	
                 if (users.get(i).getID() == Projecthold.getProjects().get(currentProjID-1).getTeam().get(j) ) {
-                	teamDropDown_1.addItem(new ComboItem(users.get(i).getName(), users.get(i).getID()));
+                	teamDropDown.addItem(new ComboItem(users.get(i).getName(), users.get(i).getID()));
                 }
             }
         }
-       
-        
-        SelectedUserList_1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        
-        jScrollPane2.setViewportView(SelectedUserList);
+        listScroll_1 = new JScrollPane();
+        listScroll_1.setViewportView(SelectedUserList);
 
-        listScroll.setViewportView(jScrollPane2);
-
-		setBounds(100, 100, 638, 795);
+		
 		AlertSendPanel = new JPanel();
 		AlertSendPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(AlertSendPanel);
@@ -294,22 +251,20 @@ public class AlertSendUI extends JFrame {
 		
 		Message = new JLabel("Message: ");
 		
-		MessageScrollPane = new JScrollPane();
-		
 		ReceiverLabel = new JLabel("Send To: ");
 		
 		SendButton = new JButton("Send");
 		
 		
 		
-		teamDropDown_1.addActionListener(new ActionListener() {
+		teamDropDown.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				teamDropDownActionPerformed(e);
 				
 			}
 		});
 		
-		listScroll_1 = new JScrollPane();
+		
 		
 		IDint = new JTextField();
 		IDint.setEditable(false);
@@ -333,97 +288,87 @@ public class AlertSendUI extends JFrame {
                 }
                 
                 int currentProjID = (int) ((ComboItem) ProjectAssignBar.getSelectedItem()).getValue();
-                teamDropDown_1.setModel(new DefaultComboBoxModel<ComboItem>());
+                teamDropDown.setModel(new DefaultComboBoxModel<ComboItem>());
                 for (int i = 0; i < users.size(); i++) {
                     for (int j = 0; j < Projecthold.getProjects().get(currentProjID-1).getTeam().size(); j++) {
                         if (users.get(i).getID() == Projecthold.getProjects().get(projectID-1).getTeam().get(j)) {
-                        	teamDropDown_1.addItem(new ComboItem(users.get(i).getName(), users.get(i).getID()));
+                        	teamDropDown.addItem(new ComboItem(users.get(i).getName(), users.get(i).getID()));
                         }
                     }
                 }
-				
-				
-				
-				
-				
 			}
 		});
+		
+		messageString = new JTextArea();
+		
+		JLabel IDLabel = new JLabel("ID:");
 		
 		GroupLayout gl_AlertSendPanel = new GroupLayout(AlertSendPanel);
 		gl_AlertSendPanel.setHorizontalGroup(
 			gl_AlertSendPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_AlertSendPanel.createSequentialGroup()
+					.addGap(11)
 					.addGroup(gl_AlertSendPanel.createParallelGroup(Alignment.TRAILING)
+						.addComponent(SendButton, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_AlertSendPanel.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(SendButton, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_AlertSendPanel.createSequentialGroup()
-							.addGap(23)
-							.addGroup(gl_AlertSendPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(ReceiverLabel)
+							.addGroup(gl_AlertSendPanel.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(AlertNameLabel)
+								.addComponent(Message, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE))
+							.addGap(18)
+							.addGroup(gl_AlertSendPanel.createParallelGroup(Alignment.LEADING, false)
 								.addGroup(gl_AlertSendPanel.createSequentialGroup()
-									.addGroup(gl_AlertSendPanel.createParallelGroup(Alignment.TRAILING, false)
-										.addComponent(Message, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(AlertNameLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addGroup(gl_AlertSendPanel.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_AlertSendPanel.createSequentialGroup()
-											.addComponent(IDint, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addGap(120)
-											.addComponent(ProjectAssignBarLabel)
-											.addGap(35)
-											.addComponent(ProjectAssignBar, 0, 142, Short.MAX_VALUE))
-										.addComponent(NameString, GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
-										.addGroup(gl_AlertSendPanel.createParallelGroup(Alignment.TRAILING, false)
-											.addComponent(listScroll_1, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addComponent(teamDropDown_1, Alignment.LEADING, 0, 219, Short.MAX_VALUE))
-										.addComponent(MessageScrollPane, GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE))))))
-					.addGap(33))
+										.addComponent(ProjectAssignBarLabel)
+										.addComponent(ProjectAssignBar, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE))
+									.addGap(39)
+									.addGroup(gl_AlertSendPanel.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(ReceiverLabel)
+										.addComponent(listScroll_1, 0, 0, Short.MAX_VALUE)
+										.addComponent(teamDropDown, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)))
+								.addGroup(gl_AlertSendPanel.createSequentialGroup()
+									.addComponent(NameString, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(IDLabel, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+									.addGap(2)
+									.addComponent(IDint, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE))
+								.addComponent(messageString))))
+					.addGap(40))
 		);
 		gl_AlertSendPanel.setVerticalGroup(
 			gl_AlertSendPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_AlertSendPanel.createSequentialGroup()
 					.addGap(41)
 					.addGroup(gl_AlertSendPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(NameString, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
-						.addComponent(AlertNameLabel))
-					.addGap(25)
-					.addGroup(gl_AlertSendPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(Message)
-						.addComponent(IDint, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(ProjectAssignBarLabel)
-						.addComponent(ProjectAssignBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(21)
-					.addComponent(MessageScrollPane, GroupLayout.PREFERRED_SIZE, 232, GroupLayout.PREFERRED_SIZE)
-					.addGap(36)
-					.addComponent(ReceiverLabel)
+						.addGroup(gl_AlertSendPanel.createSequentialGroup()
+							.addComponent(AlertNameLabel)
+							.addGap(18)
+							.addComponent(Message))
+						.addGroup(gl_AlertSendPanel.createSequentialGroup()
+							.addGroup(gl_AlertSendPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(NameString, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(IDint, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(IDLabel))
+							.addGap(18)
+							.addComponent(messageString, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
+							.addGap(26)
+							.addGroup(gl_AlertSendPanel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_AlertSendPanel.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(ReceiverLabel)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(teamDropDown, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_AlertSendPanel.createSequentialGroup()
+									.addComponent(ProjectAssignBarLabel)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(ProjectAssignBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(teamDropDown_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(9)
-					.addComponent(listScroll_1, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-					.addComponent(SendButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addComponent(listScroll_1, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(SendButton)
+					.addGap(24))
 		);
 		
-		jScrollPane2 = new JScrollPane();
-		listScroll_1.setViewportView(jScrollPane2);
 		
-		
-		SelectedUserList_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		SelectedUserList_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				 selectedUserListMouseClicked(e);
-			}
-		});
-		jScrollPane2.setViewportView(SelectedUserList_1);
-		
-		
-		
-		messageString = new JTextField();
-		MessageScrollPane.setViewportView(messageString);
-		messageString.setColumns(10);
 		AlertSendPanel.setLayout(gl_AlertSendPanel);
 		
 	}
@@ -485,7 +430,7 @@ public class AlertSendUI extends JFrame {
     /**
      * @return the nameString
      */
-    public javax.swing.JTextField getmessageString() {
+    public javax.swing.JTextArea getmessageString() {
         return messageString;
     }
 
@@ -510,11 +455,11 @@ public class AlertSendUI extends JFrame {
     public void addAlert() {
         //add task and notify main UI
         ArrayList<Integer> receivers = new ArrayList<>();
-        if (listReceiverModel.size() == 0) {
+        if (listModel.size() == 0) {
         	receivers = Projecthold.getProjects().get((int) ((ComboItem) ProjectAssignBar.getSelectedItem()).getValue() - 1).getTeam();
         } else {
-            for (int i = 0; i < listReceiverModel.size(); i++) {
-                int userID = Userhold.searchNmeOutputID(listReceiverModel.get(i));
+            for (int i = 0; i < listModel.size(); i++) {
+                int userID = Userhold.searchNmeOutputID(listModel.get(i));
                 receivers.add(userID);
             }
             //have to add admin
@@ -530,22 +475,15 @@ public class AlertSendUI extends JFrame {
         Alert alert = new Alert(AlertHold.getAlertList().size() + 1,
                 NameString.getText(), messageString.getText(), receivers, CurrentUserhold.getUser().getID());
         
-        alert.addReceivers((int) ((ComboItem) teamDropDown_1.getSelectedItem()).getValue());
+        alert.addReceivers((int) ((ComboItem) teamDropDown.getSelectedItem()).getValue());
         AlertHold.addAlert(alert);
-       // System.out.println("Hello Herre" + AlertHold.getAlertList().get(AlertHold.getAlertList().size()-1).getName());
         
        if (this.alertboardUI != null) {
             this.alertboardUI.refresh();
             AlertUI.addAlert();
-        	/*System.out.println("form alertsendui"+this.alertboardUI.getAlertBoard().read().size());
-        	this.alertboardUI.getAlertBoard().clear();
-        	System.out.println("form alertsendui"+this.alertboardUI.getAlertBoard().read().size());
-        	this.alertboardUI = null;*/
         	
         }
     }
-
-	
 }
 
 class ComboItem {

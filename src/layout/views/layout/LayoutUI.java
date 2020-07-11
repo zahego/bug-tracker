@@ -30,11 +30,11 @@ import java.awt.Dimension;
 public class LayoutUI extends javax.swing.JPanel {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
+    /**
      * Creates new form Layout
      */
     public LayoutUI() {
@@ -48,24 +48,25 @@ public class LayoutUI extends javax.swing.JPanel {
     private BoardUI ongoing;
     private BoardUI finish;
 
-    public void addLog(){
-        
+    public void addLog() {
+
         backlog = new BoardUI(BoardType.BACKLOG);
         taken = new BoardUI(BoardType.TAKEN);
         ongoing = new BoardUI(BoardType.ONGOING);
         finish = new BoardUI(BoardType.FINISH);
-        
-        backlog.addContainerListener(new componentChangeListener());
-        taken.addContainerListener(new componentChangeListener());
-        ongoing.addContainerListener(new componentChangeListener());
-        finish.addContainerListener(new componentChangeListener());
+
+        getBacklog().addContainerListener(new componentChangeListener());
+        getTaken().addContainerListener(new componentChangeListener());
+        getOngoing().addContainerListener(new componentChangeListener());
+        getFinish().addContainerListener(new componentChangeListener());
     }
-    public void rerenderAllBoard(){
+
+    public void rerenderAllBoard() {
         //backlog.refresh();
         //taken.refresh();
         //ongoing.refresh();
-        finish.refresh();
-       
+        getFinish().refresh();
+
     }
 
     /**
@@ -78,29 +79,27 @@ public class LayoutUI extends javax.swing.JPanel {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         LeftProjectPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        OnBacklogPanel = new javax.swing.JScrollPane();
         SearchBarL = new javax.swing.JTextField();
         SearchIconL = new javax.swing.JButton();
-        MinimizeButtonL = new javax.swing.JButton();
+        OnBacklogPanel = new javax.swing.JScrollPane();
         SortL = new javax.swing.JButton();
         FilterL = new javax.swing.JButton();
         AddTaskButton = new javax.swing.JButton();
+        MinimizeButtonL = new javax.swing.JButton();
         MidProjectPanel = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        OnTakenPanel = new javax.swing.JScrollPane();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        OnGoingPanel = new javax.swing.JScrollPane();
         MinimizeButtonM = new javax.swing.JButton();
         MaximizeButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         DeMaximizeButton = new javax.swing.JButton();
+        ProgressBoardButton = new javax.swing.JButton();
+        MemberBoardButton = new javax.swing.JButton();
+        OnTakenPanel = new javax.swing.JScrollPane();
+        OnGoingPanel = new javax.swing.JScrollPane();
         RightProjectPanel = new javax.swing.JPanel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        OnFinishPanel = new javax.swing.JScrollPane();
         SearchIconR = new javax.swing.JButton();
         SearchBarR = new javax.swing.JTextField();
+        OnFinishPanel = new javax.swing.JScrollPane();
         MinimizeButtonR = new javax.swing.JButton();
         filterR = new javax.swing.JButton();
         sortR = new javax.swing.JButton();
@@ -108,12 +107,13 @@ public class LayoutUI extends javax.swing.JPanel {
         DeMinimizeButtonL = new javax.swing.JButton();
         DeMinimizeButtonM = new javax.swing.JButton();
 
-        setPreferredSize(new Dimension(1400, 610));
+        setPreferredSize(new java.awt.Dimension(1400, 600));
 
         LeftProjectPanel.setBackground(new java.awt.Color(0, 153, 204));
 
-        jScrollPane1.setViewportView(OnBacklogPanel);
+        SearchBarL.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
 
+        SearchIconL.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         SearchIconL.setText("search");
         SearchIconL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,13 +121,9 @@ public class LayoutUI extends javax.swing.JPanel {
             }
         });
 
-        MinimizeButtonL.setText("< <");
-        MinimizeButtonL.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MinimizeButtonLActionPerformed(evt);
-            }
-        });
+        OnBacklogPanel.setPreferredSize(new java.awt.Dimension(300, 450));
 
+        SortL.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         SortL.setText("sort");
         SortL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,6 +131,7 @@ public class LayoutUI extends javax.swing.JPanel {
             }
         });
 
+        FilterL.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         FilterL.setText("filter");
         FilterL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,6 +139,7 @@ public class LayoutUI extends javax.swing.JPanel {
             }
         });
 
+        AddTaskButton.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         AddTaskButton.setText("add");
         AddTaskButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,57 +147,59 @@ public class LayoutUI extends javax.swing.JPanel {
             }
         });
 
+        MinimizeButtonL.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        MinimizeButtonL.setText("< <");
+        MinimizeButtonL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MinimizeButtonLActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout LeftProjectPanelLayout = new javax.swing.GroupLayout(LeftProjectPanel);
+        LeftProjectPanel.setLayout(LeftProjectPanelLayout);
         LeftProjectPanelLayout.setHorizontalGroup(
-        	LeftProjectPanelLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(LeftProjectPanelLayout.createSequentialGroup()
-        			.addGap(25)
-        			.addGroup(LeftProjectPanelLayout.createParallelGroup(Alignment.LEADING, false)
-        				.addGroup(LeftProjectPanelLayout.createSequentialGroup()
-        					.addComponent(SearchBarL, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(SearchIconL)
-        					.addGap(9))
-        				.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE))
-        			.addContainerGap(34, Short.MAX_VALUE))
-        		.addGroup(LeftProjectPanelLayout.createSequentialGroup()
-        			.addGap(43)
-        			.addComponent(AddTaskButton, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-        			.addGap(41)
-        			.addComponent(SortL, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-        			.addGap(40)
-        			.addComponent(FilterL, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(55, Short.MAX_VALUE))
-        		.addGroup(Alignment.TRAILING, LeftProjectPanelLayout.createSequentialGroup()
-        			.addContainerGap(290, Short.MAX_VALUE)
-        			.addComponent(MinimizeButtonL, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap())
+            LeftProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LeftProjectPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(MinimizeButtonL))
+            .addGroup(LeftProjectPanelLayout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(LeftProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(OnBacklogPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(LeftProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(LeftProjectPanelLayout.createSequentialGroup()
+                            .addComponent(AddTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(37, 37, 37)
+                            .addComponent(SortL, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(55, 55, 55)
+                            .addComponent(FilterL, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(LeftProjectPanelLayout.createSequentialGroup()
+                            .addComponent(SearchBarL)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(SearchIconL, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         LeftProjectPanelLayout.setVerticalGroup(
-        	LeftProjectPanelLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(LeftProjectPanelLayout.createSequentialGroup()
-        			.addComponent(MinimizeButtonL, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-        			.addGap(10)
-        			.addGroup(LeftProjectPanelLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(SearchBarL, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(SearchIconL))
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
-        			.addGroup(LeftProjectPanelLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(AddTaskButton, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(SortL, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(FilterL, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-        			.addGap(63))
+            LeftProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LeftProjectPanelLayout.createSequentialGroup()
+                .addComponent(MinimizeButtonL, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(LeftProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SearchBarL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchIconL, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(OnBacklogPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(LeftProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SortL, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FilterL, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27))
         );
-        LeftProjectPanel.setLayout(LeftProjectPanelLayout);
 
         MidProjectPanel.setBackground(new java.awt.Color(255, 204, 51));
 
-        jScrollPane3.setViewportView(OnTakenPanel);
-
-        jScrollPane5.setViewportView(OnGoingPanel);
-
+        MinimizeButtonM.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         MinimizeButtonM.setText(">> <<");
         MinimizeButtonM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,6 +207,7 @@ public class LayoutUI extends javax.swing.JPanel {
             }
         });
 
+        MaximizeButton.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         MaximizeButton.setText("< >");
         MaximizeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,95 +215,92 @@ public class LayoutUI extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setText("Ontaken");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel2.setText("Ongoing");
 
+        DeMaximizeButton.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         DeMaximizeButton.setText("> <");
         DeMaximizeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeMaximizeButtonActionPerformed(evt);
             }
         });
-        
-        ProgressBoardButton = new JButton("PBoard\r\n");
-        ProgressBoardButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent arg0) {
-        		ProgressBoard2 Pboard = new ProgressBoard2();
-        		Pboard.setVisible(true);
-        	}
+
+        ProgressBoardButton.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        ProgressBoardButton.setText("Progress Board");
+        ProgressBoardButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProgressBoardButtonActionPerformed(evt);
+            }
         });
-        
-        MemberBoardButton = new JButton("MBoard\r\n");
-        MemberBoardButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		TeamMemberBoard Mboard = new TeamMemberBoard();
-        		Mboard.setVisible(true);
-        	}
+
+        MemberBoardButton.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        MemberBoardButton.setText("Member Board");
+        MemberBoardButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MemberBoardButtonActionPerformed(evt);
+            }
         });
-        
-        
-        	
-      
+
+        OnTakenPanel.setPreferredSize(new java.awt.Dimension(300, 450));
+
+        OnGoingPanel.setPreferredSize(new java.awt.Dimension(300, 450));
 
         javax.swing.GroupLayout MidProjectPanelLayout = new javax.swing.GroupLayout(MidProjectPanel);
+        MidProjectPanel.setLayout(MidProjectPanelLayout);
         MidProjectPanelLayout.setHorizontalGroup(
-        	MidProjectPanelLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(MidProjectPanelLayout.createSequentialGroup()
-        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        			.addGroup(MidProjectPanelLayout.createParallelGroup(Alignment.TRAILING)
-        				.addGroup(MidProjectPanelLayout.createSequentialGroup()
-        					.addGroup(MidProjectPanelLayout.createParallelGroup(Alignment.TRAILING)
-        						.addComponent(jLabel1)
-        						.addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE))
-        					.addGap(18)
-        					.addGroup(MidProjectPanelLayout.createParallelGroup(Alignment.LEADING)
-        						.addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-        						.addComponent(jScrollPane5, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE))
-        					.addGap(23))
-        				.addGroup(MidProjectPanelLayout.createSequentialGroup()
-        					.addComponent(MaximizeButton)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(DeMaximizeButton)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(MinimizeButtonM)
-        					.addGap(45))))
-        		.addGroup(MidProjectPanelLayout.createSequentialGroup()
-        			.addContainerGap()
-        			.addComponent(ProgressBoardButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
-        			.addGap(18)
-        			.addComponent(MemberBoardButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(483, Short.MAX_VALUE))
+            MidProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MidProjectPanelLayout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(MidProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MidProjectPanelLayout.createSequentialGroup()
+                        .addGroup(MidProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(OnTakenPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(MidProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(OnGoingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MidProjectPanelLayout.createSequentialGroup()
+                        .addComponent(MaximizeButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DeMaximizeButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(MinimizeButtonM))
+                    .addGroup(MidProjectPanelLayout.createSequentialGroup()
+                        .addComponent(ProgressBoardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(MemberBoardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         MidProjectPanelLayout.setVerticalGroup(
-        	MidProjectPanelLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(MidProjectPanelLayout.createSequentialGroup()
-        			.addGroup(MidProjectPanelLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(MinimizeButtonM, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(MaximizeButton, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(DeMaximizeButton, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-        			.addGap(8)
-        			.addGroup(MidProjectPanelLayout.createParallelGroup(Alignment.TRAILING)
-        				.addGroup(MidProjectPanelLayout.createSequentialGroup()
-        					.addComponent(jLabel1)
-        					.addPreferredGap(ComponentPlacement.UNRELATED)
-        					.addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(MidProjectPanelLayout.createSequentialGroup()
-        					.addComponent(jLabel2)
-        					.addPreferredGap(ComponentPlacement.UNRELATED)
-        					.addComponent(jScrollPane5, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE)))
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
-        			.addGroup(MidProjectPanelLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(ProgressBoardButton, GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE)
-        				.addComponent(MemberBoardButton, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-        			.addGap(65))
+            MidProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MidProjectPanelLayout.createSequentialGroup()
+                .addGroup(MidProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MinimizeButtonM, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MaximizeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DeMaximizeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(MidProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(MidProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(OnTakenPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(OnGoingPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(MidProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MemberBoardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ProgressBoardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
-        MidProjectPanel.setLayout(MidProjectPanelLayout);
 
         RightProjectPanel.setBackground(new java.awt.Color(102, 204, 0));
 
-        jScrollPane7.setViewportView(OnFinishPanel);
-
+        SearchIconR.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         SearchIconR.setText("search");
         SearchIconR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -310,6 +308,11 @@ public class LayoutUI extends javax.swing.JPanel {
             }
         });
 
+        SearchBarR.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+
+        OnFinishPanel.setPreferredSize(new java.awt.Dimension(300, 450));
+
+        MinimizeButtonR.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         MinimizeButtonR.setText("> >");
         MinimizeButtonR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -317,6 +320,7 @@ public class LayoutUI extends javax.swing.JPanel {
             }
         });
 
+        filterR.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         filterR.setText("filter");
         filterR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -324,6 +328,7 @@ public class LayoutUI extends javax.swing.JPanel {
             }
         });
 
+        sortR.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         sortR.setText("sort");
         sortR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -332,46 +337,49 @@ public class LayoutUI extends javax.swing.JPanel {
         });
 
         javax.swing.GroupLayout RightProjectPanelLayout = new javax.swing.GroupLayout(RightProjectPanel);
+        RightProjectPanel.setLayout(RightProjectPanelLayout);
         RightProjectPanelLayout.setHorizontalGroup(
-        	RightProjectPanelLayout.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(RightProjectPanelLayout.createSequentialGroup()
-        			.addComponent(MinimizeButtonR)
-        			.addContainerGap(299, Short.MAX_VALUE))
-        		.addGroup(RightProjectPanelLayout.createSequentialGroup()
-        			.addGap(30)
-        			.addGroup(RightProjectPanelLayout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(RightProjectPanelLayout.createSequentialGroup()
-        					.addComponent(SearchBarR, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
-        					.addGap(18)
-        					.addComponent(SearchIconR, GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
-        				.addGroup(RightProjectPanelLayout.createSequentialGroup()
-        					.addGap(10)
-        					.addComponent(sortR, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
-        					.addComponent(filterR, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-        					.addGap(10))
-        				.addComponent(jScrollPane7, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE))
-        			.addGap(30))
+            RightProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RightProjectPanelLayout.createSequentialGroup()
+                .addComponent(MinimizeButtonR)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(RightProjectPanelLayout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(RightProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RightProjectPanelLayout.createSequentialGroup()
+                        .addGroup(RightProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(SearchBarR, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sortR, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(RightProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(RightProjectPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(filterR, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(RightProjectPanelLayout.createSequentialGroup()
+                                .addComponent(SearchIconR, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(OnFinishPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         RightProjectPanelLayout.setVerticalGroup(
-        	RightProjectPanelLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(RightProjectPanelLayout.createSequentialGroup()
-        			.addComponent(MinimizeButtonR, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-        			.addGap(11)
-        			.addGroup(RightProjectPanelLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(SearchBarR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(SearchIconR))
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(jScrollPane7, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addGroup(RightProjectPanelLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(sortR, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(filterR, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-        			.addGap(15))
+            RightProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RightProjectPanelLayout.createSequentialGroup()
+                .addComponent(MinimizeButtonR, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addGroup(RightProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SearchBarR, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchIconR, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(OnFinishPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(RightProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sortR, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(filterR))
+                .addContainerGap())
         );
-        RightProjectPanel.setLayout(RightProjectPanelLayout);
 
         DeMinimizeButtonR.setBackground(new java.awt.Color(153, 255, 51));
+        DeMinimizeButtonR.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         DeMinimizeButtonR.setText("< >");
         DeMinimizeButtonR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -380,6 +388,7 @@ public class LayoutUI extends javax.swing.JPanel {
         });
 
         DeMinimizeButtonL.setBackground(new java.awt.Color(0, 153, 204));
+        DeMinimizeButtonL.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         DeMinimizeButtonL.setText("< >");
         DeMinimizeButtonL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -388,57 +397,57 @@ public class LayoutUI extends javax.swing.JPanel {
         });
 
         DeMinimizeButtonM.setBackground(new java.awt.Color(255, 153, 51));
+        DeMinimizeButtonM.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         DeMinimizeButtonM.setText("< >");
         DeMinimizeButtonM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeMinimizeButtonMActionPerformed(evt);
             }
         });
-        GroupLayout groupLayout = new GroupLayout(this);
-        groupLayout.setHorizontalGroup(
-        	groupLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(groupLayout.createSequentialGroup()
-        			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(groupLayout.createSequentialGroup()
-        					.addGap(88)
-        					.addComponent(DeMinimizeButtonL, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-        					.addGap(484)
-        					.addComponent(DeMinimizeButtonM, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-        					.addGap(377)
-        					.addComponent(DeMinimizeButtonR, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(groupLayout.createSequentialGroup()
-        					.addGap(20)
-        					.addComponent(LeftProjectPanel, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
-        					.addGap(18)
-        					.addComponent(MidProjectPanel, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(RightProjectPanel, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)))
-        			.addGap(96))
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(LeftProjectPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(13, 13, 13)
+                        .addComponent(MidProjectPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(15, 15, 15)
+                        .addComponent(RightProjectPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(DeMinimizeButtonL, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(DeMinimizeButtonM, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(DeMinimizeButtonR, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
-        groupLayout.setVerticalGroup(
-        	groupLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(groupLayout.createSequentialGroup()
-        			.addGap(10)
-        			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(DeMinimizeButtonL, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(DeMinimizeButtonM, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(DeMinimizeButtonR, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-        				.addComponent(LeftProjectPanel, 0, 0, Short.MAX_VALUE)
-        				.addComponent(RightProjectPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        				.addComponent(MidProjectPanel, GroupLayout.PREFERRED_SIZE, 555, Short.MAX_VALUE))
-        			.addContainerGap())
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DeMinimizeButtonM, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DeMinimizeButtonR, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DeMinimizeButtonL, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(LeftProjectPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(MidProjectPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(RightProjectPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        setLayout(groupLayout);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SearchIconLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchIconLActionPerformed\
-        backlog.search(SearchBarL.getText());
-    }//GEN-LAST:event_SearchIconLActionPerformed
+    private void SearchIconLActionPerformed(java.awt.event.ActionEvent evt) {
+        getBacklog().search(SearchBarL.getText());
+    }
 
     private void SearchIconRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchIconRActionPerformed
-    	finish.search(SearchBarR.getText());
+        getFinish().search(SearchBarR.getText());
 
     }//GEN-LAST:event_SearchIconRActionPerformed
 
@@ -453,7 +462,7 @@ public class LayoutUI extends javax.swing.JPanel {
     }//GEN-LAST:event_MaximizeButtonActionPerformed
 
     private void SortLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SortLActionPerformed
-        SortUI sortL = new SortUI(backlog);
+        SortUI sortL = new SortUI(getBacklog());
         sortL.setVisible(true);
     }//GEN-LAST:event_SortLActionPerformed
 
@@ -464,7 +473,7 @@ public class LayoutUI extends javax.swing.JPanel {
     }//GEN-LAST:event_MinimizeButtonLActionPerformed
 
     private void sortRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortRActionPerformed
-        SortUI sortR = new SortUI(finish);
+        SortUI sortR = new SortUI(getFinish());
         sortR.setVisible(true);
     }//GEN-LAST:event_sortRActionPerformed
 
@@ -508,63 +517,31 @@ public class LayoutUI extends javax.swing.JPanel {
     }//GEN-LAST:event_MinimizeButtonRActionPerformed
 
     private void AddTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddTaskButtonActionPerformed
-        TaskCreate taskcreate = new TaskCreate(backlog);
+        TaskCreate taskcreate = new TaskCreate(getBacklog());
         taskcreate.setVisible(true);
     }//GEN-LAST:event_AddTaskButtonActionPerformed
 
     private void FilterLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilterLActionPerformed
-        FilterUI filterL = new FilterUI();
-        filterL.setVisible(true);
-        /*filterL.FilterButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						if (filterL.FilterOption1.isSelected()) {
-							total = total - 5;
-						} 
-						
-						if (filterL.FilterOption2.isSelected()) {
-							total = total - 10;
-						} 
-						
-						if (filterL.FilterOption3.isSelected()) {
-							total = total - 15;
-						} 
-						
-						if (filterL.FilterOption4.isSelected()) {
-							total = total - 20;
-						} 	
-						
-						testFilterText.setText(Double.toString(total));
-						filterL.dispose();
-					}
-				});*/
+        /*FilterUI filterL = new FilterUI(BoardType.BACKLOG);
+        filterL.setVisible(true);*/
     }//GEN-LAST:event_FilterLActionPerformed
 
     private void filterRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterRActionPerformed
-        FilterUI filterR = new FilterUI();
-        filterR.setVisible(true);
-        /*filterL.FilterButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						if (filterL.FilterOption1.isSelected()) {
-							total = total - 5;
-						} 
-						
-						if (filterL.FilterOption2.isSelected()) {
-							total = total - 10;
-						} 
-						
-						if (filterL.FilterOption3.isSelected()) {
-							total = total - 15;
-						} 
-						
-						if (filterL.FilterOption4.isSelected()) {
-							total = total - 20;
-						} 	
-						
-						testFilterText.setText(Double.toString(total));
-						filterL.dispose();
-					}
-				});*/
+        /*FilterUI filterR = new FilterUI(BoardType.FINISH);
+        filterR.setVisible(true);*/
     }//GEN-LAST:event_filterRActionPerformed
+
+    private void ProgressBoardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProgressBoardButtonActionPerformed
+        ProgressBoard2 Pboard = new ProgressBoard2();
+        Pboard.setVisible(true);
+
+    }//GEN-LAST:event_ProgressBoardButtonActionPerformed
+
+    private void MemberBoardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MemberBoardButtonActionPerformed
+        TeamMemberBoard Mboard = new TeamMemberBoard();
+        Mboard.setVisible(true);
+
+    }//GEN-LAST:event_MemberBoardButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -576,6 +553,7 @@ public class LayoutUI extends javax.swing.JPanel {
     private javax.swing.JButton FilterL;
     private javax.swing.JPanel LeftProjectPanel;
     private javax.swing.JButton MaximizeButton;
+    private javax.swing.JButton MemberBoardButton;
     private javax.swing.JPanel MidProjectPanel;
     private javax.swing.JButton MinimizeButtonL;
     private javax.swing.JButton MinimizeButtonM;
@@ -584,6 +562,7 @@ public class LayoutUI extends javax.swing.JPanel {
     private javax.swing.JScrollPane OnFinishPanel;
     private javax.swing.JScrollPane OnGoingPanel;
     private javax.swing.JScrollPane OnTakenPanel;
+    private javax.swing.JButton ProgressBoardButton;
     private javax.swing.JPanel RightProjectPanel;
     private javax.swing.JTextField SearchBarL;
     private javax.swing.JTextField SearchBarR;
@@ -594,15 +573,8 @@ public class LayoutUI extends javax.swing.JPanel {
     private javax.swing.JButton filterR;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JButton sortR;
-    private JButton ProgressBoardButton;
-    private JButton MemberBoardButton;
     // End of variables declaration//GEN-END:variables
-    
 
     public void setPMinimizeHidden() {
         DeMinimizeButtonL.setVisible(false);
@@ -610,47 +582,119 @@ public class LayoutUI extends javax.swing.JPanel {
         DeMinimizeButtonM.setVisible(false);
         DeMaximizeButton.setVisible(false);
     }
+
     public void addTask() {
         addLog();
-        OnBacklogPanel.setViewportView(backlog);
-        OnTakenPanel.setColumnHeaderView(taken);
-        OnGoingPanel.setViewportView(ongoing);
-        OnFinishPanel.setViewportView(finish);
-        
-        if (CurrentUserhold.getUser()!=null) {
-        	if (CurrentUserhold.getUser().getAccessRange()>2) {
-        		MemberBoardButton.setVisible(true);
-        		ProgressBoardButton.setVisible(true);
-        
-        	} else {
-        		MemberBoardButton.setVisible(false);
-        		ProgressBoardButton.setVisible(false);
-        	}
-		
-	}
+        OnBacklogPanel.setColumnHeaderView(null);
+        OnTakenPanel.setColumnHeaderView(null);
+        OnGoingPanel.setColumnHeaderView(null);
+        OnFinishPanel.setColumnHeaderView(null);
+        OnBacklogPanel.setViewportView(getBacklog());
+        OnTakenPanel.setViewportView(getTaken());
+        OnGoingPanel.setViewportView(getOngoing());
+        OnFinishPanel.setViewportView(getFinish());
+        if (getBacklog().getNumOfCardDisplay() == 0||getBacklog().getNumOfCardDisplay() == 1||getBacklog().getNumOfCardDisplay() == 2||getBacklog().getNumOfCardDisplay() == 3) {
+            OnBacklogPanel.setViewportView(null);
+            OnBacklogPanel.setColumnHeaderView(getBacklog());
+        }
+        if (getTaken().getNumOfCardDisplay() == 0||getTaken().getNumOfCardDisplay() == 1||getTaken().getNumOfCardDisplay() == 2||getTaken().getNumOfCardDisplay() == 3) {
+            OnTakenPanel.setViewportView(null);
+            OnTakenPanel.setColumnHeaderView(getTaken());
+        }
+        if (getOngoing().getNumOfCardDisplay() == 0||getOngoing().getNumOfCardDisplay() == 1||getOngoing().getNumOfCardDisplay() == 2||getOngoing().getNumOfCardDisplay() == 3) {
+            OnGoingPanel.setViewportView(null);
+            OnGoingPanel.setColumnHeaderView(getOngoing());
+        }
+        if (getFinish().getNumOfCardDisplay() == 0|getFinish().getNumOfCardDisplay() == 1||getFinish().getNumOfCardDisplay() == 2||getFinish().getNumOfCardDisplay() == 3) {
+            OnFinishPanel.setViewportView(null);
+            OnFinishPanel.setColumnHeaderView(getFinish());
+        }
+
+        if (CurrentUserhold.getUser() != null) {
+            if (CurrentUserhold.getUser().getAccessRange() > 2) {
+                MemberBoardButton.setVisible(true);
+                ProgressBoardButton.setVisible(true);
+
+            } else {
+                MemberBoardButton.setVisible(false);
+                ProgressBoardButton.setVisible(false);
+            }
+
+        }
     }
-    public void refreshAllBoard(){
-        backlog.refresh();
-        taken.refresh();
-        ongoing.refresh();
-        finish.refresh();
-        OnBacklogPanel.setViewportView(backlog);
-        OnTakenPanel.setViewportView(taken);
-        OnGoingPanel.setViewportView(ongoing);
-        OnFinishPanel.setViewportView(finish);
+
+    public void refreshAllBoard() {
+        getBacklog().refresh();
+        getTaken().refresh();
+        getOngoing().refresh();
+        getFinish().refresh();
+        OnBacklogPanel.setColumnHeaderView(null);
+        OnTakenPanel.setColumnHeaderView(null);
+        OnGoingPanel.setColumnHeaderView(null);
+        OnFinishPanel.setColumnHeaderView(null);
+        OnBacklogPanel.setViewportView(getBacklog());
+        OnTakenPanel.setViewportView(getTaken());
+        OnGoingPanel.setViewportView(getOngoing());
+        OnFinishPanel.setViewportView(getFinish());
+        
+        if (getBacklog().getNumOfCardDisplay() == 0||getBacklog().getNumOfCardDisplay() == 1||getBacklog().getNumOfCardDisplay() == 2||getBacklog().getNumOfCardDisplay() == 3) {
+            OnBacklogPanel.setViewportView(null);
+            OnBacklogPanel.setColumnHeaderView(getBacklog());
+        }
+        if (getTaken().getNumOfCardDisplay() == 0||getTaken().getNumOfCardDisplay() == 1||getTaken().getNumOfCardDisplay() == 2||getTaken().getNumOfCardDisplay() == 3) {
+            OnTakenPanel.setViewportView(null);
+            OnTakenPanel.setColumnHeaderView(getTaken());
+        }
+        if (getOngoing().getNumOfCardDisplay() == 0||getOngoing().getNumOfCardDisplay() == 1||getOngoing().getNumOfCardDisplay() == 2||getOngoing().getNumOfCardDisplay() == 3) {
+            OnGoingPanel.setViewportView(null);
+            OnGoingPanel.setColumnHeaderView(getOngoing());
+        }
+        if (getFinish().getNumOfCardDisplay() == 0|getFinish().getNumOfCardDisplay() == 1||getFinish().getNumOfCardDisplay() == 2||getFinish().getNumOfCardDisplay() == 3) {
+            OnFinishPanel.setViewportView(null);
+            OnFinishPanel.setColumnHeaderView(getFinish());
+        }
+
     }
-    
+
     class componentChangeListener implements ContainerListener {
 
-    	@Override
-    	public void componentAdded(ContainerEvent arg0) {
-    		
-    	}
+        @Override
+        public void componentAdded(ContainerEvent arg0) {
 
-    	@Override
-    	public void componentRemoved(ContainerEvent arg0) {
-    		LayoutUI.this.revalidate();
-    	}
-    	
+        }
+
+        @Override
+        public void componentRemoved(ContainerEvent arg0) {
+            LayoutUI.this.revalidate();
+        }
+
+    }
+
+    /**
+     * @return the backlog
+     */
+    public BoardUI getBacklog() {
+        return backlog;
+    }
+
+    /**
+     * @return the taken
+     */
+    public BoardUI getTaken() {
+        return taken;
+    }
+
+    /**
+     * @return the ongoing
+     */
+    public BoardUI getOngoing() {
+        return ongoing;
+    }
+
+    /**
+     * @return the finish
+     */
+    public BoardUI getFinish() {
+        return finish;
     }
 }

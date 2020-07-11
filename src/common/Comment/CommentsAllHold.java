@@ -18,7 +18,6 @@ public class CommentsAllHold {
     private static ArrayList<Comment> allCommentHold;
 
     public static void populateCommentsAllHold() {
-
         int taskSize = TaskHold.getTaskHoldSizeFromDatabase();
         //have to declare new array, populate that array then push it back to the static array since this work. 
         //This is probably having something to do with not declaring new ArrayList<>() at the top

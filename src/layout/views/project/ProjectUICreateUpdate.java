@@ -23,7 +23,7 @@ import java.awt.Toolkit;
  */
 public class ProjectUICreateUpdate extends javax.swing.JFrame {
 
-    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+    DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
 
     /**
      * Creates new form ProjectUICreate1
@@ -351,8 +351,8 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame {
         try {
             //get all the attributes to insert in Project class
             String name = this.getNameString().getText();
-            Date startDate = new SimpleDateFormat("dd/MM/yyyy").parse(this.getStartDateDate().getText());
-            Date dueDate = new SimpleDateFormat("dd/MM/yyyy").parse(this.getDueDateDate().getText());
+            Date startDate = new SimpleDateFormat("MM-dd-yyyy").parse(this.getStartDateDate().getText());
+            Date dueDate = new SimpleDateFormat("MM-dd-yyyy").parse(this.getDueDateDate().getText());
             Date createDate = new Date();
             String summary = this.getSummaryString().getText();
             int ID = Integer.parseInt(this.getIDint().getText());

@@ -6,15 +6,7 @@
 package main;
 
 
-import common.Enum.Role;
-import common.User.User;
-import common.Task.TaskHold;
-import common.Project.Projecthold;
-import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.SwingUtilities;
-import common.Project.Project;
-import common.User.CurrentUserhold;
 import layout.views.screen.ScreenUI;
 
 /**
@@ -24,14 +16,14 @@ import layout.views.screen.ScreenUI;
 public class MainTest {
 
     public static void main(String args[]) {
-        Projecthold projects = new Projecthold();
+        /*Projecthold projects = new Projecthold();
         TaskHold tasks = new TaskHold();
         User dev = new User(2, Role.DEVELOPER, "chump", "lol", "deve@gmail.com", "dunnt", 2, projects, tasks);
         Project webber = new Project(9, "webber", new Date(), new Date(), new Date(), "strick", new ArrayList<>());
         //System.out.println(dev.getID());
 
         dev.setID(8);
-        CurrentUserhold.setUser(User.getUserFromDatabase(7));
+        CurrentUserhold.setUser(User.getUserFromDatabase(7));**/
         /*CommentsAllHold.populateCommentsAllHold();
         TaskHold.loadTask();*/
         
