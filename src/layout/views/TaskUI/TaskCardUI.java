@@ -28,7 +28,7 @@ public class TaskCardUI extends JPanel {
      * Create the panel.
      */
     public TaskCardUI(Task task) {
-        setMaximumSize(new Dimension(1000, 150));
+        setMaximumSize(new Dimension(300, 150));
         setBorder(new LineBorder(new Color(0, 0, 0)));
         setBackground(Color.WHITE);
         /////////////////////////////////////////////new integration from Minh's branch start here///////////////////////////////////////////
@@ -133,6 +133,7 @@ public class TaskCardUI extends JPanel {
                 ImageIcon icon = new ImageIcon(Userhold.getUsers().get(task.getAssignees().get(0) - 1).getProfilePic());
                 icon = new ImageIcon(icon.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
                 userIcon.setIcon(icon);
+                
             } else {
                 ImageIcon icon = new ImageIcon(Userhold.getUsers().get(task.getAssignees().get(1) - 1).getProfilePic());
                 icon = new ImageIcon(icon.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
