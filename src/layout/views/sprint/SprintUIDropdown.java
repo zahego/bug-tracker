@@ -39,7 +39,9 @@ private static int sprintAccessID = -1;
 
         sprintDropdown = new javax.swing.JComboBox<>();
 
+        sprintDropdown.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         sprintDropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "all sprint", "#1", "#2", "#3", "#4" }));
+        sprintDropdown.setPreferredSize(new java.awt.Dimension(110, 20));
         sprintDropdown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sprintDropdownActionPerformed(evt);
@@ -50,11 +52,11 @@ private static int sprintAccessID = -1;
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(sprintDropdown, 0, 142, Short.MAX_VALUE)
+            .addComponent(sprintDropdown, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(sprintDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(sprintDropdown, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

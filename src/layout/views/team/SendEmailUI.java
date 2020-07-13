@@ -179,7 +179,7 @@ public class SendEmailUI extends javax.swing.JFrame {
         //TODO, get a better email address
         // Recipient's email ID needs to be mentioned.
         //String to = this.getToString().getText();
-        String to = "tug70814@temple.edu";
+        String to = "tug64107@temple.edu";
 
         // Sender's email ID needs to be mentioned
         String from = "uekikosuke21@gmail.com";

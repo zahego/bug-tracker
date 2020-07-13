@@ -11,6 +11,7 @@ import common.Task.TaskHold;
 import common.Ultilities.Utilities;
 import common.User.User;
 import java.util.Date;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import layout.views.screen.ScreenUI;
@@ -173,14 +174,32 @@ public class CommentUI extends javax.swing.JPanel {
     public javax.swing.JLabel getProfilePic() {
         return profilePic;
     }
+    
+    public ClassLoader getClassLoader() {
+    	ClassLoader cLoader = null;
+    	try {
+    		Class cls = Class.forName("layout.views.CommentUI.CommentUI");
+    		// returns the ClassLoader object assosciated with this Class
+    		cLoader = cls.getClassLoader();
+    	}
+    	catch (Exception e) {
+    		System.out.println(e);
+    	} return cLoader;
+    }
 
     /**
      * @param profilePic the profilePic to set
      */
     public void setProfilePic(String profilePic) {
-        ImageIcon icon = new ImageIcon(profilePic);
-        icon = new ImageIcon(icon.getImage().getScaledInstance(53, 51, java.awt.Image.SCALE_SMOOTH));
+        try {
+        ImageIcon icon = new ImageIcon(ImageIO.read(getClassLoader().getResource(profilePic)));
+        // should set int for size here
+        icon = new ImageIcon(icon.getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH)); 
         this.profilePic.setIcon(icon);
+        }
+        catch (Exception e) {
+        	System.out.println(e);
+        }
     }
 
     /**

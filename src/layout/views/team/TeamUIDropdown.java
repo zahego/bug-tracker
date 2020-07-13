@@ -39,7 +39,11 @@ public class TeamUIDropdown extends javax.swing.JPanel {
 
         teamDropdown = new javax.swing.JComboBox<>();
 
+        setPreferredSize(new java.awt.Dimension(110, 20));
+
+        teamDropdown.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         teamDropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--all teammate--", " " }));
+        teamDropdown.setPreferredSize(new java.awt.Dimension(110, 20));
         teamDropdown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 teamDropdownActionPerformed(evt);
@@ -50,7 +54,7 @@ public class TeamUIDropdown extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(teamDropdown, 0, 142, Short.MAX_VALUE)
+            .addComponent(teamDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

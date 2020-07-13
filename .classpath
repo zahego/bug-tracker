@@ -2,9 +2,9 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/admin/Desktop/BT Project Old File/bug-tracker - merge ver 1/lib/JPlanner.jar"/>
-	<classpathentry kind="lib" path="C:/Users/admin/Downloads/json-simple-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/admin/Downloads/javax.mail.jar"/>
-	<classpathentry kind="lib" path="C:/Users/admin/Desktop/commons-lang3-3.9.jar"/>
+	<classpathentry kind="lib" path="lib/JPlanner.jar"/>
+	<classpathentry kind="lib" path="lib/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/javax.mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin/Desktop/bug-tracker/lib/commons-lang3-3.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

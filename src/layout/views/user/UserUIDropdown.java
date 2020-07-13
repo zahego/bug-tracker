@@ -39,11 +39,13 @@ public class UserUIDropdown extends javax.swing.JPanel {
         authentication = new javax.swing.JButton();
         userUI = new layout.views.user.UserUI();
 
+        setPreferredSize(new java.awt.Dimension(210, 120));
         setLayout(new java.awt.BorderLayout());
 
+        authentication.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         authentication.setText("Log in");
         authentication.setMaximumSize(new java.awt.Dimension(300, 25));
-        authentication.setPreferredSize(new java.awt.Dimension(300, 25));
+        authentication.setPreferredSize(new java.awt.Dimension(300, 20));
         authentication.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 authenticationActionPerformed(evt);

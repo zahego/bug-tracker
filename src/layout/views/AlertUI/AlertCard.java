@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class AlertCard extends JPanel {
 	
@@ -113,6 +114,7 @@ public class AlertCard extends JPanel {
 		);
 		
 		MessageTextField = new JTextField(alert.getmessage());
+		MessageTextField.setHorizontalAlignment(SwingConstants.LEFT);
 		scrollPane.setViewportView(MessageTextField);
 		MessageTextField.setColumns(10);
 		setLayout(groupLayout);

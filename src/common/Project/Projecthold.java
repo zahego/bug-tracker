@@ -34,7 +34,7 @@ public class Projecthold {
                     //exchange the 2 ID of the adjacent projects
                     int tempID=projects.get(j).getID();
                     projects.get(j).setID(projects.get(j+1).getID());
-                    projects.get(j+1).setID(projects.get(j).getID());
+                    projects.get(j+1).setID(tempID);
                     
                     //exchange the 2 projects next to each other 
                     Project tempProject=projects.get(j);
@@ -75,7 +75,6 @@ public class Projecthold {
         ArrayList<Project> projectList=new ArrayList<>();
         for(int i=0; i<size; i++){
             projectList.add(Project.getProjectFromDatabase(i));
-            
         }
         Projecthold.setProjects(projectList);
     }
