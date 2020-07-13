@@ -27,7 +27,6 @@ public class AlertUI extends JFrame {
 	private static JButton SendAlertButton;
 	private static JScrollPane AlertBoardPanel;
 	private static JButton DeleteButton;
-	private static JScrollPane AlertPanel;
 	private static AlertBoardUI alertboard;
 	
 	
@@ -54,8 +53,7 @@ public class AlertUI extends JFrame {
 	public static void addAlert() {
 		alertboard = new AlertBoardUI();
 		// TODO Auto-generated method stub
-		AlertPanel.setViewportView(alertboard);
-		
+		AlertBoardPanel.setViewportView(alertboard);
 	}
 
 	public static void eventhandler() {
@@ -121,9 +119,6 @@ public class AlertUI extends JFrame {
 					.addComponent(DeleteButton)
 					.addContainerGap())
 		);
-		
-		AlertPanel = new JScrollPane();
-		AlertBoardPanel.setViewportView(AlertPanel);
 		contentPane.setLayout(gl_contentPane);
 		
 	}

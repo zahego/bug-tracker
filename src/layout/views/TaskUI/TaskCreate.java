@@ -251,6 +251,7 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
         } catch (Exception e) {
             System.out.println("error when create task: " + e);
         }
+        
         selectedFile = new File[3];
 
         ReplicateBox.setVisible(false);
