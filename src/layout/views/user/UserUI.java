@@ -5,6 +5,7 @@
  */
 package layout.views.user;
 
+import common.Team.Userhold;
 import common.User.CurrentUserhold;
 import common.User.User;
 import javax.imageio.ImageIO;
@@ -247,6 +248,27 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
         //put this into current user hold
         //this is for testing. Incase the method is called with a num
         CurrentUserhold.setUser(User.getUserFromDatabase(num));
+        
+        this.setUserName(CurrentUserhold.getUser().getName());
+        this.setUserEmail(CurrentUserhold.getUser().getEmail());
+        this.setUserID(String.valueOf(CurrentUserhold.getUser().getID()));
+        this.setUserRole(CurrentUserhold.getUser().getRole().name());
+        
+        //set icon
+        try {
+        ImageIcon icon = new ImageIcon(ImageIO.read(getClassLoader().getResource(CurrentUserhold.getUser().getProfilePic())));
+        // should set int for size here
+        icon = new ImageIcon(icon.getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH)); 
+        this.setPortrait(icon);
+        }
+        catch (Exception e) {
+        	System.out.println(e);
+        }
+    }
+    public void setUserFromUserhold(int num){
+        //put this into current user hold
+        //this is for testing. Incase the method is called with a num
+        CurrentUserhold.setUser(Userhold.getUsers().get(num));
         
         this.setUserName(CurrentUserhold.getUser().getName());
         this.setUserEmail(CurrentUserhold.getUser().getEmail());

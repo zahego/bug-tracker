@@ -11,7 +11,10 @@ import common.Task.TaskHold;
 import common.Project.Projecthold;
 import layout.views.screen.ScreenUI;
 import common.Team.Userhold;
+import common.Ultilities.Utilities;
+import common.User.CurrentUserhold;
 import java.awt.Toolkit;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -53,11 +56,11 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
         createUpdateLabel = new javax.swing.JLabel();
         imageLabel = new javax.swing.JLabel();
         ImageImage = new javax.swing.JTextField();
-        roleRole = new javax.swing.JTextField();
         accessRangeLabel = new javax.swing.JLabel();
         accessRangeInt = new javax.swing.JTextField();
         confirmPasswordLabel = new javax.swing.JLabel();
         confirmPasswordString = new javax.swing.JTextField();
+        roleRole = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -118,6 +121,8 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
 
         accessRangeLabel.setText("Access Range:");
 
+        accessRangeInt.setEditable(false);
+
         confirmPasswordLabel.setText("Confirm password:");
 
         confirmPasswordString.addActionListener(new java.awt.event.ActionListener() {
@@ -125,6 +130,8 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
                 confirmPasswordStringActionPerformed(evt);
             }
         });
+
+        roleRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,29 +148,26 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(emailLabel)
-                                    .addComponent(passwordLabel)
-                                    .addComponent(IDLabel)
-                                    .addComponent(imageLabel)
-                                    .addComponent(nameLabel)
-                                    .addComponent(accessRangeLabel)
-                                    .addComponent(roleLabel)
-                                    .addComponent(confirmPasswordLabel))
-                                .addGap(36, 36, 36)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(IDint)
-                                    .addComponent(nameString)
-                                    .addComponent(passwordString)
-                                    .addComponent(emailString)
-                                    .addComponent(ImageImage, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                    .addComponent(accessRangeInt)
-                                    .addComponent(roleRole, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                    .addComponent(confirmPasswordString)))
-                            .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(emailLabel)
+                            .addComponent(passwordLabel)
+                            .addComponent(IDLabel)
+                            .addComponent(imageLabel)
+                            .addComponent(nameLabel)
+                            .addComponent(accessRangeLabel)
+                            .addComponent(roleLabel)
+                            .addComponent(confirmPasswordLabel))
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(IDint)
+                            .addComponent(nameString)
+                            .addComponent(passwordString)
+                            .addComponent(emailString)
+                            .addComponent(ImageImage, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                            .addComponent(accessRangeInt)
+                            .addComponent(confirmPasswordString)
+                            .addComponent(roleRole, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(57, Short.MAX_VALUE))
+            .addComponent(errorText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,13 +185,17 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(ImageImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(emailString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(37, 37, 37))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(passwordString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(passwordLabel)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(emailLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(passwordString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(passwordLabel))))
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(confirmPasswordString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,9 +205,7 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addComponent(nameLabel)
                         .addGap(18, 18, 18)
-                        .addComponent(imageLabel)
-                        .addGap(19, 19, 19)
-                        .addComponent(emailLabel)))
+                        .addComponent(imageLabel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(roleLabel)
@@ -217,16 +223,23 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        for (int i = 0; i < Userhold.getUsers().size(); i++) {
-            if (Integer.parseInt(this.getIDint().getText()) == Userhold.getUsers().get(i).getID()) {
-                Userhold.delete(Userhold.getUsers().get(i));
-                break;
+        int currentID=Integer.parseInt(this.getIDint().getText());
+        if(currentID!=CurrentUserhold.getUser().getID()){
+        for (int j = TaskHold.getTaskList().size() - 1; j >= 0; j--) {
+            if (TaskHold.getTaskList().get(j).getAssignees().contains(currentID)) {
+                TaskHold.getTaskList().get(j).getAssignees().remove(currentID);
             }
         }
+                Userhold.delete(Userhold.getUsers().get(currentID-1));
         //rerender the dropdown in screenUI
         ScreenUI.getTeamUI().renderUI();
         //Close the Project create window
         this.dispose();
+        }
+        else{
+            errorText.setText("Can't delete current user");
+        }
+        
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
@@ -234,7 +247,7 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
         //add that new project Object to the projecthold ArrayList
 
         User addUser = createUserFromFields();
-
+        if(addUser.getID()!=-1){
         //TODO refactor this method to make better sense and reduce time complexity
         //check if it's update or not
         boolean updated = false;
@@ -252,9 +265,16 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
             Userhold.insert(addUser);
         }
         //rerender the dropdown in screenUI
+        if(addUser.getID()==CurrentUserhold.getUser().getID()){
+        ScreenUI.getUserUI().renderUI();
+        }
         ScreenUI.getTeamUI().renderUI();
         //Close the Project create window
         this.dispose();
+        }
+        else{
+            errorText.setText("There's something wrong with your input, please try again");
+        }
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void confirmPasswordStringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPasswordStringActionPerformed
@@ -316,14 +336,15 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField passwordString;
     private javax.swing.JLabel roleLabel;
-    private javax.swing.JTextField roleRole;
+    private javax.swing.JComboBox<String> roleRole;
     private javax.swing.JButton submitButton;
     // End of variables declaration//GEN-END:variables
     public User createUserFromFields() {
         try {
             //get all the attributes to insert in Project class
             int ID = Integer.parseInt(this.getIDint().getText());
-            Role role = Role.valueOf(this.getRoleRole().getText());
+            String selectedRole=this.getRoleRole().getSelectedItem().toString();
+            Role role = Role.valueOf(selectedRole);
             String profilePic=this.getImageImage().getText();
             String name= this.getNameString().getText();
             String email= this.getEmailString().getText();
@@ -349,7 +370,7 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
 
     public void setUpdateInformation(User user) {
         this.setIDint(user.getID());
-        this.setRoleRole(user.getRole());
+        this.populateUpdateRole(user.getRole());
         this.setNameString(user.getName());
         this.setImageImage(user.getProfilePic());
         this.setEmailString(user.getEmail());
@@ -475,16 +496,10 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
     /**
      * @return the roleRole
      */
-    public javax.swing.JTextField getRoleRole() {
+    public javax.swing.JComboBox getRoleRole() {
         return roleRole;
     }
 
-    /**
-     * @param roleRole the roleRole to set
-     */
-    public void setRoleRole(Role roleRole) {
-        this.roleRole.setText(roleRole.name());
-    }
 
     /**
      * @return the confirmPasswordString
@@ -514,4 +529,22 @@ public class UserUICreateUpdate extends javax.swing.JFrame {
     public void setSubmitButton(String submitButton) {
         this.submitButton.setText(submitButton);
     }
-}
+    public void populateRole(){
+    roleRole.removeAllItems();
+        for (Role value : Role.values()) {
+            roleRole.addItem(value.toString());
+        }
+    }
+    public void populateUpdateRole(Role role){
+    roleRole.removeAllItems();
+        roleRole.addItem(role.toString());
+        for (int i = 0; i < Role.values().length; i++) {
+           if(Role.values()[i]==role){
+                i++;
+            }
+            else{
+            roleRole.addItem(Role.values()[i].toString());
+            }
+        }
+    }
+    }

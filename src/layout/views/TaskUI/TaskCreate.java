@@ -98,7 +98,7 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
     int projectID = 1;
     private DefaultListModel<String> listFileModel;
     private DefaultListModel<String> listAssigneeModel;
-
+    private boolean addTaskSuccess;
     private boolean isAllowListAssigneeEvent;
     private boolean isAllowListFileEvent;
     private boolean checkCalendarVisisble;
@@ -108,6 +108,7 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
     private JList<String> listAssignee;
     private JList<String> listFile;
     private List<User> users;
+
     /**
      * Create the frame.
      */
@@ -129,7 +130,7 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
     }
 
     private void initComponents() {
-
+        addTaskSuccess = false;
         setIconImage(Toolkit.getDefaultToolkit().getImage(TaskCreate.class.getResource("/layout/resource/BugTracker.png")));
         setTitle("Bug Tracker 3000 - Task Create");
 
@@ -251,6 +252,7 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
         } catch (Exception e) {
             System.out.println("error when create task: " + e);
         }
+
         selectedFile = new File[3];
 
         ReplicateBox.setVisible(false);
@@ -473,8 +475,11 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
                 //Add() function
                 if (!errorCheck()) {
                     addTask();
-                    ((JFrame) CreateButton.getParent().getParent().getParent().getParent()).dispose();
-                    //ScreenUI.getLayoutUI().refreshAllBoard();
+                    if (addTaskSuccess == true) {
+                        ((JFrame) CreateButton.getParent().getParent().getParent().getParent()).dispose();
+                    } else {
+                        error.setText("There's something wrong with your input, please try again");
+                    }
                 }
 
             }
@@ -579,8 +584,8 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int selected = listAssignee.getSelectedIndex();
-                if(selected!=-1){
-                listAssigneeModel.remove(selected);
+                if (selected != -1) {
+                    listAssigneeModel.remove(selected);
                 }
             }
         });
@@ -588,10 +593,9 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int selected = listFile.getSelectedIndex();
-                System.out.println("listevent" +selected);
-                if(selected!=-1){
-                listFileModel.remove(selected);
-                selectedFile[selected]=null;
+                if (selected != -1) {
+                    listFileModel.remove(selected);
+                    selectedFile[selected] = null;
                 }
 
             }
@@ -625,36 +629,42 @@ public class TaskCreate extends JFrame implements PropertyChangeListener {
     }
 
     public void addTask() {
-        //add task and notify main UI
-        ArrayList<Integer> assignees = new ArrayList<>();
-        if (listAssigneeModel.size() == 0) {
-            assignees = Projecthold.getProjects().get((int) ((ComboItem) ProjectAssignBar.getSelectedItem()).getValue() - 1).getTeam();
-        } else {
-            for (int i = 0; i < listAssigneeModel.size(); i++) {
-                int userID = Userhold.searchNmeOutputID(listAssigneeModel.get(i));
-                assignees.add(userID);
+        try {
+            //add task and notify main UI
+            ArrayList<Integer> assignees = new ArrayList<>();
+            if (listAssigneeModel.size() == 0) {
+                assignees = Projecthold.getProjects().get((int) ((ComboItem) ProjectAssignBar.getSelectedItem()).getValue() - 1).getTeam();
+            } else {
+                for (int i = 0; i < listAssigneeModel.size(); i++) {
+                    int userID = Userhold.searchNmeOutputID(listAssigneeModel.get(i));
+                    assignees.add(userID);
+                }
+                //have to add admin
+                if (!assignees.contains(8)) {
+                    assignees.add(8);
+                }
+                //add the current user who create the project, which is usually PM
+                if (!assignees.contains(CurrentUserhold.getUser().getID())) {
+                    assignees.add(CurrentUserhold.getUser().getID());
+                }
             }
-            //have to add admin
-            if (!assignees.contains(8)) {
-                assignees.add(8);
-            }
-            //add the current user who create the project, which is usually PM
-            if (!assignees.contains(CurrentUserhold.getUser().getID())) {
-                assignees.add(CurrentUserhold.getUser().getID());
-            }
-        }
 
-        Task task = new Task(TaskHold.getTaskList().size() + 1, (TaskType) ((ComboItem) TaskTypeAssignBar.getSelectedItem()).getValue(),
-                SummaryBox.getText(), new CommentsOneTaskHold(), (int) ((ComboItem) ProjectAssignBar.getSelectedItem()).getValue(),
-                (int) SprintAssignBar.getSelectedItem(), (int) SeverityAssignBar.getSelectedItem(),
-                TaskStatus.ONNEW, Utilities.getCurrentDate(), selDate, ReplicateBox.getText(),
-                DescriptionBox.getText(), SuggestionBox.getText(), selectedFile,
-                CurrentUserhold.getUser().getID(), assignees);
-        
-        task.addAssignee((int) ((ComboItem) AssignedBar.getSelectedItem()).getValue());
-        TaskHold.addTask(task);
-        if (this.backlog != null) {
-            this.backlog.refresh();
+            Task task = new Task(TaskHold.getTaskList().size() + 1, (TaskType) ((ComboItem) TaskTypeAssignBar.getSelectedItem()).getValue(),
+                    SummaryBox.getText(), new CommentsOneTaskHold(), (int) ((ComboItem) ProjectAssignBar.getSelectedItem()).getValue(),
+                    (int) SprintAssignBar.getSelectedItem(), (int) SeverityAssignBar.getSelectedItem(),
+                    TaskStatus.ONNEW, Utilities.getCurrentDate(), selDate, ReplicateBox.getText(),
+                    DescriptionBox.getText(), SuggestionBox.getText(), selectedFile,
+                    CurrentUserhold.getUser().getID(), assignees);
+
+            task.addAssignee((int) ((ComboItem) AssignedBar.getSelectedItem()).getValue());
+            TaskHold.addTask(task);
+            if (this.backlog != null) {
+                this.backlog.refresh();
+            }
+            addTaskSuccess = true;
+
+        } catch (Exception e) {
+            addTaskSuccess = false;
         }
     }
 }

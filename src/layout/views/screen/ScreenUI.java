@@ -202,7 +202,6 @@ public class ScreenUI extends javax.swing.JFrame{
     
     
     public void AlertRender() {
-    	System.out.println("Test Screen : " + AlertHold.getAlertList().size());
     	for (int i = 0; i < AlertHold.getAlertList().size();i++) {
             if(AlertHold.getAlertList().get(i).getReceivers().contains(CurrentUserhold.getUser().getID())) {
            // if (AlertHold.getAlertList() != null) {

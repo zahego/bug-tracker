@@ -3,22 +3,14 @@ package common.Task;
 import common.Comment.CommentsOneTaskHold;
 import java.util.List;
 import java.util.ArrayList;
-
 import common.Enum.BoardType;
 import common.Enum.TaskStatus;
 import common.Enum.TaskType;
-
 import common.Ultilities.Utilities;
+import java.io.File;
 import java.util.Date;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 public class TaskHold {
 
@@ -33,10 +25,6 @@ public class TaskHold {
         getTaskList().clear();
         
         try {
-        	
-    		
-    		
-
     	    JSONArray tasks = Utilities.readFile("task");
         		
             for (Object taskObj : tasks) {
@@ -107,10 +95,8 @@ public class TaskHold {
         getTaskList().add(task);
     }
 
-    public static void deleteTask(int id) throws ArrayIndexOutOfBoundsException {
-        //check condition if id>getTaskList().get(getTaskList().size()-1).getID() or not
-        //if yes, delete from taskList
-        //else delete from newTaskList
+    public static void deleteTask(int id) {
+        getTaskList().remove(id);
     }
 
     public static List<Task> filter(BoardType type) {
