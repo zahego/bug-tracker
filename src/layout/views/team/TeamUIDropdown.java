@@ -75,7 +75,7 @@ public class TeamUIDropdown extends javax.swing.JPanel {
             int ID = Userhold.getUsers().get(Userhold.getUsers().size() - 1).getID() + 1;
             create.setIDint(ID);
             create.getDeleteButton().setVisible(false);
-
+            create.populateRole();
             create.setCreateUpdateLabel("Create User");
             create.setSubmitButton("Create");
             create.setVisible(true);

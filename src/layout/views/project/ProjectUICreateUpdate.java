@@ -7,6 +7,8 @@ package layout.views.project;
 
 import common.Project.Projecthold;
 import common.Project.Project;
+import common.Sprint.Sprinthold;
+import common.Task.TaskHold;
 import common.Team.Userhold;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -35,7 +37,7 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame implements Propert
      * Creates new form ProjectUICreate1
      */
     public ProjectUICreateUpdate() {
-    	setIconImage(Toolkit.getDefaultToolkit().getImage(ProjectUICreateUpdate.class.getResource("/layout/resource/BugTracker.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(ProjectUICreateUpdate.class.getResource("/layout/resource/BugTracker.png")));
         initComponents();
         if (!listModel.isEmpty()) {
             listModel.clear();
@@ -50,70 +52,79 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame implements Propert
         DcheckCalendarVisisble = false;
         createEvents();
     }
-    
-   
 
     private void createEvents() {
-		// TODO Auto-generated method stub
-    	 CalendarWindowViews Scalendar = new CalendarWindowViews();
-    	 CalendarWindowViews Dcalendar = new CalendarWindowViews();
-    	 Scalendar.setUndecorated(true);
-    	 Scalendar.addPropertyChangeListener(this);
-    	 Dcalendar.setUndecorated(true);
-    	 Dcalendar.addPropertyChangeListener(this);
+        // TODO Auto-generated method stub
+        CalendarWindowViews Scalendar = new CalendarWindowViews();
+        CalendarWindowViews Dcalendar = new CalendarWindowViews();
+        Scalendar.setUndecorated(true);
+        Scalendar.addPropertyChangeListener(this);
+        Dcalendar.setUndecorated(true);
+        Dcalendar.addPropertyChangeListener(this);
 
-         startDateDate.addMouseListener(new MouseAdapter() {
-         	@Override
-         	public void mouseClicked(MouseEvent arg0) {
-         		 if (ScheckCalendarVisisble == false) {
-                      Scalendar.setLocation(startDateDate.getLocationOnScreen().x, (startDateDate.getLocationOnScreen().y + startDateDate.getHeight()));
-                      Scalendar.setVisible(true);
-                      ScheckCalendarVisisble = true;
-                  } else {
-                      Scalendar.dispose();
-                      ScheckCalendarVisisble = false;
-                  }
-         	}
-         });
-         
-         dueDateDate.addMouseListener(new MouseAdapter() {
-         	@Override
-         	public void mouseClicked(MouseEvent e) {
-         		 if (DcheckCalendarVisisble == false) {
-                      Dcalendar.setLocation(dueDateDate.getLocationOnScreen().x, (dueDateDate.getLocationOnScreen().y + dueDateDate.getHeight()));
-                      Dcalendar.setVisible(true);
-                      DcheckCalendarVisisble = true;
-                  } else {
-                      Dcalendar.dispose();
-                      DcheckCalendarVisisble = false;
-                  }
-         	}
-         });
-	}
-    public void propertyChange(PropertyChangeEvent event ) {
+        startDateDate.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent arg0) {
+                if (ScheckCalendarVisisble == false) {
+                    Scalendar.setLocation(startDateDate.getLocationOnScreen().x, (startDateDate.getLocationOnScreen().y + startDateDate.getHeight()));
+                    Scalendar.setVisible(true);
+                    ScheckCalendarVisisble = true;
+                    DcheckCalendarVisisble = false;
+                } else {
+                    Scalendar.dispose();
+                    ScheckCalendarVisisble = false;
+                }
+            }
+        });
+
+        dueDateDate.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (DcheckCalendarVisisble == false) {
+                    Dcalendar.setLocation(dueDateDate.getLocationOnScreen().x, (dueDateDate.getLocationOnScreen().y + dueDateDate.getHeight()));
+                    Dcalendar.setVisible(true);
+                    DcheckCalendarVisisble = true;
+                    ScheckCalendarVisisble = false;
+                } else {
+                    Dcalendar.dispose();
+                    DcheckCalendarVisisble = false;
+                }
+            }
+        });
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent event) {
         //get the selected date from the calendar control and set it to the text field
-    	
-    	
- 
-        if (event.getPropertyName().equals("selectedDate")) {
+        if (ScheckCalendarVisisble == true) {
+            if (event.getPropertyName().equals("selectedDate")) {
 
-            java.util.Calendar cal = (java.util.Calendar) event.getNewValue();
-            
-            
-            SselDate = cal.getTime();
-            
-            //DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyy");
-            String SstrDate = df.format(SselDate);
-            
-            startDateDate.setText(SstrDate);
-            
-    }}
-    
-    
-   
-    
+                java.util.Calendar cal = (java.util.Calendar) event.getNewValue();
 
-	/**
+                SselDate = cal.getTime();
+
+                //DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyy");
+                String SstrDate = df.format(SselDate);
+
+                startDateDate.setText(SstrDate);
+            }
+
+        } else if(DcheckCalendarVisisble==true) {
+            if (event.getPropertyName().equals("selectedDate")) {
+
+                java.util.Calendar cal = (java.util.Calendar) event.getNewValue();
+                DselDate = cal.getTime();
+
+                //DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyy");
+                String SdueDate = df.format(DselDate);
+
+                dueDateDate.setText(SdueDate);
+
+            }
+        }
+    }
+
+    /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
@@ -329,7 +340,7 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame implements Propert
         //TODO handle adding user
         //add that new project Object to the projecthold ArrayList
         Project addProject = createProjectFromFields();
-
+        if(addProject.getID()!=-1){
         //TODO refactor this method to make better sense and reduce time complexity
         //check if it's update or not
         boolean updated = false;
@@ -350,16 +361,28 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame implements Propert
         ScreenUI.getProjectUI().renderUI();
         //Close the Project create window
         this.dispose();
+        }
+        else{
+            errorText.setText("There's something wrong with your input, please try again");
+        }
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        for (int i = 0; i < Projecthold.getProjects().size(); i++) {
-            if (Integer.parseInt(this.getIDint().getText()) == Projecthold.getProjects().get(i).getID()) {
-                Projecthold.delete(Projecthold.getProjects().get(i));
-                break;
+        //delete related task
+        for (int j = TaskHold.getTaskList().size() - 1; j >= 0; j--) {
+            if (TaskHold.getTaskList().get(j).getProjectID() == Integer.parseInt(this.getIDint().getText())) {
+                TaskHold.deleteTask(j);
             }
         }
+        for (int j = Sprinthold.getSprints().size() - 1; j >= 0; j--) {
+            if (Sprinthold.getSprints().get(j).getProjectID() == Integer.parseInt(this.getIDint().getText())) {
+                Sprinthold.getSprints().remove(j);
+            }
+        }
+        Projecthold.delete(Projecthold.getProjects().get(Integer.parseInt(this.getIDint().getText()) - 1));
         //rerender the dropdown in screenUI
+        ScreenUI.getLayoutUI().refreshAllBoard();
+        ScreenUI.getSprintUI().renderUI();
         ScreenUI.getProjectUI().renderUI();
         //Close the Project create window
         this.dispose();
@@ -372,9 +395,8 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame implements Propert
             if (!this.listModel.contains(selected.toString())) {
                 this.addList(selected.toString());
             }
-        }
-        else{
-            
+        } else {
+
         }
     }//GEN-LAST:event_teamDropDownActionPerformed
 
@@ -427,23 +449,29 @@ public class ProjectUICreateUpdate extends javax.swing.JFrame implements Propert
         try {
             //get all the attributes to insert in Project class
             String name = this.getNameString().getText();
-            Date startDate = new SimpleDateFormat("MM-dd-yyyy").parse(this.getStartDateDate().getText());
-            Date dueDate = new SimpleDateFormat("MM-dd-yyyy").parse(this.getDueDateDate().getText());
+            Date startDate = new Date();
+            Date dueDate = new Date();
+            if (!this.getStartDateDate().getText().isEmpty()) {
+                startDate = new SimpleDateFormat("MM-dd-yyyy").parse(this.getStartDateDate().getText());
+            }
+            if (!this.getDueDateDate().getText().isEmpty()) {
+                dueDate = new SimpleDateFormat("MM-dd-yyyy").parse(this.getDueDateDate().getText());
+            }
             Date createDate = new Date();
             String summary = this.getSummaryString().getText();
             int ID = Integer.parseInt(this.getIDint().getText());
             //team will store ID of user
             ArrayList<Integer> team = new ArrayList<>();
-            for(int i=0;i<listModel.size();i++){
-                int userID=Userhold.searchNmeOutputID(listModel.get(i));
+            for (int i = 0; i < listModel.size(); i++) {
+                int userID = Userhold.searchNmeOutputID(listModel.get(i));
                 team.add(userID);
             }
             //have to add admin
-            if(!team.contains(8)){
+            if (!team.contains(8)) {
                 team.add(8);
             }
             //add the current user who create the project, which is usually PM
-            if(!team.contains(CurrentUserhold.getUser().getID())){
+            if (!team.contains(CurrentUserhold.getUser().getID())) {
                 team.add(CurrentUserhold.getUser().getID());
             }
             Userhold.bublesort(team);

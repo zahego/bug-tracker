@@ -4,21 +4,12 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import common.Alert.Alert;
-import common.Alert.AlertHold;
 import common.AlertBoard.AlertBoard;
-import common.Board.Board;
-import common.Enum.BoardType;
-import common.Project.Projecthold;
-import common.Task.Task;
 import common.User.CurrentUserhold;
-import layout.views.BoardUI.BoardUI;
-import layout.views.SwitchBoardPopUp.SwitchBoardPopUp;
 import layout.views.screen.ScreenUI;
 
 public class AlertBoardUI extends JPanel {
@@ -44,11 +35,9 @@ public class AlertBoardUI extends JPanel {
 			// tasks now hold all the task of that board
 
 			// List<Alert> alerts = getAlertBoard().getAlerts();
-			//System.out.println("alert size:"+alerts.size());
 			for (int i = 0; i < alerts.size(); i++) {
 				Alert alert = alerts.get(i);
 				//render by project 
-				// System.out.println("TEst Here : " + alert.getReceivers());
 				if (alert.getReceivers().contains(CurrentUserhold.getUser().getID())
 						|| alert.getSender() == CurrentUserhold.getUser().getID()) {
 					AlertCard card = new AlertCard(alert);
@@ -63,7 +52,6 @@ public class AlertBoardUI extends JPanel {
 							} 
 						}
 					});
-					// System.out.println("TEst Here : " + alert.getReceivers());
 					this.add(card);
 					ScreenUI.getAlertButton().setForeground(Color.RED);
 
@@ -79,12 +67,8 @@ public class AlertBoardUI extends JPanel {
 
 	public void refresh() {
 		this.getAlertBoard().refresh();
-		//System.out.println("board " + board.read().get(board.read().size() - 1).getName());
-		//board.clear();
-		System.out.println("board " + board.read().size());
 		 this.removeAll();
 		renderAlertBoard(board.read());
-		// System.out.println(getAlertBoard().getAlerts().size() );
 	}
 
 	public AlertBoard getAlertBoard() {

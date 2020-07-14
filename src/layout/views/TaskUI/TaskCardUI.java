@@ -20,7 +20,9 @@ import javax.swing.SwingConstants;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class TaskCardUI extends JPanel {
-
+    private int cardID;
+    private String cardSummary;
+    private Task taskOfCard;
     /**
      *
      */
@@ -30,6 +32,7 @@ public class TaskCardUI extends JPanel {
      * Create the panel.
      */
     public TaskCardUI(Task task) {
+        setTask(task);
         //setMaximumSize(new Dimension(300, 150));
         setBorder(new LineBorder(new Color(0, 0, 0)));
         setBackground(Color.WHITE);
@@ -218,5 +221,47 @@ public class TaskCardUI extends JPanel {
         	System.out.println(e);
                 return icon;
         }
+    }
+
+    /**
+     * @return the cardID
+     */
+    public int getCardID() {
+        return cardID;
+    }
+
+    /**
+     * @param cardID the cardID to set
+     */
+    public void setCardID(int cardID) {
+        this.cardID = cardID;
+    }
+
+    /**
+     * @return the cardSummary
+     */
+    public String getCardSummary() {
+        return cardSummary;
+    }
+
+    /**
+     * @param cardSummary the cardSummary to set
+     */
+    public void setCardSummary(String cardSummary) {
+        this.cardSummary = cardSummary;
+    }
+
+    /**
+     * @return the task
+     */
+    public Task getTask() {
+        return taskOfCard;
+    }
+
+    /**
+     * @param task the task to set
+     */
+    public void setTask(Task task) {
+        this.taskOfCard = task;
     }
 }

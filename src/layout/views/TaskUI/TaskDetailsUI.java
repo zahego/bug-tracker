@@ -515,7 +515,6 @@ public class TaskDetailsUI extends JFrame implements PropertyChangeListener{
     public ImageIcon setProfileProfilePic(Task task, int num) {
         ImageIcon icon=null;
         try {
-            System.out.println(task.getAttachedFile()[num].getAbsolutePath());
         icon = new ImageIcon(task.getAttachedFile()[num].getAbsolutePath());
         // should set int for size here
         icon = new ImageIcon(icon.getImage().getScaledInstance(150, 150,  java.awt.Image.SCALE_SMOOTH));

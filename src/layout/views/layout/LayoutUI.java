@@ -7,21 +7,14 @@ package layout.views.layout;
 
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
-
-import common.Comment.CommentsAllHold;
-import layout.views.FilterUI.FilterUI;
 import layout.views.SortUI.SortUI;
 import common.Enum.BoardType;
-import common.User.CurrentUserhold;
 import layout.views.BoardUI.BoardUI;
 import layout.views.TaskUI.TaskCreate;
-import javax.swing.JButton;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Dimension;
+import layout.views.FilterUI.FilterUI;
 
 /**
  *
@@ -41,7 +34,8 @@ public class LayoutUI extends javax.swing.JPanel {
 
         initComponents();
         setPMinimizeHidden();
-        addTask();
+        addLog();
+        refreshAllBoard();
     }
     private BoardUI backlog;
     private BoardUI taken;
@@ -50,10 +44,10 @@ public class LayoutUI extends javax.swing.JPanel {
 
     public void addLog() {
 
-        backlog = new BoardUI(BoardType.BACKLOG);
+        setBacklog(new BoardUI(BoardType.BACKLOG));
         taken = new BoardUI(BoardType.TAKEN);
         ongoing = new BoardUI(BoardType.ONGOING);
-        finish = new BoardUI(BoardType.FINISH);
+        setFinish(new BoardUI(BoardType.FINISH));
 
         getBacklog().addContainerListener(new componentChangeListener());
         getTaken().addContainerListener(new componentChangeListener());
@@ -529,13 +523,13 @@ public class LayoutUI extends javax.swing.JPanel {
     }//GEN-LAST:event_AddTaskButtonActionPerformed
 
     private void FilterLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilterLActionPerformed
-        /*FilterUI filterL = new FilterUI(BoardType.BACKLOG);
-        filterL.setVisible(true);*/
+        FilterUI filterL = new FilterUI(getBacklog());
+        filterL.setVisible(true);
     }//GEN-LAST:event_FilterLActionPerformed
 
     private void filterRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterRActionPerformed
-        /*FilterUI filterR = new FilterUI(BoardType.FINISH);
-        filterR.setVisible(true);*/
+        FilterUI filterR = new FilterUI(getFinish());
+        filterR.setVisible(true);
     }//GEN-LAST:event_filterRActionPerformed
 
     private void ProgressBoardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProgressBoardButtonActionPerformed
@@ -590,75 +584,35 @@ public class LayoutUI extends javax.swing.JPanel {
         DeMaximizeButton.setVisible(false);
     }
 
-    public void addTask() {
-        addLog();
-        OnBacklogPanel.setColumnHeaderView(null);
-        OnTakenPanel.setColumnHeaderView(null);
-        OnGoingPanel.setColumnHeaderView(null);
-        OnFinishPanel.setColumnHeaderView(null);
-        OnBacklogPanel.setViewportView(getBacklog());
-        OnTakenPanel.setViewportView(getTaken());
-        OnGoingPanel.setViewportView(getOngoing());
-        OnFinishPanel.setViewportView(getFinish());
-        if (getBacklog().getNumOfCardDisplay() == 0||getBacklog().getNumOfCardDisplay() == 1||getBacklog().getNumOfCardDisplay() == 2||getBacklog().getNumOfCardDisplay() == 3) {
-            OnBacklogPanel.setViewportView(null);
-            OnBacklogPanel.setColumnHeaderView(getBacklog());
-        }
-        if (getTaken().getNumOfCardDisplay() == 0||getTaken().getNumOfCardDisplay() == 1||getTaken().getNumOfCardDisplay() == 2||getTaken().getNumOfCardDisplay() == 3) {
-            OnTakenPanel.setViewportView(null);
-            OnTakenPanel.setColumnHeaderView(getTaken());
-        }
-        if (getOngoing().getNumOfCardDisplay() == 0||getOngoing().getNumOfCardDisplay() == 1||getOngoing().getNumOfCardDisplay() == 2||getOngoing().getNumOfCardDisplay() == 3) {
-            OnGoingPanel.setViewportView(null);
-            OnGoingPanel.setColumnHeaderView(getOngoing());
-        }
-        if (getFinish().getNumOfCardDisplay() == 0|getFinish().getNumOfCardDisplay() == 1||getFinish().getNumOfCardDisplay() == 2||getFinish().getNumOfCardDisplay() == 3) {
-            OnFinishPanel.setViewportView(null);
-            OnFinishPanel.setColumnHeaderView(getFinish());
-        }
-
-        if (CurrentUserhold.getUser() != null) {
-            if (CurrentUserhold.getUser().getAccessRange() > 2) {
-                MemberBoardButton.setVisible(true);
-                ProgressBoardButton.setVisible(true);
-
-            } else {
-                MemberBoardButton.setVisible(false);
-                ProgressBoardButton.setVisible(false);
-            }
-
-        }
-    }
-
     public void refreshAllBoard() {
         getBacklog().refresh();
         getTaken().refresh();
         getOngoing().refresh();
         getFinish().refresh();
-        OnBacklogPanel.setColumnHeaderView(null);
+        getOnBacklogPanel().setColumnHeaderView(null);
         OnTakenPanel.setColumnHeaderView(null);
         OnGoingPanel.setColumnHeaderView(null);
-        OnFinishPanel.setColumnHeaderView(null);
-        OnBacklogPanel.setViewportView(getBacklog());
+        getOnFinishPanel().setColumnHeaderView(null);
+        getOnBacklogPanel().setViewportView(getBacklog());
         OnTakenPanel.setViewportView(getTaken());
         OnGoingPanel.setViewportView(getOngoing());
-        OnFinishPanel.setViewportView(getFinish());
+        getOnFinishPanel().setViewportView(getFinish());
         
-        if (getBacklog().getNumOfCardDisplay() == 0||getBacklog().getNumOfCardDisplay() == 1||getBacklog().getNumOfCardDisplay() == 2||getBacklog().getNumOfCardDisplay() == 3) {
-            OnBacklogPanel.setViewportView(null);
-            OnBacklogPanel.setColumnHeaderView(getBacklog());
+        if (getBacklog().getNumOfCardDisplay() <4) {
+            getOnBacklogPanel().setViewportView(null);
+            getOnBacklogPanel().setColumnHeaderView(getBacklog());
         }
-        if (getTaken().getNumOfCardDisplay() == 0||getTaken().getNumOfCardDisplay() == 1||getTaken().getNumOfCardDisplay() == 2||getTaken().getNumOfCardDisplay() == 3) {
+        if (getTaken().getNumOfCardDisplay() <4) {
             OnTakenPanel.setViewportView(null);
             OnTakenPanel.setColumnHeaderView(getTaken());
         }
-        if (getOngoing().getNumOfCardDisplay() == 0||getOngoing().getNumOfCardDisplay() == 1||getOngoing().getNumOfCardDisplay() == 2||getOngoing().getNumOfCardDisplay() == 3) {
+        if (getOngoing().getNumOfCardDisplay() <4) {
             OnGoingPanel.setViewportView(null);
             OnGoingPanel.setColumnHeaderView(getOngoing());
         }
-        if (getFinish().getNumOfCardDisplay() == 0|getFinish().getNumOfCardDisplay() == 1||getFinish().getNumOfCardDisplay() == 2||getFinish().getNumOfCardDisplay() == 3) {
-            OnFinishPanel.setViewportView(null);
-            OnFinishPanel.setColumnHeaderView(getFinish());
+        if (getFinish().getNumOfCardDisplay() <4) {
+            getOnFinishPanel().setViewportView(null);
+            getOnFinishPanel().setColumnHeaderView(getFinish());
         }
 
     }
@@ -703,5 +657,33 @@ public class LayoutUI extends javax.swing.JPanel {
      */
     public BoardUI getFinish() {
         return finish;
+    }
+
+    /**
+     * @param backlog the backlog to set
+     */
+    public void setBacklog(BoardUI backlog) {
+        this.backlog = backlog;
+    }
+
+    /**
+     * @param finish the finish to set
+     */
+    public void setFinish(BoardUI finish) {
+        this.finish = finish;
+    }
+
+    /**
+     * @return the OnBacklogPanel
+     */
+    public javax.swing.JScrollPane getOnBacklogPanel() {
+        return OnBacklogPanel;
+    }
+
+    /**
+     * @return the OnFinishPanel
+     */
+    public javax.swing.JScrollPane getOnFinishPanel() {
+        return OnFinishPanel;
     }
 }

@@ -7,7 +7,6 @@ package layout.views.sprint;
 
 import common.Sprint.Sprinthold;
 import common.User.CurrentUserhold;
-import layout.views.layout.LayoutUI;
 import layout.views.project.ProjectUIDropdown;
 import common.Project.Projecthold;
 import layout.views.screen.ScreenUI;
@@ -18,7 +17,10 @@ import layout.views.setting.SettingUI;
  * @author tug70
  */
 public class SprintUIDropdown extends javax.swing.JPanel {
-private static int sprintAccessID = -1;
+
+    private static int sprintAccessID = -1;
+    private boolean editable = false;
+
     /**
      * Creates new form UserUIDropdown
      */
@@ -42,6 +44,16 @@ private static int sprintAccessID = -1;
         sprintDropdown.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         sprintDropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "all sprint", "#1", "#2", "#3", "#4" }));
         sprintDropdown.setPreferredSize(new java.awt.Dimension(110, 20));
+        sprintDropdown.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                sprintDropdownPopupMenuWillBecomeVisible(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                sprintDropdownPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
         sprintDropdown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sprintDropdownActionPerformed(evt);
@@ -62,50 +74,56 @@ private static int sprintAccessID = -1;
 
     private void sprintDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sprintDropdownActionPerformed
         Object selected = this.getSprintDropdown().getSelectedItem();
-        if (selected == "--all sprint--") {
-            SprintUIDropdown.setSprintAccessID(-1);
+        if (editable == true) {
+            if (selected == "--all sprint--") {
+                SprintUIDropdown.setSprintAccessID(-1);
 
-        } else if (selected == "+ Add sprint") {
-            //adding new project
-            SprintUICreateUpdate create = new SprintUICreateUpdate();
-            //create new int ID that is the next highest number according to the last item in project size()
-            int ID = Sprinthold.getSprints().get(Sprinthold.getSprints().size() - 1).getID() + 1;
-            create.setIDint(ID);
-            create.getDeleteButton().setVisible(false);
-            SprintUIDropdown.setSprintAccessID(-1);
-            create.setCreateUpdateLabel("Create Sprint");
-            create.setSubmitButton("Create");
-            create.setVisible(true);
-        } else {
-            //updating existed project
-            for (int i = 0; i < Sprinthold.getSprints().size(); i++) {
-                //check condition of the name of the item and if the project of the sprint match the current chosen project.
-                //this is because some sprint name is identical so the first incident always get taken first
-                if (String.valueOf(Sprinthold.getSprints().get(i).getName()).equals(selected) && ProjectUIDropdown.getProjectAccessID()==Sprinthold.getSprints().get(i).getProjectID()) {
-                    //check access range to see if user are allow to edit project--only PM and higher should do this
-                    if (CurrentUserhold.getUser().getAccessRange() > 2) {
-                        //check if in setting this is changed to true to prevent annoyance
-                        if (SettingUI.isSprintEditToggle() == true) {
-                            SprintUICreateUpdate update = new SprintUICreateUpdate();
-                            update.setUpdateInformation(Sprinthold.getSprints().get(i));
-                            update.setCreateUpdateLabel("Update Sprint");
-                            update.setSubmitButton("Update");
-                            update.setVisible(true);
-                            
+            } else if (selected == "+ Add sprint") {
+                //adding new project
+                SprintUICreateUpdate create = new SprintUICreateUpdate();
+                //create new int ID that is the next highest number according to the last item in project size()
+                int ID = Sprinthold.getSprints().get(Sprinthold.getSprints().size() - 1).getID() + 1;
+                create.setIDint(ID);
+                create.getDeleteButton().setVisible(false);
+                SprintUIDropdown.setSprintAccessID(-1);
+                create.setCreateUpdateLabel("Create Sprint");
+                create.setSubmitButton("Create");
+                create.setVisible(true);
+            } else {
+                //updating existed project
+                for (int i = 0; i < Sprinthold.getSprints().size(); i++) {
+                    //check condition of the name of the item and if the project of the sprint match the current chosen project.
+                    //this is because some sprint name is identical so the first incident always get taken first
+                    if (String.valueOf(Sprinthold.getSprints().get(i).getName()).equals(selected) && ProjectUIDropdown.getProjectAccessID() == Sprinthold.getSprints().get(i).getProjectID()) {
+                        //check access range to see if user are allow to edit project--only PM and higher should do this
+                        if (CurrentUserhold.getUser().getAccessRange() > 2) {
+                            //check if in setting this is changed to true to prevent annoyance
+                            if (SettingUI.isSprintEditToggle() == true) {
+                                SprintUICreateUpdate update = new SprintUICreateUpdate();
+                                update.setUpdateInformation(Sprinthold.getSprints().get(i));
+                                update.setCreateUpdateLabel("Update Sprint");
+                                update.setSubmitButton("Update");
+                                update.setVisible(true);
+                            }
                         }
+                        SprintUIDropdown.setSprintAccessID(Sprinthold.getSprints().get(i).getID());
+                        break;
                     }
-                    SprintUIDropdown.setSprintAccessID(Sprinthold.getSprints().get(i).getID());
-                    ScreenUI.getLayoutUI().addTask();
-                    break;
                 }
             }
-            
-
+            ScreenUI.getLayoutUI().refreshAllBoard();
         }
-        
-        
+
 
     }//GEN-LAST:event_sprintDropdownActionPerformed
+
+    private void sprintDropdownPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_sprintDropdownPopupMenuWillBecomeInvisible
+        editable = false;
+    }//GEN-LAST:event_sprintDropdownPopupMenuWillBecomeInvisible
+
+    private void sprintDropdownPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_sprintDropdownPopupMenuWillBecomeVisible
+        editable = true;
+    }//GEN-LAST:event_sprintDropdownPopupMenuWillBecomeVisible
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

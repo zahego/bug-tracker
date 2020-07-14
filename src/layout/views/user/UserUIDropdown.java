@@ -61,7 +61,7 @@ public class UserUIDropdown extends javax.swing.JPanel {
             //getUserUI().setVisible(false);
             CurrentUserhold.setUser(null);
             ScreenUI.getAlertButton().setForeground(Color.BLACK);
-            ScreenUI.getLayoutUI().addTask();
+            ScreenUI.getLayoutUI().refreshAllBoard();
             ScreenUI.renderUI();
         }
         else if(getAuthentication().getText().equals("Log in")){
@@ -85,7 +85,7 @@ public class UserUIDropdown extends javax.swing.JPanel {
        // UserUIDropdown.getUserUI().setUserFromDatabase(7);
         //cuurent user already get set as this method is called but not before
         if(CurrentUserhold.getUser()!=null){
-        UserUIDropdown.getUserUI().setUserFromDatabase(CurrentUserhold.getUser().getID()-1);
+        UserUIDropdown.getUserUI().setUserFromUserhold(CurrentUserhold.getUser().getID()-1);
         }
         else{
             UserUIDropdown.getUserUI().setUserAtNull();
