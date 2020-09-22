@@ -43,8 +43,22 @@ public class ProjectUIDropdown extends javax.swing.JPanel {
 
         projectDropDown = new javax.swing.JComboBox<>();
 
+        setPreferredSize(new java.awt.Dimension(110, 20));
+
+        projectDropDown.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         projectDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--all project--", "+ Add project" }));
         projectDropDown.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        projectDropDown.setPreferredSize(new java.awt.Dimension(110, 20));
+        projectDropDown.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                projectDropDownPopupMenuWillBecomeVisible(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                projectDropDownPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
         projectDropDown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 projectDropDownActionPerformed(evt);
@@ -55,19 +69,23 @@ public class ProjectUIDropdown extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(projectDropDown, 0, 142, Short.MAX_VALUE)
+            .addComponent(projectDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(projectDropDown, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(projectDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void projectDropDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectDropDownActionPerformed
 
         Object selected = this.projectDropDown.getSelectedItem();
+        if(editable==true){
         if (selected == "--all project--") {
             ProjectUIDropdown.setProjectAccessID(-1);
+            
 
         } else if (selected == "+ Add project") {
             //adding new project
@@ -97,8 +115,8 @@ public class ProjectUIDropdown extends javax.swing.JPanel {
             
             //reredner team and sprint
             ProjectUIDropdown.setProjectAccessID(-1);
-            ScreenUI.getTeamUI().renderUI();
-            ScreenUI.getSprintUI().renderUI();
+            
+            
         } else {
             //updating existed project
             for (int i = 0; i < Projecthold.getProjects().size(); i++) {
@@ -130,16 +148,26 @@ public class ProjectUIDropdown extends javax.swing.JPanel {
 
                     ProjectUIDropdown.setProjectAccessID(Projecthold.getProjects().get(i).getID());
 
-                    ScreenUI.getTeamUI().renderUI();
-                    ScreenUI.getSprintUI().renderUI();
-                    ScreenUI.getLayoutUI().addTask();
+                    
                     break;
                 }
             }
-            //this.setAllowListEvent(true);
+            
+        }
+        ScreenUI.getTeamUI().renderUI();
+        ScreenUI.getSprintUI().renderUI();
+            ScreenUI.getLayoutUI().refreshAllBoard();
         }
 
     }//GEN-LAST:event_projectDropDownActionPerformed
+
+    private void projectDropDownPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_projectDropDownPopupMenuWillBecomeInvisible
+        editable=false;
+    }//GEN-LAST:event_projectDropDownPopupMenuWillBecomeInvisible
+
+    private void projectDropDownPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_projectDropDownPopupMenuWillBecomeVisible
+        editable=true;
+    }//GEN-LAST:event_projectDropDownPopupMenuWillBecomeVisible
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

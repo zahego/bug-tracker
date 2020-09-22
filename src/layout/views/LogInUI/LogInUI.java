@@ -80,7 +80,6 @@ public class LogInUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(emailLabel)
                                 .addGap(18, 18, 18)
@@ -92,11 +91,7 @@ public class LogInUI extends javax.swing.JFrame {
                                     .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(PasswordString, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(70, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-
+            .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,13 +121,13 @@ public class LogInUI extends javax.swing.JFrame {
 
         if (!email.equals("") && !password.equals("")) {
             this.setErrorLabel(this.getEmailString().getText() + " " + String.valueOf(this.getPasswordString().getPassword()));
-            if (/*CurrentUserhold.logInhUser(email, password)*/true == true) {
+            if (CurrentUserhold.logInhUser(email, password) == true) {
                 User user = Userhold.search(email);
                 CurrentUserhold.setUser(user);
                 ScreenUI.renderUI();
                 ScreenUI.getUserUI().getAuthentication().setText("Log out");
                 //reload task?
-                ScreenUI.getLayoutUI().addTask();
+                ScreenUI.getLayoutUI().refreshAllBoard();
                 ScreenUI.getUserUI().renderUI();
                 //ScreenUI.getUserUI().setVisible(true);
                 AlertUI alert = new AlertUI();

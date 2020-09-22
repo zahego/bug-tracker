@@ -5,7 +5,6 @@
  */
 package common.Comment;
 
-
 import java.util.ArrayList;
 
 public class CommentsOneTaskHold {
@@ -17,7 +16,6 @@ public class CommentsOneTaskHold {
     }
 
     public CommentsOneTaskHold() {
-
     }
 
     //without static, this need an instance
@@ -33,11 +31,9 @@ public class CommentsOneTaskHold {
                 if (CommentsAllHold.getAllCommentHold().get(i).getTaskID() == taskNum) {
                     commentList.add(CommentsAllHold.getAllCommentHold().get(i));
                 }
-
             }
             setComment(commentList);
         }
-
     }
 
     /**

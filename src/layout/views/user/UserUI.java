@@ -5,9 +5,9 @@
  */
 package layout.views.user;
 
+import common.Team.Userhold;
 import common.User.CurrentUserhold;
 import common.User.User;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
@@ -43,8 +43,10 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
 
         setBackground(new java.awt.Color(255, 204, 0));
         setMaximumSize(new java.awt.Dimension(244, 123));
+        setPreferredSize(new java.awt.Dimension(210, 100));
 
         UserName.setBackground(new java.awt.Color(153, 255, 255));
+        UserName.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         UserName.setForeground(new java.awt.Color(0, 0, 102));
         UserName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         UserName.setText("NAME");
@@ -57,6 +59,7 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
         UserName.setOpaque(true);
 
         UserID.setBackground(new java.awt.Color(255, 255, 153));
+        UserID.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         UserID.setForeground(new java.awt.Color(0, 0, 102));
         UserID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         UserID.setText("ID");
@@ -69,6 +72,7 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
         UserID.setOpaque(true);
 
         UserEmail.setBackground(new java.awt.Color(153, 255, 102));
+        UserEmail.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         UserEmail.setForeground(new java.awt.Color(0, 0, 102));
         UserEmail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         UserEmail.setText("EMAIL");
@@ -81,6 +85,7 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
         UserEmail.setOpaque(true);
 
         UserRole.setBackground(new java.awt.Color(255, 153, 0));
+        UserRole.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         UserRole.setForeground(new java.awt.Color(0, 0, 102));
         UserRole.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         UserRole.setText("ROLE");
@@ -109,8 +114,8 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Portrait, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Portrait, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UserRole, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -121,16 +126,16 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Portrait, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Portrait, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(UserName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(UserID)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(UserEmail)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(UserRole)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -225,6 +230,7 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
     public void setPortrait(ImageIcon Portrait) {
         this.Portrait.setIcon(Portrait);
     }
+
     
     public ClassLoader getClassLoader() {
     	ClassLoader cLoader = null;
@@ -237,7 +243,6 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
     		System.out.println(e);
     	} return cLoader;
     }
-    
     
     public void setUserFromDatabase(int num){
         //put this into current user hold
@@ -253,7 +258,28 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
         try {
         ImageIcon icon = new ImageIcon(ImageIO.read(getClassLoader().getResource(CurrentUserhold.getUser().getProfilePic())));
         // should set int for size here
-        icon = new ImageIcon(icon.getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH)); 
+        icon = new ImageIcon(icon.getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH)); 
+        this.setPortrait(icon);
+        }
+        catch (Exception e) {
+        	System.out.println(e);
+        }
+    }
+    public void setUserFromUserhold(int num){
+        //put this into current user hold
+        //this is for testing. Incase the method is called with a num
+        CurrentUserhold.setUser(Userhold.getUsers().get(num));
+        
+        this.setUserName(CurrentUserhold.getUser().getName());
+        this.setUserEmail(CurrentUserhold.getUser().getEmail());
+        this.setUserID(String.valueOf(CurrentUserhold.getUser().getID()));
+        this.setUserRole(CurrentUserhold.getUser().getRole().name());
+        
+        //set icon
+        try {
+        ImageIcon icon = new ImageIcon(ImageIO.read(getClassLoader().getResource(CurrentUserhold.getUser().getProfilePic())));
+        // should set int for size here
+        icon = new ImageIcon(icon.getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH)); 
         this.setPortrait(icon);
         }
         catch (Exception e) {
@@ -267,7 +293,15 @@ public class UserUI extends javax.swing.JPanel implements ListCellRenderer {
         this.setUserID("-1");
         this.setUserRole("NO ONE");
         
-        
+        try {
+        ImageIcon icon = new ImageIcon(ImageIO.read(getClassLoader().getResource("resources/tempIcon.png")));
+        // should set int for size here
+        icon = new ImageIcon(icon.getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH)); 
+        this.setPortrait(icon);
+        }
+        catch (Exception e) {
+        	System.out.println(e);
+        }
         
     }
     

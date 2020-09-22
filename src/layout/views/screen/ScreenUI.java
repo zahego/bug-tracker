@@ -15,17 +15,9 @@ import layout.views.sprint.SprintUIDropdown;
 import layout.views.team.TeamUIDropdown;
 import layout.views.user.UserUIDropdown;
 import layout.views.setting.SettingUI;
-import layout.views.AlertUI.AlertBoardUI;
-
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
 import common.Alert.AlertHold;
 import common.Task.TaskHold;
 import common.User.CurrentUserhold;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 /**
  *
  * @author tug70
@@ -65,6 +57,7 @@ public class ScreenUI extends javax.swing.JFrame{
         sprintUI = new layout.views.sprint.SprintUIDropdown();
         settingUI = new layout.views.setting.SettingUI();
         layoutUI = new layout.views.layout.LayoutUI();
+        AlertButton = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -78,12 +71,17 @@ public class ScreenUI extends javax.swing.JFrame{
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Bug Tracker 3000 - Screen");
-        setBounds(new java.awt.Rectangle(0, 0, 100, 100));
+        setTitle("Bug Tracker 3000");
+        setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
+        setPreferredSize(new java.awt.Dimension(1400, 800));
 
         productName.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 24)); // NOI18N
         productName.setForeground(new java.awt.Color(255, 102, 102));
         productName.setText("BUG TRACKER 3000");
+
+        boardsHolder.setPreferredSize(new java.awt.Dimension(1400, 750));
+
+        layoutUI.setPreferredSize(new java.awt.Dimension(1400, 600));
 
         javax.swing.GroupLayout boardsHolderLayout = new javax.swing.GroupLayout(boardsHolder);
         boardsHolder.setLayout(boardsHolderLayout);
@@ -94,83 +92,84 @@ public class ScreenUI extends javax.swing.JFrame{
                 .addGroup(boardsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(teamUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(projectUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(boardsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, boardsHolderLayout.createSequentialGroup()
-                        .addComponent(userUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(settingUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(sprintUI, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(258, 258, 258))
-            .addGroup(boardsHolderLayout.createSequentialGroup()
-                .addComponent(layoutUI, javax.swing.GroupLayout.PREFERRED_SIZE, 1871, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(462, 462, 462)
+                .addComponent(userUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(boardsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(sprintUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(settingUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, boardsHolderLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(layoutUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         boardsHolderLayout.setVerticalGroup(
             boardsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(boardsHolderLayout.createSequentialGroup()
-                .addGroup(boardsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(boardsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(boardsHolderLayout.createSequentialGroup()
                         .addComponent(projectUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
                         .addComponent(teamUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(boardsHolderLayout.createSequentialGroup()
                         .addComponent(sprintUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addGroup(boardsHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(settingUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(userUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(settingUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(userUI, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(layoutUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        
-        AlertButton = new JButton("Alert\r\n");
-        
-        AlertButton.addActionListener(new ActionListener() {
-        	
-        	public void actionPerformed(ActionEvent arg0) {
-        		if (CurrentUserhold.getUser() != null) {
+
+        AlertButton.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        AlertButton.setText("Alert");
+        AlertButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AlertButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(562, 562, 562)
+                .addComponent(productName)
+                .addGap(18, 18, 18)
+                .addComponent(AlertButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(boardsHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(productName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AlertButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(14, 14, 14)
+                .addComponent(boardsHolder, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void AlertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlertButtonActionPerformed
+        if (CurrentUserhold.getUser() != null) {
         		AlertUI alert = new AlertUI();
         		alert.setVisible(true);
         		
         	}else {
             	JOptionPane.showMessageDialog(null, "You must log in to see Alert","Alert", JOptionPane.OK_OPTION);
-            }}
-        }); 
-        
-        
-       
-        
-        
-        
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        layout.setHorizontalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
-        		.addComponent(boardsHolder, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        		.addGroup(layout.createSequentialGroup()
-        			.addGap(779)
-        			.addComponent(productName)
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
-        			.addComponent(AlertButton))
-        );
-        layout.setVerticalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(layout.createSequentialGroup()
-        			.addGap(15)
-        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-        				.addComponent(productName, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(AlertButton, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
-        			.addGap(18)
-        			.addComponent(boardsHolder, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap())
-        );
-        getContentPane().setLayout(layout);
-
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+        }
+    }//GEN-LAST:event_AlertButtonActionPerformed
      public void displayJFrame(){
          setIconImage(Toolkit.getDefaultToolkit().getImage(FilterUI.class.getResource("/layout/resource/BugTracker.png")));
+         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+         this.setBounds(0, 0, screenSize.width, screenSize.height);
         this.setVisible(true);
     }
      
@@ -188,6 +187,7 @@ public class ScreenUI extends javax.swing.JFrame{
     };
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private static javax.swing.JButton AlertButton;
     private javax.swing.JPanel boardsHolder;
     private javax.swing.JPanel jPanel1;
     private static layout.views.layout.LayoutUI layoutUI;
@@ -197,13 +197,11 @@ public class ScreenUI extends javax.swing.JFrame{
     private static layout.views.sprint.SprintUIDropdown sprintUI;
     private static layout.views.team.TeamUIDropdown teamUI;
     private static layout.views.user.UserUIDropdown userUI;
-    private static JButton AlertButton;
     // End of variables declaration//GEN-END:variables
 
     
     
     public void AlertRender() {
-    	System.out.println("Test Screen : " + AlertHold.getAlertList().size());
     	for (int i = 0; i < AlertHold.getAlertList().size();i++) {
             if(AlertHold.getAlertList().get(i).getReceivers().contains(CurrentUserhold.getUser().getID())) {
            // if (AlertHold.getAlertList() != null) {

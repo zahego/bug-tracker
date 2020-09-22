@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
 import java.awt.Toolkit;
+import javax.swing.SwingConstants;
+import javax.swing.JTextArea;
 
 public class AlertCardDetail extends JFrame {
 
@@ -24,10 +26,10 @@ public class AlertCardDetail extends JFrame {
 	private JLabel SenderName;
 	private JLabel SenderRole;
 	private JTextField textField;
-	private JTextField MessageTextField_1;
 	private JLabel AlertName;
 	private JLabel StatusLabel;
 	private JLabel Status;
+	private JTextArea MessageTextField_1;
 
 	/**
 	 * Launch the application.
@@ -46,7 +48,7 @@ public class AlertCardDetail extends JFrame {
 
 		// TODO Auto-generated method stub
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 608, 496);
+		setBounds(100, 100, 608, 407);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -131,10 +133,8 @@ public class AlertCardDetail extends JFrame {
 					.addContainerGap())
 		);
 		
-		MessageTextField_1 = new JTextField(alert.getmessage());
+		MessageTextField_1 = new JTextArea();
 		scrollPane.setViewportView(MessageTextField_1);
-		MessageTextField_1.setColumns(10);
-		MessageTextField_1.setEditable(false);
 		contentPane.setLayout(gl_contentPane);
 		
 		

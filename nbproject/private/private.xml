@@ -4,27 +4,24 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/M:/netbean/project/bug%20tracker/src/resources/database.json</file>
-            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/TaskUI/TaskCardUI.java</file>
-            <file>file:/M:/netbean/project/bug%20tracker/src/common/Comment/CommentsAllHold.java</file>
-            <file>file:/M:/netbean/project/bug%20tracker/src/common/Comment/CommentsOneTaskHold.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/main/MainTest.java</file>
-            <file>file:/M:/netbean/project/bug%20tracker/src/common/Comment/Comment.java</file>
-            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/CommentUI/CommentUI.java</file>
-            <file>file:/M:/netbean/project/bug%20tracker/src/common/Project/Projecthold.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/SortUI/SortUI.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/team/SendEmailUI.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/user/UserUIDropdown.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/common/Task/Task.java</file>
-            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/user/UserUICreateUpdate.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/layout/FilterUI.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/project/ProjectUIDropdown.java</file>
-            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/TaskCreate.java</file>
-            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/CalendarWindowViews.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/FilterUI/FilterUI.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/common/Board/Board.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/screen/ScreenUI.java</file>
-            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/TaskUI/TaskDetailsUI.java</file>
-            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/LogInUI/LogInUI.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/FilterViews.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/layout/LayoutUI.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/SwitchBoardPopUp/SwitchBoardPopUp.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/team/TeamUIDropdown.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/setting/SettingUI.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/common/Ultilities/Utilities.java</file>
             <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/BoardUI/BoardUI.java</file>
-            <file>file:/M:/netbean/project/bug%20tracker/src/common/Task/TaskHold.java</file>
-            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/CommentUI/CommentAddUI.java</file>
-            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/project/ProjectUICreateUpdate.java</file>
+            <file>file:/M:/netbean/project/bug%20tracker/src/layout/views/sprint/SprintUIDropdown.java</file>
         </group>
     </open-files>
 </project-private>

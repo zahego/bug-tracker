@@ -8,7 +8,12 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
 import common.Enum.TaskStatus;
+import common.Project.Projecthold;
 import common.Task.Task;
+import common.User.CurrentUserhold;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import layout.views.BoardUI.BoardUI;
 import layout.views.screen.ScreenUI;
 
@@ -43,7 +48,8 @@ public class SwitchBoardPopUp extends JPopupMenu {
 			public void actionPerformed(ActionEvent e) {
 				if(task.getStatus()!=TaskStatus.ONNEW) {
 					task.setStatus(TaskStatus.ONNEW);
-					ScreenUI.getLayoutUI().addTask();
+                                        task.setAssignees(new ArrayList<>(Projecthold.getProjects().get(task.getProjectID()-1).getTeam()));
+					ScreenUI.getLayoutUI().refreshAllBoard();
 				}
 			}
     		
@@ -54,7 +60,8 @@ public class SwitchBoardPopUp extends JPopupMenu {
 			public void actionPerformed(ActionEvent e) {
 				if(task.getStatus()!=TaskStatus.ONTAKEN) {
 					task.setStatus(TaskStatus.ONTAKEN);
-					ScreenUI.getLayoutUI().addTask();
+                                        task.setAssignees(new ArrayList<>(Arrays.asList(CurrentUserhold.getUser().getID(), 8)));
+					ScreenUI.getLayoutUI().refreshAllBoard();
 				}
 			}
     		
@@ -65,7 +72,8 @@ public class SwitchBoardPopUp extends JPopupMenu {
 			public void actionPerformed(ActionEvent e) {
 				if(task.getStatus()!=TaskStatus.ONGOING) {
 					task.setStatus(TaskStatus.ONGOING);
-					ScreenUI.getLayoutUI().addTask();
+                                        task.setAssignees(new ArrayList<>(Arrays.asList(CurrentUserhold.getUser().getID(), 8)));
+					ScreenUI.getLayoutUI().refreshAllBoard();
 				}
 			}
     		
@@ -76,7 +84,8 @@ public class SwitchBoardPopUp extends JPopupMenu {
 			public void actionPerformed(ActionEvent e) {
 				if(task.getStatus()!=TaskStatus.ONREVIEW) {
 					task.setStatus(TaskStatus.ONREVIEW);
-					ScreenUI.getLayoutUI().addTask();
+                                        task.setAssignees(new ArrayList<>(Projecthold.getProjects().get(task.getProjectID()-1).getTeam()));
+					ScreenUI.getLayoutUI().refreshAllBoard();
 				}
 			}
     		
@@ -87,7 +96,8 @@ public class SwitchBoardPopUp extends JPopupMenu {
 			public void actionPerformed(ActionEvent e) {
 				if(task.getStatus()!=TaskStatus.ONFINISH) {
 					task.setStatus(TaskStatus.ONFINISH);
-					ScreenUI.getLayoutUI().addTask();
+                                        task.setAssignees(new ArrayList<>(Projecthold.getProjects().get(task.getProjectID()-1).getTeam()));
+					ScreenUI.getLayoutUI().refreshAllBoard();
 				}
 			}
     		

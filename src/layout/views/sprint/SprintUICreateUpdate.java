@@ -7,6 +7,7 @@ package layout.views.sprint;
 
 import common.Sprint.Sprinthold;
 import common.Sprint.Sprint;
+import common.Task.TaskHold;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import layout.views.project.ProjectUIDropdown;
@@ -160,7 +161,7 @@ public class SprintUICreateUpdate extends javax.swing.JFrame {
         //TODO handle case of error of same name
         //add that new sprint Object to the sprinthold ArrayList
         Sprint addSprint = createSprintFromFields();
-
+        if(addSprint.getID()!=-1){
         //TODO refactor this method to make better sense and reduce time complexity
         //check if it's update or not
         boolean updated = false;
@@ -181,16 +182,23 @@ public class SprintUICreateUpdate extends javax.swing.JFrame {
         ScreenUI.getSprintUI().renderUI();
         //Close the Sprint create window
         this.dispose();
+        }
+        else{
+            errorText.setText("There's something wrong with your input, please try again");
+        }
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        for (int i = 0; i < Sprinthold.getSprints().size(); i++) {
-            if (Integer.parseInt(this.getIDint().getText()) == Sprinthold.getSprints().get(i).getID()) {
-                Sprinthold.delete(Sprinthold.getSprints().get(i));
-                break;
+       
+        for (int j = TaskHold.getTaskList().size() - 1; j >= 0; j--) {
+            if (TaskHold.getTaskList().get(j).getSprintID() == Integer.parseInt(this.getIDint().getText())) {
+                TaskHold.deleteTask(j);
             }
         }
+                Sprinthold.delete(Sprinthold.getSprints().get(Integer.parseInt(this.getIDint().getText())-1));
+        
         //rerender the dropdown in screenUI
+        ScreenUI.getLayoutUI().refreshAllBoard();
         ScreenUI.getSprintUI().renderUI();
         //Close the Sprint create window
         this.dispose();

@@ -29,6 +29,9 @@ public class Task {
 	int assignerID;
 	List<Integer> assignees;
 	
+        public Task (int ID){
+            this.ID = ID;
+        }
 	/////////////////////////Constructor in development/////////////////////////////
 	public Task (int ID, TaskType type, String quickSummary, int projectID, int sprintID, int severity, TaskStatus status, Date reportedDate) {
 		this.ID = ID;

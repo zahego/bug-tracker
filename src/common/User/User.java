@@ -9,12 +9,10 @@ import common.Enum.Role;
 import common.Task.TaskHold;
 import common.Project.Project;
 import common.Project.Projecthold;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 
@@ -33,10 +31,11 @@ public class User {
     private int accessRange;
     private TaskHold taskhold;
     private Projecthold projecthold;
-    
+
     public User(int ID) {
         this.ID = ID;
     }
+
     public User(int ID, Role role, String name, String profilePic, String email, String password, int accessRange) {
         this.ID = ID;
         this.role = role;
@@ -193,46 +192,46 @@ public class User {
         User userGet = new User(-1, Role.DEVELOPER, "", "", "", "", -1);
         JSONParser jsonParser = new JSONParser();
         try {
-        	
-        	Class cls = Class.forName("common.User.User");
-        	// returns the ClassLoader object assosiated with this Class
-        	ClassLoader cLoader = cls.getClassLoader();
-        	InputStream inputStream = cLoader.getResourceAsStream("resources/database.json");
-        	if (inputStream != null ) {
-        		BufferedReader streamReader = new BufferedReader (
-        				new InputStreamReader(inputStream,"UTF-8"));
-        		StringBuilder responseStrBuilder = new StringBuilder();
-        		
-        		String inputStr;
-        		while ((inputStr = streamReader.readLine()) != null) {
-        		responseStrBuilder.append(inputStr);	
-        		
-        	}
-        	
 
-            //Read JSON file
-            JSONObject obj = (JSONObject) jsonParser.parse(responseStrBuilder.toString());
-          
-            //get the user aray
-            JSONArray userObject = (JSONArray) obj.get("user");
-            //get the user at user array of "num" position
-            JSONObject user = (JSONObject) userObject.get(num);
+            Class cls = Class.forName("common.User.User");
+            // returns the ClassLoader object assosiated with this Class
+            ClassLoader cLoader = cls.getClassLoader();
+            InputStream inputStream = cLoader.getResourceAsStream("resources/database.json");
+            if (inputStream != null) {
+                BufferedReader streamReader = new BufferedReader(
+                        new InputStreamReader(inputStream, "UTF-8"));
+                StringBuilder responseStrBuilder = new StringBuilder();
 
-            //get all fields
-            int ID = ((Long) user.get("id")).intValue();
-            Role role = Role.valueOf((String) user.get("role"));
-            String profilePic = (String) user.get("image");
-            String name = (String) user.get("name");
-            String email = (String) user.get("email");
-            String password = (String) user.get("password");
-            int accessRange = ((Long) user.get("accessRange")).intValue();
-            JSONArray projecthold = (JSONArray) user.get("_projects");
-            JSONArray taskhold = (JSONArray) user.get("_tasks");
+                String inputStr;
+                while ((inputStr = streamReader.readLine()) != null) {
+                    responseStrBuilder.append(inputStr);
 
-            //TODO rethink about having projecthold and taskhold
-            userGet = new User(ID, role, name, profilePic, email, password, accessRange);
+                }
 
-        }} catch (Exception e) {
+                //Read JSON file
+                JSONObject obj = (JSONObject) jsonParser.parse(responseStrBuilder.toString());
+
+                //get the user aray
+                JSONArray userObject = (JSONArray) obj.get("user");
+                //get the user at user array of "num" position
+                JSONObject user = (JSONObject) userObject.get(num);
+
+                //get all fields
+                int ID = ((Long) user.get("id")).intValue();
+                Role role = Role.valueOf((String) user.get("role"));
+                String profilePic = (String) user.get("image");
+                String name = (String) user.get("name");
+                String email = (String) user.get("email");
+                String password = (String) user.get("password");
+                int accessRange = ((Long) user.get("accessRange")).intValue();
+                JSONArray projecthold = (JSONArray) user.get("_projects");
+                JSONArray taskhold = (JSONArray) user.get("_tasks");
+
+                //TODO rethink about having projecthold and taskhold
+                userGet = new User(ID, role, name, profilePic, email, password, accessRange);
+
+            }
+        } catch (Exception e) {
             System.out.println(e);
         }
         return userGet;
@@ -242,14 +241,29 @@ public class User {
         int userNumber = 0;
         JSONParser jsonParser = new JSONParser();
         try {
-            FileReader reader = new FileReader("src/resources/database.json");
+            Class cls = Class.forName("common.User.User");
+            // returns the ClassLoader object assosiated with this Class
+            ClassLoader cLoader = cls.getClassLoader();
+            InputStream inputStream = cLoader.getResourceAsStream("resources/database.json");
+            if (inputStream != null) {
+                BufferedReader streamReader = new BufferedReader(
+                        new InputStreamReader(inputStream, "UTF-8"));
+                StringBuilder responseStrBuilder = new StringBuilder();
 
-            //Read JSON file
-            JSONObject obj = (JSONObject) jsonParser.parse(reader);
-            //get the project aray
-            JSONArray userObject = (JSONArray) obj.get("user");
-            userNumber = userObject.size();
+                String inputStr;
+                while ((inputStr = streamReader.readLine()) != null) {
+                    responseStrBuilder.append(inputStr);
 
+                }
+                //FileReader reader = new FileReader("src/resources/database.json");
+
+                //Read JSON file
+                JSONObject obj = (JSONObject) jsonParser.parse(responseStrBuilder.toString());
+                //get the project aray
+                JSONArray userObject = (JSONArray) obj.get("user");
+                userNumber = userObject.size();
+
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
